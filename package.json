@@ -1,0 +1,39 @@
+{
+  "name": "area",
+  "version": "1.0.0",
+  "description": "Action Reaction",
+  "author": "A",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Exeloo/B-DEV-500_AREA.git"
+  },
+  "license": "MIT",
+  "private": true,
+  "packageManager": "yarn@1.22.22",
+  "engines": {
+    "node": ">=22.11.0",
+    "yarn": ">=1.22.22"
+  },
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10"
+  },
+  "workspaces": [
+    "apps/backend/api",
+    "apps/backend/modules/*",
+    "apps/frontend/mobile",
+    "apps/backend/web"
+  ],
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx,html,json,css,scss,md,mdx}": [
+      "yarn workspaces run fix"
+    ]
+  }
+}

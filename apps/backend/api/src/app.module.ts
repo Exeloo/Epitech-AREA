@@ -1,6 +1,13 @@
 import { Module } from "@nestjs/common";
+import { ConfigModule } from "@nestjs/config";
+
+import { validate } from "./config/validations/env.validation";
 
 @Module({
-  imports: [],
+  imports: [
+    ConfigModule.forRoot({
+      validate,
+    }),
+  ],
 })
 export class AppModule {}

@@ -173,3 +173,11 @@ doc/api/
 *.js_
 *.js.deps
 *.js.map
+
+# Files and directories created by pub
+.dart_tool/
+.packages
+build/
+
+.flutter-plugins
+.flutter-plugins-dependencies

@@ -1,2 +1,16 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script>
+	import Card from '$lib/Card.svelte';
+</script>
+
+<h2 class="mb-10 text-4xl font-bold">Explore</h2>
+<div class="grid w-full grid-cols-5 gap-5">
+	<Card />
+	<Card />
+	<Card />
+	<Card />
+	<Card />
+	<Card />
+	<Card />
+	<Card />
+	<Card />
+</div>

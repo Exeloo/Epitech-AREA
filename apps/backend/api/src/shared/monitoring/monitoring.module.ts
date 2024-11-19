@@ -25,7 +25,7 @@ import { LoggerInfoInterceptor } from "./logger/logger-info.interceptor";
             format: winston.format.combine(
               winston.format.timestamp(),
               winston.format.ms(),
-              nestWinstonModuleUtilities.format.nestLike("Survivor", {
+              nestWinstonModuleUtilities.format.nestLike("AREA", {
                 colors: true,
                 prettyPrint: true,
               }),
@@ -37,7 +37,7 @@ import { LoggerInfoInterceptor } from "./logger/logger-info.interceptor";
           config.transports.push(
             new DiscordTransport({
               webhook: configService.getOrThrow("DISCORD_WEBHOOK"),
-              defaultMeta: { service: "SURVIVOR API" },
+              defaultMeta: { service: "AREA API" },
               level: "error",
             }),
           );

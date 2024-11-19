@@ -9,6 +9,8 @@ import helmet from "helmet";
 import { WINSTON_MODULE_NEST_PROVIDER } from "nest-winston";
 import { join } from "path";
 
+import { AllExceptionFilter } from "~/application/http/common/filters/all-exception.filter";
+
 import { AppModule } from "./app.module";
 
 const rawBodyBuffer = (req, _, buffer, encoding) => {
@@ -46,6 +48,7 @@ async function bootstrap() {
   app.useGlobalPipes(
     new ValidationPipe({ transform: true, enableDebugMessages: true }),
   );
+  app.useGlobalFilters(new AllExceptionFilter());
   app.use(bodyParser.urlencoded({ verify: rawBodyBuffer, extended: true }));
   app.use(bodyParser.json({ verify: rawBodyBuffer }));
   await app.listen(3000);

@@ -16,11 +16,11 @@ export type DeepPartial<T> =
 
 export type Undefinable<T> = T | undefined;
 
-export type UndefinableOrPartial<T> = Undefinable<T | Partial<T> | DeepPartial<T>>;
+export type UndefinablePartial<T> = Undefinable<T | Partial<T> | DeepPartial<T>>;
 
 export type Nullable<T> = T | null;
 
-export type NullableOrPartial<T> = Nullable<T | Partial<T> | DeepPartial<T>>;
+export type NullablePartial<T> = Nullable<T | Partial<T> | DeepPartial<T>>;
 
 export type Emptyable<T> = Undefinable<T> | Nullable<T>;
 

@@ -5,6 +5,7 @@ import { GraphQLModule } from "@nestjs/graphql";
 
 import { DomainModule } from "@domain/domain.module";
 
+import { AuthResolver } from "~/application/http/graphql/resolvers/auth.resolver";
 import { graphqlConfig } from "~/config/graphql.config";
 
 @Module({
@@ -18,6 +19,6 @@ import { graphqlConfig } from "~/config/graphql.config";
     }),
     DomainModule,
   ],
-  providers: [],
+  providers: [AuthResolver],
 })
 export class GraphqlModule {}

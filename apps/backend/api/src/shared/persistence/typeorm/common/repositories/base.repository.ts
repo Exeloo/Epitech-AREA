@@ -14,14 +14,14 @@ import { DeepPartial } from "@type/nullable.type";
 import { ID } from "@d-type/id.type";
 
 import { IIdentifiable } from "@domain/common/interfaces/models/identifiable.type";
-import { IBaseRepository } from "@domain/common/interfaces/repositories/base.repository.type";
+import { IBasePersistenceRepository } from "@domain/common/interfaces/repositories/base.persistence.repository.type";
 
 import { DefaultTransformer } from "../transformers/default.transformer";
 import { ITransformer } from "../transformers/transformer.type";
 
 export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
   extends Repository<E>
-  implements IBaseRepository<I>
+  implements IBasePersistenceRepository<I>
 {
   public logger: Logger;
   public transformer: ITransformer<E, I>;
@@ -34,16 +34,14 @@ export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
   }
 
   async getById(id: ID): Promise<I> {
-    if (!id)
-      throw Error; // @todo Error
+    if (!id) throw Error; // @todo Error
 
     const entity = await this.findOne({
       relations: this.relations,
       where: { id },
     } as FindOneOptions<E>);
 
-    if (!entity)
-      throw Error; // @todo Error
+    if (!entity) throw Error; // @todo Error
 
     this.logger.log(
       `${this.constructor.name}.getById: entity (${id}) successfully found`,
@@ -53,16 +51,14 @@ export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
   }
 
   async getByProperties(properties: FindOptionsWhere<E>): Promise<I> {
-    if (!properties)
-      throw Error; // @todo Error
+    if (!properties) throw Error; // @todo Error
 
     const entity = await this.findOne({
       relations: this.relations,
       where: properties,
     });
 
-    if (!entity)
-      throw Error; // @todo Error
+    if (!entity) throw Error; // @todo Error
 
     this.logger.log(
       `${this.constructor.name}.getByProperties: entity (${entity.id}) successfully found`,
@@ -72,8 +68,7 @@ export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
   }
 
   async getAllByProperties(properties: FindOptionsWhere<E>): Promise<I[]> {
-    if (!properties)
-      throw Error; // @todo Error
+    if (!properties) throw Error; // @todo Error
 
     try {
       const entities = await this.find({
@@ -119,8 +114,7 @@ export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
       throw Error; // @todo Error
     }
 
-    if (!id)
-      throw Error; // @todo Error
+    if (!id) throw Error; // @todo Error
 
     this.logger.log(
       `${this.constructor.name}.createEntity: entity (${id}) successfully created`,
@@ -130,8 +124,7 @@ export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
   }
 
   async updateEntity(id: ID, model: DeepPartial<I>): Promise<I> {
-    if (!id)
-      throw Error; // @todo Error
+    if (!id) throw Error; // @todo Error
 
     try {
       await this.update(id, this.transformer.domainToPersistence(model));
@@ -147,16 +140,14 @@ export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
   }
 
   async deleteEntity(id: ID, hardDelete: boolean = false): Promise<I> {
-    if (!id)
-      throw Error; // @todo Error
+    if (!id) throw Error; // @todo Error
 
     const entity = await this.findOne({
       relations: this.relations,
       where: { id },
     } as FindOneOptions<E>);
 
-    if (!entity)
-      throw Error; // @todo Error
+    if (!entity) throw Error; // @todo Error
 
     try {
       if (

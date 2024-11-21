@@ -1,0 +1,20 @@
+{
+  "name": "area-documentation",
+  "version": "1.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Exeloo/B-DEV-500_AREA.git"
+  },
+  "license": "MIT",
+  "private": true,
+  "packageManager": "yarn@1.22.22",
+  "devDependencies": {
+    "vitepress": "^1.5.0"
+  },
+  "scripts": {
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
+  }
+}

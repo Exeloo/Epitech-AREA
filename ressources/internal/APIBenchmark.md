@@ -32,20 +32,20 @@ Focus sur :
 ### **3. Évaluation**
 
 #### **3.1. Gestion des workflows**
-| Technologie | Points forts                                                                                                | Points faibles                                                                    |
-|-------------|-------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
-| **NestJS**  | Structure modulaire, facilement extensible. Gestion des native des workflows via des middlewares et queues. | Framework rigide et complexe avec un grand partie pris donc très dûr à apprendre. |
-| **Go**      | Très performant pour des workflows sur mesure, contrôle total via goroutines et canaux.                     | Implémentation manuelle nécessaire pour des flux complexes. Peu d’outils natifs.  |
-| **Python**  | Celery et Django-Q gèrent bien les workflows avec des tâches enchaînées.                                    | Performances moindres sur des flux très complexes sans optimisation.              |
-| **Ruby**    | Rails est rapide pour des flux simples, et des gems comme `workflow` facilitent l’implémentation.           | Pas idéal pour des workflows très complexes ou de grande échelle.                 |
+| Technologie | Points forts                                                                                                | Points faibles                                                                           |
+|-------------|-------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
+| **NestJS**  | Structure modulaire, facilement extensible. Gestion des native des workflows via des middlewares et queues. | Framework rigide et complexe avec beaucoup de fonctionnalités donc très dûr à apprendre. |
+| **Go**      | Très performant pour des workflows sur mesure, contrôle total via goroutines et canaux.                     | Implémentation manuelle nécessaire pour des flux complexes. Peu d’outils natifs.         |
+| **Python**  | Celery et Django-Q gèrent bien les workflows avec des tâches enchaînées.                                    | Performances moindres sur des flux très complexes sans optimisation.                     |
+| **Ruby**    | Rails est rapide pour des flux simples, et des gems comme `workflow` facilitent l’implémentation.           | Pas idéal pour des workflows très complexes ou de grande échelle.                        |
 
 #### **3.2. Tâches asynchrones**
-| Technologie | Points forts                                                                                                            | Points faibles                                                           |
-|-------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
-| **NestJS**  | Intégration directe avec des queues comme Bull ou RabbitMQ. Très bon support des tâches asynchrones.                    | Moins performant sur des flux avec beaucoup de threads par rapport à Go. |
-| **Go**      | Goroutines très légères et threads natifs.                                                                              | Gestion des queues et workers à coder manuellement.                      |
-| **Python**  | Outils comme Celery, avec un support robuste pour les workflows asynchrones. Intégration facile avec Redis ou RabbitMQ. | Peut devenir complexe sur des workflows massivement parallèles.          |
-| **Ruby**    | Sidekiq offre une intégration simple et efficace avec Redis.                                                            | Performance limitée pour des tâches très nombreuses ou intensives.       |
+| Technologie | Points forts                                                                                                   | Points faibles                                                           |
+|-------------|----------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
+| **NestJS**  | Intégration directe avec des queues comme Bull ou RabbitMQ. Très bon support des tâches asynchrones.           | Moins performant sur des flux avec beaucoup de threads par rapport à Go. |
+| **Go**      | Goroutines très légères et threads natifs.                                                                     | Gestion des queues et workers à coder manuellement.                      |
+| **Python**  | Outils comme Celery, avec un support robuste pour les workflows asynchrones. Intégration facile avec RabbitMQ. | Peut devenir complexe sur des workflows avec beaucoup de threads.        |
+| **Ruby**    | Sidekiq offre une intégration simple et efficace avec Redis.                                                   | Performance limitée pour des tâches très nombreuses ou intensives.       |
 
 #### **3.3. Écosystème/API clients**
 | Technologie | Points forts                                                                                            | Points faibles                                                   |
@@ -60,7 +60,7 @@ Focus sur :
 |-------------|-----------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
 | **NestJS**  | Structure claire, documentation complète, bon support TypeScript.                       | Courbe d'apprentissage très très élevé pour les nouveaux arrivants.   |
 | **Go**      | Simple à lire, outils natifs solides, idéal pour des workflows hautement personnalisés. | Plus difficile à appréhender pour les débutants.                      |
-| **Python**  | Lisibilité du code, forte communauté, outils matures.                                   | Moins structuré pour les projets très complexes sans un cadre strict. |
+| **Python**  | Lisibilité du code, forte communauté, outils évolué.                                    | Moins structuré pour les projets très complexes sans un cadre strict. |
 | **Ruby**    | Rails est un plaisir à utiliser pour des workflows simples, beaucoup d’automatisation.  | Complexité accrue sur des projets de grande échelle.                  |
 
 ---
@@ -91,4 +91,4 @@ Go est très optimisé, avec des performances allant jusqu'à 192% supérieur à
 NestJS a quant à lui un écosystème très complet (celui de js). Mais également l'outil en lui-même est beaucoup plus complet et nécessite beaucoup moins de travaux personnels pour faire certaines fonctionnalités.
 
 Après réflexion, nous avons choisi NestJS comme Framework api. Cela est dû en partie aux avantages cités précédemment que nous trouvons plus adapté au contexte du projet.
-Une autre raison est le fait que nous avons peu d'expérience dans les deux languages/framework. Et la rigidité de NestJS dans la conception de l'api nous semble plus adapté pour débuter et faire une API complète.
+Une autre raison est le fait que nous avons peu d'expérience dans les deux languages/framework, et la rigidité de NestJS dans la conception de l'api nous semble plus adapté pour débuter et faire une API complète.

@@ -11,7 +11,7 @@ import { Nullable } from "@type/nullable.type";
 
 import { ID } from "@d-type/id.type";
 
-@Entity()
+@Entity({ name: "user" })
 export class UserEntity {
   @PrimaryGeneratedColumn()
   id: ID;

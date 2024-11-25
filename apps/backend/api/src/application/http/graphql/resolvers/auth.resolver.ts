@@ -10,12 +10,16 @@ import { AuthTokenResponse } from "../dto/response/auth/token.auth.response";
 export class AuthResolver {
   constructor(private readonly authService: AuthService) {}
 
-  @Query(() => AuthTokenResponse)
+  @Query(() => AuthTokenResponse, {
+    description: "Query used to auth with password strategy",
+  })
   login(@Args("data") data: AuthPasswordInput) {
     return this.authService.login(data);
   }
 
-  @Query(() => AuthTokenResponse)
+  @Query(() => AuthTokenResponse, {
+    description: "Query used to refresh access token",
+  })
   refreshToken(@Args("data") data: AuthRefreshTokenInput) {
     return this.authService.refreshToken(data);
   }

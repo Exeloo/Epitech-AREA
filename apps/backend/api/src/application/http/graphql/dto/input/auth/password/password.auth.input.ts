@@ -3,15 +3,15 @@ import { IsEmail, IsNotEmpty, IsString } from "class-validator";
 
 import { IAuthPasswordInput } from "@domain/auth/dto/password.auth.type";
 
-@InputType()
+@InputType({ description: "Input type for auth with password strategy" })
 export class AuthPasswordInput implements IAuthPasswordInput {
   @IsNotEmpty()
   @IsEmail()
-  @Field(() => String)
+  @Field(() => String, { description: "Email address to auth with" })
   email: string;
 
   @IsNotEmpty()
   @IsString()
-  @Field(() => String)
+  @Field(() => String, { description: "Password to auth with" })
   password: string;
 }

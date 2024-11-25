@@ -9,16 +9,18 @@ import { AllExceptionFilter } from "./common/filters/all-exception.filter";
 import { GlobalThrottlerGuard } from "./common/guards/global-throttler.guard";
 import { LoggerMiddleware } from "./common/middlewares/logger.middleware";
 import { GraphqlModule } from "./graphql/graphql.module";
+import { RestModule } from "./rest/rest.module";
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    GraphqlModule,
     ThrottlerModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: throttlerConfig,
     }),
+    GraphqlModule,
+    RestModule,
   ],
   providers: [
     {

@@ -1,14 +1,15 @@
 import { Module } from "@nestjs/common";
 
-import { AuthService } from "@domain/auth/auth.service";
-import { UserService } from "@domain/user/user.service";
-
 import { AuthModule } from "~/shared/auth/auth.module";
 import { PersistenceModule } from "~/shared/persistence/persistence.module";
 
+import { AuthService } from "./auth/auth.service";
+import { DocumentationService } from "./documentation/documentation.service";
+import { UserService } from "./user/user.service";
+
 @Module({
   imports: [AuthModule, PersistenceModule],
-  providers: [AuthService, UserService],
-  exports: [AuthService, UserService],
+  providers: [AuthService, DocumentationService, UserService],
+  exports: [AuthService, DocumentationService, UserService],
 })
 export class DomainModule {}

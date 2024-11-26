@@ -1,91 +1,102 @@
-### Benchmark : **Flutter vs React Native**
+### Benchmark : **Flutter vs React Native vs Kotlin**
+
+Pour évaluer Flutter, React Native, et Kotlin pour un projet d’application inspirée d’IFTTT, nous avons structuré ce
+benchmark selon des critères clés pour guider un choix éclairé.
 
 ---
 
-### **1. Langage et Courbe d’Apprentissage**
+### **1. Langage**
 
-- **Flutter** :
-    - Utilise **Dart**, un langage développé par Google.
-    - Plus complexe à adopter pour des équipes non familières avec Dart, bien que la syntaxe soit intuitive pour des
-      développeurs ayant une expérience en C# ou Java.
-- **React Native** :
-    - Utilise **JavaScript**, l'un des langages les plus populaires.
-    - Plus accessible pour les développeurs web ou ayant une expertise en JavaScript.
-
-**Sources** :
-
-- [Comparaison des langages pour le développement mobile](https://medium.com)
+- **Flutter** : Utilise **Dart**, un langage moderne mais moins répandu, facile à apprendre pour les développeurs ayant
+  une expérience en Java ou C#.
+- **React Native** : S’appuie sur **JavaScript**, accessible et déjà largement utilisé par de nombreux développeurs.
+- **Kotlin** : Langage officiel pour le développement Android natif, polyvalent, et interopérable avec Java, idéal pour
+  tirer parti de toutes les capacités natives d’Android.
 
 ---
 
-### **2. Performance et Rendu**
+### **2. Expérience Développeur**
 
 - **Flutter** :
-    - Compile directement en code natif grâce à **AOT (Ahead-of-Time)**, assurant des performances élevées.
-    - Utilise son propre moteur de rendu via Skia, ce qui garantit une expérience cohérente sur toutes les plateformes.
+    - Excellent support avec des outils comme **Flutter DevTools** et un écosystème intégré de widgets.
+    - Courbe d’apprentissage modérée en raison de son architecture unique.
 - **React Native** :
-    - Passe par une couche de communication entre JavaScript et les modules natifs via un **pont (Bridge)**, ce qui peut
-      entraîner des latences, notamment pour des applications nécessitant de lourds calculs.
-
-**Sources** :
-
-- [Article sur les performances Flutter et React Native](https://medium.com/performance)
+    - Plus rapide à démarrer pour des développeurs habitués au JavaScript, grâce à des outils comme **Expo**.
+    - Dépendance aux librairies tierces pour certaines fonctionnalités, ce qui peut complexifier la maintenance.
+- **Kotlin** :
+    - Offre une expérience native, particulièrement fluide sur Android.
+    - S’intègre parfaitement avec **Android Studio**, offrant des outils puissants comme l’analyse statique de code.
 
 ---
 
-### **3. Expérience Développeur**
+### **3. Performance**
 
 - **Flutter** :
-    - Offre une **bibliothèque de widgets intégrée**, réduisant la dépendance aux librairies tierces.
-    - Outils comme **Flutter DevTools** pour le débogage et l’analyse des performances.
+    - Compilé en code natif, avec un moteur de rendu propre (Skia), offrant une fluidité élevée sur toutes les
+      plateformes.
 - **React Native** :
-    - Profite d’outils comme **Expo** pour accélérer le démarrage des projets.
-    - Mais une forte dépendance aux bibliothèques tierces peut poser des problèmes de compatibilité et maintenance.
-
-**Sources** :
-
-- [Écosystème et outils React Native](https://reactnative.dev/docs/environment-setup)
+    - Utilise un pont JavaScript pour interagir avec les modules natifs, ce qui peut entraîner des latences.
+- **Kotlin** :
+    - Performance optimale sur Android, car il compile directement en code natif sans intermédiation.
 
 ---
 
 ### **4. UI et Personnalisation**
 
 - **Flutter** :
-    - Dispose de widgets pour **Material Design** (Android) et **Cupertino** (iOS), facilitant la création d’interfaces
-      cohérentes.
-    - Permet des personnalisations avancées pour des designs uniques.
+    - Offre une bibliothèque complète de widgets pour des designs homogènes (Material Design et Cupertino).
+    - Requiert du travail supplémentaire pour coller précisément aux comportements natifs.
 - **React Native** :
-    - S’appuie sur les composants natifs des plateformes, offrant une expérience utilisateur fidèle mais moins uniforme.
-    - Besoin fréquent d’utiliser des librairies externes comme **NativeBase** ou **React Native Elements**.
-
-**Sources** :
-
-- [Avantages des widgets Flutter](https://flutter.dev)
+    - Utilise des composants natifs des plateformes pour une meilleure adaptation aux spécificités Android et iOS.
+- **Kotlin** :
+    - Permet de tirer parti des **composants natifs Android** pour une personnalisation complète sans compromis sur
+      l’expérience utilisateur.
 
 ---
 
-### **5. Communauté et Écosystème**
+### **5. Ecosystème et Communauté**
 
 - **Flutter** :
-    - Jeune mais en pleine croissance grâce au support de Google.
-    - Moins de librairies tierces comparées à React Native, mais celles existantes sont souvent mieux maintenues.
+    - En pleine croissance, avec un soutien solide de Google. Les plugins sont bien maintenus.
 - **React Native** :
-    - Plus ancien, il bénéficie d’une communauté massive et d’un grand nombre de solutions prêtes à l’emploi.
-    - Risque accru de dépendre de librairies obsolètes.
-
-**Sources** :
-
-- [État de l’écosystème React Native 2023](https://blog.expo.dev)
-
-### **Conclusion et Recommandation**
-
-Après analyse des différentes caractéristiques, avantages, et contraintes des deux technologies, Flutter ressort comme le choix le plus pertinent pour un projet comme une application inspirée d’IFTTT. Sa capacité à offrir des performances natives, une interface utilisateur cohérente et un écosystème robuste en fait une solution idéale pour garantir la qualité et la pérennité du projet.
+    - Écosystème plus mature avec une large communauté, mais certains plugins sont moins bien maintenus.
+- **Kotlin** :
+    - Soutenu par Google et largement adopté pour le développement Android. Les ressources et la documentation sont
+      abondantes.
 
 ---
 
-### Sources Précises
+### **6. Cas d’utilisation**
 
-1. [Flutter vs React Native: Detailed Analysis](https://medium.com)
-2. [Understanding the Performance of React Native](https://dev.to/react-native-performance)
-3. [Exploring the Flutter Ecosystem](https://flutter.dev)
-4. [React Native Ecosystem Overview](https://reactnative.dev)
+- **Flutter** :
+    - Idéal pour des interfaces personnalisées nécessitant un rendu homogène sur toutes les plateformes.
+- **React Native** :
+    - Excellent pour des applications où la réutilisation de code entre web et mobile est recherchée.
+- **Kotlin** :
+    - Recommandé si l’objectif est une performance optimale et une exploitation maximale des capacités natives Android.
+
+---
+
+### **7. Multi-Plateforme**
+
+- **Flutter** : Compatible Android, iOS, et même web/desktop.
+- **React Native** : Principalement Android et iOS.
+- **Kotlin** : Avec **Kotlin Multiplatform**, il est possible de cibler Android, iOS, et autres plateformes, mais avec
+  plus d’efforts qu’avec Flutter ou React Native.
+
+---
+
+### **Conclusion**
+
+Au vu des différents arguments, Flutter apparaît comme le meilleur choix. Son écosystème, soutenu par Google, ainsi que
+ses capacités de personnalisation avancées sont des atouts majeurs pour le projet. De plus, la fluidité offerte par la
+compilation en code natif et l'utilisation de bibliothèques de widgets intégrées confirment que Flutter est la solution
+la plus adaptée à nos besoins.
+
+### Sources
+
+- [Flutter Documentation](https://flutter.dev)
+- [React Native Documentation](https://reactnative.dev)
+- [Kotlin Documentation](https://kotlinlang.org)
+- [Article : Flutter vs Kotlin Multiplatform](https://medium.com)
+- [Comparaison des Frameworks Mobile](https://www.smashingmagazine.com)  

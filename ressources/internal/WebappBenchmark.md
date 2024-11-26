@@ -64,7 +64,7 @@ Comparer **React**, **SvelteKit**, et **Django** pour identifier la meilleure te
 | Critères               | **React** | **SvelteKit** | **Django** |
 |------------------------|-----------|---------------|------------|
 | **Performance UI**     | ⭐⭐⭐⭐      | ⭐⭐⭐⭐⭐         | ⭐⭐        |
-| **Intégration API**     | ⭐⭐⭐⭐      | ⭐⭐⭐⭐          | ⭐⭐⭐⭐       |
+| **Écosystème**     | ⭐⭐⭐⭐      | ⭐⭐⭐⭐          | ⭐⭐⭐⭐       |
 | **Expérience Dev**      | ⭐⭐⭐⭐      | ⭐⭐⭐⭐          | ⭐⭐⭐        |
 | **Scalabilité**         | ⭐⭐⭐       | ⭐⭐⭐           | ⭐⭐⭐⭐       |
 

@@ -51,7 +51,7 @@ Comparer **Kubernetes**, **CapRover** pour identifier la meilleure technologie p
 |-----------------------|----------------|--------------|
 | **Configuration**     | ⭐⭐⭐⭐           | ⭐⭐⭐          |
 | **Écosystème**        | ⭐⭐⭐⭐           | ⭐⭐           |
-| **Expérience Dev**    | ⭐⭐⭐⭐           | ⭐⭐⭐          |
+| **Expérience Dev**    | ⭐⭐⭐            | ⭐⭐⭐⭐         |
 
 ---
 
@@ -66,7 +66,7 @@ Comparer **Kubernetes**, **CapRover** pour identifier la meilleure technologie p
 
 Notre réflexion s’est tournée vers une solution capable de gérer efficacement une infrastructure complexe. Bien que CapRover soit simple à utiliser et rapide à configurer, il reste limité dans les cas nécessitant des configurations avancées ou des architectures complexes.
 
-Kubernetes, en revanche, offre une flexibilité grâce à son écosystème riche et sa capacité à gérer des déploiements automatiques. Malgré une courbe d'apprentissage plus exigeante que celle de CapRover, il s'impose comme la meilleure solution pour orchestrer des projets plus importants.
+Kubernetes, en revanche, offre une flexibilité grâce à son écosystème riche et sa capacité à configurer automatiquement. Malgré une courbe d'apprentissage plus exigeante que celle de CapRover, il s'impose comme la meilleure solution pour orchestrer des projets plus importants.
 
 En conclusion, nous avons choisi Kubernetes pour sa capacité à répondre aux besoins d’une infrastructure complexe et une configuration plus poussée.
 

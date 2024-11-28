@@ -1,4 +1,4 @@
-import { IUser } from "@domain/user/user.type";
+import { IUser } from "@domain/user/dto/user.type";
 
 import { BaseTransformer } from "../common/transformers/base.transformer";
 import { ITransformer } from "../common/transformers/transformer.type";
@@ -13,6 +13,12 @@ class BaseUserTransformer
       id: entity.id,
       email: entity.email,
       password: entity.password,
+      username: entity.username,
+      firstName: entity.firstName,
+      lastName: entity.lastName,
+      pronoun: entity.pronoun,
+      picture: entity.picture,
+      description: entity.description,
       lastConnection: entity.lastConnection,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
@@ -25,6 +31,12 @@ class BaseUserTransformer
       id: element.id,
       email: element.email,
       password: element.password,
+      username: element.username,
+      firstName: element.firstName,
+      lastName: element.lastName,
+      pronoun: element.pronoun,
+      picture: element.picture,
+      description: element.description,
       lastConnection: element.lastConnection,
       createdAt: element.createdAt,
       updatedAt: element.updatedAt,

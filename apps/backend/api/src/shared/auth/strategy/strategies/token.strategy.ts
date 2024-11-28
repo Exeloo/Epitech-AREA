@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 
 import { ITokenStrategy } from "@domain/auth/strategy/strategies/token.strategy.type";
 import { StrategyEnum } from "@domain/auth/strategy/strategy.enum";
-import { IUser } from "@domain/user/user.type";
+import { IUser } from "@domain/user/dto/user.type";
 
 import { TokenService } from "~/shared/auth/services/token/token.service";
 import { AuthStrategy } from "~/shared/auth/strategy/common/base.strategy";

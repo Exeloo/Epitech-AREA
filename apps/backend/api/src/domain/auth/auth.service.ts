@@ -1,21 +1,25 @@
 import { Inject, Injectable } from "@nestjs/common";
 
-import { AUTH_SERVICE, IAuthService } from "@domain/auth/auth.repository.type";
-import { IAuthPasswordInput } from "@domain/auth/dto/password.auth.type";
+import { ID } from "@d-type/id.type";
+
 import {
-  IAuthRefreshTokenInput,
-  IAuthToken,
-} from "@domain/auth/dto/token.auth.type";
-import { StrategyEnum } from "@domain/auth/strategy/strategy.enum";
-import { UserService } from "@domain/user/user.service";
-import { IUser } from "@domain/user/user.type";
+  IUserPersistenceRepository,
+  USER_PERSISTENCE_REPOSITORY,
+} from "@domain/user/user.repository.type";
+
+import { IUser } from "../user/dto/user.type";
+import { AUTH_SERVICE, IAuthService } from "./auth.repository.type";
+import { IAuthPasswordInput } from "./dto/password.auth.type";
+import { IAuthRefreshTokenInput, IAuthToken } from "./dto/token.auth.type";
+import { StrategyEnum } from "./strategy/strategy.enum";
 
 @Injectable()
 export class AuthService {
   constructor(
     @Inject(AUTH_SERVICE)
     private readonly authService: IAuthService,
-    private readonly userService: UserService,
+    @Inject(USER_PERSISTENCE_REPOSITORY)
+    private readonly userPRepository: IUserPersistenceRepository,
   ) {}
 
   async login(input: IAuthPasswordInput): Promise<IAuthToken> {
@@ -26,8 +30,18 @@ export class AuthService {
   async refreshToken(input: IAuthRefreshTokenInput): Promise<IAuthToken> {
     const tokens = await this.authService.refreshToken(input.refreshToken);
     const user = await this.authToken(tokens.token);
-    await this.userService.updateLastConnection(user.id);
+    await this.updateLastConnection(user.id);
     return tokens;
+  }
+
+  updateLastConnection(id: ID): Promise<IUser> {
+    return this.userPRepository.updateEntity(id, {
+      lastConnection: new Date(Date.now()),
+    });
+  }
+
+  hashPassword(password: string): Promise<string> {
+    return this.authService.hashPassword(password);
   }
 
   authPassword(email: string, password: string): Promise<IUser> {

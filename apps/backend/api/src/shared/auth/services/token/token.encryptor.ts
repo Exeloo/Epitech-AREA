@@ -56,9 +56,9 @@ export class TokenEncryptor {
     try {
       switch (type) {
         case TokenEnum.ACCESS:
-          return this.configService.getOrThrow("ACCESS_TOKEN_SECRET");
+          return this.configService.getOrThrow("ACCESS_TOKEN_EXPIRATION");
         case TokenEnum.REFRESH:
-          return this.configService.getOrThrow("REFRESH_TOKEN_SECRET");
+          return this.configService.getOrThrow("REFRESH_TOKEN_EXPIRATION");
       }
     } catch (e) {
       throw Error; // @todo Error

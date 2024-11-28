@@ -5,11 +5,11 @@ import { ID } from "@d-type/id.type";
 import { IAuthService } from "@domain/auth/auth.repository.type";
 import { IAuthToken } from "@domain/auth/dto/token.auth.type";
 import { IStrategyInput } from "@domain/auth/strategy/strategy.type";
-import { IUser } from "@domain/user/user.type";
+import { IUser } from "@domain/user/dto/user.type";
 
-import { PasswordService } from "~/shared/auth/services/password/password.service";
-import { TokenService } from "~/shared/auth/services/token/token.service";
-import { StrategyService } from "~/shared/auth/strategy/strategy.service";
+import { PasswordService } from "./services/password/password.service";
+import { TokenService } from "./services/token/token.service";
+import { StrategyService } from "./strategy/strategy.service";
 
 @Injectable()
 export class AuthService implements IAuthService {

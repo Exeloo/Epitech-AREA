@@ -5,7 +5,23 @@ import { ITimestampable } from "@domain/common/interfaces/models/timestampable.t
 export interface IUser extends IIdentifiable, ITimestampable, ISoftDeletable {
   email: string;
   password: string;
+  username: string;
+  firstName: string;
+  lastName: string;
+  pronoun: string | null;
+  picture: string | null;
+  description: string | null;
   lastConnection: Date;
 }
 
-export type IExposedUser = Pick<IUser, "id" | "email">;
+export type IExposedUser = Pick<
+  IUser,
+  | "id"
+  | "email"
+  | "username"
+  | "firstName"
+  | "lastName"
+  | "pronoun"
+  | "picture"
+  | "description"
+>;

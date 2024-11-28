@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 
 import { StrategyEnum } from "@domain/auth/strategy/strategy.enum";
 import { IStrategyInput } from "@domain/auth/strategy/strategy.type";
-import { IUser } from "@domain/user/user.type";
+import { IUser } from "@domain/user/dto/user.type";
 
 import { IStrategy } from "~/shared/auth/strategy/strategy.type";
 

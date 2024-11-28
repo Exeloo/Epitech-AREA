@@ -40,10 +40,87 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Mutation {
+  """Mutation used to create a user as admin"""
+  createUser(data: UserCreateInput!): User!
+
+  """Mutation used to register yourself"""
+  register(data: UserRegisterInput!): User!
+}
+
 type Query {
   """Query used to auth with password strategy"""
   login(data: AuthPasswordInput!): AuthTokenResponse!
 
   """Query used to refresh access token"""
   refreshToken(data: AuthRefreshTokenInput!): AuthTokenResponse!
+}
+
+"""User"""
+type User {
+  """Description of the user"""
+  description: String
+
+  """Email of the user"""
+  email: String!
+
+  """First name of the user"""
+  firstName: String!
+
+  """ID of the user"""
+  id: Int!
+
+  """Last name of the user"""
+  lastName: String!
+
+  """Profile picture of the user"""
+  picture: String
+
+  """Pronoun of the user"""
+  pronoun: String
+
+  """Username of the user"""
+  username: String!
+}
+
+"""Input type to create user"""
+input UserCreateInput {
+  """Description of the user to create"""
+  description: String
+
+  """Email of the user to create"""
+  email: String!
+
+  """First name of the user to create"""
+  firstName: String!
+
+  """Last name of the user to create"""
+  lastName: String!
+
+  """Password of the user to create (optional)"""
+  password: String
+
+  """Pronoun of the user to create"""
+  pronoun: String
+
+  """Username of the user to create"""
+  username: String!
+}
+
+"""Input type to register a user"""
+input UserRegisterInput {
+  """Email of the user to register"""
+  email: String!
+
+  """First name of the user to register"""
+  firstName: String!
+
+  """Last name of the user to register"""
+  lastName: String!
+
+  """Password of the user to register (optional)"""
+  password: String
+
+  """Username of the user to register"""
+  username: String!
 }

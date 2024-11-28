@@ -16,11 +16,41 @@ export class UserEntity {
   @PrimaryGeneratedColumn()
   id: ID;
 
-  @Column()
+  @Column({
+    type: "varchar",
+    unique: true,
+  })
   email: string;
 
   @Column()
   password: string;
+
+  @Column()
+  username: string;
+
+  @Column()
+  firstName: string;
+
+  @Column()
+  lastName: string;
+
+  @Column({
+    type: "varchar",
+    nullable: true,
+  })
+  pronoun: string | null;
+
+  @Column({
+    type: "varchar",
+    nullable: true,
+  })
+  picture: string | null;
+
+  @Column({
+    type: "text",
+    nullable: true,
+  })
+  description: string | null;
 
   @Column({
     type: "datetime",

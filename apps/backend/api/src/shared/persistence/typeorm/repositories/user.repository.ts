@@ -1,8 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { DataSource, FindOptionsRelations } from "typeorm";
 
+import { IUser } from "@domain/user/dto/user.type";
 import { IUserPersistenceRepository } from "@domain/user/user.repository.type";
-import { IUser } from "@domain/user/user.type";
 
 import { UserEntity } from "~/shared/persistence/typeorm/entities/user.entity";
 
@@ -22,10 +22,12 @@ export class UserRepository
     this.relations = DEFAULTS_RELATIONS;
   }
 
-  getByEmail(email: string): Promise<IUser | null> {
-    return this.findOne({
-      where: { email },
-      relations: this.relations,
-    });
+  async getByEmail(email: string): Promise<IUser | null> {
+    return this.transformer.persistenceToDomain(
+      await this.findOne({
+        where: { email },
+        relations: this.relations,
+      }),
+    );
   }
 }

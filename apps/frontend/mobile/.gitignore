@@ -22,6 +22,7 @@
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+.idea/**/AREA.iml
 
 # AWS User-specific
 .idea/**/aws.xml
@@ -174,10 +175,3 @@ doc/api/
 *.js.deps
 *.js.map
 
-# Files and directories created by pub
-.dart_tool/
-.packages
-build/
-
-.flutter-plugins
-.flutter-plugins-dependencies

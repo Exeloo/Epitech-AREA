@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  bool _rememberMe = false;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +51,14 @@ class LoginPage extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Checkbox(value: false, onChanged: (value) {}),
+                    Checkbox(
+                      value: _rememberMe,
+                      onChanged: (value) {
+                        setState(() {
+                          _rememberMe = value!;
+                        });
+                      },
+                    ),
                     const Text('Remember me'),
                   ],
                 ),
@@ -65,7 +79,9 @@ class LoginPage extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/signup');
+              },
               child: const Text('Don\'t have an account? Sign up'),
             ),
           ],

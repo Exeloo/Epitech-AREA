@@ -43,13 +43,13 @@ class SignUpPage extends StatelessWidget {
               decoration: const InputDecoration(
                 labelText: 'Password',
                 border: OutlineInputBorder(),
-                helperText:
-                'Must be at least 8 characters',
+                helperText: 'Must be at least 8 characters',
               ),
             ),
             const SizedBox(height: 16),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+              },
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 textStyle: const TextStyle(fontSize: 16),
@@ -58,7 +58,9 @@ class SignUpPage extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/login');
+              },
               child: const Text('Already have an account? Log in'),
             ),
           ],

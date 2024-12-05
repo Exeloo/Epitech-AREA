@@ -8,6 +8,8 @@ RUN yarn install
 
 COPY ../../ .
 
+EXPOSE 3000
+
 RUN yarn build
 
-CMD ["node", "dist/main.js"]
+CMD ["sh", "-c", "yarn migration:up;node dist/main.js"]

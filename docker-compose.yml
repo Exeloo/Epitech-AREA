@@ -1,16 +1,6 @@
 version: "3.9"
 
 services:
-  api:
-    build:
-      context: apps/backend/api/
-      dockerfile: .cloud/docker/Dockerfile
-    volumes:
-      - /app/node_modules
-      - ./apps/backend/api:/app
-    ports:
-      - "8080:8080"
-
   mariadb:
     image: mariadb:11.5.2
     tty: true
@@ -23,3 +13,19 @@ services:
       - ${DATA_PATH_HOST}mariadb/database:/docker-entrypoint-initdb.d
     ports:
       - "3306:3306"
+
+  server:
+    build:
+      context: apps/backend/api/
+      dockerfile: .cloud/docker/Dockerfile
+    depends_on:
+      - mariadb
+    ports:
+      - "8080:3000"
+
+  client_web:
+    build:
+      context: apps/frontend/web/
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"

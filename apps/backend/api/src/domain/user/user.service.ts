@@ -2,20 +2,20 @@ import { Inject } from "@nestjs/common";
 
 import { ID } from "@d-type/id.type";
 
-import { generateKey } from "@utils/key-generator.utils";
+import { generateRandomString } from "@utils/string.utils";
 
-import { AuthService } from "@domain/auth/auth.service";
+import { AuthService } from "../auth/auth.service";
 import {
   IUserCreateInput,
   IUserInput,
   IUserRegisterInput,
   IUserUpdateInput,
-} from "@domain/user/dto/user.input.type";
-import { IUser } from "@domain/user/dto/user.type";
+} from "./types/user.input.type";
+import { IUser } from "./types/user.type";
 import {
   IUserPersistenceRepository,
   USER_PERSISTENCE_REPOSITORY,
-} from "@domain/user/user.repository.type";
+} from "./user.repository.type";
 
 export class UserService {
   constructor(
@@ -45,7 +45,7 @@ export class UserService {
     if (currUser) {
       throw Error; // @todo Error User Already exist
     }
-    const password = input.password ?? generateKey();
+    const password = input.password ?? generateRandomString(50);
 
     return this.create({
       ...input,

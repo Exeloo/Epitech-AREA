@@ -1,4 +1,4 @@
-import { IUser } from "@domain/user/dto/user.type";
+import { IUser } from "@domain/user/types/user.type";
 
 export interface IUserInput extends Partial<IUser> {
   email: string;

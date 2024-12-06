@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { DataSource, FindOptionsRelations } from "typeorm";
 
-import { IUser } from "@domain/user/dto/user.type";
+import { IUser } from "@domain/user/types/user.type";
 import { IUserPersistenceRepository } from "@domain/user/user.repository.type";
 
 import { UserEntity } from "~/shared/persistence/typeorm/entities/user.entity";

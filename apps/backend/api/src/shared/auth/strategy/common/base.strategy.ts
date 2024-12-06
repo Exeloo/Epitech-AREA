@@ -1,6 +1,6 @@
 import { StrategyEnum } from "@domain/auth/strategy/strategy.enum";
 import { IStrategyInput } from "@domain/auth/strategy/strategy.type";
-import { IUser } from "@domain/user/dto/user.type";
+import { IUser } from "@domain/user/types/user.type";
 
 import { IAuthStrategy } from "~/shared/auth/strategy/common/base.strategy.type";
 

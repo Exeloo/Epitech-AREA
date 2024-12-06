@@ -2,7 +2,7 @@ import { Field, Int, ObjectType } from "@nestjs/graphql";
 
 import { ID } from "@d-type/id.type";
 
-import { IExposedUser } from "@domain/user/dto/user.type";
+import { IExposedUser } from "@domain/user/types/user.type";
 
 @ObjectType({
   description: "User",

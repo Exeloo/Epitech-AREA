@@ -1,6 +1,6 @@
 import { Field, ObjectType } from "@nestjs/graphql";
 
-import { IAuthToken } from "@domain/auth/dto/token.auth.type";
+import { IAuthToken } from "@domain/auth/types/token.auth.type";
 
 @ObjectType({ description: "Response type for auth" })
 export class AuthTokenResponse implements IAuthToken {

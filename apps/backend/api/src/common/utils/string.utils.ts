@@ -5,6 +5,7 @@ export const capitalize = (str: string) => {
 export const formatCodeToText = (str: string) => {
   return str
     .split("_")
+    .filter((value) => !!value)
     .map((value) => capitalize(value))
     .join(" ");
 };
@@ -23,12 +24,4 @@ export const generateRandomString = (length: number): string => {
     );
   }
   return randomString;
-};
-
-export const getAsciiCharsSum = (str: string): number => {
-  let sum = 0;
-  for (let i = 0; i < str.length; i++) {
-    sum += str.charCodeAt(i);
-  }
-  return sum;
 };

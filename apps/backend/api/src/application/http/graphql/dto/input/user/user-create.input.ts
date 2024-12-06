@@ -1,7 +1,7 @@
 import { Field, InputType } from "@nestjs/graphql";
 import { IsEmail, IsNotEmpty, IsOptional, IsString } from "class-validator";
 
-import { IUserCreateInput } from "@domain/user/dto/user.input.type";
+import { IUserCreateInput } from "@domain/user/types/user.input.type";
 
 @InputType({ description: "Input type to create user" })
 export class UserCreateInput implements IUserCreateInput {

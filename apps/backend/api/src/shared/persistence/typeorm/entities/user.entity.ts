@@ -11,7 +11,7 @@ import { Nullable } from "@type/nullable.type";
 
 import { ID } from "@d-type/id.type";
 
-@Entity({ name: "user" })
+@Entity({ name: "users" })
 export class UserEntity {
   @PrimaryGeneratedColumn()
   id: ID;
@@ -25,7 +25,10 @@ export class UserEntity {
   @Column()
   password: string;
 
-  @Column()
+  @Column({
+    type: "varchar",
+    unique: true,
+  })
   username: string;
 
   @Column()

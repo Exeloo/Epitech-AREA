@@ -1,7 +1,7 @@
 import { Field, InputType } from "@nestjs/graphql";
 import { IsEmail, IsNotEmpty, IsString } from "class-validator";
 
-import { IAuthPasswordInput } from "@domain/auth/dto/password.auth.type";
+import { IAuthPasswordInput } from "@domain/auth/types/password.auth.type";
 
 @InputType({ description: "Input type for auth with password strategy" })
 export class AuthPasswordInput implements IAuthPasswordInput {

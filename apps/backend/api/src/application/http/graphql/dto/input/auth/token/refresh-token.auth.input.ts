@@ -1,7 +1,7 @@
 import { Field, InputType } from "@nestjs/graphql";
 import { IsNotEmpty, IsString } from "class-validator";
 
-import { IAuthRefreshTokenInput } from "@domain/auth/dto/token.auth.type";
+import { IAuthRefreshTokenInput } from "@domain/auth/types/token.auth.type";
 
 @InputType({ description: "Input type for refresh access token" })
 export class AuthRefreshTokenInput implements IAuthRefreshTokenInput {

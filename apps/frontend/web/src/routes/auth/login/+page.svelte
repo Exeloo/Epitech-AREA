@@ -2,6 +2,22 @@
     import Input from "$lib/auth/Input.svelte";
     import Checkbox from "$lib/auth/Checkbox.svelte";
     import Submit from "$lib/auth/Submit.svelte";
+    import { page } from '$app/stores';
+
+    let email = '';
+    let password = '';
+
+    async function handleLogin() {
+        const { data, errors } = await GQL_Login({
+            data: { email, password }
+        });
+
+        if (errors) {
+            console.error(errors);
+        } else {
+            console.log('Token:', data.login.token);
+        }
+    }
 </script>
 
 <Input title="Email" placeholder="Enter your email" dataType="email" />

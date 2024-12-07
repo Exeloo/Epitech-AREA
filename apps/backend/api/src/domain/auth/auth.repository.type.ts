@@ -1,8 +1,8 @@
 import { ID } from "@d-type/id.type";
 
-import { IAuthToken } from "@domain/auth/dto/token.auth.type";
 import { IStrategyInput } from "@domain/auth/strategy/strategy.type";
-import { IUser } from "@domain/user/dto/user.type";
+import { IAuthToken } from "@domain/auth/types/token.auth.type";
+import { IUser } from "@domain/user/types/user.type";
 
 export const AUTH_SERVICE = "AUTH_SERVICE";
 

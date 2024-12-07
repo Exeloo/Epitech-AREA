@@ -1,4 +1,4 @@
-import { IUser } from "@domain/user/dto/user.type";
+import { IUser } from "@domain/user/types/user.type";
 
 import { BaseTransformer } from "../common/transformers/base.transformer";
 import { ITransformer } from "../common/transformers/transformer.type";

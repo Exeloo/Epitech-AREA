@@ -1,6 +1,6 @@
 import { Args, Mutation, Resolver } from "@nestjs/graphql";
 
-import { IExposedUser } from "@domain/user/dto/user.type";
+import { IExposedUser } from "@domain/user/types/user.type";
 import { UserService } from "@domain/user/user.service";
 
 import { UserCreateInput } from "../dto/input/user/user-create.input";

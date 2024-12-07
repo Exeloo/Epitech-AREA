@@ -2,7 +2,7 @@ import { Inject, Injectable } from "@nestjs/common";
 
 import { IPasswordStrategy } from "@domain/auth/strategy/strategies/password.strategy.type";
 import { StrategyEnum } from "@domain/auth/strategy/strategy.enum";
-import { IUser } from "@domain/user/dto/user.type";
+import { IUser } from "@domain/user/types/user.type";
 import {
   IUserPersistenceRepository,
   USER_PERSISTENCE_REPOSITORY,

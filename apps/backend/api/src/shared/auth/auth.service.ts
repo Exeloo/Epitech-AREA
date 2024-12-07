@@ -3,9 +3,9 @@ import { Injectable } from "@nestjs/common";
 import { ID } from "@d-type/id.type";
 
 import { IAuthService } from "@domain/auth/auth.repository.type";
-import { IAuthToken } from "@domain/auth/dto/token.auth.type";
 import { IStrategyInput } from "@domain/auth/strategy/strategy.type";
-import { IUser } from "@domain/user/dto/user.type";
+import { IAuthToken } from "@domain/auth/types/token.auth.type";
+import { IUser } from "@domain/user/types/user.type";
 
 import { PasswordService } from "./services/password/password.service";
 import { TokenService } from "./services/token/token.service";

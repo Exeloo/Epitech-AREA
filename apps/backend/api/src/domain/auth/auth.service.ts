@@ -2,15 +2,18 @@ import { Inject, Injectable } from "@nestjs/common";
 
 import { ID } from "@d-type/id.type";
 
+import { IAuthPasswordInput } from "@domain/auth/types/password.auth.type";
+import {
+  IAuthRefreshTokenInput,
+  IAuthToken,
+} from "@domain/auth/types/token.auth.type";
 import {
   IUserPersistenceRepository,
   USER_PERSISTENCE_REPOSITORY,
 } from "@domain/user/user.repository.type";
 
-import { IUser } from "../user/dto/user.type";
+import { IUser } from "../user/types/user.type";
 import { AUTH_SERVICE, IAuthService } from "./auth.repository.type";
-import { IAuthPasswordInput } from "./dto/password.auth.type";
-import { IAuthRefreshTokenInput, IAuthToken } from "./dto/token.auth.type";
 import { StrategyEnum } from "./strategy/strategy.enum";
 
 @Injectable()

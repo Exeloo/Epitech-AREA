@@ -1,7 +1,5 @@
-version: "3.8"
-
 services:
-  provider:
+  discord:
     image: node:22-alpine
     build:
       context: ../..

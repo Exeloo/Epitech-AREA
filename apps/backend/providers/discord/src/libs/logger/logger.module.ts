@@ -1,8 +1,8 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import {
-  utilities as nestWinstonModuleUtilities,
   WinstonModule,
+  utilities as nestWinstonModuleUtilities,
 } from "nest-winston";
 import * as winston from "winston";
 
@@ -20,10 +20,13 @@ import * as winston from "winston";
             format: winston.format.combine(
               winston.format.timestamp(),
               winston.format.ms(),
-              nestWinstonModuleUtilities.format.nestLike("AREA-PROVIDER (DISCORD)", {
-                colors: true,
-                prettyPrint: true,
-              }),
+              nestWinstonModuleUtilities.format.nestLike(
+                "AREA-PROVIDER (DISCORD)",
+                {
+                  colors: true,
+                  prettyPrint: true,
+                },
+              ),
             ),
           }),
         );

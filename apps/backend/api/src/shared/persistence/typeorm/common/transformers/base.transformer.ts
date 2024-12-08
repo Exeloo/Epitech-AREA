@@ -1,4 +1,8 @@
-import { DeepPartial, EmptyablePartial, UndefinablePartial } from "@type/nullable.type";
+import {
+  DeepPartial,
+  EmptyablePartial,
+  UndefinablePartial,
+} from "@type/nullable.type";
 
 import { ITransformer } from "./transformer.type";
 
@@ -13,7 +17,9 @@ export abstract class BaseTransformer<E, I> implements ITransformer<E, I> {
   }
 
   persistenceToDomains(entities: E[]): I[];
-  persistenceToDomains(entities: UndefinablePartial<E[]>): UndefinablePartial<I[]> {
+  persistenceToDomains(
+    entities: UndefinablePartial<E[]>,
+  ): UndefinablePartial<I[]> {
     if (entities === undefined) return undefined;
     return entities.map((entity: E) => this.persistenceToDomain(entity));
   }
@@ -30,7 +36,9 @@ export abstract class BaseTransformer<E, I> implements ITransformer<E, I> {
   }
 
   domainToPersistences(elements: I[]): E[];
-  domainToPersistences(elements: UndefinablePartial<I[]>): UndefinablePartial<E[]> {
+  domainToPersistences(
+    elements: UndefinablePartial<I[]>,
+  ): UndefinablePartial<E[]> {
     if (elements === undefined) return undefined;
     return elements.map((element: I) => this.domainToPersistence(element));
   }

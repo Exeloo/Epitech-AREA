@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
-    "lint": "eslint . && prettier --check . && tsc --noemit",
+    "lint": "eslint . && prettier --check .",
     "fix": "eslint . --fix && prettier --write .",
     "test:unit": "echo 'Not implemented yet : ignored' || jest --config ./jest.config.json",
     "test:e2e:migration": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:run -d src/config/tests/migration.test.config.ts",

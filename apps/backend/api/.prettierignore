@@ -1,6 +1,7 @@
 /src/shared/persistence/typeorm/migration/*.ts
-dist
-node_modules
+/dist/
+/node_modules/
+/.cloud/**
 *.gql
 
 # https://github.com/prettier/prettier/issues/11834 Prettier doesn't support partials with Handlebars

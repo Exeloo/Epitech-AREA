@@ -81,7 +81,7 @@ export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
       );
 
       return this.transformer.persistenceToDomains(entities);
-    } catch (e) {
+    } catch {
       throw Error; // @todo Error
     }
   }
@@ -97,7 +97,7 @@ export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
       );
 
       return this.transformer.persistenceToDomains(entities);
-    } catch (e) {
+    } catch {
       throw Error; // @todo Error
     }
   }
@@ -110,7 +110,7 @@ export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
         this.transformer.domainToPersistence(model),
       );
       id = entity.id;
-    } catch (e) {
+    } catch {
       throw Error; // @todo Error
     }
 
@@ -128,7 +128,7 @@ export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
 
     try {
       await this.update(id, this.transformer.domainToPersistence(model));
-    } catch (e) {
+    } catch {
       throw Error; // @todo Error
     }
 
@@ -158,7 +158,7 @@ export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
       } else {
         await this.softDelete(id);
       }
-    } catch (e) {
+    } catch {
       throw Error; // @todo Error
     }
 

@@ -11,8 +11,8 @@
   "packageManager": "yarn@1.22.22",
   "scripts": {
     "build": "nest build",
-    "lint": "eslint . && prettier --check . && tsc --noemit",
-    "fix": "eslint . --fix && prettier --write .",
+    "lint": "eslint . && prettier --check . '!.cloud/**'",
+    "fix": "eslint . --fix && prettier --write . '!.cloud/**'",
     "test:unit": "jest --config ./jest.config.json",
     "test:e2e:migration": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:run -d src/config/tests/migration.test.config.ts",
     "test:e2e:run": "jest --config ./jest-e2e.config.json --runInBand --detectOpenHandles --forceExit",

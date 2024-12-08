@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+import 'assets/graphql_queries.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
+
+  @override
+  _SignUpPageState createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +36,7 @@ class SignUpPage extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             TextFormField(
+              controller: _usernameController,
               decoration: const InputDecoration(
                 labelText: 'Username',
                 border: OutlineInputBorder(),
@@ -32,6 +44,7 @@ class SignUpPage extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             TextFormField(
+              controller: _emailController,
               decoration: const InputDecoration(
                 labelText: 'Email',
                 border: OutlineInputBorder(),
@@ -39,6 +52,7 @@ class SignUpPage extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             TextFormField(
+              controller: _passwordController,
               obscureText: true,
               decoration: const InputDecoration(
                 labelText: 'Password',
@@ -47,14 +61,29 @@ class SignUpPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {
-              },
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                textStyle: const TextStyle(fontSize: 16),
+            Mutation(
+              options: MutationOptions(
+                document: gql(registerMutation),
+                onCompleted: (dynamic resultData) {
+                  print(resultData);
+                },
               ),
-              child: const Text('Get started'),
+              builder: (RunMutation runMutation, QueryResult? result) {
+                return ElevatedButton(
+                  onPressed: () {
+                    runMutation({
+                      'username': _usernameController.text,
+                      'email': _emailController.text,
+                      'password': _passwordController.text,
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    textStyle: const TextStyle(fontSize: 16),
+                  ),
+                  child: const Text('Get started'),
+                );
+              },
             ),
             const SizedBox(height: 16),
             TextButton(

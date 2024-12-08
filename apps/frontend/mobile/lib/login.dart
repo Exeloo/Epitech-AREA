@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+import 'assets/graphql_queries.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -9,6 +11,9 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _rememberMe = false;
+
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +37,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             const SizedBox(height: 24),
             TextFormField(
+              controller: _emailController,
               decoration: const InputDecoration(
                 labelText: 'Email',
                 border: OutlineInputBorder(),
@@ -39,6 +45,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             const SizedBox(height: 16),
             TextFormField(
+              controller: _passwordController,
               obscureText: true,
               decoration: const InputDecoration(
                 labelText: 'Password',
@@ -69,13 +76,28 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
             const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                textStyle: const TextStyle(fontSize: 16),
+            Mutation(
+              options: MutationOptions(
+                document: gql(loginMutation),
+                onCompleted: (dynamic resultData) {
+                  print(resultData);
+                },
               ),
-              child: const Text('Sign in'),
+              builder: (RunMutation runMutation, QueryResult? result) {
+                return ElevatedButton(
+                  onPressed: () {
+                    runMutation({
+                      'email': _emailController.text,
+                      'password': _passwordController.text,
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    textStyle: const TextStyle(fontSize: 16),
+                  ),
+                  child: const Text('Sign in'),
+                );
+              },
             ),
             const SizedBox(height: 16),
             TextButton(

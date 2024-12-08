@@ -13,6 +13,8 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +63,22 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
             ),
             const SizedBox(height: 16),
+            TextFormField(
+              controller: _firstNameController,
+              decoration: const InputDecoration(
+                labelText: 'First Name',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 16),
+            TextFormField(
+              controller: _lastNameController,
+              decoration: const InputDecoration(
+                labelText: 'Last Name',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 16),
             Mutation(
               options: MutationOptions(
                 document: gql(registerMutation),
@@ -75,6 +93,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       'username': _usernameController.text,
                       'email': _emailController.text,
                       'password': _passwordController.text,
+                      'firstName': _firstNameController.text,
+                      'lastName': _lastNameController.text,
                     });
                   },
                   style: ElevatedButton.styleFrom(

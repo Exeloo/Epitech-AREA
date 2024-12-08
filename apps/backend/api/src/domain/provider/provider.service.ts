@@ -19,14 +19,6 @@ export class ProviderService {
     private readonly providerPRepository: IProviderPersistenceRepository,
   ) {}
 
-  private create(input: IProviderInput): Promise<IProvider> {
-    return this.providerPRepository.createEntity(input);
-  }
-
-  private update(id: ID, input: IProviderUpdateInput): Promise<IProvider> {
-    return this.providerPRepository.updateEntity(id, input);
-  }
-
   getById(id: ID): Promise<IProvider> {
     return this.providerPRepository.getById(id);
   }
@@ -41,5 +33,13 @@ export class ProviderService {
     return this.create({
       ...input,
     });
+  }
+
+  private create(input: IProviderInput): Promise<IProvider> {
+    return this.providerPRepository.createEntity(input);
+  }
+
+  private update(id: ID, input: IProviderUpdateInput): Promise<IProvider> {
+    return this.providerPRepository.updateEntity(id, input);
   }
 }

@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post } from "@nestjs/common";
+import { Controller, Get, Post } from "@nestjs/common";
 
 import { AppService } from "./app.service";
 import { registerAction } from "./common/manifest/functions/register-action";
@@ -31,8 +31,8 @@ export class AppController {
   }
 
   @Post("triggers/:id")
-  handleTrigger(@Param("id") id: string) {}
+  handleTrigger(/* @Param("id") id: string */) {}
 
   @Post("actions/:id")
-  handleAction(@Param("id") id: string) {}
+  handleAction(/* @Param("id") id: string */) {}
 }

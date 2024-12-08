@@ -21,7 +21,7 @@ const getElements = (base: Map<string, IManifestTrigger | IManifestAction>) => {
   return elements;
 };
 
-const getActions = () => {};
+// const getActions = () => {};
 
 export const getManifest = () => {
   return {

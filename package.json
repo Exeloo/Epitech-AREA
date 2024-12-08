@@ -17,17 +17,24 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "fix": "yarn nx run-many --target=fix",
+    "serve": "yarn nx run-many --target=serve",
+    "build": "yarn nx run-many --target=build",
+    "test": "yarn nx run-many --target=test:unit,test:e2e",
+    "test:unit": "yarn nx run-many --target=test:unit",
+    "test:e2e": "yarn nx run-many --target=test:e2e",
     "prepare": "husky"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
     "husky": "^9.1.6",
-    "lint-staged": "^15.2.10"
+    "lint-staged": "^15.2.10",
+    "nx": "^20.2.1"
   },
   "workspaces": [
     "apps/backend/api",
-    "apps/backend/modules/*",
+    "apps/backend/providers/*",
     "apps/frontend/mobile",
     "apps/backend/web"
   ],

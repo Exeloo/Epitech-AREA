@@ -18,7 +18,7 @@ export class TokenEncryptor {
         secret: this.resolveSecret(type),
         expiresIn: this.resolveExpiration(type),
       });
-    } catch (e) {
+    } catch {
       throw Error; // @todo Error
     }
   }
@@ -30,7 +30,7 @@ export class TokenEncryptor {
     const secret = this.resolveSecret(type);
     try {
       return this.jwtService.verify(token, { secret }) as TokenPayload;
-    } catch (e) {
+    } catch {
       return null;
     }
   }
@@ -47,7 +47,7 @@ export class TokenEncryptor {
         case TokenEnum.REFRESH:
           return this.configService.getOrThrow("REFRESH_TOKEN_SECRET");
       }
-    } catch (e) {
+    } catch {
       throw Error; // @todo Error
     }
   }
@@ -60,7 +60,7 @@ export class TokenEncryptor {
         case TokenEnum.REFRESH:
           return this.configService.getOrThrow("REFRESH_TOKEN_EXPIRATION");
       }
-    } catch (e) {
+    } catch {
       throw Error; // @todo Error
     }
   }

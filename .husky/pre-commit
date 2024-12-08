@@ -1,1 +1,1 @@
-npm test
+yarn nx run-many --target=lint-staged

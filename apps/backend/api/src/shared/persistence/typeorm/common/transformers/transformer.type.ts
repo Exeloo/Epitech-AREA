@@ -1,4 +1,9 @@
-import { DeepPartial, EmptyablePartial, NullablePartial, UndefinablePartial } from "@type/nullable.type";
+import {
+  DeepPartial,
+  EmptyablePartial,
+  NullablePartial,
+  UndefinablePartial,
+} from "@type/nullable.type";
 
 export interface ITransformer<E, I> {
   _persistenceToDomain(entity: E): I;
@@ -15,7 +20,9 @@ export interface ITransformer<E, I> {
   persistenceToDomains(entities: E[]): I[];
   persistenceToDomains(entities: Partial<E[]>): Partial<I[]>;
   persistenceToDomains(entities: DeepPartial<E[]>): DeepPartial<I[]>;
-  persistenceToDomains(entities: UndefinablePartial<E[]>): UndefinablePartial<I[]>;
+  persistenceToDomains(
+    entities: UndefinablePartial<E[]>,
+  ): UndefinablePartial<I[]>;
 
   _domainToPersistence(element: I): E;
   _domainToPersistence(element: Partial<I>): Partial<E>;
@@ -31,5 +38,7 @@ export interface ITransformer<E, I> {
   domainToPersistences(elements: I[]): E[];
   domainToPersistences(elements: Partial<I[]>): Partial<E[]>;
   domainToPersistences(elements: DeepPartial<I[]>): DeepPartial<E[]>;
-  domainToPersistences(elements: UndefinablePartial<I[]>): UndefinablePartial<E[]>;
+  domainToPersistences(
+    elements: UndefinablePartial<I[]>,
+  ): UndefinablePartial<E[]>;
 }

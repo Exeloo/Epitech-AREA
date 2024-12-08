@@ -24,14 +24,6 @@ export class UserService {
     private readonly authService: AuthService,
   ) {}
 
-  private create(input: IUserInput): Promise<IUser> {
-    return this.userPRepository.createEntity(input);
-  }
-
-  private update(id: ID, input: IUserUpdateInput): Promise<IUser> {
-    return this.userPRepository.updateEntity(id, input);
-  }
-
   getById(id: ID): Promise<IUser> {
     return this.userPRepository.getById(id);
   }
@@ -60,5 +52,13 @@ export class UserService {
       pronoun: null,
       description: null,
     });
+  }
+
+  private create(input: IUserInput): Promise<IUser> {
+    return this.userPRepository.createEntity(input);
+  }
+
+  private update(id: ID, input: IUserUpdateInput): Promise<IUser> {
+    return this.userPRepository.updateEntity(id, input);
   }
 }

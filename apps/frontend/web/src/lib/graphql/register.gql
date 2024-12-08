@@ -2,8 +2,8 @@ mutation Register($data: UserRegisterInput!) {
     register(data: $data) {
         id
         email
+        username
         firstName
         lastName
-        username
     }
 }

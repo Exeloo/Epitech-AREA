@@ -6,7 +6,7 @@ services:
     build:
       context: ../..
     ports:
-      - 3000:3000
+      - "8080:3000"
     depends_on:
       - mariadb
     working_dir: /app
@@ -25,13 +25,13 @@ services:
       - ${DATA_PATH_HOST}mariadb/mariadb_data:/var/lib/mysql
       - ${DATA_PATH_HOST}mariadb/database:/docker-entrypoint-initdb.d
     ports:
-      - 3306:3306
+      - "3306:3306"
 
   phpmyadmin:
     image: phpmyadmin:latest
     depends_on:
       - mariadb
     ports:
-      - 8001:80
+      - "8001:80"
     environment:
       PMA_HOST: mariadb

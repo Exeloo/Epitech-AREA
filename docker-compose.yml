@@ -23,9 +23,25 @@ services:
     ports:
       - "8080:3000"
 
+  client_mobile:
+    build:
+      context: apps/frontend/mobile/
+      dockerfile: Dockerfile
+    depends_on:
+      - server
+    volumes:
+      - apk:/home/builder/app/apk/
+
   client_web:
     build:
       context: apps/frontend/web/
       dockerfile: Dockerfile
+    depends_on:
+      - client_mobile
+    volumes:
+      - apk:/app/apk/
     ports:
       - "8081:8081"
+
+volumes:
+  apk:

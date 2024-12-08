@@ -24,15 +24,19 @@ jobs:
         volumes:
           - /var/run/docker.sock:/var/run/docker.sock:ro
     container:
-      image: node:latest
+      image: epitechcontent/epitest-docker
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v4
+      - name: Use Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install Yarn
+        run: "npm install --global yarn"
       - name: Build
         run: "docker-compose --env-file .env.example build"
         timeout-minutes: 10
-      - name: Install Yarn
-        run: "npm install --global yarn"
       - name: Run tests
         run: "yarn install && yarn test:unit"
 

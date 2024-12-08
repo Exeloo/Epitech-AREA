@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class CustomNavigationBar extends StatefulWidget {
   const CustomNavigationBar({Key? key}) : super(key: key);
@@ -39,24 +40,40 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
               children: [
                 IconButton(
                   onPressed: () => _onTabTapped(0),
-                  icon: Icon(Icons.home,
-                      color: _currentIndex == 0 ? Colors.white : Color(0xff686868)),
+                  icon: SvgPicture.asset('assets/icon/accueil.svg',
+                      width: 24,
+                      height: 24,
+                      color: _currentIndex == 0
+                          ? Colors.white
+                          : Color(0xff686868)),
                 ),
                 IconButton(
                   onPressed: () => _onTabTapped(1),
-                  icon: Icon(Icons.search,
-                      color: _currentIndex == 1 ? Colors.white : Color(0xff686868)),
+                  icon: SvgPicture.asset('assets/icon/loupe.svg',
+                      width: 24,
+                      height: 24,
+                      color: _currentIndex == 1
+                          ? Colors.white
+                          : Color(0xff686868)),
                 ),
                 const SizedBox(width: 50),
                 IconButton(
                   onPressed: () => _onTabTapped(2),
-                  icon: Icon(Icons.list,
-                      color: _currentIndex == 2 ? Colors.white : Color(0xff686868)),
+                  icon: SvgPicture.asset('assets/icon/liste.svg',
+                      width: 24,
+                      height: 24,
+                      color: _currentIndex == 2
+                          ? Colors.white
+                          : Color(0xff686868)),
                 ),
                 IconButton(
                   onPressed: () => _onTabTapped(3),
-                  icon: Icon(Icons.person,
-                      color: _currentIndex == 3 ? Colors.white : Color(0xff686868)),
+                  icon: SvgPicture.asset('assets/icon/utilisateur.svg',
+                      width: 24,
+                      height: 24,
+                      color: _currentIndex == 3
+                          ? Colors.white
+                          : Color(0xff686868)),
                 ),
               ],
             ),

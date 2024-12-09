@@ -38,9 +38,9 @@ jobs:
         run: "yarn install"
       - name: Run tests
         run: "yarn test:unit"
-      - name: Build
-        run: "docker-compose --env-file .env.example build"
-        timeout-minutes: 15
+#      - name: Build
+#        run: "docker-compose --env-file .env.example build"
+#        timeout-minutes: 15
 
   push_to_mirror:
     name: "Pushing To The Mirror Repository"

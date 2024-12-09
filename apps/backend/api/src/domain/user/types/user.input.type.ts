@@ -19,7 +19,7 @@ export type IUserCreateInput = Pick<
 
 export type IUserRegisterInput = Pick<
   IUserInput,
-  "email" | "username" | "firstName" | "lastName"
+  "email" | "firstName" | "lastName"
 > &
   Partial<IUserInput>;
 

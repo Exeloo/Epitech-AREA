@@ -7,7 +7,7 @@ class AppRoutes {
 
   static Map<String, WidgetBuilder> getRoutes() {
     return {
-      home: (context) => const HomePage(),
+      home: (context) => HomePage(),
     };
   }
 }

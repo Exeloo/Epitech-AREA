@@ -28,6 +28,7 @@ export class UserEntity {
   @Column({
     type: "varchar",
     unique: true,
+    nullable: true,
   })
   username: string;
 

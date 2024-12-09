@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:mobile/pages/home.dart';
 
 class CustomNavigationBar extends StatefulWidget {
   const CustomNavigationBar({Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     final pages = [
-      const Page1(),
+      HomePage(),
       const Page2(),
       const Page3(),
       const Page4(),
@@ -28,6 +29,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
 
     return Scaffold(
       body: pages[_currentIndex],
+      backgroundColor: Color(0xff1B1B1B),
       bottomNavigationBar: ClipRRect(
         borderRadius: BorderRadius.vertical(top: Radius.circular(10.0)),
         child: BottomAppBar(

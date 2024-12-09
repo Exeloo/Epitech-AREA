@@ -6,11 +6,16 @@ class MyHomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.black,
+      backgroundColor: Color(0xff1B1B1B),
       bottom: const TabBar(
+        labelColor: Colors.white,
+        tabAlignment: TabAlignment.center,
+        indicatorColor: Color(0xff8E44AD),
+        labelStyle: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+        dividerColor: Colors.transparent,
         tabs: [
           Tab(text: 'All'),
-          Tab(text: 'Providers'),
+          Tab(text: 'Providers')
         ],
       ),
     );
@@ -18,5 +23,6 @@ class MyHomeAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   // Implémente la taille préférée (obligatoire pour PreferredSizeWidget)
   @override
-  Size get preferredSize => const Size.fromHeight(100); // Ajustez la hauteur selon vos besoins
+  Size get preferredSize =>
+      const Size.fromHeight(100); // Ajustez la hauteur selon vos besoins
 }

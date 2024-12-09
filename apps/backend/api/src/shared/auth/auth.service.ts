@@ -3,6 +3,7 @@ import { Injectable } from "@nestjs/common";
 import { ID } from "@d-type/id.type";
 
 import { IAuthService } from "@domain/auth/auth.repository.type";
+import { OAuthStrategyEnum } from "@domain/auth/strategy/strategies/oauth/oauth.strategy.enum";
 import { IStrategyInput } from "@domain/auth/strategy/strategy.type";
 import { IAuthToken } from "@domain/auth/types/token.auth.type";
 import { IUser } from "@domain/user/types/user.type";
@@ -36,5 +37,9 @@ export class AuthService implements IAuthService {
 
   generateToken(userId: ID): Promise<IAuthToken> {
     return this.tokenService.generateToken(userId);
+  }
+
+  getOAuthRedirect(provider: OAuthStrategyEnum): Promise<string> {
+    return this.strategyService.getOAuthRedirect(provider);
   }
 }

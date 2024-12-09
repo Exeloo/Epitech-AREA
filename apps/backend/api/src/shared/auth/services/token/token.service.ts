@@ -27,7 +27,7 @@ export class TokenService {
   async refreshToken(refreshToken: string): Promise<IAuthToken> {
     const user = await this.verifyToken(refreshToken, TokenEnum.REFRESH);
     if (!user) {
-      throw Error; // @todo Error
+      throw Error(); // @todo Error
     }
     return this.generateToken(user.id);
   }

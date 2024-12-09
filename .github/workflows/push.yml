@@ -32,6 +32,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22.11.0
+      - name: Install Yarn
+        run: "npm install -g yarn"
       - name: Install dependencies
         run: "yarn install"
       - name: Run tests

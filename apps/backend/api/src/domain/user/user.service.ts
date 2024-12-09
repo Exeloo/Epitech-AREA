@@ -50,9 +50,10 @@ export class UserService {
 
   registerUser(input: IUserRegisterInput): Promise<IUser> {
     return this.createUser({
-      ...input,
+      username: null,
       pronoun: null,
       description: null,
+      ...input,
     });
   }
 

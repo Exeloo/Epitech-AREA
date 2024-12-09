@@ -23,7 +23,6 @@ export class AuthService {
     email: "unknown",
     firstName: "unknown",
     lastName: "unknown",
-    username: "unknown",
   };
 
   constructor(

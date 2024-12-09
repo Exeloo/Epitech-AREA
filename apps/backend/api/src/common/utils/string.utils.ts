@@ -12,7 +12,7 @@ export const formatCodeToText = (str: string) => {
 
 export const generateRandomString = (length: number): string => {
   if (!Number.isInteger(length) || length <= 0) {
-    throw Error; // @todo Error
+    throw Error(); // @todo Error
   }
 
   let randomString = "";

@@ -7,7 +7,7 @@ export class PasswordEncryptor {
     try {
       return await bcrypt.hash(password, 10);
     } catch {
-      throw Error; // @todo Error
+      throw Error(); // @todo Error
     }
   }
 
@@ -15,7 +15,7 @@ export class PasswordEncryptor {
     try {
       return await bcrypt.compare(rawPassword, hashPassword);
     } catch {
-      throw Error; // @todo Error
+      throw Error(); // @todo Error
     }
   }
 }

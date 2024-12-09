@@ -17,4 +17,6 @@ export interface IAuthService {
   refreshToken(token: string): Promise<IAuthToken>;
 
   generateToken(userId: ID): Promise<IAuthToken>;
+
+  getOAuthRedirect(provider: string): Promise<string>;
 }

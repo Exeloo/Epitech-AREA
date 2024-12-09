@@ -4,7 +4,8 @@ import { ID } from "@d-type/id.type";
 
 import { generateRandomString } from "@utils/string.utils";
 
-import { AuthService } from "../auth/auth.service";
+import { AUTH_SERVICE, IAuthService } from "@domain/auth/auth.repository.type";
+
 import {
   IUserCreateInput,
   IUserInput,
@@ -21,7 +22,8 @@ export class UserService {
   constructor(
     @Inject(USER_PERSISTENCE_REPOSITORY)
     private readonly userPRepository: IUserPersistenceRepository,
-    private readonly authService: AuthService,
+    @Inject(AUTH_SERVICE)
+    private readonly authService: IAuthService,
   ) {}
 
   getById(id: ID): Promise<IUser> {
@@ -35,7 +37,7 @@ export class UserService {
   async createUser(input: IUserCreateInput): Promise<IUser> {
     const currUser = await this.getByEmail(input.email);
     if (currUser) {
-      throw Error; // @todo Error User Already exist
+      throw Error(); // @todo Error User Already exist
     }
     const password = input.password ?? generateRandomString(50);
 
@@ -51,6 +53,12 @@ export class UserService {
       ...input,
       pronoun: null,
       description: null,
+    });
+  }
+
+  updateLastConnection(id: ID): Promise<IUser> {
+    return this.update(id, {
+      lastConnection: new Date(Date.now()),
     });
   }
 

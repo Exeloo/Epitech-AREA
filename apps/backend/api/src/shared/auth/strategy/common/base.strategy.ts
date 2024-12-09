@@ -16,7 +16,7 @@ export const AuthStrategy = <
     abstract authenticate(input: V): Promise<IUser>;
 
     invalidAuth(): void {
-      throw Error; // @todo Error invalid credentials
+      throw Error(); // @todo Error invalid credentials
     }
   }
   return BaseStrategy;

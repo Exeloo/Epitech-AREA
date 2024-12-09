@@ -19,7 +19,7 @@ export class TokenEncryptor {
         expiresIn: this.resolveExpiration(type),
       });
     } catch {
-      throw Error; // @todo Error
+      throw Error(); // @todo Error
     }
   }
 
@@ -48,7 +48,7 @@ export class TokenEncryptor {
           return this.configService.getOrThrow("REFRESH_TOKEN_SECRET");
       }
     } catch {
-      throw Error; // @todo Error
+      throw Error(); // @todo Error
     }
   }
 
@@ -61,7 +61,7 @@ export class TokenEncryptor {
           return this.configService.getOrThrow("REFRESH_TOKEN_EXPIRATION");
       }
     } catch {
-      throw Error; // @todo Error
+      throw Error(); // @todo Error
     }
   }
 

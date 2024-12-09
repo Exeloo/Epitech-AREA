@@ -28,7 +28,7 @@ export class ProviderService {
       input.providerId,
     );
     if (currProvider) {
-      throw Error; // @todo Error Provider Already exist
+      throw Error(); // @todo Error Provider Already exist
     }
     return this.create({
       ...input,

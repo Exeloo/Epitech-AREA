@@ -98,6 +98,10 @@ export class EnvironmentVariables {
   @IsString()
   GOOGLE_CLIENT_ID: string;
 
+  @IsNotEmpty()
+  @IsString()
+  GOOGLE_CLIENT_SECRET: string;
+
   // * Tests
 
   @IsNotEmpty()

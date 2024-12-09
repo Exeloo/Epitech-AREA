@@ -1,9 +1,12 @@
+import { HttpModule } from "@nestjs/axios";
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { JwtModule } from "@nestjs/jwt";
 
 import { AUTH_SERVICE } from "@domain/auth/auth.repository.type";
 
+import { OAuthStrategy } from "~/shared/auth/strategy/strategies/oauth/oauth.strategy";
+import { GoogleOAuthStrategy } from "~/shared/auth/strategy/strategies/oauth/strategies/google.strategy";
 import { PersistenceModule } from "~/shared/persistence/persistence.module";
 
 import { AuthService } from "./auth.service";
@@ -16,7 +19,7 @@ import { TokenStrategy } from "./strategy/strategies/token.strategy";
 import { StrategyService } from "./strategy/strategy.service";
 
 @Module({
-  imports: [ConfigModule.forRoot(), JwtModule, PersistenceModule],
+  imports: [ConfigModule, HttpModule, JwtModule, PersistenceModule],
   providers: [
     {
       provide: AUTH_SERVICE,
@@ -32,6 +35,9 @@ import { StrategyService } from "./strategy/strategy.service";
 
     PasswordStrategy,
     TokenStrategy,
+    OAuthStrategy,
+
+    GoogleOAuthStrategy,
   ],
   exports: [AUTH_SERVICE],
 })

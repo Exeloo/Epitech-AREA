@@ -25,3 +25,6 @@ export type IExposedUser = Pick<
   | "picture"
   | "description"
 >;
+
+export type IAuthenticateUser = Pick<IUser, "email"> &
+  Partial<Pick<IUser, "firstName" | "lastName" | "username">>;

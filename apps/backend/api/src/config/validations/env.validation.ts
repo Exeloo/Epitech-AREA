@@ -94,6 +94,10 @@ export class EnvironmentVariables {
   @IsUrl({ require_tld: false })
   DISCORD_WEBHOOK: string;
 
+  @IsNotEmpty()
+  @IsString()
+  GOOGLE_CLIENT_ID: string;
+
   // * Tests
 
   @IsNotEmpty()

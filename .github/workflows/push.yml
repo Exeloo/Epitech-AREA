@@ -17,8 +17,14 @@ jobs:
   push:
     name: Build & Tests
     runs-on: ubuntu-latest
+    services:
+      docker:
+        image: docker:dind
+        options: --privileged --shm-size=10g
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock:ro
     container:
-      image: docker/compose
+      image: epitechcontent/epitest-docker
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v4
@@ -26,8 +32,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22.11.0
-      - name: Install Yarn
-        run: "npm install -g yarn"
       - name: Install dependencies
         run: "yarn install"
       - name: Run tests

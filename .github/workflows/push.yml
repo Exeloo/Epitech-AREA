@@ -26,8 +26,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22.11.0
+      - name: Install Yarn
+        run: "npm install -g yarn"
+      - name: Install dependencies
+        run: "yarn install"
       - name: Run tests
-        run: "yarn install && yarn test:unit"
+        run: "yarn test:unit"
       - name: Build
         run: "docker-compose --env-file .env.example build"
         timeout-minutes: 10

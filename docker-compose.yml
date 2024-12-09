@@ -23,6 +23,15 @@ services:
     ports:
       - "8080:3000"
 
+  discord:
+    build:
+      context: apps/backend/providers/discord
+      dockerfile: .cloud/docker/Dockerfile
+    depends_on:
+      - server
+    ports:
+      - "6001:6001"
+
   client_mobile:
     build:
       context: apps/frontend/mobile/

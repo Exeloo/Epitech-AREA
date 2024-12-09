@@ -19,12 +19,10 @@ jobs:
         volumes:
           - /var/run/docker.sock:/var/run/docker.sock:ro
     container:
-      image: ubuntu:latest
+      image: docker/compose
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v4
-      - name: Install dependencies
-        run: apt-get install -y docker.io
       - name: Build
         run: "docker-compose --env-file .env.example build"
 

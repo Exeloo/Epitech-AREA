@@ -2,7 +2,7 @@
   "name": "area",
   "version": "1.0.0",
   "description": "Action Reaction",
-  "author": "A",
+  "author": "Aether Team",
   "repository": {
     "type": "git",
     "url": "https://github.com/Exeloo/B-DEV-500_AREA.git"
@@ -10,20 +10,19 @@
   "license": "MIT",
   "private": true,
   "packageManager": "yarn@1.22.22",
-  "engines": {
-    "node": ">=22.11.0",
-    "yarn": ">=1.22.22"
-  },
-  "main": "index.js",
-  "type": "module",
   "scripts": {
     "fix": "yarn nx run-many --target=fix",
+    "lint": "yarn nx run-many --target=lint",
     "serve": "yarn nx run-many --target=serve",
     "build": "yarn nx run-many --target=build",
     "test": "yarn nx run-many --target=test:unit,test:e2e",
     "test:unit": "yarn nx run-many --target=test:unit",
     "test:e2e": "yarn nx run-many --target=test:e2e",
     "prepare": "husky"
+  },
+  "engines": {
+    "node": ">=22.11.0",
+    "yarn": ">=1.22.22"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.5.0",
@@ -36,7 +35,7 @@
     "apps/backend/api",
     "apps/backend/providers/*",
     "apps/frontend/mobile",
-    "apps/backend/web"
+    "apps/frontend/web"
   ],
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx,html,json,css,scss,md,mdx}": [

@@ -88,7 +88,6 @@ class AllContent extends StatelessWidget {
 
 class ProvidersContent extends StatelessWidget {
   const ProvidersContent({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

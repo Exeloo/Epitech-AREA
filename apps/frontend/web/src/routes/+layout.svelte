@@ -9,14 +9,13 @@
 	>
 		<h1 class="text-3xl font-bold">AREA</h1>
 		<form class="mx-auto w-1/4">
-			<label
-				for="default-search"
-				class="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white">Search</label
+			<label for="default-search" class="sr-only mb-2 text-sm font-medium text-neutral-900"
+				>Search</label
 			>
 			<div class="relative">
 				<div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
 					<svg
-						class="h-4 w-4 text-gray-500 dark:text-gray-400"
+						class="h-4 w-4 text-neutral-700"
 						aria-hidden="true"
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
@@ -34,7 +33,7 @@
 				<input
 					type="search"
 					id="default-search"
-					class="h-10 w-full rounded-xl bg-neutral-100 p-4 ps-10 text-sm shadow-inner outline outline-1 outline-neutral-300"
+					class="h-10 w-full rounded-xl bg-neutral-100 p-4 ps-10 text-sm placeholder-neutral-500 shadow-inner outline outline-1 outline-neutral-500"
 					placeholder="Search providers"
 					required
 				/>

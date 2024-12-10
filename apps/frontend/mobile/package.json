@@ -1,0 +1,28 @@
+{
+    "name": "area-mobile",
+    "version": "1.0.0",
+    "description": "",
+    "license": "MIT",
+    "private": true,
+    "packageManager": "yarn@1.22.22",
+    "scripts": {
+        "lint": "echo 'Not implemented yet : ignored'",
+        "fix": "echo 'Not implemented yet : ignored'",
+        "test:unit": "echo 'Not implemented yet : ignored'",
+        "test:e2e": "echo 'Not implemented yet : ignored'"
+    },
+    "engines": {
+        "node": ">=22.11.0",
+        "yarn": ">=1.22.22"
+    },
+    "lint-staged": {
+        "*.{js,ts}": [
+            "yarn fix"
+        ]
+    },
+    "workspaces": {
+        "nohoist": [
+            "**"
+        ]
+    }
+}

@@ -1,29 +1,41 @@
 <script lang="ts">
-    import { page } from '$app/stores';
+	import { page } from '$app/stores';
 </script>
 
-<div class="w-screen flex justify-center mt-40">
-    <div class="flex flex-col justify-center items-center w-96 gap-5">
-        <h2 class="font-semibold text-3xl">{$page.url.pathname !== "/auth/signup" ? "Login in to your account" : "Create an account"}</h2>
-        <p class="text-neutral-600 font-medium">{$page.url.pathname !== "/auth/signup" ? "Welcome back! Please enter your details." : "The adventure begins here"}</p>
-        <div class="relative w-full flex justify-center items-center bg-gray-100 rounded-xl outline outline-1 outline-neutral-200 font-semibold">
-            <div
-                    class="absolute left-0 bg-white rounded-xl transition-all duration-300 outline outline-1 outline-neutral-300"
-                    style="height: 100%; width: 50%; transform: translateX({$page.url.pathname === '/auth/login' ? '100%' : '0%'})"
-            ></div>
-            <a href="/auth/signup"
-               class="relative z-10 text-center py-2 rounded-full transition-all duration-300 w-full"
-               class:text-gray-500={$page.url.pathname !== "/auth/signup"}
-            >
-                Sign up
-            </a>
-            <a href="/auth/login"
-               class="relative w-full z-10 text-center py-2 rounded-full transition-all duration-300"
-               class:text-gray-500={$page.url.pathname !== "/auth/login"}
-            >
-                Log in
-            </a>
-        </div>
-        <slot/>
-    </div>
+<div class="mt-40 flex w-screen justify-center">
+	<div class="flex w-96 flex-col items-center justify-center gap-5">
+		<h2 class="text-3xl font-semibold">
+			{$page.url.pathname !== '/auth/signup' ? 'Login in to your account' : 'Create an account'}
+		</h2>
+		<p class="font-medium text-neutral-600">
+			{$page.url.pathname !== '/auth/signup'
+				? 'Welcome back! Please enter your details.'
+				: 'The adventure begins here'}
+		</p>
+		<div
+			class="relative flex w-full items-center justify-center rounded-xl bg-gray-100 font-semibold outline outline-1 outline-neutral-200"
+		>
+			<div
+				class="absolute left-0 rounded-xl bg-white outline outline-1 outline-neutral-300 transition-all duration-300"
+				style="height: 100%; width: 50%; transform: translateX({$page.url.pathname === '/auth/login'
+					? '100%'
+					: '0%'})"
+			></div>
+			<a
+				href="/auth/signup"
+				class="relative z-10 w-full rounded-full py-2 text-center transition-all duration-300"
+				class:text-gray-500={$page.url.pathname !== '/auth/signup'}
+			>
+				Sign up
+			</a>
+			<a
+				href="/auth/login"
+				class="relative z-10 w-full rounded-full py-2 text-center transition-all duration-300"
+				class:text-gray-500={$page.url.pathname !== '/auth/login'}
+			>
+				Log in
+			</a>
+		</div>
+		<slot />
+	</div>
 </div>

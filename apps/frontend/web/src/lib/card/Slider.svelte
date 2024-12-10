@@ -1,12 +1,12 @@
 <script lang="ts">
     import { onMount } from "svelte";
 
-    let isOn = false;
-    let buttonWidth: number = 32;
-    let parentWidth = 0;
-    let startX: number = 0;
-    let offsetX: number = 0;
-    let isDragging = false;
+    let isOn = $state(false);
+    let buttonWidth: number = $state(40);
+    let parentWidth = $state(0);
+    let startX: number = $state(0);
+    let offsetX: number = $state(0);
+    let isDragging = $state(false);
 
     let parentDiv: HTMLElement;
     let button: HTMLElement;
@@ -60,7 +60,7 @@
 </script>
 
 <div class="relative" bind:this={parentDiv}>
-    <div class="w-full h-10 bg-gray-300 rounded-full"></div>
+    <div class="w-full h-12 bg-neutral-100 rounded-full"></div>
     <button
             bind:this={button}
             class="absolute top-1 left-1 bg-blue-500 rounded-full shadow-md transform transition-transform duration-300 ease-in-out"

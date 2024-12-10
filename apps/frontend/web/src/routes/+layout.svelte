@@ -3,7 +3,7 @@
 	let { children } = $props();
 </script>
 
-<div class="h-screen w-full bg-neutral-100">
+<div class="h-full w-full bg-neutral-100">
 	<header
 		class="sticky top-0 z-50 flex w-full items-center justify-between rounded-b-xl bg-white p-5 shadow-md shadow-neutral-200"
 	>

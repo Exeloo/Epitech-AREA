@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'assets/graphql_queries.dart';
+import 'requests/graphql_queries.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});

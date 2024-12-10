@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'assets/graphql_queries.dart';
+import 'requests/graphql_queries.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -78,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 16),
             Mutation(
               options: MutationOptions(
-                document: gql(loginMutation),
+                document: gql(loginQuery),
                 onCompleted: (dynamic resultData) {
                   print(resultData);
                 },

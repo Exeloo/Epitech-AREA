@@ -1,4 +1,5 @@
 import { ConfigService } from "@nestjs/config";
+import GraphQLJSON from "graphql-type-json";
 import { join } from "path";
 
 import { AppEnvEnum } from "./validations/env.validation";
@@ -9,6 +10,5 @@ export const graphqlConfig = (configService: ConfigService) => ({
   playground: false,
   debug: true,
   introspection: configService.get("APP_ENV") !== AppEnvEnum.PRODUCTION,
-  // * Uncomment when implement JSON in node or resolver
-  // resolvers: { JSON: GraphQLJSON },
+  resolvers: { JSON: GraphQLJSON },
 });

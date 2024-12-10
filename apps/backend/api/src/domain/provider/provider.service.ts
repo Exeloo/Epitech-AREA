@@ -1,4 +1,4 @@
-import { Inject } from "@nestjs/common";
+import { Inject, Injectable } from "@nestjs/common";
 
 import { ID } from "@d-type/id.type";
 
@@ -13,6 +13,7 @@ import {
 } from "@domain/provider/types/provider.input.type";
 import { IProvider } from "@domain/provider/types/provider.type";
 
+@Injectable()
 export class ProviderService {
   constructor(
     @Inject(PROVIDER_PERSISTENCE_REPOSITORY)

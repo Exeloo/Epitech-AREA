@@ -151,7 +151,7 @@
           },
           "properties": {
             "type": "object",
-            "description": "Enum of the property if type == object (ExampleInput)",
+            "description": "Enum of the property if type == object (ExampleInput)"
           },
           "items": {
             "type": "object",
@@ -255,7 +255,7 @@
           },
           "properties": {
             "type": "object",
-            "description": "Enum of the property if type == object (ExampleOutput)",
+            "description": "Enum of the property if type == object (ExampleOutput)"
           },
           "items": {
             "type": "object",
@@ -338,10 +338,7 @@
             "$ref": "#/components/schemas/ExampleInput"
           },
           "output": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ExampleOutput"
-            }
+            "$ref": "#/components/schemas/ExampleOutput"
           }
         }
       },
@@ -364,10 +361,7 @@
             "$ref": "#/components/schemas/ExampleInput"
           },
           "output": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ExampleOutput"
-            }
+            "$ref": "#/components/schemas/ExampleOutput"
           }
         }
       },

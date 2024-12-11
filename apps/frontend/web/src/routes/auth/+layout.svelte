@@ -2,7 +2,7 @@
 	import { page } from '$app/stores';
 </script>
 
-<div class="mt-40 flex w-screen justify-center">
+<div class="mt-32 flex w-screen justify-center">
 	<div class="flex w-96 flex-col items-center justify-center gap-5">
 		<h2 class="text-3xl font-semibold">
 			{$page.url.pathname !== '/auth/signup' ? 'Login in to your account' : 'Create an account'}
@@ -13,7 +13,7 @@
 				: 'The adventure begins here'}
 		</p>
 		<div
-			class="relative flex w-full items-center justify-center rounded-xl bg-gray-100 font-semibold outline outline-1 outline-neutral-200"
+			class="relative flex w-full items-center justify-center rounded-xl bg-gray-100 font-semibold outline outline-1 outline-neutral-300"
 		>
 			<div
 				class="absolute left-0 rounded-xl bg-white outline outline-1 outline-neutral-300 transition-all duration-300"

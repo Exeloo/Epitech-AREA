@@ -31,22 +31,22 @@ const bootstrap = async () => {
   const port = +configService.getOrThrow("APP_PORT");
   const domains = configService.getOrThrow("APP_DOMAINS");
 
-  // app.use(
-  //   helmet({
-  //     contentSecurityPolicy: {
-  //       directives: {
-  //         scriptSrc: [`'self'`, `https: 'unsafe-inline'`, `'unsafe-eval'`],
-  //         // frameAncestors: domains.split(",") ?? ["'none'"],
-  //       },
-  //     },
-  //   }),
-  // );
-  // app.enableCors({ origin: domains.split(",") });
+  app.use(
+    helmet({
+      contentSecurityPolicy: {
+        directives: {
+          scriptSrc: [`'self'`, `https: 'unsafe-inline'`, `'unsafe-eval'`],
+          frameAncestors: domains.split(",") ?? ["'none'"],
+        },
+      },
+    }),
+  );
+  app.enableCors({ origin: domains.split(",") });
 
-  // useContainer(app.select(AppModule), { fallbackOnErrors: true });
-  // app.useGlobalPipes(
-  //   new ValidationPipe({ transform: true, enableDebugMessages: true }),
-  // );
+  useContainer(app.select(AppModule), { fallbackOnErrors: true });
+  app.useGlobalPipes(
+    new ValidationPipe({ transform: true, enableDebugMessages: true }),
+  );
 
   app.use(bodyParser.urlencoded({ verify: rawBodyBuffer, extended: true }));
   app.use(bodyParser.json({ verify: rawBodyBuffer }));

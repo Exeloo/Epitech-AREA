@@ -188,14 +188,8 @@ enum ProviderVisibility {
 }
 
 type Query {
-  """Get all applets"""
-  getAllApplets: [Applet!]!
-
   """Get all providers"""
   getAllProviders: [Provider!]!
-
-  """Get applet by id"""
-  getAppletById(id: Int!): Applet!
 
   """Get the connected user"""
   getMe: User!

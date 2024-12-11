@@ -17,4 +17,15 @@ export class AsyncArrayUtils {
       await callback(e);
     }
   }
+
+  static async map<T, V>(
+    array: T[],
+    callback: (element: T) => V | Promise<V>,
+  ): Promise<V[]> {
+    const result = [];
+    for (const e of array) {
+      result.push(await callback(e));
+    }
+    return result;
+  }
 }

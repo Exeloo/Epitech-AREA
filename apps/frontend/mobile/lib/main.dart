@@ -14,9 +14,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
-      backgroundColor: const Color(0xff1B1B1B),
-      body: const SizedBox.expand(),
-      bottomNavigationBar: const CustomNavigationBar(),
-    ));
+          backgroundColor: const Color(0xff1B1B1B),
+          body: const SizedBox.expand(),
+          bottomNavigationBar: const CustomNavigationBar(),
+        ));
   }
 }

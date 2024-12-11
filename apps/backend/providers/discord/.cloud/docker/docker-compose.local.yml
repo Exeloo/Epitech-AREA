@@ -1,0 +1,11 @@
+services:
+  discord:
+    image: node:22-alpine
+    build:
+      context: ../..
+    ports:
+      - 3001:3001
+    working_dir: /app
+    volumes:
+      - ../../:/app
+    command: yarn serve-nest

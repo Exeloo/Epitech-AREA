@@ -22,6 +22,7 @@
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+.idea/**/AREA.iml
 
 # AWS User-specific
 .idea/**/aws.xml
@@ -158,10 +159,6 @@ lib/generated_plugin_registrant.dart
 ### Dart template
 # See https://www.dartlang.org/guides/libraries/private-files
 
-# Files and directories created by pub
-.dart_tool/
-.packages
-build/
 # If you're building an application, you may want to check-in your pubspec.lock
 pubspec.lock
 
@@ -177,7 +174,4 @@ doc/api/
 *.js_
 *.js.deps
 *.js.map
-
-.flutter-plugins
-.flutter-plugins-dependencies
 

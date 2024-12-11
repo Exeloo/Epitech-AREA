@@ -1,0 +1,411 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Swagger Aether",
+    "description": "This is a documentation of the closed API of Aether services. You can find out more about\nAether at [https://aether.com](https://aether.com).",
+    "termsOfService": "https://aether.com/terms/",
+    "contact": {
+      "name": "Contact",
+      "email": "contact@aether.com"
+    },
+    "license": {
+      "name": "MIT License",
+      "identifier": "MIT",
+      "url": "https://opensource.org/license/mit/"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/aether"
+    }
+  ],
+  "paths": {
+    "/manifest": {
+      "get": {
+        "summary": "Get the manifest of the provider",
+        "description": "Ges the manifest of the provider",
+        "operationId": "getManifest",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Manifest"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Id": {
+        "type": "string",
+        "description": "Unique id",
+        "example": "google"
+      },
+      "Name": {
+        "type": "string",
+        "description": "Name of the property",
+        "example": "Google"
+      },
+      "Description": {
+        "type": "string",
+        "description": "Description of the property",
+        "example": "Google Service"
+      },
+      "Img": {
+        "type": "string",
+        "description": "Image of the provider",
+        "example": "https://image.similarpng.com/very-thumbnail/2020/06/Logo-google-icon-PNG.png"
+      },
+      "Permission": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "description"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "name": {
+            "$ref": "#/components/schemas/Name"
+          },
+          "description": {
+            "$ref": "#/components/schemas/Description"
+          }
+        }
+      },
+      "OAuth": {
+        "type": "object",
+        "required": [
+          "type",
+          "permissions"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Auth type",
+            "example": "TOKEN",
+            "enum": [
+              "NULL",
+              "TOKEN",
+              "APIKEY",
+              "PASSWORD"
+            ]
+          },
+          "permissions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Permission"
+            }
+          }
+        }
+      },
+      "ExampleInputContent": {
+        "type": "object",
+        "required": [
+          "type",
+          "description"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "string",
+            "description": "Type of the property",
+            "enum": [
+              "string",
+              "integer",
+              "boolean",
+              "enum",
+              "date",
+              "object",
+              "array"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the property",
+            "example": "This is a property"
+          },
+          "optional": {
+            "type": "boolean",
+            "description": "Property is optional or not",
+            "example": true
+          },
+          "enum": {
+            "type": "array",
+            "description": "Enum of the property if type == enum",
+            "items": {
+              "type": "string"
+            }
+          },
+          "properties": {
+            "type": "object",
+            "description": "Enum of the property if type == object (ExampleInput)"
+          },
+          "items": {
+            "type": "object",
+            "description": "Enum of the property if type == array (ExampleInput)"
+          }
+        }
+      },
+      "ExampleInput": {
+        "type": "object",
+        "properties": {
+          "example": {
+            "type": "object",
+            "required": [
+              "type",
+              "description"
+            ],
+            "properties": {
+              "type": {
+                "type": "string",
+                "example": "string",
+                "description": "Type of the property",
+                "enum": [
+                  "string",
+                  "integer",
+                  "boolean",
+                  "enum",
+                  "date",
+                  "object",
+                  "array"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "description": "Description of the property",
+                "example": "This is a property"
+              },
+              "optional": {
+                "type": "boolean",
+                "description": "Property is optional or not",
+                "example": true
+              },
+              "enum": {
+                "type": "array",
+                "description": "Enum of the property if type == enum",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "properties": {
+                "type": "object",
+                "properties": {
+                  "example": {
+                    "$ref": "#/components/schemas/ExampleInputContent"
+                  }
+                }
+              },
+              "items": {
+                "$ref": "#/components/schemas/ExampleInputContent"
+              }
+            }
+          }
+        }
+      },
+      "ExampleOutputContent": {
+        "type": "object",
+        "required": [
+          "type",
+          "description"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "string",
+            "description": "Type of the property",
+            "enum": [
+              "string",
+              "integer",
+              "boolean",
+              "enum",
+              "date",
+              "object",
+              "array"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the property",
+            "example": "This is a property"
+          },
+          "optional": {
+            "type": "boolean",
+            "description": "Property is optional or not",
+            "example": true
+          },
+          "enum": {
+            "type": "array",
+            "description": "Enum of the property if type == enum",
+            "items": {
+              "type": "string"
+            }
+          },
+          "properties": {
+            "type": "object",
+            "description": "Enum of the property if type == object (ExampleOutput)"
+          },
+          "items": {
+            "type": "object",
+            "description": "Enum of the property if type == array (ExampleOutput)"
+          }
+        }
+      },
+      "ExampleOutput": {
+        "type": "object",
+        "properties": {
+          "example": {
+            "type": "object",
+            "required": [
+              "type",
+              "description"
+            ],
+            "properties": {
+              "type": {
+                "type": "string",
+                "example": "string",
+                "description": "Type of the property",
+                "enum": [
+                  "string",
+                  "integer",
+                  "boolean",
+                  "enum",
+                  "date",
+                  "object",
+                  "array"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "description": "Description of the property",
+                "example": "This is a property"
+              },
+              "optional": {
+                "type": "boolean",
+                "description": "Property is optional or not",
+                "example": true
+              },
+              "enum": {
+                "type": "array",
+                "description": "Enum of the property if type == enum",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "properties": {
+                "type": "object",
+                "properties": {
+                  "example": {
+                    "$ref": "#/components/schemas/ExampleOutputContent"
+                  }
+                }
+              },
+              "items": {
+                "$ref": "#/components/schemas/ExampleOutputContent"
+              }
+            }
+          }
+        }
+      },
+      "Trigger": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "name": {
+            "$ref": "#/components/schemas/Name"
+          },
+          "description": {
+            "$ref": "#/components/schemas/Description"
+          },
+          "img": {
+            "$ref": "#/components/schemas/Img"
+          },
+          "input": {
+            "$ref": "#/components/schemas/ExampleInput"
+          },
+          "output": {
+            "$ref": "#/components/schemas/ExampleOutput"
+          }
+        }
+      },
+      "Action": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "name": {
+            "$ref": "#/components/schemas/Name"
+          },
+          "description": {
+            "$ref": "#/components/schemas/Description"
+          },
+          "img": {
+            "$ref": "#/components/schemas/Img"
+          },
+          "input": {
+            "$ref": "#/components/schemas/ExampleInput"
+          },
+          "output": {
+            "$ref": "#/components/schemas/ExampleOutput"
+          }
+        }
+      },
+      "Manifest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "name": {
+            "$ref": "#/components/schemas/Name"
+          },
+          "description": {
+            "$ref": "#/components/schemas/Description"
+          },
+          "img": {
+            "$ref": "#/components/schemas/Img"
+          },
+          "oauth": {
+            "$ref": "#/components/schemas/OAuth"
+          },
+          "triggers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Trigger"
+            }
+          },
+          "actions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Action"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "api_key": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "tags": [
+  ]
+}

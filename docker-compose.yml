@@ -1,0 +1,56 @@
+version: "3.9"
+
+services:
+  mariadb:
+    image: mariadb:11.5.2
+    tty: true
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      ALLOW_EMPTY_PASSWORD: "true"
+    volumes:
+      - ${DATA_PATH_HOST}mariadb/mariadb_data:/var/lib/mysql
+      - ${DATA_PATH_HOST}mariadb/database:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+
+  server:
+    build:
+      context: apps/backend/api/
+      dockerfile: .cloud/docker/Dockerfile
+    depends_on:
+      - mariadb
+    ports:
+      - "8080:3000"
+
+  discord:
+    build:
+      context: apps/backend/providers/discord
+      dockerfile: .cloud/docker/Dockerfile
+    depends_on:
+      - server
+    ports:
+      - "6001:6001"
+
+  client_mobile:
+    build:
+      context: apps/frontend/mobile/
+      dockerfile: Dockerfile
+    depends_on:
+      - server
+    volumes:
+      - apk:/home/builder/app/apk/
+
+  client_web:
+    build:
+      context: apps/frontend/web/
+      dockerfile: Dockerfile
+    depends_on:
+      - client_mobile
+    volumes:
+      - apk:/app/apk/
+    ports:
+      - "8081:8081"
+
+volumes:
+  apk:

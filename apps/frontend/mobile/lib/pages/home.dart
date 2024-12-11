@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../widgets/card.dart'; // Assurez-vous que MyCard est bien défini ici
+import '../widgets/card.dart';
 import 'package:mobile/widgets/homeAppBar.dart';
 
 class HomePage extends StatelessWidget {
@@ -9,11 +9,11 @@ class HomePage extends StatelessWidget {
     return DefaultTabController(
       length: 2, // Nombre d'onglets
       child: Scaffold(
-        appBar: const MyHomeAppBar(), // AppBar personnalisée
+        appBar: const MyHomeAppBar(),
         body: const TabBarView(
           children: [
-            AllContent(), // Vue pour "All"
-            ProvidersContent(), // Vue pour "Providers"
+            AllContent(),
+            ProvidersContent(),
           ],
         ),
       ),
@@ -88,6 +88,7 @@ class AllContent extends StatelessWidget {
 
 class ProvidersContent extends StatelessWidget {
   const ProvidersContent({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,7 +103,7 @@ class ProvidersContent extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               children: List.generate(
                 10, // Nombre total de cartes
-                    (index) => MyCard(
+                (index) => MyCard(
                   backgroundColor: Colors.lightBlueAccent,
                   text: 'Discord',
                 ),

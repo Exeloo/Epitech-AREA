@@ -4,7 +4,7 @@ import { ID } from "@d-type/id.type";
 
 import { generateRandomString } from "@utils/string.utils";
 
-import { AUTH_SERVICE, IAuthService } from "@domain/auth/auth.repository.type";
+import { AUTH_SERVICE, IAuthService } from "@domain/auth/auth.service.type";
 
 import {
   IUserCreateInput,

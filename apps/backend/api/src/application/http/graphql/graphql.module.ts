@@ -7,7 +7,9 @@ import { DomainModule } from "@domain/domain.module";
 
 import { graphqlConfig } from "~/config/graphql.config";
 
+import { AppletResolver } from "./resolvers/applet.resolver";
 import { AuthResolver } from "./resolvers/auth.resolver";
+import { ProviderResolver } from "./resolvers/provider.resolver";
 import { UserResolver } from "./resolvers/user.resolver";
 
 @Module({
@@ -21,6 +23,6 @@ import { UserResolver } from "./resolvers/user.resolver";
     }),
     DomainModule,
   ],
-  providers: [AuthResolver, UserResolver],
+  providers: [AppletResolver, AuthResolver, ProviderResolver, UserResolver],
 })
 export class GraphqlModule {}

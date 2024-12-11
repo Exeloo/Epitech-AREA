@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 
 import { ID } from "@d-type/id.type";
 
-import { IAuthService } from "@domain/auth/auth.repository.type";
+import { IAuthService } from "@domain/auth/auth.service.type";
 import { OAuthStrategyEnum } from "@domain/auth/strategy/strategies/oauth/oauth.strategy.enum";
 import { IStrategyInput } from "@domain/auth/strategy/strategy.type";
 import { IAuthToken } from "@domain/auth/types/token.auth.type";

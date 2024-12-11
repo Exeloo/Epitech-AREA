@@ -14,7 +14,7 @@ import {
 import { UserService } from "@domain/user/user.service";
 
 import { IAuthenticateUser, IUser } from "../user/types/user.type";
-import { AUTH_SERVICE, IAuthService } from "./auth.repository.type";
+import { AUTH_SERVICE, IAuthService } from "./auth.service.type";
 import { StrategyEnum } from "./strategy/strategy.enum";
 
 @Injectable()

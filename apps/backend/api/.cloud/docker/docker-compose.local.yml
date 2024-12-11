@@ -33,3 +33,15 @@ services:
       - "8001:80"
     environment:
       PMA_HOST: mariadb
+
+
+  provider-discord:
+    image: node:22-alpine
+    build:
+      context: ../../../providers/discord
+    ports:
+      - "3001:3001"
+    working_dir: /app
+    volumes:
+      - ../../../providers/discord:/app
+    command: yarn serve-nest

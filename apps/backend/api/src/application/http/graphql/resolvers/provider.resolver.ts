@@ -16,10 +16,8 @@ import { IManifest } from "@domain/provider/manifest/types/manifest.type";
 import { ProviderService } from "@domain/provider/provider.service";
 import { IProviderCreateInput } from "@domain/provider/types/provider.input.type";
 import { IExposedProvider } from "@domain/provider/types/provider.type";
-import { IUser } from "@domain/user/types/user.type";
 
 import { ProviderManifest } from "~/application/http/graphql/dto/nodes/provider/provider-manifest.node";
-import { GQLCurrentUser } from "~/shared/auth/decorators/current-user/graphql-current-user.decorator";
 
 import { ProviderCreateInput } from "../dto/input/provider/provider-create.input";
 import { Provider } from "../dto/nodes/provider/provider.node";
@@ -56,18 +54,15 @@ export class ProviderResolver {
   }
 
   @Query(() => [Provider], { description: "Get all providers" })
-  async getAllProviders(
-    @GQLCurrentUser() user: IUser,
-  ): Promise<IExposedProvider[]> {
-    throw Error("Not implemented");
+  async getAllProviders(): Promise<IExposedProvider[]> {
+    return this.providerService.getAll();
   }
 
   @Query(() => Provider, { description: "Get provider by id" })
   async getProviderById(
-    @GQLCurrentUser() user: IUser,
     @Args("id", { type: () => Int }) id: ID,
   ): Promise<IExposedProvider> {
-    throw Error("Not implemented");
+    return this.providerService.getById(id);
   }
 
   @Mutation(() => Provider, {

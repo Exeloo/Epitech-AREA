@@ -3,7 +3,7 @@ import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { JwtModule } from "@nestjs/jwt";
 
-import { AUTH_SERVICE } from "@domain/auth/auth.repository.type";
+import { AUTH_SERVICE } from "@domain/auth/auth.service.type";
 
 import { OAuthStrategy } from "~/shared/auth/strategy/strategies/oauth/oauth.strategy";
 import { GoogleOAuthStrategy } from "~/shared/auth/strategy/strategies/oauth/strategies/google.strategy";

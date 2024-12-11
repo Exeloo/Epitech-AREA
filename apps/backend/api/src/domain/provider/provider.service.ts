@@ -24,6 +24,10 @@ export class ProviderService {
     return this.providerPRepository.getById(id);
   }
 
+  getAll(): Promise<IProvider[]> {
+    return this.providerPRepository.getAll();
+  }
+
   async createProvider(input: IProviderCreateInput): Promise<IProvider> {
     const currProvider = await this.providerPRepository.getByProviderId(
       input.providerId,

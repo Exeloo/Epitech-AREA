@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
-import '../requests/graphql_queries.dart';
+import '../requests/graphql_client.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -14,6 +14,7 @@ class _LoginPageState extends State<LoginPage> {
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final client = initGraphQLClient('http://localhost:3000');
 
   @override
   Widget build(BuildContext context) {

@@ -11,8 +11,8 @@ class MyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 150, // Hauteur fixe
-      width: double.infinity, // Largeur ajustée à l'écran
+      height: 150,
+      width: double.infinity,
       child: Stack(
         children: [
           Container(
@@ -22,8 +22,8 @@ class MyCard extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom: 8, // Positionné en bas
-            left: 8, // Positionné à droite
+            bottom: 8,
+            left: 10,
             child: Text(
               text,
               style: const TextStyle(
@@ -34,17 +34,17 @@ class MyCard extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 8, // Positionné en bas
-            right: 50, // Positionné à droite
+            top: 8,
+            right: 50,
             child: SvgPicture.asset('assets/icon/utilisateur.svg',
                 width: 24, height: 24, color: Colors.white),
           ),
-          Positioned(
-            top: 8, // Positionné en bas
-            right: 8, // Positionné à droite
+          const Positioned(
+            top: 8,
+            right: 8,
             child: Text(
               "2.5M",
-              style: const TextStyle(
+              style: TextStyle(
                 color: Colors.white,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,

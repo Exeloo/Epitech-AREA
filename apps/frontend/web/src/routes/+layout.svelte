@@ -3,11 +3,11 @@
 	let { children } = $props();
 </script>
 
-<div class="h-full w-full bg-neutral-100">
+<div class="w-full bg-neutral-100">
 	<header
 		class="sticky top-0 z-50 flex w-full items-center justify-between rounded-b-xl bg-white p-5 shadow-md shadow-neutral-200"
 	>
-		<h1 class="text-3xl font-bold">AREA</h1>
+		<a href="/"><h1 class="text-3xl font-bold">AREA</h1></a>
 		<form class="mx-auto w-1/4">
 			<label for="default-search" class="sr-only mb-2 text-sm font-medium text-neutral-900"
 				>Search</label
@@ -40,11 +40,11 @@
 			</div>
 		</form>
 		<div class="text-md flex items-center justify-center gap-4 font-semibold">
-			<a href="/login" class="text-neutral-800">Log in</a>
-			<a href="/signup" class="rounded-xl bg-primary px-3 py-2 text-white">Sign up</a>
+			<a href="/auth/login" class="text-neutral-800">Log in</a>
+			<a href="/auth/signup" class="rounded-xl bg-primary px-3 py-2 text-white">Sign up</a>
 		</div>
 	</header>
-	<main class="w-full px-24 py-12">
+	<main class="w-full min-h-screen">
 		{@render children()}
 	</main>
 </div>

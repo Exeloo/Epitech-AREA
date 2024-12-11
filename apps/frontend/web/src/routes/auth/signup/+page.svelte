@@ -2,7 +2,7 @@
 	import Input from '$lib/auth/Input.svelte';
 	import Submit from '$lib/auth/Submit.svelte';
 	import Validation from '$lib/auth/Validation.svelte';
-	import { RegisterStore } from '$houdini';
+	import {load_Login, RegisterStore} from '$houdini';
 
 	let username = $state('');
 	let email = $state('');
@@ -11,12 +11,27 @@
 	let password = $state('');
 	// let rememberMe = $state(false);
 
+	async function login(email: string, password: string): Promise<any> {
+		const loginQuery = await load_Login({});
+		const { data, errors } = await loginQuery.Login.fetch({
+			variables: { data: { email: email, password: password } }
+		});
+
+		if (!data) {
+			console.log(errors);
+			return {};
+		}
+
+		localStorage.setItem('token', data.login.token);
+		localStorage.setItem('refreshToken', data.login.refreshToken);
+	}
+
 	async function handleSubmit(event: any): Promise<any> {
 		event.preventDefault();
 
 		try {
-			const query = new RegisterStore();
-			const { data, errors } = await query.mutate({
+			const registerQuery = new RegisterStore();
+			const { data, errors } = await registerQuery.mutate({
 				data: {
 					email: email,
 					password: password,
@@ -31,10 +46,7 @@
 				return errors;
 			}
 
-			console.log('Register successful:', query);
-			alert('Register successful!');
-
-			window.location.href = '/dashboard';
+			window.location.href = '/';
 		} catch (error) {
 			console.error('Unexpected error:', error);
 		}

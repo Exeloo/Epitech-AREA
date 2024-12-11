@@ -87,7 +87,6 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
         width: 80,
         child: FloatingActionButton(
           onPressed: () {
-            // Action du FloatingActionButton
           },
           backgroundColor: const Color(0xff8E44AD),
           shape: const CircleBorder(),
@@ -136,7 +135,6 @@ class Page3 extends StatelessWidget {
   }
 }
 
-// Page 4 : Profil
 class Page4 extends StatelessWidget {
   const Page4({Key? key}) : super(key: key);
 

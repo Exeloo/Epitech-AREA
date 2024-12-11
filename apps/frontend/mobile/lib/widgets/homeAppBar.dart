@@ -20,9 +20,7 @@ class MyHomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
     );
   }
-
-  // Implémente la taille préférée (obligatoire pour PreferredSizeWidget)
   @override
   Size get preferredSize =>
-      const Size.fromHeight(100); // Ajustez la hauteur selon vos besoins
+      const Size.fromHeight(100);
 }

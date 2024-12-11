@@ -7,7 +7,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2, // Nombre d'onglets
+      length: 2,
       child: Scaffold(
         appBar: const MyHomeAppBar(),
         body: const TabBarView(
@@ -41,13 +41,12 @@ class AllContent extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          // Espacement entre texte et barre de recherche
           SizedBox(
-            height: 50, // Hauteur explicite pour SearchBar
+            height: 50,
             child: SearchBar(
               leading: Row(
                 children: [
-                  const SizedBox(width: 8), // Espace avant l'icône
+                  const SizedBox(width: 8),
                   SvgPicture.asset(
                     'assets/icon/loupe.svg',
                     height: 24,
@@ -66,11 +65,10 @@ class AllContent extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 50),
-          // Espacement entre widgets
           Expanded(
             child: ListView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              itemCount: 10, // Nombre de cartes
+              itemCount: 10,
               itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.only(bottom: 16.0),
                 child: MyCard(
@@ -97,12 +95,11 @@ class ProvidersContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(height: 50),
-          // Espacement entre widgets
           Expanded(
             child: GridView.count(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               children: List.generate(
-                10, // Nombre total de cartes
+                10,
                 (index) => MyCard(
                   backgroundColor: Colors.lightBlueAccent,
                   text: 'Discord',

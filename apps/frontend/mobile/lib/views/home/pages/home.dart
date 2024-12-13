@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../widgets/card.dart';
-import 'package:mobile/widgets/homeAppBar.dart';
+import '../widgets/applet_card.dart';
+import 'package:mobile/views/home/widgets/homeAppBar.dart';
 
 class HomePage extends StatelessWidget {
   @override

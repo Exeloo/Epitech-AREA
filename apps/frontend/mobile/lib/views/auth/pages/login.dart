@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../requests/graphql_client.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -12,6 +14,7 @@ class _LoginPageState extends State<LoginPage> {
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final client = initGraphQLClient('http://localhost:3000');
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +77,29 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
             const SizedBox(height: 16),
+            Mutation(
+              options: MutationOptions(
+                document: gql(loginQuery),
+                onCompleted: (dynamic resultData) {
+                  print(resultData);
+                },
+              ),
+              builder: (RunMutation runMutation, QueryResult? result) {
+                return ElevatedButton(
+                  onPressed: () {
+                    runMutation({
+                      'email': _emailController.text,
+                      'password': _passwordController.text,
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    textStyle: const TextStyle(fontSize: 16),
+                  ),
+                  child: const Text('Sign in'),
+                );
+              },
+            ),
             const SizedBox(height: 16),
             TextButton(
               onPressed: () {

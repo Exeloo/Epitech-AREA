@@ -6,7 +6,7 @@ import { UserService } from "@domain/user/user.service";
 
 import { GqlAuthGuard } from "~/application/http/graphql/common/guards/gql-auth.guard";
 import { UserUpdateInput } from "~/application/http/graphql/dto/input/user/user-update.input";
-import { GQLCurrentUser } from "~/shared/auth/decorators/current-user/graphql-current-user.decorator";
+import { GqlCurrentUser } from "~/shared/auth/decorators/current-user/graphql-current-user.decorator";
 
 import { UserCreateInput } from "../dto/input/user/user-create.input";
 import { UserRegisterInput } from "../dto/input/user/user-register.input";
@@ -18,7 +18,7 @@ export class UserResolver {
 
   @UseGuards(GqlAuthGuard)
   @Query(() => User, { description: "Get the connected user" })
-  async getMe(@GQLCurrentUser() user: IUser): Promise<IExposedUser> {
+  async getMe(@GqlCurrentUser() user: IUser): Promise<IExposedUser> {
     return user;
   }
 
@@ -46,7 +46,7 @@ export class UserResolver {
     description: "Mutation used to update self",
   })
   updateMe(
-    @GQLCurrentUser() user: IUser,
+    @GqlCurrentUser() user: IUser,
     @Args("data", { type: () => UserUpdateInput }) data: UserUpdateInput,
   ): Promise<IExposedUser> {
     return this.userService.updateUser(user.id, data);

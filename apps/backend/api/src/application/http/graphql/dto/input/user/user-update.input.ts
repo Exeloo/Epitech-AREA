@@ -9,6 +9,7 @@ export class UserUpdateInput implements IUserCreateInput {
   @IsEmail()
   @Field(() => String, {
     description: "Email of the user to update",
+    nullable: true,
   })
   email: string;
 
@@ -16,6 +17,7 @@ export class UserUpdateInput implements IUserCreateInput {
   @IsString()
   @Field(() => String, {
     description: "Username of the user to update",
+    nullable: true,
   })
   username: string;
 
@@ -23,6 +25,7 @@ export class UserUpdateInput implements IUserCreateInput {
   @IsString()
   @Field(() => String, {
     description: "First name of the user to update",
+    nullable: true,
   })
   firstName: string;
 
@@ -30,6 +33,7 @@ export class UserUpdateInput implements IUserCreateInput {
   @IsString()
   @Field(() => String, {
     description: "Last name of the user to update",
+    nullable: true,
   })
   lastName: string;
 

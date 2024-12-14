@@ -23,4 +23,9 @@ export type IUserRegisterInput = Pick<
 > &
   Partial<IUserInput>;
 
-export type IUserUpdateInput = Partial<IUserInput>;
+export type IUserUpdateInput = Partial<
+  Pick<
+    IUserInput,
+    "email" | "username" | "firstName" | "lastName" | "pronoun" | "description"
+  >
+>;

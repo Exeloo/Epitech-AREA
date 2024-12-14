@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { APP_FILTER, APP_GUARD } from "@nestjs/core";
 import { ThrottlerModule } from "@nestjs/throttler";
 
+import { AuthMiddleware } from "~/application/http/common/middlewares/auth.middleware";
 import { MvcModule } from "~/application/http/mvc/mvc.module";
 import { throttlerConfig } from "~/config/throttler.config";
 
@@ -37,6 +38,6 @@ import { RestModule } from "./rest/rest.module";
 })
 export class HTTPModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(LoggerMiddleware).forRoutes("*");
+    consumer.apply(AuthMiddleware, LoggerMiddleware).forRoutes("*");
   }
 }

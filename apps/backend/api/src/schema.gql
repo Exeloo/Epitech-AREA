@@ -87,6 +87,9 @@ type Mutation {
 
   """Mutation used to subscribe to an applet"""
   subscribeToProvider(data: AppletSubscribeInput!): Applet!
+
+  """Mutation used to update self"""
+  updateMe(data: UserUpdateInput!): User!
 }
 
 """Provider"""
@@ -271,4 +274,25 @@ input UserRegisterInput {
 
   """Username of the user to register"""
   username: String!
+}
+
+"""Input type to update user"""
+input UserUpdateInput {
+  """Description of the user to update"""
+  description: String
+
+  """Email of the user to update"""
+  email: String
+
+  """First name of the user to update"""
+  firstName: String
+
+  """Last name of the user to update"""
+  lastName: String
+
+  """Pronoun of the user to update"""
+  pronoun: String
+
+  """Username of the user to update"""
+  username: String
 }

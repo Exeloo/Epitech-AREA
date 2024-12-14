@@ -1,7 +1,7 @@
 import { Injectable, NestMiddleware } from "@nestjs/common";
 import { NextFunction, Request, Response } from "express";
 
-import { AuthService } from "~/shared/auth/auth.service";
+import { AuthService } from "@domain/auth/auth.service";
 
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
@@ -14,11 +14,11 @@ export class AuthMiddleware implements NestMiddleware {
   ): Promise<void> {
     if (!request.headers) next();
     if (request.headers.authorization) {
-      // @ts-ignore
-      request.user = await this.authService.verifyToken(
+      request["user"] = await this.authService.authToken(
         request.headers.authorization,
       );
     }
+    // @todo Put here the apiKey auth
     next();
   }
 }

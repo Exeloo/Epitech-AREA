@@ -63,11 +63,15 @@ export class UserService {
     });
   }
 
+  updateUser(id: ID, input: IUserUpdateInput): Promise<IUser> {
+    return this.update(id, input);
+  }
+
   private create(input: IUserInput): Promise<IUser> {
     return this.userPRepository.createEntity(input);
   }
 
-  private update(id: ID, input: IUserUpdateInput): Promise<IUser> {
+  private update(id: ID, input: Partial<IUserInput>): Promise<IUser> {
     return this.userPRepository.updateEntity(id, input);
   }
 }

@@ -2,6 +2,8 @@ import { Inject, Injectable } from "@nestjs/common";
 
 import { ID } from "@d-type/id.type";
 
+import { BadInputException } from "@exception";
+
 import {
   IProviderPersistenceRepository,
   PROVIDER_PERSISTENCE_REPOSITORY,
@@ -33,7 +35,11 @@ export class ProviderService {
       input.providerId,
     );
     if (currProvider) {
-      throw Error(); // @todo Error Provider Already exist
+      throw new BadInputException(27, "Provider already exist", {
+        cause: new Error(
+          `Provider with providerId (${input.providerId}) already exist`,
+        ),
+      });
     }
     return this.create({
       ...input,

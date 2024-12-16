@@ -13,6 +13,8 @@ import { DeepPartial } from "@type/nullable.type";
 
 import { ID } from "@d-type/id.type";
 
+import { BadInputException, InternalException } from "@exception";
+
 import { IIdentifiable } from "@domain/common/interfaces/models/identifiable.type";
 import { IBasePersistenceRepository } from "@domain/common/interfaces/repositories/base.persistence.repository.type";
 
@@ -34,14 +36,15 @@ export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
   }
 
   async getById(id: ID): Promise<I> {
-    if (!id) throw Error(); // @todo Error
-
     const entity = await this.findOne({
       relations: this.relations,
       where: { id },
     } as FindOneOptions<E>);
 
-    if (!entity) throw Error(); // @todo Error
+    if (!entity)
+      throw new BadInputException(15, "Unkown entity", {
+        cause: new Error(`Unkown entity getting by id (${id})`),
+      });
 
     this.logger.log(
       `${this.constructor.name}.getById: entity (${id}) successfully found`,
@@ -51,14 +54,15 @@ export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
   }
 
   async getByProperties(properties: FindOptionsWhere<E>): Promise<I> {
-    if (!properties) throw Error(); // @todo Error
-
     const entity = await this.findOne({
       relations: this.relations,
       where: properties,
     });
 
-    if (!entity) throw Error(); // @todo Error
+    if (!entity)
+      throw new BadInputException(16, "Unkown entity", {
+        cause: new Error(`Unkown entity getting by properties (${properties})`),
+      });
 
     this.logger.log(
       `${this.constructor.name}.getByProperties: entity (${entity.id}) successfully found`,
@@ -68,8 +72,6 @@ export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
   }
 
   async getAllByProperties(properties: FindOptionsWhere<E>): Promise<I[]> {
-    if (!properties) throw Error(); // @todo Error
-
     try {
       const entities = await this.find({
         relations: this.relations,
@@ -82,7 +84,11 @@ export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
 
       return this.transformer.persistenceToDomains(entities);
     } catch {
-      throw Error(); // @todo Error
+      throw new InternalException(17, {
+        cause: new Error(
+          `Error while trying to reach entities by properties (${properties})`,
+        ),
+      });
     }
   }
 
@@ -98,12 +104,14 @@ export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
 
       return this.transformer.persistenceToDomains(entities);
     } catch {
-      throw Error(); // @todo Error
+      throw new InternalException(18, {
+        cause: new Error("Error while trying to reach all entities"),
+      });
     }
   }
 
   async createEntity(model: DeepPartial<I>): Promise<I> {
-    let id: ID;
+    let id: ID | undefined = undefined;
 
     try {
       const entity = await this.save(
@@ -111,10 +119,10 @@ export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
       );
       id = entity.id;
     } catch {
-      throw Error(); // @todo Error
+      throw new InternalException(19, {
+        cause: new Error(`Error while trying to create entity`),
+      });
     }
-
-    if (!id) throw Error(); // @todo Error
 
     this.logger.log(
       `${this.constructor.name}.createEntity: entity (${id}) successfully created`,
@@ -124,12 +132,12 @@ export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
   }
 
   async updateEntity(id: ID, model: DeepPartial<I>): Promise<I> {
-    if (!id) throw Error(); // @todo Error
-
     try {
       await this.update(id, this.transformer.domainToPersistence(model));
     } catch {
-      throw Error(); // @todo Error
+      throw new InternalException(20, {
+        cause: new Error(`Error while trying to update entity (${id})`),
+      });
     }
 
     this.logger.log(
@@ -140,14 +148,17 @@ export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
   }
 
   async deleteEntity(id: ID, hardDelete: boolean = false): Promise<I> {
-    if (!id) throw Error(); // @todo Error
-
     const entity = await this.findOne({
       relations: this.relations,
       where: { id },
     } as FindOneOptions<E>);
 
-    if (!entity) throw Error(); // @todo Error
+    if (!entity)
+      throw new InternalException(21, {
+        cause: new Error(
+          `Error while trying to delete entity (${id}), does not exist`,
+        ),
+      });
 
     try {
       if (
@@ -159,7 +170,9 @@ export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
         await this.softDelete(id);
       }
     } catch {
-      throw Error(); // @todo Error
+      throw new InternalException(22, {
+        cause: new Error(`Error while trying to delete entity (${id})`),
+      });
     }
 
     this.logger.log(

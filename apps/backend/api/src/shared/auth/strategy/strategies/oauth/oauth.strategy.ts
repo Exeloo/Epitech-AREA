@@ -1,5 +1,7 @@
 import { Injectable } from "@nestjs/common";
 
+import { InternalException } from "@exception";
+
 import { OAuthStrategyEnum } from "@domain/auth/strategy/strategies/oauth/oauth.strategy.enum";
 import { IOAuthStrategy } from "@domain/auth/strategy/strategies/oauth/oauth.strategy.type";
 import { StrategyEnum } from "@domain/auth/strategy/strategy.enum";
@@ -23,7 +25,10 @@ export class OAuthStrategy extends AuthStrategy(StrategyEnum.OAUTH) {
   async authenticate(input: IOAuthStrategy): Promise<IUser> {
     const [provider, value] = Object.entries(input)[0];
     const strategy = this.strategyMap[provider];
-    if (!strategy) throw Error(); // @todo Error internal, strategy not implemented
+    if (!strategy)
+      throw new InternalException(24, {
+        cause: new Error(`Strategy ${provider} not implemented`),
+      });
 
     return (await strategy.validate(value)) as IUser;
   }

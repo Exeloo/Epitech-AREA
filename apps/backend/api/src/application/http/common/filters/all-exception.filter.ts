@@ -5,7 +5,7 @@ import {
   HttpException,
   Logger,
 } from "@nestjs/common";
-import { Request } from "express";
+import { Request, Response } from "express";
 
 @Catch()
 export class AllExceptionFilter implements ExceptionFilter {
@@ -13,27 +13,25 @@ export class AllExceptionFilter implements ExceptionFilter {
 
   catch(exception: HttpException, host: ArgumentsHost) {
     const ctx = host.getArgs();
-    if (
-      !(
-        ctx &&
-        ctx.length >= 3 &&
-        exception.cause &&
-        (exception.cause as string[]).length >= 4
-      )
-    )
-      return;
-    const [context, name, code, description] = exception.cause as string[];
-
-    const message = `New error thrown (${code}|${exception.getStatus()}:${name}) at ${context}: ${description}`;
-    this.logger.error(message, exception.stack, context);
     const req: Request = ctx[2].req;
-    req?.res?.status(exception.getStatus()).json({
-      statusCode: exception.getStatus(),
-      timestamp: new Date().toISOString(),
-      error: {
-        name,
-        code: code,
-      },
-    });
+    const res: Response = req?.res;
+    if (exception instanceof HttpException) {
+      const status = exception.getStatus();
+
+      res?.status(status).json({
+        error: exception.getResponse(),
+        statusCode: status,
+        timestamp: new Date().toISOString(),
+      });
+    } else {
+      res?.status(500).json({
+        error: {
+          message: "Internal Server Error: Unknown error",
+          code: -1,
+        },
+        statusCode: 500,
+        timestamp: new Date().toISOString(),
+      });
+    }
   }
 }

@@ -5,6 +5,8 @@ import { firstValueFrom } from "rxjs";
 import { camelToSnake } from "@utils/case.utils";
 import { urlQueryBuilder } from "@utils/url-query.utils";
 
+import { AuthorizationException } from "@exception";
+
 import { OAuthStrategyEnum } from "@domain/auth/strategy/strategies/oauth/oauth.strategy.enum";
 import { IOAuthStrategy } from "@domain/auth/strategy/strategies/oauth/oauth.strategy.type";
 import { IAuthenticateUser } from "@domain/user/types/user.type";
@@ -61,8 +63,10 @@ export const BaseOAuthStrategy = <
 
     abstract validate(input: V): Promise<IAuthenticateUser>;
 
-    invalidAuth(): void {
-      throw Error(); // @todo Error invalid credentials
+    invalidAuth(cause: string): void {
+      throw new AuthorizationException(25, "Invalid authentication", {
+        cause: new Error(cause),
+      });
     }
   }
   return BaseStrategy;

@@ -1,5 +1,7 @@
 import { Injectable } from "@nestjs/common";
 
+import { InternalException } from "@exception";
+
 import { OAuthStrategyEnum } from "@domain/auth/strategy/strategies/oauth/oauth.strategy.enum";
 import { StrategyEnum } from "@domain/auth/strategy/strategy.enum";
 import { IStrategyInput } from "@domain/auth/strategy/strategy.type";
@@ -32,7 +34,10 @@ export class StrategyService {
     input: IStrategyInput[K],
   ): Promise<IUser> {
     const strategy = this.strategyMap[type];
-    if (!strategy) throw Error(); // @todo Error internal, strategy not implemented
+    if (!strategy)
+      throw new InternalException(23, {
+        cause: new Error(`Strategy ${type} not implemented`),
+      });
 
     return strategy.authenticate(input);
   }

@@ -15,7 +15,7 @@ export class TokenStrategy extends AuthStrategy(StrategyEnum.TOKEN) {
 
   async authenticate(input: ITokenStrategy): Promise<IUser> {
     const user = await this.tokenService.verifyAccessToken(input.token);
-    if (!user) this.invalidAuth();
+    if (!user) this.invalidAuth("Invalid token");
 
     return user;
   }

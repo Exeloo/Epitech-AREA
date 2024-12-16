@@ -23,10 +23,11 @@ export class PasswordStrategy extends AuthStrategy(StrategyEnum.PASSWORD) {
 
   async authenticate(input: IPasswordStrategy): Promise<IUser> {
     const user = await this.userPRepository.getByEmail(input.email);
-    if (!user) this.invalidAuth();
+    if (!user)
+      this.invalidAuth(`User with email (${input.email}) already exist`);
 
     if (!(await this.passwordService.verify(input.password, user.password)))
-      this.invalidAuth();
+      this.invalidAuth("Invalid password");
 
     return user;
   }

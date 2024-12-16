@@ -64,9 +64,14 @@ export const BaseOAuthStrategy = <
     abstract validate(input: V): Promise<IAuthenticateUser>;
 
     invalidAuth(cause: string): void {
-      throw new AuthorizationException(25, "Invalid authentication", {
-        cause: new Error(cause),
-      });
+      throw new AuthorizationException(
+        "UNAUTHORIZED_INVALID_OAUTH_CREDENTIALS",
+        "Invalid authentication",
+        {
+          cause: new Error(cause),
+          trace: 25,
+        },
+      );
     }
   }
   return BaseStrategy;

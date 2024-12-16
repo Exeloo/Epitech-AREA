@@ -42,8 +42,9 @@ export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
     } as FindOneOptions<E>);
 
     if (!entity)
-      throw new BadInputException(15, "Unkown entity", {
+      throw new BadInputException("BAD_INPUT", "Unkown entity", {
         cause: new Error(`Unkown entity getting by id (${id})`),
+        trace: 15,
       });
 
     this.logger.log(
@@ -60,8 +61,9 @@ export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
     });
 
     if (!entity)
-      throw new BadInputException(16, "Unkown entity", {
+      throw new BadInputException("BAD_INPUT", "Unkown entity", {
         cause: new Error(`Unkown entity getting by properties (${properties})`),
+        trace: 16,
       });
 
     this.logger.log(

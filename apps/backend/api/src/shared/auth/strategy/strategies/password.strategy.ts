@@ -24,7 +24,7 @@ export class PasswordStrategy extends AuthStrategy(StrategyEnum.PASSWORD) {
   async authenticate(input: IPasswordStrategy): Promise<IUser> {
     const user = await this.userPRepository.getByEmail(input.email);
     if (!user)
-      this.invalidAuth(`User with email (${input.email}) already exist`);
+      this.invalidAuth(`Invalid email (${input.email}) does not exist`);
 
     if (!(await this.passwordService.verify(input.password, user.password)))
       this.invalidAuth("Invalid password");

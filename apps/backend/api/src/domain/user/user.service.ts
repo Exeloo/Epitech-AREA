@@ -39,9 +39,14 @@ export class UserService {
   async createUser(input: IUserCreateInput): Promise<IUser> {
     const currUser = await this.getByEmail(input.email);
     if (currUser) {
-      throw new AuthorizationException(26, "Invalid authentication", {
-        cause: new Error(`User with email (${input.email}) already exist`),
-      });
+      throw new AuthorizationException(
+        "UNAUTHORIZED_BAD_CREDENTIALS",
+        "Invalid authentication",
+        {
+          cause: new Error(`User with email (${input.email}) already exist`),
+          trace: 26,
+        },
+      );
     }
     const password = input.password ?? generateRandomString(50);
 

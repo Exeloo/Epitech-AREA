@@ -9,7 +9,14 @@ export class GqlAuthGuard implements CanActivate {
     const request = GqlExecutionContext.create(context).getContext()
       .req as Request;
     if (!request || !request["user"]) {
-      throw new AuthorizationException(5, "Token required");
+      throw new AuthorizationException(
+        "UNAUTHORIZED_MISSING_TOKEN",
+        "Token required",
+        {
+          cause: new Error("Missing cannot fetch user in request"),
+          trace: 5,
+        },
+      );
     }
     return true;
   }

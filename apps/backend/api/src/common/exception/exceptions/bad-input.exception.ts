@@ -1,10 +1,9 @@
-import { HttpExceptionOptions } from "@nestjs/common/exceptions/http.exception";
 import { HttpStatusCode } from "axios";
 
-import { BaseException } from "../common/base.exception";
+import { BaseException, ExceptionOptions } from "../common/base.exception";
 
 export class BadInputException extends BaseException {
-  constructor(code: number, response: string, options?: HttpExceptionOptions) {
+  constructor(code: string, response: string, options?: ExceptionOptions) {
     super(code, `BadInput: ${response}`, HttpStatusCode.BadRequest, options);
   }
 }

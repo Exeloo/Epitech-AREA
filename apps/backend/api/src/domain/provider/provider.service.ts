@@ -35,10 +35,11 @@ export class ProviderService {
       input.providerId,
     );
     if (currProvider) {
-      throw new BadInputException(27, "Provider already exist", {
+      throw new BadInputException("BAD_INPUT", "Provider already exist", {
         cause: new Error(
           `Provider with providerId (${input.providerId}) already exist`,
         ),
+        trace: 27,
       });
     }
     return this.create({

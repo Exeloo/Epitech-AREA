@@ -29,7 +29,11 @@ export class TokenService {
   async refreshToken(refreshToken: string): Promise<IAuthToken> {
     const user = await this.verifyToken(refreshToken, TokenEnum.REFRESH);
     if (!user) {
-      throw new AuthorizationException(6, "Invalid refresh token");
+      throw new AuthorizationException(
+        "UNAUTHORIZED_BAD_REFRESH_TOKEN",
+        "Invalid refresh token",
+        { trace: 6 },
+      );
     }
     return this.generateToken(user.id);
   }

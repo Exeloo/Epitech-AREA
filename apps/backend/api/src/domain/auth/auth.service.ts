@@ -65,14 +65,20 @@ export class AuthService {
 
   authOAuth(provider: OAuthStrategyEnum, req: Request): Promise<IUser> {
     if (!req.query) {
-      throw new BadInputException(28, "Invalid Query", {
+      throw new BadInputException("BAD_INPUT", "Invalid Query", {
         cause: new Error("Undefined query on OAuth"),
+        trace: 28,
       });
     }
     if (req.query.error) {
-      throw new AuthorizationException(29, "OAuth throw error", {
-        cause: new Error(`OAuth throw error: ${req.query.error}`),
-      });
+      throw new AuthorizationException(
+        "UNAUTHORIZED_ERROR_FROM_PROVIDER",
+        "OAuth throw error",
+        {
+          cause: new Error(`OAuth throw error: ${req.query.error}`),
+          trace: 29,
+        },
+      );
     }
     return this.authService.authenticate(StrategyEnum.OAUTH, {
       [provider]: req.query as unknown as IOAuthStrategy[typeof provider],

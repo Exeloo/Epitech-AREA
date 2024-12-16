@@ -18,9 +18,14 @@ export const AuthStrategy = <
     abstract authenticate(input: V): Promise<IUser>;
 
     invalidAuth(cause: string): void {
-      throw new AuthorizationException(4, "Invalid authentication", {
-        cause: new Error(cause),
-      });
+      throw new AuthorizationException(
+        "UNAUTHORIZED_INVALID_CREDENTIALS",
+        "Invalid authentication credentials",
+        {
+          cause: new Error(cause),
+          trace: 4,
+        },
+      );
     }
   }
   return BaseStrategy;

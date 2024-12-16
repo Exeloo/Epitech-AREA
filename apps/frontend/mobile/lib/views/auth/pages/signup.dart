@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:ferry/ferry.dart';
+import 'package:mobile/graphql/graphql_client.dart';
+import 'package:mobile/graphql/__generated__/user.req.gql.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -14,6 +16,27 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
+
+  final GraphQlClient _graphQlClient = GraphQlClient();
+
+  void _signup() async {
+    final request = GregisterReq((b) => b
+      ..vars.data.username = _usernameController.text
+      ..vars.data.email = _emailController.text
+      ..vars.data.password = _passwordController.text
+      ..vars.data.firstName = _firstNameController.text
+      ..vars.data.lastName = _lastNameController.text);
+
+    final response = await _graphQlClient.client.request(request).first;
+
+    if (response.loading) {
+      print('Loading...');
+    } else if (response.hasErrors) {
+      print('Errors: ${response.graphqlErrors}');
+    } else {
+      print('Response: ${response.data}');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,31 +101,13 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
             ),
             const SizedBox(height: 16),
-            Mutation(
-              options: MutationOptions(
-                document: gql(registerMutation),
-                onCompleted: (dynamic resultData) {
-                  print(resultData);
-                },
+            ElevatedButton(
+              onPressed: _signup,
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                textStyle: const TextStyle(fontSize: 16),
               ),
-              builder: (RunMutation runMutation, QueryResult? result) {
-                return ElevatedButton(
-                  onPressed: () {
-                    runMutation({
-                      'username': _usernameController.text,
-                      'email': _emailController.text,
-                      'password': _passwordController.text,
-                      'firstName': _firstNameController.text,
-                      'lastName': _lastNameController.text,
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    textStyle: const TextStyle(fontSize: 16),
-                  ),
-                  child: const Text('Get started'),
-                );
-              },
+              child: const Text('Get started'),
             ),
             const SizedBox(height: 16),
             TextButton(

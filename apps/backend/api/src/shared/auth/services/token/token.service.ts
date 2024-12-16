@@ -2,6 +2,8 @@ import { Inject, Injectable } from "@nestjs/common";
 
 import { ID } from "@d-type/id.type";
 
+import { AuthorizationException } from "@exception";
+
 import { IAuthToken } from "@domain/auth/types/token.auth.type";
 import { IUser } from "@domain/user/types/user.type";
 import {
@@ -27,7 +29,11 @@ export class TokenService {
   async refreshToken(refreshToken: string): Promise<IAuthToken> {
     const user = await this.verifyToken(refreshToken, TokenEnum.REFRESH);
     if (!user) {
-      throw Error(); // @todo Error
+      throw new AuthorizationException(
+        "UNAUTHORIZED_BAD_REFRESH_TOKEN",
+        "Invalid refresh token",
+        { trace: 6 },
+      );
     }
     return this.generateToken(user.id);
   }

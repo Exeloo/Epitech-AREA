@@ -4,6 +4,8 @@ import { Request } from "express";
 
 import { urlQueryBuilder } from "@utils/url-query.utils";
 
+import { AuthorizationException, BadInputException } from "@exception";
+
 import { OAuthStrategyEnum } from "@domain/auth/strategy/strategies/oauth/oauth.strategy.enum";
 import { IOAuthStrategy } from "@domain/auth/strategy/strategies/oauth/oauth.strategy.type";
 import { IAuthPasswordInput } from "@domain/auth/types/password.auth.type";
@@ -63,10 +65,20 @@ export class AuthService {
 
   authOAuth(provider: OAuthStrategyEnum, req: Request): Promise<IUser> {
     if (!req.query) {
-      throw Error(); // @todo Error no query
+      throw new BadInputException("BAD_INPUT", "Invalid Query", {
+        cause: new Error("Undefined query on OAuth"),
+        trace: 28,
+      });
     }
     if (req.query.error) {
-      throw Error(); // @todo Error error during oauth
+      throw new AuthorizationException(
+        "UNAUTHORIZED_ERROR_FROM_PROVIDER",
+        "OAuth throw error",
+        {
+          cause: new Error(`OAuth throw error: ${req.query.error}`),
+          trace: 29,
+        },
+      );
     }
     return this.authService.authenticate(StrategyEnum.OAUTH, {
       [provider]: req.query as unknown as IOAuthStrategy[typeof provider],

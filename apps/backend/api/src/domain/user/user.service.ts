@@ -4,6 +4,8 @@ import { ID } from "@d-type/id.type";
 
 import { generateRandomString } from "@utils/string.utils";
 
+import { AuthorizationException } from "@exception";
+
 import { AUTH_SERVICE, IAuthService } from "@domain/auth/auth.service.type";
 
 import {
@@ -37,7 +39,14 @@ export class UserService {
   async createUser(input: IUserCreateInput): Promise<IUser> {
     const currUser = await this.getByEmail(input.email);
     if (currUser) {
-      throw Error(); // @todo Error User Already exist
+      throw new AuthorizationException(
+        "UNAUTHORIZED_BAD_CREDENTIALS",
+        "Invalid authentication",
+        {
+          cause: new Error(`User with email (${input.email}) already exist`),
+          trace: 26,
+        },
+      );
     }
     const password = input.password ?? generateRandomString(50);
 

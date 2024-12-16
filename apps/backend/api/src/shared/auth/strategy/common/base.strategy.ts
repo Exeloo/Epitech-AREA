@@ -1,3 +1,5 @@
+import { AuthorizationException } from "@exception";
+
 import { StrategyEnum } from "@domain/auth/strategy/strategy.enum";
 import { IStrategyInput } from "@domain/auth/strategy/strategy.type";
 import { IUser } from "@domain/user/types/user.type";
@@ -15,8 +17,15 @@ export const AuthStrategy = <
 
     abstract authenticate(input: V): Promise<IUser>;
 
-    invalidAuth(): void {
-      throw Error(); // @todo Error invalid credentials
+    invalidAuth(cause: string): void {
+      throw new AuthorizationException(
+        "UNAUTHORIZED_INVALID_CREDENTIALS",
+        "Invalid authentication credentials",
+        {
+          cause: new Error(cause),
+          trace: 4,
+        },
+      );
     }
   }
   return BaseStrategy;

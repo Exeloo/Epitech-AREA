@@ -11,6 +11,7 @@ import { APIEndpointsEnum } from "~/application/http/common/enums/api.enum";
 
 export const apiEndpointsLoggers = new Map<APIEndpointsEnum, Logger>([
   [APIEndpointsEnum.GraphQL, new Logger("API (GraphQL)")],
+  [APIEndpointsEnum.Rest, new Logger("API (Rest)")],
 ]);
 
 @Injectable()

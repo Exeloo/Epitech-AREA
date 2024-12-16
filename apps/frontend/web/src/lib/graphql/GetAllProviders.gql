@@ -1,0 +1,27 @@
+query GetAllProviders {
+    getAllProviders {
+        id
+        visibility
+        manifest {
+            actions {
+                description
+                id
+                img
+                input
+                name
+                output
+            }
+            description
+            img
+            name
+            triggers {
+                description
+                id
+                img
+                input
+                name
+                output
+            }
+        }
+    }
+}

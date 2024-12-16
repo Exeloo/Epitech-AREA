@@ -2,49 +2,31 @@
 	import Input from '$lib/auth/Input.svelte';
 	import Submit from '$lib/auth/Submit.svelte';
 	import Validation from '$lib/auth/Validation.svelte';
-	import {load_Login, RegisterStore} from '$houdini';
+	import { load_Login } from '$houdini';
 
 	let username = $state('');
 	let email = $state('');
-	let firstname = $state('First');
-	let lastName = $state('Last');
+	//let firstname = $state('First');
+	//let lastName = $state('Last');
 	let password = $state('');
 	// let rememberMe = $state(false);
-
-	async function login(email: string, password: string): Promise<any> {
-		const loginQuery = await load_Login({});
-		const { data, errors } = await loginQuery.Login.fetch({
-			variables: { data: { email: email, password: password } }
-		});
-
-		if (!data) {
-			console.log(errors);
-			return {};
-		}
-
-		localStorage.setItem('token', data.login.token);
-		localStorage.setItem('refreshToken', data.login.refreshToken);
-	}
 
 	async function handleSubmit(event: any): Promise<any> {
 		event.preventDefault();
 
 		try {
-			const registerQuery = new RegisterStore();
-			const { data, errors } = await registerQuery.mutate({
-				data: {
-					email: email,
-					password: password,
-					username: username,
-					firstName: firstname,
-					lastName: lastName
-				}
+			const loginQuery = await load_Login({});
+			const { data, errors } = await loginQuery.Login.fetch({
+				variables: { data: { email: email, password: password } }
 			});
 
 			if (!data) {
 				console.log(errors);
-				return errors;
+				return {};
 			}
+
+			localStorage.setItem('token', data.login.token);
+			localStorage.setItem('refreshToken', data.login.refreshToken);
 
 			window.location.href = '/';
 		} catch (error) {

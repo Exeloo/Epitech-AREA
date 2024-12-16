@@ -8,16 +8,16 @@ targets:
       gql_build|data_builder:
         enabled: true
         options:
-          schema: mobile|lib/requests/auth.graphql
+          schema: mobile|lib/requests/schema.graphql
       gql_build|var_builder:
         enabled: true
         options:
-          schema: mobile|lib/requests/auth.graphql
+          schema: mobile|lib/requests/schema.graphql
       gql_build|serializer_builder:
         enabled: true
         options:
-          schema: mobile|lib/requests/auth.graphql
+          schema: mobile|lib/requests/schema.graphql
       ferry_generator|req_builder:
         enabled: true
         options:
-          schema: mobile|lib/requests/auth.graphql
+          schema: mobile|lib/requests/schema.graphql

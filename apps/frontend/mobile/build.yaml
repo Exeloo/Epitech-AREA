@@ -1,39 +1,62 @@
+# # targets:
+# #   $default:
+# #     builders:
+# #       gql_build|schema_builder:
+# #         enabled: true
+# #       gql_build|ast_builder:
+# #         enabled: true
+# #       gql_build|data_builder:
+# #         enabled: true
+# #         options:
+# #           schema: mobile|lib/graphql/auth.graphql
+# #       gql_build|var_builder:
+# #         enabled: true
+# #         options:
+# #           schema: mobile|lib/graphql/auth.graphql
+# #       gql_build|serializer_builder:
+# #         enabled: true
+# #         options:
+# #           schema: mobile|lib/graphql/auth.graphql
+# #       ferry_generator|req_builder:
+# #         enabled: true
+# #         options:
+# #           schema: mobile|lib/graphql/auth.graphql
 # targets:
 #   $default:
 #     builders:
-#       gql_build|schema_builder:
-#         enabled: true
-#       gql_build|ast_builder:
-#         enabled: true
-#       gql_build|data_builder:
+#       ferry_generator|graphql_builder:
 #         enabled: true
 #         options:
 #           schema: mobile|lib/graphql/auth.graphql
-#       gql_build|var_builder:
+
+#       ferry_generator|serializer_builder:
 #         enabled: true
 #         options:
 #           schema: mobile|lib/graphql/auth.graphql
-#       gql_build|serializer_builder:
-#         enabled: true
+
+#       json_serializable:
 #         options:
-#           schema: mobile|lib/graphql/auth.graphql
-#       ferry_generator|req_builder:
-#         enabled: true
-#         options:
-#           schema: mobile|lib/graphql/auth.graphql
+#           explicit_to_json: true
 targets:
   $default:
     builders:
-      ferry_generator|graphql_builder:
+      gql_build|schema_builder:
+        enabled: true
+      gql_build|ast_builder:
+        enabled: true
+      gql_build|data_builder:
         enabled: true
         options:
-          schema: mobile|lib/graphql/auth.graphql
-
-      ferry_generator|serializer_builder:
+          schema: lib/graphql/schema.graphql
+      gql_build|var_builder:
         enabled: true
         options:
-          schema: mobile|lib/graphql/auth.graphql
-
-      json_serializable:
+          schema: lib/graphql/schema.graphql
+      gql_build|serializer_builder:
+        enabled: true
         options:
-          explicit_to_json: true
+          schema: lib/graphql/schema.graphql
+      ferry_generator|req_builder:
+        enabled: true
+        options:
+          schema: lib/graphql/schema.graphql

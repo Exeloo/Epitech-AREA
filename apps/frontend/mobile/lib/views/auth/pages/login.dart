@@ -19,7 +19,6 @@ class _LoginPageState extends State<LoginPage> {
   final GraphQlClient _graphQlClient = GraphQlClient();
 
   void _login() async {
-    print('pressed');
     final request = GloginReq((b) => b
       ..vars.data.email = _emailController.text
       ..vars.data.password = _passwordController.text);
@@ -27,13 +26,10 @@ class _LoginPageState extends State<LoginPage> {
     final response = await _graphQlClient.client.request(request).first;
 
     if (response.loading) {
-      // Show loading indicator
       print('Loading...');
     } else if (response.hasErrors) {
-      // Handle errors
       print('Errors: ${response.graphqlErrors}');
     } else {
-      // Handle successful login
       print('Response: ${response.data}');
     }
   }

@@ -1,31 +1,17 @@
 import 'package:ferry/ferry.dart';
 import 'package:gql_http_link/gql_http_link.dart';
-import 'package:simple_articles_app/utils/logger.dart';
 
-const String baseUrl =
-    'http://localhost:8080/graphql';
+Client initGraphQLClient(String uri) {
+  final link = HttpLink(uri);
 
-class GraphQlClient {
-  /// Initialises [_client] with setting cache store
-  factory GraphQlClient() {
-    _client ??= Client(link: HttpLink(baseUrl));
-    return _singleton;
-  }
-  GraphQlClient._();
+  // Cache pour le client
+  final cache = Cache();
 
-  static final GraphQlClient _singleton = GraphQlClient._();
+  // Initialisation du client Ferry
+  final client = Client(
+    link: link,
+    cache: cache,
+  );
 
-  static Client? _client;
-
-  Client get client {
-    if (_client == null) {
-      debugLog('GraphQlClient.safeClient: client is null');
-    }
-    return _client!;
-  }
-
-  void dispose() {
-    debugLog('GraphQlClient.dispose');
-    _client?.dispose();
-  }
+  return client;
 }

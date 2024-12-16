@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mobile/views/home/pages/home.dart';
 
-class CustomNavigationBar extends StatefulWidget {
-  const CustomNavigationBar({Key? key}) : super(key: key);
+class MainNavigationPage extends StatefulWidget {
+  const MainNavigationPage({Key? key}) : super(key: key);
 
   @override
-  _CustomNavigationBarState createState() => _CustomNavigationBarState();
+  _MainNavigationPageState createState() => _MainNavigationPageState();
 }
 
-class _CustomNavigationBarState extends State<CustomNavigationBar> {
+class _MainNavigationPageState extends State<MainNavigationPage> {
   int _currentIndex = 0;
 
   void _onTabTapped(int index) {
@@ -20,7 +20,8 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
 
   @override
   Widget build(BuildContext context) {
-    final pages = [
+
+    final List<Widget> _pages = [
       HomePage(),
       const Page2(),
       const Page3(),
@@ -28,10 +29,13 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
     ];
 
     return Scaffold(
-      body: pages[_currentIndex],
-      backgroundColor: Color(0xff1B1B1B),
+      body: IndexedStack(
+        index: _currentIndex,
+        children: _pages,
+      ),
+      backgroundColor: const Color(0xff1B1B1B),
       bottomNavigationBar: ClipRRect(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(10.0)),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(10.0)),
         child: BottomAppBar(
           color: Colors.black,
           child: Container(
@@ -47,7 +51,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
                       height: 24,
                       color: _currentIndex == 0
                           ? Colors.white
-                          : Color(0xff686868)),
+                          : const Color(0xff686868)),
                 ),
                 IconButton(
                   onPressed: () => _onTabTapped(1),
@@ -56,7 +60,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
                       height: 24,
                       color: _currentIndex == 1
                           ? Colors.white
-                          : Color(0xff686868)),
+                          : const Color(0xff686868)),
                 ),
                 const SizedBox(width: 50),
                 IconButton(
@@ -66,7 +70,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
                       height: 24,
                       color: _currentIndex == 2
                           ? Colors.white
-                          : Color(0xff686868)),
+                          : const Color(0xff686868)),
                 ),
                 IconButton(
                   onPressed: () => _onTabTapped(3),
@@ -75,7 +79,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
                       height: 24,
                       color: _currentIndex == 3
                           ? Colors.white
-                          : Color(0xff686868)),
+                          : const Color(0xff686868)),
                 ),
               ],
             ),

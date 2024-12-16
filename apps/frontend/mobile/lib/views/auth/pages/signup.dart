@@ -20,7 +20,6 @@ class _SignUpPageState extends State<SignUpPage> {
   final GraphQlClient _graphQlClient = GraphQlClient();
 
   void _signup() async {
-    print('pressed');
     final request = GregisterReq((b) => b
       ..vars.data.username = _usernameController.text
       ..vars.data.email = _emailController.text
@@ -31,13 +30,10 @@ class _SignUpPageState extends State<SignUpPage> {
     final response = await _graphQlClient.client.request(request).first;
 
     if (response.loading) {
-      // Show loading indicator
       print('Loading...');
     } else if (response.hasErrors) {
-      // Handle errors
       print('Errors: ${response.graphqlErrors}');
     } else {
-      // Handle successful signup
       print('Response: ${response.data}');
     }
   }

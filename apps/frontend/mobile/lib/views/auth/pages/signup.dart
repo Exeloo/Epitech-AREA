@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
 
@@ -77,6 +78,32 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
             ),
             const SizedBox(height: 16),
+            Mutation(
+              options: MutationOptions(
+                document: gql(registerMutation),
+                onCompleted: (dynamic resultData) {
+                  print(resultData);
+                },
+              ),
+              builder: (RunMutation runMutation, QueryResult? result) {
+                return ElevatedButton(
+                  onPressed: () {
+                    runMutation({
+                      'username': _usernameController.text,
+                      'email': _emailController.text,
+                      'password': _passwordController.text,
+                      'firstName': _firstNameController.text,
+                      'lastName': _lastNameController.text,
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    textStyle: const TextStyle(fontSize: 16),
+                  ),
+                  child: const Text('Get started'),
+                );
+              },
+            ),
             const SizedBox(height: 16),
             TextButton(
               onPressed: () {

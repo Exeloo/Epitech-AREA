@@ -9,7 +9,8 @@
         "lint": "echo 'Not implemented yet : ignored'",
         "fix": "echo 'Not implemented yet : ignored'",
         "test:unit": "echo 'Not implemented yet : ignored'",
-        "test:e2e": "echo 'Not implemented yet : ignored'"
+        "test:e2e": "echo 'Not implemented yet : ignored'",
+        "generate": "get-graphql-schema http://localhost:8080/graphql > lib/graphql/schema.graphql"
     },
     "engines": {
         "node": ">=22.11.0",
@@ -24,5 +25,8 @@
         "nohoist": [
             "**"
         ]
+    },
+    "devDependencies": {
+        "get-graphql-schema": "^2.1.2"
     }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/views/mainPage/pages/mainNavigation.dart';
-import 'package:mobile/views/auth/pages/login.dart';
 
 void main() {
   runApp(const MyApp());

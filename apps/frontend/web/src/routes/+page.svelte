@@ -1,17 +1,17 @@
 <script>
 	import Card from '$lib/card/Card.svelte';
-	import { load_GetAllApplets } from '$houdini';
+	import { load_GetAllProviders } from '$houdini';
 	import {onMount} from "svelte";
 
 	onMount(async () => {
-		const query = await load_GetAllApplets({});
-		const { data, errors } = await query.GetAllApplets.fetch({});
+		const query = await load_GetAllProviders({});
+		const { data, errors } = await query.GetAllProviders.fetch({});
 	})
 </script>
 
 <div class="p-10">
 	<h2 class="mb-10 text-2xl font-bold">Explore</h2>
-	<div class="grid w-full grid-cols-5 gap-5">
+	<div class="w-full grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
 		<Card />
 		<Card />
 		<Card />

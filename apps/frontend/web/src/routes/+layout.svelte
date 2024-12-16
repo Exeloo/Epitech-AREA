@@ -44,7 +44,7 @@
 			<a href="/auth/signup" class="rounded-xl bg-primary px-3 py-2 text-white">Sign up</a>
 		</div>
 	</header>
-	<main class="w-full min-h-screen">
+	<main class="w-screen min-h-screen flex justify-center">
 		{@render children()}
 	</main>
 </div>

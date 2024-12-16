@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../requests/graphql_client.dart';
 
 
 class LoginPage extends StatefulWidget {

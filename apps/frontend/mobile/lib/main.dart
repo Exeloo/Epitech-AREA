@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/utils/widgets/navbar.dart';
+import 'package:mobile/views/mainPage/pages/mainNavigation.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,10 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-        home: Scaffold(
-          backgroundColor: Color(0xff1B1B1B),
-          body: SizedBox.expand(),
-          bottomNavigationBar: CustomNavigationBar(),
-        ));
+      home: MainNavigationPage(),
+    );
   }
 }

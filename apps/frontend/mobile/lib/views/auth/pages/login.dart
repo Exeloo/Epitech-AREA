@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:ferry/ferry.dart';
+import 'package:mobile/graphql/graphql_client.dart';
+import 'package:mobile/graphql/__generated__/auth.req.gql.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -13,7 +15,28 @@ class _LoginPageState extends State<LoginPage> {
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final client = initGraphQLClient('http://localhost:3000');
+
+  final GraphQlClient _graphQlClient = GraphQlClient();
+
+  void _login() async {
+    print('pressed');
+    final request = GloginReq((b) => b
+      ..vars.data.email = _emailController.text
+      ..vars.data.password = _passwordController.text);
+
+    final response = await _graphQlClient.client.request(request).first;
+
+    if (response.loading) {
+      // Show loading indicator
+      print('Loading...');
+    } else if (response.hasErrors) {
+      // Handle errors
+      print('Errors: ${response.graphqlErrors}');
+    } else {
+      // Handle successful login
+      print('Response: ${response.data}');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,28 +99,13 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
             const SizedBox(height: 16),
-            Mutation(
-              options: MutationOptions(
-                document: gql(loginQuery),
-                onCompleted: (dynamic resultData) {
-                  print(resultData);
-                },
+            ElevatedButton(
+              onPressed: _login,
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                textStyle: const TextStyle(fontSize: 16),
               ),
-              builder: (RunMutation runMutation, QueryResult? result) {
-                return ElevatedButton(
-                  onPressed: () {
-                    runMutation({
-                      'email': _emailController.text,
-                      'password': _passwordController.text,
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    textStyle: const TextStyle(fontSize: 16),
-                  ),
-                  child: const Text('Sign in'),
-                );
-              },
+              child: const Text('Sign in'),
             ),
             const SizedBox(height: 16),
             TextButton(

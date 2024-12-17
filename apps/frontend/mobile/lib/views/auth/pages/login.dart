@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:ferry/ferry.dart';
 import 'package:mobile/graphql/graphql_client.dart';
 import 'package:mobile/graphql/__generated__/auth.req.gql.dart';
+import 'package:mobile/views/auth/pages/signup.dart';
 import 'package:provider/provider.dart';
 import 'package:mobile/modules/graphql/repository/authRepository.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -23,8 +25,8 @@ class _LoginPageState extends State<LoginPage> {
     final authRepository = Provider.of<AuthRepository>(context, listen: false);
 
     try {
-      final response = await authRepository.login(email: _emailController.text, password: _passwordController.text);
-
+      final response = await authRepository.login(
+          email: _emailController.text, password: _passwordController.text);
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('An error occurred: $e')),
@@ -104,7 +106,10 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 16),
             TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/signup');
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => const SignUpPage()),(Route<dynamic> route) => false);
               },
               child: const Text('Don\'t have an account? Sign up'),
             ),

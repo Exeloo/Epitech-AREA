@@ -19,7 +19,6 @@ class _MainAuthPageState extends State<MainAuthPage> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            // Aligner le contenu en haut
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(

@@ -28,8 +28,6 @@ class _LoginPageState extends State<LoginPage> {
     try {
       final response = await authRepository.login(
           email: _emailController.text, password: _passwordController.text);
-      print('response :  $response');
-      print(response?.login.token);
       if (response?.login.token != null) {
         setState(() {
           _isLogged = true;
@@ -115,9 +113,9 @@ class _LoginPageState extends State<LoginPage> {
                 textStyle: const TextStyle(fontSize: 16),
                 backgroundColor: Color(0xff8E44AD), // Change la couleur
               ),
-              child: Text(
+              child: const Text(
                 'Sign in',
-                style: const TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.white),
               ),
             ),
             const SizedBox(height: 16),

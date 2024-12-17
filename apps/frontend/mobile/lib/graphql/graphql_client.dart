@@ -1,45 +1,35 @@
-// import 'package:ferry/ferry.dart';
-// import 'package:gql_http_link/gql_http_link.dart';
-
-// Client initGraphQLClient(String uri) {
-//   final link = HttpLink(uri);
-
-//   // Cache pour le client
-//   final cache = Cache();
-
-//   // Initialisation du client Ferry
-//   final client = Client(
-//     link: link,
-//     cache: cache,
-//   );
-
-//   return client;
-// }
 import 'package:ferry/ferry.dart';
 import 'package:gql_http_link/gql_http_link.dart';
 
-
-const String baseUrl =
-    'http://localhost:8080/graphql';
-
 class GraphQlClient {
-  /// Initialises [_client] with setting cache store
   factory GraphQlClient() {
-    _client ??= Client(link: HttpLink(baseUrl));
+    _client ??= Client(link: HttpLink(_resolveBaseUrl()));
     return _singleton;
   }
+
   GraphQlClient._();
 
   static final GraphQlClient _singleton = GraphQlClient._();
-
   static Client? _client;
 
-  Client get client {
-  
-    return _client!;
-  }
+  Client get client => _client!;
 
   void dispose() {
     _client?.dispose();
   }
+}
+
+String _resolveBaseUrl() {
+  const String localhost = 'http://10.0.2.2:8080/graphql';
+  const String defaultUrl = 'http://localhost:8080/graphql';
+
+  if (_isAndroidEmulator()) {
+    return localhost;
+  } else {
+    return defaultUrl;
+  }
+}
+
+bool _isAndroidEmulator() {
+  return Uri.base.toString().contains("localhost") == false;
 }

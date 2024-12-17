@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ferry/ferry.dart';
 import 'package:mobile/graphql/graphql_client.dart';
 import 'package:mobile/graphql/__generated__/user.req.gql.dart';
+import 'package:provider/provider.dart';
+import 'package:mobile/modules/graphql/repository/userRepository.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -17,24 +19,21 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
 
-  final GraphQlClient _graphQlClient = GraphQlClient();
 
   void _signup() async {
-    final request = GregisterReq((b) => b
-      ..vars.data.username = _usernameController.text
-      ..vars.data.email = _emailController.text
-      ..vars.data.password = _passwordController.text
-      ..vars.data.firstName = _firstNameController.text
-      ..vars.data.lastName = _lastNameController.text);
+    final userRepository = Provider.of<UserRepository>(context, listen: false);
 
-    final response = await _graphQlClient.client.request(request).first;
-
-    if (response.loading) {
-      print('Loading...');
-    } else if (response.hasErrors) {
-      print('Errors: ${response.graphqlErrors}');
-    } else {
-      print('Response: ${response.data}');
+    try {
+      final response = await userRepository.register(
+          email: _emailController.text,
+          password: _passwordController.text,
+          username: _usernameController.text,
+          firstName: _firstNameController.text,
+          lastName: _lastNameController.text);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('An error occurred: $e')),
+      );
     }
   }
 

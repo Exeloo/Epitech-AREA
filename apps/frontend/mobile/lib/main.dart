@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/views/mainPage/pages/mainNavigation.dart';
-
+import 'package:mobile/modules/graphql/providers.dart';
+import 'package:provider/provider.dart';
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: AppProvider.providers(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

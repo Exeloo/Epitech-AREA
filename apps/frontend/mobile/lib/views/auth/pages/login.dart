@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ferry/ferry.dart';
 import 'package:mobile/graphql/graphql_client.dart';
 import 'package:mobile/graphql/__generated__/auth.req.gql.dart';
-
+import 'package:provider/provider.dart';
+import 'package:mobile/modules/graphql/repository/authRepository.dart';
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -19,18 +20,15 @@ class _LoginPageState extends State<LoginPage> {
   final GraphQlClient _graphQlClient = GraphQlClient();
 
   void _login() async {
-    final request = GloginReq((b) => b
-      ..vars.data.email = _emailController.text
-      ..vars.data.password = _passwordController.text);
+    final authRepository = Provider.of<AuthRepository>(context, listen: false);
 
-    final response = await _graphQlClient.client.request(request).first;
+    try {
+      final response = await authRepository.login(email: _emailController.text, password: _passwordController.text);
 
-    if (response.loading) {
-      print('Loading...');
-    } else if (response.hasErrors) {
-      print('Errors: ${response.graphqlErrors}');
-    } else {
-      print('Response: ${response.data}');
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('An error occurred: $e')),
+      );
     }
   }
 

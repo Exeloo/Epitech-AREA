@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ferry/ferry.dart';
 import 'package:mobile/graphql/graphql_client.dart';
 import 'package:mobile/graphql/__generated__/user.req.gql.dart';
+import 'package:mobile/views/auth/pages/login.dart';
 import 'package:provider/provider.dart';
 import 'package:mobile/modules/graphql/repository/userRepository.dart';
 
@@ -111,7 +112,10 @@ class _SignUpPageState extends State<SignUpPage> {
             const SizedBox(height: 16),
             TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/login');
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => const LoginPage()),(Route<dynamic> route) => false);
               },
               child: const Text('Already have an account? Log in'),
             ),

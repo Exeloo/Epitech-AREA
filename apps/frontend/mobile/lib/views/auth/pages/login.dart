@@ -6,6 +6,8 @@ import 'package:mobile/views/auth/pages/signup.dart';
 import 'package:provider/provider.dart';
 import 'package:mobile/modules/graphql/repository/authRepository.dart';
 
+import '../../mainPage/pages/mainNavigation.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -18,8 +20,7 @@ class _LoginPageState extends State<LoginPage> {
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-
-  final GraphQlClient _graphQlClient = GraphQlClient();
+  late bool _isLogged = false;
 
   void _login() async {
     final authRepository = Provider.of<AuthRepository>(context, listen: false);
@@ -27,6 +28,18 @@ class _LoginPageState extends State<LoginPage> {
     try {
       final response = await authRepository.login(
           email: _emailController.text, password: _passwordController.text);
+      print('response :  $response');
+      print(response?.login.token);
+      if (response?.login.token != null) {
+        setState(() {
+          _isLogged = true;
+        });
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+                builder: (BuildContext context) => const MainNavigationPage()),
+            (Route<dynamic> route) => false);
+      }
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('An error occurred: $e')),
@@ -100,8 +113,12 @@ class _LoginPageState extends State<LoginPage> {
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 textStyle: const TextStyle(fontSize: 16),
+                backgroundColor: Color(0xff8E44AD), // Change la couleur
               ),
-              child: const Text('Sign in'),
+              child: Text(
+                'Sign in',
+                style: const TextStyle(color: Colors.white),
+              ),
             ),
             const SizedBox(height: 16),
             TextButton(
@@ -109,7 +126,8 @@ class _LoginPageState extends State<LoginPage> {
                 Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => const SignUpPage()),(Route<dynamic> route) => false);
+                        builder: (BuildContext context) => const SignUpPage()),
+                    (Route<dynamic> route) => false);
               },
               child: const Text('Don\'t have an account? Sign up'),
             ),

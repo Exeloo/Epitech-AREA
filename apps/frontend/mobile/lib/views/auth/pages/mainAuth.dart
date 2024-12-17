@@ -13,7 +13,7 @@ class _MainAuthPageState extends State<MainAuthPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff1B1B1B),
+      backgroundColor: const Color(0xff1B1B1B),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),

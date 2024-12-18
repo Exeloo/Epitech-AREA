@@ -2,4 +2,5 @@
 
 helm repo add Aste88 https://aste88.github.io/helm-charts/
 helm repo update
-helm install wireguard Aste88/wireguard
+
+helm install wireguard Aste88/wireguard --set configSecret.enabled=true

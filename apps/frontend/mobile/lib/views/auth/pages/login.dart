@@ -29,8 +29,8 @@ class _LoginPageState extends State<LoginPage> {
     try {
       final response = await authRepository.login(
           email: _emailController.text, password: _passwordController.text);
-      final authHelper = AuthHelper(response);
-      await authHelper.handleLogin();
+      final authHelper = AuthHelper();
+      await authHelper.handleLogin(response);
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ferry/ferry.dart';
 import 'package:mobile/graphql/graphql_client.dart';
 import 'package:mobile/graphql/__generated__/auth.req.gql.dart';
+import 'package:mobile/modules/auth/authHelper.dart';
 import 'package:mobile/views/auth/pages/signup.dart';
 import 'package:provider/provider.dart';
 import 'package:mobile/modules/graphql/repository/authRepository.dart';
@@ -28,16 +29,13 @@ class _LoginPageState extends State<LoginPage> {
     try {
       final response = await authRepository.login(
           email: _emailController.text, password: _passwordController.text);
-      if (response?.login.token != null) {
-        setState(() {
-          _isLogged = true;
-        });
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-                builder: (BuildContext context) => const MainNavigationPage()),
-            (Route<dynamic> route) => false);
-      }
+      final authHelper = AuthHelper(response);
+      await authHelper.handleLogin();
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+              builder: (BuildContext context) => const MainNavigationPage()),
+          (Route<dynamic> route) => false);
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('An error occurred: $e')),

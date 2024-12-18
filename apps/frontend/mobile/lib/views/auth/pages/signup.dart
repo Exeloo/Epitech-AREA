@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:ferry/ferry.dart';
-import 'package:mobile/graphql/graphql_client.dart';
-import 'package:mobile/graphql/__generated__/user.req.gql.dart';
+import 'package:mobile/modules/graphql/repository/authRepository.dart';
 import 'package:mobile/views/auth/pages/login.dart';
 import 'package:provider/provider.dart';
 import 'package:mobile/modules/graphql/repository/userRepository.dart';
+
+import '../../../modules/auth/authHelper.dart';
+import '../../mainPage/pages/mainNavigation.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -20,9 +21,9 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
 
-
   void _signup() async {
     final userRepository = Provider.of<UserRepository>(context, listen: false);
+    final authRepository = Provider.of<AuthRepository>(context, listen: false);
 
     try {
       final response = await userRepository.register(
@@ -31,6 +32,22 @@ class _SignUpPageState extends State<SignUpPage> {
           username: _usernameController.text,
           firstName: _firstNameController.text,
           lastName: _lastNameController.text);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('An error occurred: $e')),
+      );
+    }
+
+    try {
+      final loginReponse = await authRepository.login(
+          email: _emailController.text, password: _passwordController.text);
+      final authHelper = AuthHelper(loginReponse);
+      await authHelper.handleLogin();
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+              builder: (BuildContext context) => const MainNavigationPage()),
+          (Route<dynamic> route) => false);
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('An error occurred: $e')),
@@ -115,7 +132,8 @@ class _SignUpPageState extends State<SignUpPage> {
                 Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => const LoginPage()),(Route<dynamic> route) => false);
+                        builder: (BuildContext context) => const LoginPage()),
+                    (Route<dynamic> route) => false);
               },
               child: const Text('Already have an account? Log in'),
             ),

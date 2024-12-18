@@ -20,7 +20,6 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
 
   @override
   Widget build(BuildContext context) {
-
     final List<Widget> _pages = [
       HomePage(),
       const Page2(),
@@ -90,8 +89,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
         height: 80,
         width: 80,
         child: FloatingActionButton(
-          onPressed: () {
-          },
+          onPressed: () {},
           backgroundColor: const Color(0xff8E44AD),
           shape: const CircleBorder(),
           child: const Icon(

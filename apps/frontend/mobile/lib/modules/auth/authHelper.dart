@@ -1,16 +1,13 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:mobile/graphql/__generated__/auth.data.gql.dart';
 
 class AuthHelper {
-  final dynamic response;
+  late dynamic response;
   final storage = const FlutterSecureStorage();
+  
+  
 
-  AuthHelper(this.response);
-
-  String? get token {
-    return response?.login?.token;
-  }
-
-  Future<String?> getAuthToken() async {
+  Future<String?> getAuthToken(response) async {
     try {
       String? authToken = await storage.read(key: "auth_token");
 
@@ -21,7 +18,7 @@ class AuthHelper {
     return null;
   }
 
-  Future<void> handleLogin() async {
+  Future<void> handleLogin(GloginData? loginReponse) async {
     if (response != null && response.login?.token != null) {
       try {
         await storage.write(key: "auth_token", value: response.login.token);

@@ -7,7 +7,7 @@
     "packageManager": "yarn@1.22.22",
     "scripts": {
         "lint": "flutter analyze",
-        "fix": "flutter format .",
+        "fix": "dart format .",
         "test:unit": "flutter test",
         "test:e2e": "flutter drive --target=test_driver/app.dart",
         "generate": "get-graphql-schema http://localhost:8080/graphql > lib/graphql/schema.graphql",

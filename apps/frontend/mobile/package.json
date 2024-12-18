@@ -10,7 +10,8 @@
         "fix": "echo 'Not implemented yet : ignored'",
         "test:unit": "echo 'Not implemented yet : ignored'",
         "test:e2e": "echo 'Not implemented yet : ignored'",
-        "generate": "get-graphql-schema http://localhost:8080/graphql > lib/graphql/schema.graphql"
+        "generate": "get-graphql-schema http://localhost:8080/graphql > lib/graphql/schema.graphql",
+        "web": "flutter run -d web-server --web-port 7070"
     },
     "engines": {
         "node": ">=22.11.0",

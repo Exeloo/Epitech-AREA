@@ -14,7 +14,7 @@ class GraphQlClient {
 
   Client get client => _client!;
 
-  void dispose() {
+void dispose() {
     _client?.dispose();
   }
 }

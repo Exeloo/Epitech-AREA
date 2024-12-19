@@ -17,6 +17,26 @@ export class Provider implements IExposedProvider {
   })
   id: ID;
 
+  @Field(() => String, {
+    description: "Name of the trigger",
+  })
+  name: string;
+
+  @Field(() => String, {
+    description: "Description of the trigger",
+  })
+  description: string;
+
+  @Field(() => String, {
+    description: "Image that describe the trigger",
+  })
+  img: string;
+
+  @Field(() => String, {
+    description: "Color of the trigger",
+  })
+  color: string;
+
   @Field(() => ProviderVisibility, {
     description: "Visibility of the provider",
   })

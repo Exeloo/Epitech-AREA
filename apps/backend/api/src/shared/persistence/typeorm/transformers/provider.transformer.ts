@@ -11,6 +11,10 @@ class BaseProviderTransformer
   _persistenceToDomain(entity: ProviderEntity): IProvider {
     return {
       id: entity.id,
+      name: entity.name,
+      description: entity.description,
+      img: entity.img,
+      color: entity.color,
       providerId: entity.providerId,
       host: entity.host,
       visibility: entity.visibility,
@@ -22,6 +26,10 @@ class BaseProviderTransformer
   _domainToPersistence(element: IProvider): ProviderEntity {
     return {
       id: element.id,
+      name: element.name,
+      description: element.description,
+      img: element.img,
+      color: element.color,
       providerId: element.providerId,
       host: element.host,
       visibility: element.visibility,

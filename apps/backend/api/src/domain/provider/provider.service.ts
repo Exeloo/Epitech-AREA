@@ -47,6 +47,10 @@ export class ProviderService {
     });
   }
 
+  getByAppletNodeId(id: ID): Promise<IProvider> {
+    return this.providerPRepository.getByAppletNodeId(id);
+  }
+
   private create(input: IProviderInput): Promise<IProvider> {
     return this.providerPRepository.createEntity(input);
   }

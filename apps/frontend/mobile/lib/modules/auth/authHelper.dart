@@ -18,7 +18,7 @@ class AuthHelper {
     return null;
   }
 
-  Future<void> handleLogin(GloginData? loginReponse) async {
+  Future<void> handleLogin(GloginData? response) async {
     if (response != null && response.login?.token != null) {
       try {
         await storage.write(key: "auth_token", value: response.login.token);

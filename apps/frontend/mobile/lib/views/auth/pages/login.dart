@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:ferry/ferry.dart';
 import 'package:mobile/graphql/graphql_client.dart';
 import 'package:mobile/graphql/__generated__/auth.req.gql.dart';
+import 'package:mobile/modules/auth/authHelper.dart';
+import 'package:mobile/views/auth/pages/signup.dart';
+import 'package:provider/provider.dart';
+import 'package:mobile/modules/graphql/repository/authRepository.dart';
+
+import '../../mainPage/pages/mainNavigation.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -15,22 +21,25 @@ class _LoginPageState extends State<LoginPage> {
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-
-  final GraphQlClient _graphQlClient = GraphQlClient();
+  late bool _isLogged = false;
 
   void _login() async {
-    final request = GloginReq((b) => b
-      ..vars.data.email = _emailController.text
-      ..vars.data.password = _passwordController.text);
+    final authRepository = Provider.of<AuthRepository>(context, listen: false);
 
-    final response = await _graphQlClient.client.request(request).first;
-
-    if (response.loading) {
-      print('Loading...');
-    } else if (response.hasErrors) {
-      print('Errors: ${response.graphqlErrors}');
-    } else {
-      print('Response: ${response.data}');
+    try {
+      final response = await authRepository.login(
+          email: _emailController.text, password: _passwordController.text);
+      final authHelper = AuthHelper();
+      await authHelper.handleLogin(response);
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+              builder: (BuildContext context) => const MainNavigationPage()),
+          (Route<dynamic> route) => false);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('An error occurred: $e')),
+      );
     }
   }
 
@@ -100,13 +109,21 @@ class _LoginPageState extends State<LoginPage> {
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 textStyle: const TextStyle(fontSize: 16),
+                backgroundColor: Color(0xff8E44AD), // Change la couleur
               ),
-              child: const Text('Sign in'),
+              child: const Text(
+                'Sign in',
+                style: TextStyle(color: Colors.white),
+              ),
             ),
             const SizedBox(height: 16),
             TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/signup');
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => const SignUpPage()),
+                    (Route<dynamic> route) => false);
               },
               child: const Text('Don\'t have an account? Sign up'),
             ),

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:ferry/ferry.dart';
-import 'package:mobile/graphql/graphql_client.dart';
-import 'package:mobile/graphql/__generated__/user.req.gql.dart';
+import 'package:mobile/modules/graphql/repository/authRepository.dart';
+import 'package:mobile/views/auth/pages/login.dart';
+import 'package:provider/provider.dart';
+import 'package:mobile/modules/graphql/repository/userRepository.dart';
+
+import '../../../modules/auth/authHelper.dart';
+import '../../mainPage/pages/mainNavigation.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -17,24 +21,37 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
 
-  final GraphQlClient _graphQlClient = GraphQlClient();
-
   void _signup() async {
-    final request = GregisterReq((b) => b
-      ..vars.data.username = _usernameController.text
-      ..vars.data.email = _emailController.text
-      ..vars.data.password = _passwordController.text
-      ..vars.data.firstName = _firstNameController.text
-      ..vars.data.lastName = _lastNameController.text);
+    final userRepository = Provider.of<UserRepository>(context, listen: false);
+    final authRepository = Provider.of<AuthRepository>(context, listen: false);
 
-    final response = await _graphQlClient.client.request(request).first;
+    try {
+      final response = await userRepository.register(
+          email: _emailController.text,
+          password: _passwordController.text,
+          username: _usernameController.text,
+          firstName: _firstNameController.text,
+          lastName: _lastNameController.text);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('An error occurred: $e')),
+      );
+    }
 
-    if (response.loading) {
-      print('Loading...');
-    } else if (response.hasErrors) {
-      print('Errors: ${response.graphqlErrors}');
-    } else {
-      print('Response: ${response.data}');
+    try {
+      final loginReponse = await authRepository.login(
+          email: _emailController.text, password: _passwordController.text);
+      final authHelper = AuthHelper();
+      await authHelper.handleLogin(loginReponse);
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+              builder: (BuildContext context) => const MainNavigationPage()),
+          (Route<dynamic> route) => false);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('An error occurred: $e')),
+      );
     }
   }
 
@@ -112,7 +129,11 @@ class _SignUpPageState extends State<SignUpPage> {
             const SizedBox(height: 16),
             TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/login');
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => const LoginPage()),
+                    (Route<dynamic> route) => false);
               },
               child: const Text('Already have an account? Log in'),
             ),

@@ -1,19 +1,14 @@
-export interface IAppletSubscribeInput {
+import { ID } from "@d-type/id.type";
+
+export interface IAppletNodeCreateInput {
+  actionId: string;
+  providerId: ID;
+  input: object;
+  next: IAppletNodeCreateInput[];
+}
+
+export interface IAppletCreateInput {
   name: string;
-
-  // Supposed
-  // nodes: {
-  //   id: string;
-  //   providerId: number;
-  //   type: "trigger" | "action";
-  //   input: object;
-  // }[]
-
-  // Temp
-  channelIdInput: string;
-  guildIdInput: string;
-  message: string;
-
-  channelIdOutput: string;
-  guildIdOutput: string;
+  description: string | null;
+  triggerNodes: IAppletNodeCreateInput[];
 }

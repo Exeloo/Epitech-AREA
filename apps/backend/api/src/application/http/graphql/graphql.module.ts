@@ -5,9 +5,10 @@ import { GraphQLModule } from "@nestjs/graphql";
 
 import { DomainModule } from "@domain/domain.module";
 
+import { AppletNodeResolver } from "~/application/http/graphql/resolvers/applet/applet-node.resolver";
 import { graphqlConfig } from "~/config/graphql.config";
 
-import { AppletResolver } from "./resolvers/applet.resolver";
+import { AppletResolver } from "./resolvers/applet/applet.resolver";
 import { AuthResolver } from "./resolvers/auth.resolver";
 import { ProviderResolver } from "./resolvers/provider.resolver";
 import { UserResolver } from "./resolvers/user.resolver";
@@ -23,6 +24,12 @@ import { UserResolver } from "./resolvers/user.resolver";
     }),
     DomainModule,
   ],
-  providers: [AppletResolver, AuthResolver, ProviderResolver, UserResolver],
+  providers: [
+    AppletResolver,
+    AppletNodeResolver,
+    AuthResolver,
+    ProviderResolver,
+    UserResolver,
+  ],
 })
 export class GraphqlModule {}

@@ -1,24 +1,26 @@
 import { Inject, Injectable } from "@nestjs/common";
 
-import { IAppletSubscribeInput } from "@domain/applet/types/applet.input.type";
-import { IExposedApplet } from "@domain/applet/types/applet.type";
+import { ID } from "@d-type/id.type";
+
 import {
-  IProviderService,
-  PROVIDER_SERVICE,
-} from "@domain/provider/provider.service.type";
+  APPLET_PERSISTENCE_REPOSITORY,
+  IAppletPersistenceRepository,
+} from "@domain/applet/applet.repository.type";
+import { IApplet } from "@domain/applet/types/applet.type";
+import { IUser } from "@domain/user/types/user.type";
 
 @Injectable()
 export class AppletService {
   constructor(
-    @Inject(PROVIDER_SERVICE)
-    private readonly providerService: IProviderService,
+    @Inject(APPLET_PERSISTENCE_REPOSITORY)
+    private readonly appletPRepository: IAppletPersistenceRepository,
   ) {}
 
-  async subscribe(input: IAppletSubscribeInput): Promise<IExposedApplet> {
-    await this.providerService.subscribe(input);
-    return {
-      id: -1,
-      name: input.name,
-    };
+  getAllWithOwner(user: IUser): Promise<IApplet[]> {
+    return this.appletPRepository.getAllWithOwner(user.id);
+  }
+
+  getByIdWithOwner(id: ID, user: IUser): Promise<IApplet> {
+    return this.appletPRepository.getByIdWithOwner(id, user.id);
   }
 }

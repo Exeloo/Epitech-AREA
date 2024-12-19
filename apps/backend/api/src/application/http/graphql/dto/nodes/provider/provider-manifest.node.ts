@@ -2,6 +2,7 @@ import { Field, ObjectType } from "@nestjs/graphql";
 import GraphQLJSON from "graphql-type-json";
 
 import {
+  IExposedManifest,
   IManifestAction,
   IManifestField,
   IManifestTrigger,
@@ -30,6 +31,11 @@ export class ProviderManifestTrigger implements IManifestTrigger {
     description: "Image that describe the trigger",
   })
   img: string;
+
+  @Field(() => String, {
+    description: "Color of the trigger",
+  })
+  color: string;
 
   @Field(() => GraphQLJSON, {
     description: "Input of the trigger",
@@ -66,6 +72,11 @@ export class ProviderManifestAction implements IManifestAction {
   })
   img: string;
 
+  @Field(() => String, {
+    description: "Color of the action",
+  })
+  color: string;
+
   @Field(() => GraphQLJSON, {
     description: "Input of the action",
   })
@@ -80,22 +91,7 @@ export class ProviderManifestAction implements IManifestAction {
 @ObjectType({
   description: "Provider Manifest",
 })
-export class ProviderManifest /*implements IExposedManifest*/ {
-  @Field(() => String, {
-    description: "Name of the provider",
-  })
-  name: string;
-
-  @Field(() => String, {
-    description: "Description of the provider",
-  })
-  description: string;
-
-  @Field(() => String, {
-    description: "Image that describe the provider",
-  })
-  img: string;
-
+export class ProviderManifest implements IExposedManifest {
   @Field(() => [ProviderManifestTrigger], {
     description: "Triggers of the provider",
   })

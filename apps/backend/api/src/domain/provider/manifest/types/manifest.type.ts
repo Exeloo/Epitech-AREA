@@ -37,6 +37,7 @@ export interface IManifestTrigger {
   name: string;
   description: string;
   img: string;
+  color: string;
   input: IManifestField;
   output: IManifestField;
 }
@@ -46,6 +47,7 @@ export interface IManifestAction {
   name: string;
   description: string;
   img: string;
+  color: string;
   input: IManifestField;
   output: IManifestField;
 }
@@ -55,11 +57,9 @@ export interface IManifest {
   name: string;
   description: string;
   img: string;
+  color: string;
   triggers: IManifestTrigger[];
   actions: IManifestAction[];
 }
 
-export type IExposedManifest = Pick<
-  IManifest,
-  "name" | "description" | "img" | "triggers" | "actions"
->;
+export type IExposedManifest = Pick<IManifest, "triggers" | "actions">;

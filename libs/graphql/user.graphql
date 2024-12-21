@@ -1,0 +1,27 @@
+fragment User on User {
+    id
+    username
+    firstName
+    lastName
+    pronoun
+    picture
+    description
+}
+
+query getMe {
+    getMe {
+        ...User
+    }
+}
+
+mutation updateMe($data: UserUpdateInput!) {
+    updateMe(data: $data) {
+        ...User
+    }
+}
+
+mutation register($data: UserRegisterInput!) {
+    register(data: $data) {
+        ...User
+    }
+}

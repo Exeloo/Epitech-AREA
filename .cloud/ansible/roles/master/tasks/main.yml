@@ -1,3 +1,7 @@
+- name: Reset Kubernetes cluster
+  shell: "echo 'y' | kubeadm reset"
+  ignore_errors: yes
+
 - name: Initialize Kubernetes master
   shell: kubeadm init --pod-network-cidr=192.168.0.0/16
 
@@ -22,7 +26,10 @@
   copy:
     src: ../../../../public/kubernetes/
     dest: /tmp/kubernetes/
-    mode: '0500'
+    mode: '0544'
+
+- name: Run setup kube script
+  shell: "/tmp/kubernetes/services/setup.sh"
 
 - name: Reboot the machine
   reboot:

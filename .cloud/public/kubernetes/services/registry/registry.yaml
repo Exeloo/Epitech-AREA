@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: docker-registry
+  namespace: deployment
   labels:
     app: registry
 spec:
@@ -42,6 +43,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: docker-registry
+  namespace: deployment
 spec:
   selector:
     app: registry
@@ -49,5 +51,4 @@ spec:
     - protocol: TCP
       port: 5000
       targetPort: 5000
-      nodePort: 30001
-  type: NodePort
+  type: ClusterIP

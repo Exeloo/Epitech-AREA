@@ -4,8 +4,15 @@ services:
     build:
       context: ../..
     ports:
-      - 3001:3001
+      - "3001:3001"
     working_dir: /app
     volumes:
       - ../../:/app
+    networks:
+      - area-api
     command: yarn serve-nest
+
+networks:
+  area-api:
+    name: area_api
+    external: true

@@ -5,6 +5,7 @@ import {
   IsNotEmpty,
   IsPositive,
   IsString,
+  IsUrl,
   validateSync,
 } from "class-validator";
 
@@ -47,6 +48,26 @@ export class EnvironmentVariables {
   DATABASE_DB: string;
 
   @IsNotEmpty()
+  @IsUrl({ require_tld: false })
+  BASE_API_REST_URL: string;
+
+  @IsNotEmpty()
+  @IsUrl({ require_tld: false })
+  BASE_API_WS_URL: string;
+
+  @IsNotEmpty()
+  @IsString()
+  API_KEY: string;
+
+  @IsNotEmpty()
+  @IsUrl({ require_tld: false })
+  PROVIDER_BASE_API_URL: string;
+
+  @IsNotEmpty()
+  @IsUrl({ require_tld: false })
+  PROVIDER_GATEWAY_URL: string;
+
+  @IsNotEmpty()
   @IsString()
   APP_DOMAINS: string;
 
@@ -58,19 +79,9 @@ export class EnvironmentVariables {
   @IsInt()
   THROTTLE_LIMIT: number;
 
-  // * Tests
-
   @IsNotEmpty()
   @IsString()
-  TEST_DATABASE_USERNAME: string;
-
-  @IsNotEmpty()
-  @IsString()
-  TEST_DATABASE_PASSWORD: string;
-
-  @IsNotEmpty()
-  @IsString()
-  TEST_DATABASE_DB: string;
+  DISCORD_TOKEN: string;
 }
 
 // Learn more: https://docs.nestjs.com/techniques/configuration#custom-validate-function

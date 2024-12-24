@@ -10,6 +10,8 @@ services:
     working_dir: /app
     volumes:
       - ../../:/app
+    networks:
+      - api
     command: yarn serve-nest
 
   mariadb:
@@ -17,11 +19,15 @@ services:
     tty: true
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: ${DB_NAME}
       ALLOW_EMPTY_PASSWORD: "true"
     volumes:
       - ${DATA_PATH_HOST}mariadb/mariadb_data:/var/lib/mysql
       - ${DATA_PATH_HOST}mariadb/database:/docker-entrypoint-initdb.d
+    networks:
+      - api
     ports:
       - "3307:3307"
 
@@ -31,17 +37,10 @@ services:
       - mariadb
     ports:
       - "8001:80"
+    networks:
+      - api
     environment:
       PMA_HOST: mariadb
 
-
-  provider-discord:
-    image: node:22-alpine
-    build:
-      context: ../../../providers/discord
-    ports:
-      - "3001:3001"
-    working_dir: /app
-    volumes:
-      - ../../../providers/discord:/app
-    command: yarn serve-nest
+networks:
+  api:

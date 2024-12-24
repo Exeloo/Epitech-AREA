@@ -1,26 +1,25 @@
 import { Injectable } from "@nestjs/common";
 
-import { getManifest } from "./common/manifest/functions/get-manifest";
-import "./common/subscribe/client";
-import { events } from "./common/subscribe/events";
+import {
+  IBaseManifest,
+  ManifestOAuthEnum,
+  generateManifest,
+} from "@lib/manifest";
+
+const APP_BASE_MANIFEST: IBaseManifest = {
+  id: "discord",
+  name: "Discord",
+  description: "Provider to use the Discord API",
+  img: "",
+  color: "#5865F2",
+  oauth: {
+    type: ManifestOAuthEnum.AUTHORIZATION,
+  },
+};
 
 @Injectable()
 export class AppService {
   async getManifest(): Promise<any> {
-    return getManifest();
-  }
-
-  subscribe(input: any) {
-    events.add({
-      input: {
-        guild: input.guildIdInput,
-        channel: input.channelIdInput,
-      },
-      output: {
-        guild: input.guildIdOutput,
-        channel: input.channelIdOutput,
-        message: input.message,
-      },
-    });
+    return generateManifest(APP_BASE_MANIFEST);
   }
 }

@@ -4,9 +4,9 @@ import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
 import { IExposedUser, IUser } from "@domain/user/types/user.type";
 import { UserService } from "@domain/user/user.service";
 
+import { GqlCurrentUser } from "~/application/http/graphql/common/decorators/graphql-current-user.decorator";
 import { GqlAuthGuard } from "~/application/http/graphql/common/guards/gql-auth.guard";
 import { UserUpdateInput } from "~/application/http/graphql/dto/input/user/user-update.input";
-import { GqlCurrentUser } from "~/shared/auth/decorators/current-user/graphql-current-user.decorator";
 
 import { UserCreateInput } from "../dto/input/user/user-create.input";
 import { UserRegisterInput } from "../dto/input/user/user-register.input";

@@ -1,0 +1,36 @@
+- name: Reset Kubernetes cluster
+  shell: "echo 'y' | kubeadm reset"
+  ignore_errors: yes
+
+- name: Initialize Kubernetes master
+  shell: kubeadm init --pod-network-cidr=192.168.0.0/16
+
+- name: Get HOME directory of user {{ ansible_user_master }}
+  shell: "getent passwd {{ ansible_user_master }} | cut -d: -f6"
+  register: user_home
+
+- name: Set up kubectl for the root and current user
+  shell: "{{ item }}"
+  with_items:
+    - "mkdir -p $HOME/.kube"
+    - "mkdir -p {{ user_home.stdout }}/.kube"
+    - "cp /etc/kubernetes/admin.conf $HOME/.kube/config"
+    - "cp /etc/kubernetes/admin.conf {{ user_home.stdout }}/.kube/config"
+    - "chown $(id -u):$(id -g) $HOME/.kube/config"
+    - "chown {{ ansible_user_master }}:{{ ansible_user_master }} {{ user_home.stdout }}/.kube/config"
+
+- name: Install Calico network plugin
+  shell: kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+
+- name: Copy kubernetes folder into master
+  copy:
+    src: ../../../../public/kubernetes/
+    dest: /tmp/kubernetes/
+    mode: '0544'
+
+- name: Run setup kube script
+  shell: "/tmp/kubernetes/services/setup.sh"
+
+- name: Reboot the machine
+  reboot:
+    reboot_timeout: 30

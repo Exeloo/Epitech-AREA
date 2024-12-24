@@ -115,9 +115,13 @@
         dest: /etc/docker/daemon.json
         content: |
           {
-            "insecure-registries" : ["{{ master_ip }}:30001"]
+            "insecure-registries" : ["registry.area.tech.showmyteam.fr"]
           }
         mode: '0644'
+
+    - name: Pause to allow changes to take effect
+      pause:
+        seconds: 5
 
     - name: Restart Docker service to apply changes
       service:

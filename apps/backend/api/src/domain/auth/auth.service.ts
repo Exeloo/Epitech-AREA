@@ -97,7 +97,7 @@ export class AuthService {
 
   getRedirect(options?: IOAuthOptions) {
     if (options?.device === "mobile") return "mobile://oauth-callback";
-    return `${this.configService.getOrThrow("APP_BASE_URL")}`;
+    return `${this.configService.getOrThrow("APP_BASE_URL")}/login`;
   }
 
   async authOAuthRedirect(

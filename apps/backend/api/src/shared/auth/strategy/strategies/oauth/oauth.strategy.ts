@@ -5,6 +5,7 @@ import { InternalException } from "@exception";
 import { OAuthStrategyEnum } from "@domain/auth/strategy/strategies/oauth/oauth.strategy.enum";
 import { IOAuthStrategy } from "@domain/auth/strategy/strategies/oauth/oauth.strategy.type";
 import { StrategyEnum } from "@domain/auth/strategy/strategy.enum";
+import { IOAuthOptions } from "@domain/auth/types/oauth-options.type";
 import { IUser } from "@domain/user/types/user.type";
 
 import { AuthStrategy } from "~/shared/auth/strategy/common/base.strategy";
@@ -35,8 +36,9 @@ export class OAuthStrategy extends AuthStrategy(StrategyEnum.OAUTH) {
 
   getOAuthRedirect<K extends keyof IOAuthStrategy>(
     provider: K,
+    options?: IOAuthOptions,
   ): Promise<string> {
     const strategy = this.strategyMap[provider];
-    return strategy.redirect();
+    return strategy.redirect(options);
   }
 }

@@ -1,3 +1,4 @@
+import { IOAuthOptions } from "@domain/auth/types/oauth-options.type";
 import { IIdentifiable } from "@domain/common/interfaces/models/identifiable.type";
 import { ISoftDeletable } from "@domain/common/interfaces/models/soft-deletable.type";
 import { ITimestampable } from "@domain/common/interfaces/models/timestampable.type";
@@ -27,4 +28,6 @@ export type IExposedUser = Pick<
 >;
 
 export type IAuthenticateUser = Pick<IUser, "email"> &
-  Partial<Pick<IUser, "firstName" | "lastName" | "username">>;
+  Partial<Pick<IUser, "firstName" | "lastName" | "username">> & {
+    state: IOAuthOptions;
+  };

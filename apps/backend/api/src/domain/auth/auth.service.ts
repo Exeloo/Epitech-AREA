@@ -8,6 +8,7 @@ import { AuthorizationException, BadInputException } from "@exception";
 
 import { OAuthStrategyEnum } from "@domain/auth/strategy/strategies/oauth/oauth.strategy.enum";
 import { IOAuthStrategy } from "@domain/auth/strategy/strategies/oauth/oauth.strategy.type";
+import { IOAuthOptions } from "@domain/auth/types/oauth-options.type";
 import { IAuthPasswordInput } from "@domain/auth/types/password.auth.type";
 import {
   IAuthRefreshTokenInput,
@@ -87,18 +88,28 @@ export class AuthService {
 
   async getOAuthRedirect(
     provider: OAuthStrategyEnum,
+    options?: IOAuthOptions,
   ): Promise<{ baseUrl: string }> {
     return {
-      baseUrl: await this.authService.getOAuthRedirect(provider),
+      baseUrl: await this.authService.getOAuthRedirect(provider, options),
     };
+  }
+
+  getRedirect(options?: IOAuthOptions) {
+    if (options?.device === "mobile") return "mobile://oauth-callback";
+    return `${this.configService.getOrThrow("APP_BASE_URL")}`;
   }
 
   async authOAuthRedirect(
     provider: OAuthStrategyEnum,
     req: Request,
   ): Promise<{ baseUrl: string }> {
+    let auth: IAuthenticateUser;
     try {
-      const auth: IAuthenticateUser = await this.authOAuth(provider, req);
+      auth = (await this.authOAuth(
+        provider,
+        req,
+      )) as unknown as IAuthenticateUser;
       let curr = await this.userService.getByEmail(auth.email);
       if (!curr) {
         curr = await this.userService.registerUser({
@@ -114,14 +125,14 @@ export class AuthService {
             refreshToken: token.refreshToken,
             tokenExpiresAt: Math.floor(token.tokenExpiresAt.getTime() / 1000),
           },
-          this.configService.getOrThrow("APP_BASE_URL"),
+          this.getRedirect(auth.state),
         ),
       };
     } catch (error) {
       return {
         baseUrl: urlQueryBuilder(
           { error: error },
-          this.configService.getOrThrow("APP_BASE_URL"),
+          this.getRedirect(auth?.state),
         ),
       };
     }

@@ -5,6 +5,7 @@ import { InternalException } from "@exception";
 import { OAuthStrategyEnum } from "@domain/auth/strategy/strategies/oauth/oauth.strategy.enum";
 import { StrategyEnum } from "@domain/auth/strategy/strategy.enum";
 import { IStrategyInput } from "@domain/auth/strategy/strategy.type";
+import { IOAuthOptions } from "@domain/auth/types/oauth-options.type";
 import { IUser } from "@domain/user/types/user.type";
 
 import { IStrategy } from "~/shared/auth/strategy/strategy.type";
@@ -42,7 +43,10 @@ export class StrategyService {
     return strategy.authenticate(input);
   }
 
-  getOAuthRedirect(provider: OAuthStrategyEnum): Promise<string> {
-    return this.oauthStrategy.getOAuthRedirect(provider);
+  getOAuthRedirect(
+    provider: OAuthStrategyEnum,
+    options?: IOAuthOptions,
+  ): Promise<string> {
+    return this.oauthStrategy.getOAuthRedirect(provider, options);
   }
 }

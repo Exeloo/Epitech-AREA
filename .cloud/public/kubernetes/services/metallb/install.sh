@@ -7,7 +7,7 @@ kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/main/config/m
 MACHINE_IP=$(hostname -I | awk '{print $1}')
 
 # Configure MetalLB
-cat <<EOF > /tmp/metallb.yaml
+cat <<EOF > /tmp/metallb.yml
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
@@ -26,4 +26,4 @@ EOF
 
 # Apply Config
 sleep 30
-sudo kubectl apply -f /tmp/metallb.yaml
+sudo kubectl apply -f /tmp/metallb.yml

@@ -110,19 +110,6 @@
         name: docker
         extra_args: --break-system-packages
 
-    - name: Configure Docker to allow HTTP connections to the registry
-      copy:
-        dest: /etc/docker/daemon.json
-        content: |
-          {
-            "insecure-registries" : ["registry.area.tech.showmyteam.fr"]
-          }
-        mode: '0644'
-
-    - name: Pause to allow changes to take effect
-      pause:
-        seconds: 5
-
     - name: Restart Docker service to apply changes
       service:
         name: docker

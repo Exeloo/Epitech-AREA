@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: area-tech-tls
+  namespace: deployment
+spec:
+  secretName: area-tech-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  dnsNames:
+    - registry.area.tech.showmyteam.fr
+    - argocd.area.tech.showmyteam.fr

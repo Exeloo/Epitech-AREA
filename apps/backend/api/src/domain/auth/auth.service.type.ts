@@ -1,6 +1,7 @@
 import { ID } from "@d-type/id.type";
 
 import { IStrategyInput } from "@domain/auth/strategy/strategy.type";
+import { IOAuthOptions } from "@domain/auth/types/oauth-options.type";
 import { IAuthToken } from "@domain/auth/types/token.auth.type";
 import { IUser } from "@domain/user/types/user.type";
 
@@ -18,5 +19,5 @@ export interface IAuthService {
 
   generateToken(userId: ID): Promise<IAuthToken>;
 
-  getOAuthRedirect(provider: string): Promise<string>;
+  getOAuthRedirect(provider: string, options?: IOAuthOptions): Promise<string>;
 }

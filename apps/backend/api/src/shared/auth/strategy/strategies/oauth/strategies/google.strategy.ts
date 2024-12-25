@@ -19,6 +19,7 @@ export class GoogleOAuthStrategy extends BaseOAuthStrategy(
       httpService,
       "https://accounts.google.com/o/oauth2/v2/auth",
       "redirect_uri",
+      "state",
       {
         clientId: configService.getOrThrow("GOOGLE_CLIENT_ID"),
         responseType: "code",
@@ -36,6 +37,9 @@ export class GoogleOAuthStrategy extends BaseOAuthStrategy(
   }
 
   async validate(input: IGoogleStrategy): Promise<IAuthenticateUser> {
+    const state = input.state
+      ? JSON.parse(Buffer.from(input.state, "base64").toString())
+      : undefined;
     const token = await this.getToken(input.code);
     const data = (
       await firstValueFrom(
@@ -50,6 +54,7 @@ export class GoogleOAuthStrategy extends BaseOAuthStrategy(
       email: data.email,
       firstName: data.given_name,
       lastName: data.family_name,
+      state,
     };
   }
 }

@@ -17,6 +17,9 @@ const config = {
 			marshal(date) {
 				return date && date.getTime();
 			}
+		},
+		JSON: {
+			type: 'json'
 		}
 	}
 };

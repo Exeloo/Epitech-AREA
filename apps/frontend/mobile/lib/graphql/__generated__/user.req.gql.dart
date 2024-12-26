@@ -90,6 +90,83 @@ abstract class GgetMeReq
       );
 }
 
+abstract class GupdateMeReq
+    implements
+        Built<GupdateMeReq, GupdateMeReqBuilder>,
+        _i1.OperationRequest<_i2.GupdateMeData, _i3.GupdateMeVars> {
+  GupdateMeReq._();
+
+  factory GupdateMeReq([void Function(GupdateMeReqBuilder b) updates]) =
+      _$GupdateMeReq;
+
+  static void _initializeBuilder(GupdateMeReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'updateMe',
+    )
+    ..executeOnListen = true;
+
+  @override
+  _i3.GupdateMeVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+        context: context ?? const _i4.Context(),
+      );
+
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.GupdateMeData? Function(
+    _i2.GupdateMeData?,
+    _i2.GupdateMeData?,
+  )? get updateResult;
+  @override
+  _i2.GupdateMeData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  @BuiltValueField(serialize: false)
+  _i4.Context? get context;
+  @override
+  _i2.GupdateMeData? parseData(Map<String, dynamic> json) =>
+      _i2.GupdateMeData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(_i2.GupdateMeData data) => data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.GupdateMeData, _i3.GupdateMeVars> transformOperation(
+          _i4.Operation Function(_i4.Operation) transform) =>
+      this.rebuild((b) => b..operation = transform(operation));
+
+  static Serializer<GupdateMeReq> get serializer => _$gupdateMeReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GupdateMeReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GupdateMeReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GupdateMeReq.serializer,
+        json,
+      );
+}
+
 abstract class GregisterReq
     implements
         Built<GregisterReq, GregisterReqBuilder>,

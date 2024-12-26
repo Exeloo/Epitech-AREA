@@ -70,11 +70,13 @@ import 'package:mobile/graphql/__generated__/user.data.gql.dart'
         GgetMeData,
         GgetMeData_getMe,
         GregisterData,
-        GregisterData_register;
+        GregisterData_register,
+        GupdateMeData,
+        GupdateMeData_updateMe;
 import 'package:mobile/graphql/__generated__/user.req.gql.dart'
-    show GUserReq, GgetMeReq, GregisterReq;
+    show GUserReq, GgetMeReq, GregisterReq, GupdateMeReq;
 import 'package:mobile/graphql/__generated__/user.var.gql.dart'
-    show GUserVars, GgetMeVars, GregisterVars;
+    show GUserVars, GgetMeVars, GregisterVars, GupdateMeVars;
 
 part 'serializers.gql.g.dart';
 
@@ -142,5 +144,9 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GregisterData_register,
   GregisterReq,
   GregisterVars,
+  GupdateMeData,
+  GupdateMeData_updateMe,
+  GupdateMeReq,
+  GupdateMeVars,
 ])
 final Serializers serializers = _serializersBuilder.build();

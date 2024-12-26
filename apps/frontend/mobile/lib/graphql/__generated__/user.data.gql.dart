@@ -77,6 +77,79 @@ abstract class GgetMeData_getMe
       );
 }
 
+abstract class GupdateMeData
+    implements Built<GupdateMeData, GupdateMeDataBuilder> {
+  GupdateMeData._();
+
+  factory GupdateMeData([void Function(GupdateMeDataBuilder b) updates]) =
+      _$GupdateMeData;
+
+  static void _initializeBuilder(GupdateMeDataBuilder b) =>
+      b..G__typename = 'Mutation';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  GupdateMeData_updateMe get updateMe;
+  static Serializer<GupdateMeData> get serializer => _$gupdateMeDataSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GupdateMeData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GupdateMeData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GupdateMeData.serializer,
+        json,
+      );
+}
+
+abstract class GupdateMeData_updateMe
+    implements
+        Built<GupdateMeData_updateMe, GupdateMeData_updateMeBuilder>,
+        GUser {
+  GupdateMeData_updateMe._();
+
+  factory GupdateMeData_updateMe(
+          [void Function(GupdateMeData_updateMeBuilder b) updates]) =
+      _$GupdateMeData_updateMe;
+
+  static void _initializeBuilder(GupdateMeData_updateMeBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  int get id;
+  @override
+  String get username;
+  @override
+  String get firstName;
+  @override
+  String get lastName;
+  @override
+  String? get pronoun;
+  @override
+  String? get picture;
+  @override
+  String? get description;
+  static Serializer<GupdateMeData_updateMe> get serializer =>
+      _$gupdateMeDataUpdateMeSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GupdateMeData_updateMe.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GupdateMeData_updateMe? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GupdateMeData_updateMe.serializer,
+        json,
+      );
+}
+
 abstract class GregisterData
     implements Built<GregisterData, GregisterDataBuilder> {
   GregisterData._();

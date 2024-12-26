@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mobile/views/home/pages/home.dart';
+import 'package:flutter/material.dart';
 
 class MainNavigationPage extends StatefulWidget {
   const MainNavigationPage({super.key});
@@ -135,15 +136,66 @@ class Page3 extends StatelessWidget {
       body: Center(child: Text("Bienvenue sur la page Liste")),
     );
   }
-}
-
-class Page4 extends StatelessWidget {
+}class Page4 extends StatelessWidget {
   const Page4({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text("Bienvenue sur la page Profil")),
+    return Scaffold(
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          // Determine if the screen is in portrait or landscape mode
+          bool isPortrait = constraints.maxWidth < constraints.maxHeight;
+
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: isPortrait ? 50 : 30,
+                    backgroundImage: const NetworkImage('https://via.placeholder.com/150'),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'John Doe',
+                    style: TextStyle(
+                      fontSize: isPortrait ? 24 : 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'john.doe@example.com',
+                    style: TextStyle(
+                      fontSize: isPortrait ? 16 : 14,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Handle edit profile action
+                      print('Edit Profile button pressed');
+                    },
+                    child: const Text('Edit Profile'),
+                  ),
+                  const SizedBox(height: 8),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Handle logout action
+                      print('Logout button pressed');
+                    },
+                    child: const Text('Logout'),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 }

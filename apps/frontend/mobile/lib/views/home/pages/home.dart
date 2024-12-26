@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mobile/modules/graphql/repository/providerRepository.dart';
+import 'package:mobile/modules/graphql/repository/provider_repository.dart';
 import 'package:mobile/views/home/widgets/provider_card.dart';
 //import '../../../graphql/__generated__/schema.ast.gql.dart';
 import '../widgets/applet_card.dart';
-import 'package:mobile/views/home/widgets/homeAppBar.dart';
+import 'package:mobile/views/home/widgets/home_app_bar.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {

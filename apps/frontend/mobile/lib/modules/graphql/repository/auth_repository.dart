@@ -1,6 +1,8 @@
+import 'dart:developer';
+
 import 'package:ferry/ferry.dart';
-import 'package:mobile/graphql/__generated__/auth.req.gql.dart';
 import 'package:mobile/graphql/__generated__/auth.data.gql.dart';
+import 'package:mobile/graphql/__generated__/auth.req.gql.dart';
 
 class AuthRepository {
   final Client client;
@@ -19,16 +21,16 @@ class AuthRepository {
       final response = await client.request(loginReq).first;
 
       if (response.loading) {
-        print('Loading...');
+        log('Loading...');
       } else if (response.hasErrors) {
-        print('Errors: ${response.graphqlErrors}');
+        log('Errors: ${response.graphqlErrors}');
       } else {
-        print('Response: ${response.data}');
+        log('Response: ${response.data}');
       }
 
       return response.data;
     } catch (e) {
-      print('Login error : $e');
+      log('Login error : $e');
       rethrow;
     }
   }

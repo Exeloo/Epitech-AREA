@@ -1,6 +1,8 @@
+import 'dart:developer';
+
 import 'package:ferry/ferry.dart';
-import 'package:mobile/graphql/__generated__/user.req.gql.dart';
 import 'package:mobile/graphql/__generated__/user.data.gql.dart';
+import 'package:mobile/graphql/__generated__/user.req.gql.dart';
 
 class UserRepository {
   final Client client;
@@ -25,16 +27,16 @@ class UserRepository {
       final response = await client.request(registerReq).first;
 
       if (response.loading) {
-        print('Loading...');
+        log('Loading...');
       } else if (response.hasErrors) {
-        print('Errors: ${response.graphqlErrors}');
+        log('Errors: ${response.graphqlErrors}');
       } else {
-        print('Response: ${response.data}');
+        log('Response: ${response.data}');
       }
 
       return response.data;
     } catch (e) {
-      print('Login error : $e');
+      log('Login error : $e');
       rethrow;
     }
   }

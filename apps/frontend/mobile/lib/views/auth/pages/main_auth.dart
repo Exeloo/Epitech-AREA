@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/views/auth/pages/googleAuth.dart';
 import 'package:mobile/views/auth/pages/login.dart';
 import 'package:mobile/views/auth/pages/signup.dart';
 
@@ -60,6 +61,24 @@ class MainAuthPageState extends State<MainAuthPage> {
                   ),
                 ),
               ),
+              SizedBox(
+                width: 150,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xff8E44AD)),
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => googleAuth(),
+                      ),
+                      (Route<dynamic> route) => false,
+                    );
+                  },
+                  child: const Text('Google',
+                      style: TextStyle(color: Colors.white)),
+                ),
+              )
             ],
           ),
         ),

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class MyHomeAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const MyHomeAppBar({Key? key}) : super(key: key);
+  const MyHomeAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Color(0xff1B1B1B),
+      backgroundColor: const Color(0xff1B1B1B),
       bottom: const TabBar(
         labelColor: Colors.white,
         tabAlignment: TabAlignment.center,

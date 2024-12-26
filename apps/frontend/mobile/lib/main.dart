@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/views/auth/pages/login.dart';
-import 'package:mobile/views/auth/pages/mainAuth.dart';
-import 'package:mobile/views/mainPage/pages/mainNavigation.dart';
 import 'package:mobile/modules/graphql/providers.dart';
+import 'package:mobile/views/auth/pages/main_auth.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -15,7 +13,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   get onPressed => null;
 

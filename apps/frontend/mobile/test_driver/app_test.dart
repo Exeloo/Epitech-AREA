@@ -3,16 +3,14 @@ import 'package:test/test.dart';
 
 void main() {
   group('App Test', () {
-    FlutterDriver driver;
+    late FlutterDriver driver;
 
     setUpAll(() async {
       driver = await FlutterDriver.connect();
     });
 
     tearDownAll(() async {
-      if (driver != null) {
-        driver.close();
-      }
+      driver.close();
     });
 
     test('Sign in button is present', () async {

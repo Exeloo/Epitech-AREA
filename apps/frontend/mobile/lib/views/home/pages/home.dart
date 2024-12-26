@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mobile/views/home/widgets/home_app_bar.dart';
+
 import '../widgets/applet_card.dart';
-import 'package:mobile/views/home/widgets/homeAppBar.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
+    return const DefaultTabController(
       length: 2,
       child: Scaffold(
-        appBar: const MyHomeAppBar(),
-        body: const TabBarView(
+        appBar: MyHomeAppBar(),
+        body: TabBarView(
           children: [
             AllContent(),
             ProvidersContent(),
@@ -22,7 +25,7 @@ class HomePage extends StatelessWidget {
 }
 
 class AllContent extends StatelessWidget {
-  const AllContent({Key? key}) : super(key: key);
+  const AllContent({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,11 +59,10 @@ class AllContent extends StatelessWidget {
                   const SizedBox(width: 12),
                 ],
               ),
-              backgroundColor:
-                  MaterialStateProperty.all(const Color(0xff3D3D3D)),
+              backgroundColor: WidgetStateProperty.all(const Color(0xff3D3D3D)),
               hintText: 'Explorer',
-              hintStyle: MaterialStateProperty.all(
-                TextStyle(fontSize: 20, color: Color(0x83f6ecec)),
+              hintStyle: WidgetStateProperty.all(
+                const TextStyle(fontSize: 20, color: Color(0x83f6ecec)),
               ),
             ),
           ),
@@ -69,8 +71,8 @@ class AllContent extends StatelessWidget {
             child: ListView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               itemCount: 10,
-              itemBuilder: (context, index) => Padding(
-                padding: const EdgeInsets.only(bottom: 16.0),
+              itemBuilder: (context, index) => const Padding(
+                padding: EdgeInsets.only(bottom: 16.0),
                 child: MyCard(
                   backgroundColor: Colors.lightBlueAccent,
                   text: 'Amazon to X',
@@ -85,7 +87,7 @@ class AllContent extends StatelessWidget {
 }
 
 class ProvidersContent extends StatelessWidget {
-  const ProvidersContent({Key? key}) : super(key: key);
+  const ProvidersContent({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -98,16 +100,16 @@ class ProvidersContent extends StatelessWidget {
           Expanded(
             child: GridView.count(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              crossAxisCount: 2,
+              crossAxisSpacing: 16.0,
+              mainAxisSpacing: 16.0,
               children: List.generate(
                 10,
-                (index) => MyCard(
+                (index) => const MyCard(
                   backgroundColor: Colors.lightBlueAccent,
                   text: 'Discord',
                 ),
               ),
-              crossAxisCount: 2,
-              crossAxisSpacing: 16.0,
-              mainAxisSpacing: 16.0,
             ),
           ),
         ],

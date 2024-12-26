@@ -6,10 +6,10 @@ class MainAuthPage extends StatefulWidget {
   const MainAuthPage({super.key});
 
   @override
-  _MainAuthPageState createState() => _MainAuthPageState();
+  MainAuthPageState createState() => MainAuthPageState();
 }
 
-class _MainAuthPageState extends State<MainAuthPage> {
+class MainAuthPageState extends State<MainAuthPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

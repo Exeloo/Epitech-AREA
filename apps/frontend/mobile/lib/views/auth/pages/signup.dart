@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/modules/graphql/repository/authRepository.dart';
+import 'package:mobile/modules/graphql/repository/auth_repository.dart';
+import 'package:mobile/modules/graphql/repository/user_repository.dart';
 import 'package:mobile/views/auth/pages/login.dart';
 import 'package:provider/provider.dart';
-import 'package:mobile/modules/graphql/repository/userRepository.dart';
 
-import '../../../modules/auth/authHelper.dart';
-import '../../mainPage/pages/mainNavigation.dart';
+import '../../../modules/auth/auth_helper.dart';
+import '../../mainPage/pages/main_navigation.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
 
   @override
-  _SignUpPageState createState() => _SignUpPageState();
+  SignUpPageState createState() => SignUpPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class SignUpPageState extends State<SignUpPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -26,7 +26,7 @@ class _SignUpPageState extends State<SignUpPage> {
     final authRepository = Provider.of<AuthRepository>(context, listen: false);
 
     try {
-      final response = await userRepository.register(
+      await userRepository.register(
           email: _emailController.text,
           password: _passwordController.text,
           username: _usernameController.text,

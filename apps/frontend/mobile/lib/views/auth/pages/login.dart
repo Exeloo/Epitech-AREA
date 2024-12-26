@@ -1,27 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:ferry/ferry.dart';
-import 'package:mobile/graphql/graphql_client.dart';
-import 'package:mobile/graphql/__generated__/auth.req.gql.dart';
-import 'package:mobile/modules/auth/authHelper.dart';
+import 'package:mobile/modules/auth/auth_helper.dart';
+import 'package:mobile/modules/graphql/repository/auth_repository.dart';
 import 'package:mobile/views/auth/pages/signup.dart';
 import 'package:provider/provider.dart';
-import 'package:mobile/modules/graphql/repository/authRepository.dart';
 
-import '../../mainPage/pages/mainNavigation.dart';
+import '../../mainPage/pages/main_navigation.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  LoginPageState createState() => LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class LoginPageState extends State<LoginPage> {
   bool _rememberMe = false;
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  late bool _isLogged = false;
 
   void _login() async {
     final authRepository = Provider.of<AuthRepository>(context, listen: false);
@@ -109,7 +105,7 @@ class _LoginPageState extends State<LoginPage> {
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 textStyle: const TextStyle(fontSize: 16),
-                backgroundColor: Color(0xff8E44AD), // Change la couleur
+                backgroundColor: const Color(0xff8E44AD),
               ),
               child: const Text(
                 'Sign in',

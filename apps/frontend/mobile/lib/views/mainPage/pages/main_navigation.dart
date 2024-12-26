@@ -3,13 +3,13 @@ import 'package:flutter_svg/svg.dart';
 import 'package:mobile/views/home/pages/home.dart';
 
 class MainNavigationPage extends StatefulWidget {
-  const MainNavigationPage({Key? key}) : super(key: key);
+  const MainNavigationPage({super.key});
 
   @override
-  _MainNavigationPageState createState() => _MainNavigationPageState();
+  MainNavigationPageState createState() => MainNavigationPageState();
 }
 
-class _MainNavigationPageState extends State<MainNavigationPage> {
+class MainNavigationPageState extends State<MainNavigationPage> {
   int _currentIndex = 0;
 
   void _onTabTapped(int index) {
@@ -20,8 +20,8 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> _pages = [
-      HomePage(),
+    final List<Widget> pages = [
+      const HomePage(),
       const Page2(),
       const Page3(),
       const Page4(),
@@ -30,7 +30,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
     return Scaffold(
       body: IndexedStack(
         index: _currentIndex,
-        children: _pages,
+        children: pages,
       ),
       backgroundColor: const Color(0xff1B1B1B),
       bottomNavigationBar: ClipRRect(
@@ -105,44 +105,44 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
 }
 
 class Page1 extends StatelessWidget {
-  const Page1({Key? key}) : super(key: key);
+  const Page1({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(child: Text("Bienvenue sur la page Accueil")),
     );
   }
 }
 
 class Page2 extends StatelessWidget {
-  const Page2({Key? key}) : super(key: key);
+  const Page2({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(child: Text("Bienvenue sur la page Recherche")),
     );
   }
 }
 
 class Page3 extends StatelessWidget {
-  const Page3({Key? key}) : super(key: key);
+  const Page3({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(child: Text("Bienvenue sur la page Liste")),
     );
   }
 }
 
 class Page4 extends StatelessWidget {
-  const Page4({Key? key}) : super(key: key);
+  const Page4({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(child: Text("Bienvenue sur la page Profil")),
     );
   }

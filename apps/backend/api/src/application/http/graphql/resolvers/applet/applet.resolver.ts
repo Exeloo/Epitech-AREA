@@ -7,9 +7,8 @@ import { IAppletCreateInput } from "@domain/applet/types/applet.input.type";
 import { IExposedApplet } from "@domain/applet/types/applet.type";
 import { IUser } from "@domain/user/types/user.type";
 
-import { AppletCreateInput } from "~/application/http/graphql/dto/input/applet/applet-create.input";
-import { GqlCurrentUser } from "~/shared/auth/decorators/current-user/graphql-current-user.decorator";
-
+import { GqlCurrentUser } from "../../common/decorators/graphql-current-user.decorator";
+import { AppletCreateInput } from "../../dto/input/applet/applet-create.input";
 import { Applet } from "../../dto/nodes/applet/applet.node";
 
 @Resolver(Applet)

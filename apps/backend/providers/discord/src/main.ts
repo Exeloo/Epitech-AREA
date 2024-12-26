@@ -6,11 +6,9 @@ import * as bodyParser from "body-parser";
 import { useContainer } from "class-validator";
 import "dotenv/config";
 import helmet from "helmet";
-import { WINSTON_MODULE_NEST_PROVIDER } from "nest-winston";
 
 import { AppModule } from "./app.module";
 import { AppEnvEnum } from "./config/validations/env.validation";
-import { LoggerErrorInterceptor } from "./libs/logger";
 
 const rawBodyBuffer = (req, _, buffer, encoding) => {
   if (buffer && buffer.length) {
@@ -23,8 +21,7 @@ const bootstrap = async () => {
     bodyParser: false,
     bufferLogs: true,
   });
-  app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
-  app.useGlobalInterceptors(new LoggerErrorInterceptor());
+  // app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
 
   const configService = app.get(ConfigService);
   const env = configService.getOrThrow("APP_ENV");
@@ -68,7 +65,7 @@ const bootstrap = async () => {
       .build();
 
     const document = SwaggerModule.createDocument(app, swagger);
-    SwaggerModule.setup("api", app, document);
+    SwaggerModule.setup("docs", app, document);
   }
 
   await app.listen(port);

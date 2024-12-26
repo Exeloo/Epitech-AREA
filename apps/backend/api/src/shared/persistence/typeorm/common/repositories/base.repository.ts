@@ -36,11 +36,17 @@ export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
   }
 
   async getById(id: ID): Promise<I> {
-    const entity = await this.findOne({
-      relations: this.relations,
-      where: { id },
-    } as FindOneOptions<E>);
-
+    let entity: E;
+    try {
+      entity = await this.findOne({
+        relations: this.relations,
+        where: { id },
+      } as FindOneOptions<E>);
+    } catch (e) {
+      throw new InternalException(16, {
+        cause: e,
+      });
+    }
     if (!entity)
       throw new BadInputException("BAD_INPUT", "Unkown entity", {
         cause: new Error(`Unkown entity getting by id (${id})`),
@@ -55,15 +61,21 @@ export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
   }
 
   async getByProperties(properties: FindOptionsWhere<E>): Promise<I> {
-    const entity = await this.findOne({
-      relations: this.relations,
-      where: properties,
-    });
-
+    let entity: E;
+    try {
+      entity = await this.findOne({
+        relations: this.relations,
+        where: properties,
+      });
+    } catch (e) {
+      throw new InternalException(18, {
+        cause: e,
+      });
+    }
     if (!entity)
       throw new BadInputException("BAD_INPUT", "Unkown entity", {
         cause: new Error(`Unkown entity getting by properties (${properties})`),
-        trace: 16,
+        trace: 17,
       });
 
     this.logger.log(
@@ -74,42 +86,41 @@ export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
   }
 
   async getAllByProperties(properties: FindOptionsWhere<E>): Promise<I[]> {
+    let entities: E[];
     try {
-      const entities = await this.find({
+      entities = await this.find({
         relations: this.relations,
         where: properties,
       });
-
-      this.logger.log(
-        `${this.constructor.name}.getAllByProperties: entities successfully fetched`,
-      );
-
-      return this.transformer.persistenceToDomains(entities);
-    } catch {
-      throw new InternalException(17, {
-        cause: new Error(
-          `Error while trying to reach entities by properties (${properties})`,
-        ),
+    } catch (e) {
+      throw new InternalException(18, {
+        cause: e,
       });
     }
+
+    this.logger.log(
+      `${this.constructor.name}.getAllByProperties: entities successfully fetched`,
+    );
+
+    return this.transformer.persistenceToDomains(entities);
   }
 
   async getAll(): Promise<I[]> {
+    let entities: E[];
     try {
-      const entities = await this.find({
+      entities = await this.find({
         relations: this.relations,
       });
-
-      this.logger.log(
-        `${this.constructor.name}.getAll: entities successfully fetched`,
-      );
-
-      return this.transformer.persistenceToDomains(entities);
-    } catch {
-      throw new InternalException(18, {
-        cause: new Error("Error while trying to reach all entities"),
+    } catch (e) {
+      throw new InternalException(19, {
+        cause: e,
       });
     }
+    this.logger.log(
+      `${this.constructor.name}.getAll: entities successfully fetched`,
+    );
+
+    return this.transformer.persistenceToDomains(entities);
   }
 
   async createEntity(model: DeepPartial<I>): Promise<I> {
@@ -120,9 +131,9 @@ export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
         this.transformer.domainToPersistence(model),
       );
       id = entity.id;
-    } catch {
-      throw new InternalException(19, {
-        cause: new Error(`Error while trying to create entity`),
+    } catch (e) {
+      throw new InternalException(20, {
+        cause: e,
       });
     }
 
@@ -136,9 +147,9 @@ export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
   async updateEntity(id: ID, model: DeepPartial<I>): Promise<I> {
     try {
       await this.update(id, this.transformer.domainToPersistence(model));
-    } catch {
-      throw new InternalException(20, {
-        cause: new Error(`Error while trying to update entity (${id})`),
+    } catch (e) {
+      throw new InternalException(21, {
+        cause: e,
       });
     }
 
@@ -150,13 +161,20 @@ export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
   }
 
   async deleteEntity(id: ID, hardDelete: boolean = false): Promise<I> {
-    const entity = await this.findOne({
-      relations: this.relations,
-      where: { id },
-    } as FindOneOptions<E>);
+    let entity: E;
+    try {
+      entity = await this.findOne({
+        relations: this.relations,
+        where: { id },
+      } as FindOneOptions<E>);
+    } catch (e) {
+      throw new InternalException(23, {
+        cause: e,
+      });
+    }
 
     if (!entity)
-      throw new InternalException(21, {
+      throw new InternalException(24, {
         cause: new Error(
           `Error while trying to delete entity (${id}), does not exist`,
         ),
@@ -172,7 +190,7 @@ export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
         await this.softDelete(id);
       }
     } catch {
-      throw new InternalException(22, {
+      throw new InternalException(27, {
         cause: new Error(`Error while trying to delete entity (${id})`),
       });
     }

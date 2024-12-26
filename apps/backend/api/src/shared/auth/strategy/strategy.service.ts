@@ -36,7 +36,7 @@ export class StrategyService {
   ): Promise<IUser> {
     const strategy = this.strategyMap[type];
     if (!strategy)
-      throw new InternalException(23, {
+      throw new InternalException(26, {
         cause: new Error(`Strategy ${type} not implemented`),
       });
 

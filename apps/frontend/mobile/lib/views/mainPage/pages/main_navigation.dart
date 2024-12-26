@@ -21,7 +21,7 @@ class MainNavigationPageState extends State<MainNavigationPage> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> pages = [
-      const HomePage(),
+      HomePage(),
       const Page2(),
       const Page3(),
       const Page4(),

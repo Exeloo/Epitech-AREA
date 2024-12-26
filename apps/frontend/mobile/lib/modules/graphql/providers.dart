@@ -1,6 +1,6 @@
-import 'package:mobile/modules/graphql/repository/authRepository.dart';
-import 'package:mobile/modules/graphql/repository/providerRepository.dart';
-import 'package:mobile/modules/graphql/repository/userRepository.dart';
+import 'package:mobile/modules/graphql/repository/auth_repository.dart';
+import 'package:mobile/modules/graphql/repository/provider_repository.dart';
+import 'package:mobile/modules/graphql/repository/user_repository.dart';
 import 'package:provider/provider.dart';
 import 'package:mobile/graphql/graphql_client.dart';
 import 'package:provider/single_child_widget.dart';

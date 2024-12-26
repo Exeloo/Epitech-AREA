@@ -6,6 +6,28 @@ part of 'schema.schema.gql.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const GAppletNodeType _$gAppletNodeTypeACTION =
+    const GAppletNodeType._('ACTION');
+const GAppletNodeType _$gAppletNodeTypeTRIGGER =
+    const GAppletNodeType._('TRIGGER');
+
+GAppletNodeType _$gAppletNodeTypeValueOf(String name) {
+  switch (name) {
+    case 'ACTION':
+      return _$gAppletNodeTypeACTION;
+    case 'TRIGGER':
+      return _$gAppletNodeTypeTRIGGER;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<GAppletNodeType> _$gAppletNodeTypeValues =
+    new BuiltSet<GAppletNodeType>(const <GAppletNodeType>[
+  _$gAppletNodeTypeACTION,
+  _$gAppletNodeTypeTRIGGER,
+]);
+
 const GProviderVisibility _$gProviderVisibilityPRIVATE =
     const GProviderVisibility._('PRIVATE');
 const GProviderVisibility _$gProviderVisibilityPUBLIC =
@@ -33,8 +55,12 @@ final BuiltSet<GProviderVisibility> _$gProviderVisibilityValues =
   _$gProviderVisibilityUNLISTED,
 ]);
 
-Serializer<GAppletSubscribeInput> _$gAppletSubscribeInputSerializer =
-    new _$GAppletSubscribeInputSerializer();
+Serializer<GAppletCreateInput> _$gAppletCreateInputSerializer =
+    new _$GAppletCreateInputSerializer();
+Serializer<GAppletNodeCreateInput> _$gAppletNodeCreateInputSerializer =
+    new _$GAppletNodeCreateInputSerializer();
+Serializer<GAppletNodeType> _$gAppletNodeTypeSerializer =
+    new _$GAppletNodeTypeSerializer();
 Serializer<GAuthPasswordInput> _$gAuthPasswordInputSerializer =
     new _$GAuthPasswordInputSerializer();
 Serializer<GAuthRefreshTokenInput> _$gAuthRefreshTokenInputSerializer =
@@ -47,49 +73,44 @@ Serializer<GUserCreateInput> _$gUserCreateInputSerializer =
     new _$GUserCreateInputSerializer();
 Serializer<GUserRegisterInput> _$gUserRegisterInputSerializer =
     new _$GUserRegisterInputSerializer();
+Serializer<GUserUpdateInput> _$gUserUpdateInputSerializer =
+    new _$GUserUpdateInputSerializer();
 
-class _$GAppletSubscribeInputSerializer
-    implements StructuredSerializer<GAppletSubscribeInput> {
+class _$GAppletCreateInputSerializer
+    implements StructuredSerializer<GAppletCreateInput> {
   @override
-  final Iterable<Type> types = const [
-    GAppletSubscribeInput,
-    _$GAppletSubscribeInput
-  ];
+  final Iterable<Type> types = const [GAppletCreateInput, _$GAppletCreateInput];
   @override
-  final String wireName = 'GAppletSubscribeInput';
+  final String wireName = 'GAppletCreateInput';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GAppletSubscribeInput object,
+      Serializers serializers, GAppletCreateInput object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      'channelIdInput',
-      serializers.serialize(object.channelIdInput,
-          specifiedType: const FullType(String)),
-      'channelIdOutput',
-      serializers.serialize(object.channelIdOutput,
-          specifiedType: const FullType(String)),
-      'guildIdInput',
-      serializers.serialize(object.guildIdInput,
-          specifiedType: const FullType(String)),
-      'guildIdOutput',
-      serializers.serialize(object.guildIdOutput,
-          specifiedType: const FullType(String)),
-      'message',
-      serializers.serialize(object.message,
-          specifiedType: const FullType(String)),
       'name',
       serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'triggerNodes',
+      serializers.serialize(object.triggerNodes,
+          specifiedType: const FullType(
+              BuiltList, const [const FullType(GAppletNodeCreateInput)])),
     ];
-
+    Object? value;
+    value = object.description;
+    if (value != null) {
+      result
+        ..add('description')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
   @override
-  GAppletSubscribeInput deserialize(
+  GAppletCreateInput deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GAppletSubscribeInputBuilder();
+    final result = new GAppletCreateInputBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -97,35 +118,112 @@ class _$GAppletSubscribeInputSerializer
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'channelIdInput':
-          result.channelIdInput = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
-          break;
-        case 'channelIdOutput':
-          result.channelIdOutput = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
-          break;
-        case 'guildIdInput':
-          result.guildIdInput = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
-          break;
-        case 'guildIdOutput':
-          result.guildIdOutput = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
-          break;
-        case 'message':
-          result.message = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+        case 'description':
+          result.description = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'name':
           result.name = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'triggerNodes':
+          result.triggerNodes.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(GAppletNodeCreateInput)
+              ]))! as BuiltList<Object?>);
           break;
       }
     }
 
     return result.build();
   }
+}
+
+class _$GAppletNodeCreateInputSerializer
+    implements StructuredSerializer<GAppletNodeCreateInput> {
+  @override
+  final Iterable<Type> types = const [
+    GAppletNodeCreateInput,
+    _$GAppletNodeCreateInput
+  ];
+  @override
+  final String wireName = 'GAppletNodeCreateInput';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GAppletNodeCreateInput object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'actionId',
+      serializers.serialize(object.actionId,
+          specifiedType: const FullType(String)),
+      'input',
+      serializers.serialize(object.input, specifiedType: const FullType(GJSON)),
+      'next',
+      serializers.serialize(object.next,
+          specifiedType: const FullType(
+              BuiltList, const [const FullType(GAppletNodeCreateInput)])),
+      'providerId',
+      serializers.serialize(object.providerId,
+          specifiedType: const FullType(int)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GAppletNodeCreateInput deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GAppletNodeCreateInputBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'actionId':
+          result.actionId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'input':
+          result.input.replace(serializers.deserialize(value,
+              specifiedType: const FullType(GJSON))! as GJSON);
+          break;
+        case 'next':
+          result.next.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(GAppletNodeCreateInput)
+              ]))! as BuiltList<Object?>);
+          break;
+        case 'providerId':
+          result.providerId = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GAppletNodeTypeSerializer
+    implements PrimitiveSerializer<GAppletNodeType> {
+  @override
+  final Iterable<Type> types = const <Type>[GAppletNodeType];
+  @override
+  final String wireName = 'GAppletNodeType';
+
+  @override
+  Object serialize(Serializers serializers, GAppletNodeType object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.name;
+
+  @override
+  GAppletNodeType deserialize(Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      GAppletNodeType.valueOf(serialized as String);
 }
 
 class _$GAuthPasswordInputSerializer
@@ -473,169 +571,378 @@ class _$GUserRegisterInputSerializer
   }
 }
 
-class _$GAppletSubscribeInput extends GAppletSubscribeInput {
+class _$GUserUpdateInputSerializer
+    implements StructuredSerializer<GUserUpdateInput> {
   @override
-  final String channelIdInput;
+  final Iterable<Type> types = const [GUserUpdateInput, _$GUserUpdateInput];
   @override
-  final String channelIdOutput;
-  @override
-  final String guildIdInput;
-  @override
-  final String guildIdOutput;
-  @override
-  final String message;
-  @override
-  final String name;
+  final String wireName = 'GUserUpdateInput';
 
-  factory _$GAppletSubscribeInput(
-          [void Function(GAppletSubscribeInputBuilder)? updates]) =>
-      (new GAppletSubscribeInputBuilder()..update(updates))._build();
-
-  _$GAppletSubscribeInput._(
-      {required this.channelIdInput,
-      required this.channelIdOutput,
-      required this.guildIdInput,
-      required this.guildIdOutput,
-      required this.message,
-      required this.name})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        channelIdInput, r'GAppletSubscribeInput', 'channelIdInput');
-    BuiltValueNullFieldError.checkNotNull(
-        channelIdOutput, r'GAppletSubscribeInput', 'channelIdOutput');
-    BuiltValueNullFieldError.checkNotNull(
-        guildIdInput, r'GAppletSubscribeInput', 'guildIdInput');
-    BuiltValueNullFieldError.checkNotNull(
-        guildIdOutput, r'GAppletSubscribeInput', 'guildIdOutput');
-    BuiltValueNullFieldError.checkNotNull(
-        message, r'GAppletSubscribeInput', 'message');
-    BuiltValueNullFieldError.checkNotNull(
-        name, r'GAppletSubscribeInput', 'name');
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GUserUpdateInput object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[];
+    Object? value;
+    value = object.description;
+    if (value != null) {
+      result
+        ..add('description')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.firstName;
+    if (value != null) {
+      result
+        ..add('firstName')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.lastName;
+    if (value != null) {
+      result
+        ..add('lastName')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.pronoun;
+    if (value != null) {
+      result
+        ..add('pronoun')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.username;
+    if (value != null) {
+      result
+        ..add('username')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
   }
 
   @override
-  GAppletSubscribeInput rebuild(
-          void Function(GAppletSubscribeInputBuilder) updates) =>
+  GUserUpdateInput deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GUserUpdateInputBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'description':
+          result.description = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'firstName':
+          result.firstName = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'lastName':
+          result.lastName = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'pronoun':
+          result.pronoun = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'username':
+          result.username = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GAppletCreateInput extends GAppletCreateInput {
+  @override
+  final String? description;
+  @override
+  final String name;
+  @override
+  final BuiltList<GAppletNodeCreateInput> triggerNodes;
+
+  factory _$GAppletCreateInput(
+          [void Function(GAppletCreateInputBuilder)? updates]) =>
+      (new GAppletCreateInputBuilder()..update(updates))._build();
+
+  _$GAppletCreateInput._(
+      {this.description, required this.name, required this.triggerNodes})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(name, r'GAppletCreateInput', 'name');
+    BuiltValueNullFieldError.checkNotNull(
+        triggerNodes, r'GAppletCreateInput', 'triggerNodes');
+  }
+
+  @override
+  GAppletCreateInput rebuild(
+          void Function(GAppletCreateInputBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GAppletSubscribeInputBuilder toBuilder() =>
-      new GAppletSubscribeInputBuilder()..replace(this);
+  GAppletCreateInputBuilder toBuilder() =>
+      new GAppletCreateInputBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GAppletSubscribeInput &&
-        channelIdInput == other.channelIdInput &&
-        channelIdOutput == other.channelIdOutput &&
-        guildIdInput == other.guildIdInput &&
-        guildIdOutput == other.guildIdOutput &&
-        message == other.message &&
-        name == other.name;
+    return other is GAppletCreateInput &&
+        description == other.description &&
+        name == other.name &&
+        triggerNodes == other.triggerNodes;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, channelIdInput.hashCode);
-    _$hash = $jc(_$hash, channelIdOutput.hashCode);
-    _$hash = $jc(_$hash, guildIdInput.hashCode);
-    _$hash = $jc(_$hash, guildIdOutput.hashCode);
-    _$hash = $jc(_$hash, message.hashCode);
+    _$hash = $jc(_$hash, description.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, triggerNodes.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GAppletSubscribeInput')
-          ..add('channelIdInput', channelIdInput)
-          ..add('channelIdOutput', channelIdOutput)
-          ..add('guildIdInput', guildIdInput)
-          ..add('guildIdOutput', guildIdOutput)
-          ..add('message', message)
-          ..add('name', name))
+    return (newBuiltValueToStringHelper(r'GAppletCreateInput')
+          ..add('description', description)
+          ..add('name', name)
+          ..add('triggerNodes', triggerNodes))
         .toString();
   }
 }
 
-class GAppletSubscribeInputBuilder
-    implements Builder<GAppletSubscribeInput, GAppletSubscribeInputBuilder> {
-  _$GAppletSubscribeInput? _$v;
+class GAppletCreateInputBuilder
+    implements Builder<GAppletCreateInput, GAppletCreateInputBuilder> {
+  _$GAppletCreateInput? _$v;
 
-  String? _channelIdInput;
-  String? get channelIdInput => _$this._channelIdInput;
-  set channelIdInput(String? channelIdInput) =>
-      _$this._channelIdInput = channelIdInput;
-
-  String? _channelIdOutput;
-  String? get channelIdOutput => _$this._channelIdOutput;
-  set channelIdOutput(String? channelIdOutput) =>
-      _$this._channelIdOutput = channelIdOutput;
-
-  String? _guildIdInput;
-  String? get guildIdInput => _$this._guildIdInput;
-  set guildIdInput(String? guildIdInput) => _$this._guildIdInput = guildIdInput;
-
-  String? _guildIdOutput;
-  String? get guildIdOutput => _$this._guildIdOutput;
-  set guildIdOutput(String? guildIdOutput) =>
-      _$this._guildIdOutput = guildIdOutput;
-
-  String? _message;
-  String? get message => _$this._message;
-  set message(String? message) => _$this._message = message;
+  String? _description;
+  String? get description => _$this._description;
+  set description(String? description) => _$this._description = description;
 
   String? _name;
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
 
-  GAppletSubscribeInputBuilder();
+  ListBuilder<GAppletNodeCreateInput>? _triggerNodes;
+  ListBuilder<GAppletNodeCreateInput> get triggerNodes =>
+      _$this._triggerNodes ??= new ListBuilder<GAppletNodeCreateInput>();
+  set triggerNodes(ListBuilder<GAppletNodeCreateInput>? triggerNodes) =>
+      _$this._triggerNodes = triggerNodes;
 
-  GAppletSubscribeInputBuilder get _$this {
+  GAppletCreateInputBuilder();
+
+  GAppletCreateInputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _channelIdInput = $v.channelIdInput;
-      _channelIdOutput = $v.channelIdOutput;
-      _guildIdInput = $v.guildIdInput;
-      _guildIdOutput = $v.guildIdOutput;
-      _message = $v.message;
+      _description = $v.description;
       _name = $v.name;
+      _triggerNodes = $v.triggerNodes.toBuilder();
       _$v = null;
     }
     return this;
   }
 
   @override
-  void replace(GAppletSubscribeInput other) {
+  void replace(GAppletCreateInput other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GAppletSubscribeInput;
+    _$v = other as _$GAppletCreateInput;
   }
 
   @override
-  void update(void Function(GAppletSubscribeInputBuilder)? updates) {
+  void update(void Function(GAppletCreateInputBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  GAppletSubscribeInput build() => _build();
+  GAppletCreateInput build() => _build();
 
-  _$GAppletSubscribeInput _build() {
-    final _$result = _$v ??
-        new _$GAppletSubscribeInput._(
-            channelIdInput: BuiltValueNullFieldError.checkNotNull(
-                channelIdInput, r'GAppletSubscribeInput', 'channelIdInput'),
-            channelIdOutput: BuiltValueNullFieldError.checkNotNull(
-                channelIdOutput, r'GAppletSubscribeInput', 'channelIdOutput'),
-            guildIdInput: BuiltValueNullFieldError.checkNotNull(
-                guildIdInput, r'GAppletSubscribeInput', 'guildIdInput'),
-            guildIdOutput: BuiltValueNullFieldError.checkNotNull(
-                guildIdOutput, r'GAppletSubscribeInput', 'guildIdOutput'),
-            message: BuiltValueNullFieldError.checkNotNull(
-                message, r'GAppletSubscribeInput', 'message'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GAppletSubscribeInput', 'name'));
+  _$GAppletCreateInput _build() {
+    _$GAppletCreateInput _$result;
+    try {
+      _$result = _$v ??
+          new _$GAppletCreateInput._(
+              description: description,
+              name: BuiltValueNullFieldError.checkNotNull(
+                  name, r'GAppletCreateInput', 'name'),
+              triggerNodes: triggerNodes.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'triggerNodes';
+        triggerNodes.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GAppletCreateInput', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GAppletNodeCreateInput extends GAppletNodeCreateInput {
+  @override
+  final String actionId;
+  @override
+  final GJSON input;
+  @override
+  final BuiltList<GAppletNodeCreateInput> next;
+  @override
+  final int providerId;
+
+  factory _$GAppletNodeCreateInput(
+          [void Function(GAppletNodeCreateInputBuilder)? updates]) =>
+      (new GAppletNodeCreateInputBuilder()..update(updates))._build();
+
+  _$GAppletNodeCreateInput._(
+      {required this.actionId,
+      required this.input,
+      required this.next,
+      required this.providerId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        actionId, r'GAppletNodeCreateInput', 'actionId');
+    BuiltValueNullFieldError.checkNotNull(
+        input, r'GAppletNodeCreateInput', 'input');
+    BuiltValueNullFieldError.checkNotNull(
+        next, r'GAppletNodeCreateInput', 'next');
+    BuiltValueNullFieldError.checkNotNull(
+        providerId, r'GAppletNodeCreateInput', 'providerId');
+  }
+
+  @override
+  GAppletNodeCreateInput rebuild(
+          void Function(GAppletNodeCreateInputBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GAppletNodeCreateInputBuilder toBuilder() =>
+      new GAppletNodeCreateInputBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GAppletNodeCreateInput &&
+        actionId == other.actionId &&
+        input == other.input &&
+        next == other.next &&
+        providerId == other.providerId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, actionId.hashCode);
+    _$hash = $jc(_$hash, input.hashCode);
+    _$hash = $jc(_$hash, next.hashCode);
+    _$hash = $jc(_$hash, providerId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GAppletNodeCreateInput')
+          ..add('actionId', actionId)
+          ..add('input', input)
+          ..add('next', next)
+          ..add('providerId', providerId))
+        .toString();
+  }
+}
+
+class GAppletNodeCreateInputBuilder
+    implements Builder<GAppletNodeCreateInput, GAppletNodeCreateInputBuilder> {
+  _$GAppletNodeCreateInput? _$v;
+
+  String? _actionId;
+  String? get actionId => _$this._actionId;
+  set actionId(String? actionId) => _$this._actionId = actionId;
+
+  GJSONBuilder? _input;
+  GJSONBuilder get input => _$this._input ??= new GJSONBuilder();
+  set input(GJSONBuilder? input) => _$this._input = input;
+
+  ListBuilder<GAppletNodeCreateInput>? _next;
+  ListBuilder<GAppletNodeCreateInput> get next =>
+      _$this._next ??= new ListBuilder<GAppletNodeCreateInput>();
+  set next(ListBuilder<GAppletNodeCreateInput>? next) => _$this._next = next;
+
+  int? _providerId;
+  int? get providerId => _$this._providerId;
+  set providerId(int? providerId) => _$this._providerId = providerId;
+
+  GAppletNodeCreateInputBuilder();
+
+  GAppletNodeCreateInputBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _actionId = $v.actionId;
+      _input = $v.input.toBuilder();
+      _next = $v.next.toBuilder();
+      _providerId = $v.providerId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GAppletNodeCreateInput other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GAppletNodeCreateInput;
+  }
+
+  @override
+  void update(void Function(GAppletNodeCreateInputBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GAppletNodeCreateInput build() => _build();
+
+  _$GAppletNodeCreateInput _build() {
+    _$GAppletNodeCreateInput _$result;
+    try {
+      _$result = _$v ??
+          new _$GAppletNodeCreateInput._(
+              actionId: BuiltValueNullFieldError.checkNotNull(
+                  actionId, r'GAppletNodeCreateInput', 'actionId'),
+              input: input.build(),
+              next: next.build(),
+              providerId: BuiltValueNullFieldError.checkNotNull(
+                  providerId, r'GAppletNodeCreateInput', 'providerId'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'input';
+        input.build();
+        _$failedField = 'next';
+        next.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GAppletNodeCreateInput', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }
@@ -1424,6 +1731,151 @@ class GUserRegisterInputBuilder
             password: password,
             username: BuiltValueNullFieldError.checkNotNull(
                 username, r'GUserRegisterInput', 'username'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GUserUpdateInput extends GUserUpdateInput {
+  @override
+  final String? description;
+  @override
+  final String? email;
+  @override
+  final String? firstName;
+  @override
+  final String? lastName;
+  @override
+  final String? pronoun;
+  @override
+  final String? username;
+
+  factory _$GUserUpdateInput(
+          [void Function(GUserUpdateInputBuilder)? updates]) =>
+      (new GUserUpdateInputBuilder()..update(updates))._build();
+
+  _$GUserUpdateInput._(
+      {this.description,
+      this.email,
+      this.firstName,
+      this.lastName,
+      this.pronoun,
+      this.username})
+      : super._();
+
+  @override
+  GUserUpdateInput rebuild(void Function(GUserUpdateInputBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GUserUpdateInputBuilder toBuilder() =>
+      new GUserUpdateInputBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GUserUpdateInput &&
+        description == other.description &&
+        email == other.email &&
+        firstName == other.firstName &&
+        lastName == other.lastName &&
+        pronoun == other.pronoun &&
+        username == other.username;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, description.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, firstName.hashCode);
+    _$hash = $jc(_$hash, lastName.hashCode);
+    _$hash = $jc(_$hash, pronoun.hashCode);
+    _$hash = $jc(_$hash, username.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GUserUpdateInput')
+          ..add('description', description)
+          ..add('email', email)
+          ..add('firstName', firstName)
+          ..add('lastName', lastName)
+          ..add('pronoun', pronoun)
+          ..add('username', username))
+        .toString();
+  }
+}
+
+class GUserUpdateInputBuilder
+    implements Builder<GUserUpdateInput, GUserUpdateInputBuilder> {
+  _$GUserUpdateInput? _$v;
+
+  String? _description;
+  String? get description => _$this._description;
+  set description(String? description) => _$this._description = description;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  String? _firstName;
+  String? get firstName => _$this._firstName;
+  set firstName(String? firstName) => _$this._firstName = firstName;
+
+  String? _lastName;
+  String? get lastName => _$this._lastName;
+  set lastName(String? lastName) => _$this._lastName = lastName;
+
+  String? _pronoun;
+  String? get pronoun => _$this._pronoun;
+  set pronoun(String? pronoun) => _$this._pronoun = pronoun;
+
+  String? _username;
+  String? get username => _$this._username;
+  set username(String? username) => _$this._username = username;
+
+  GUserUpdateInputBuilder();
+
+  GUserUpdateInputBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _description = $v.description;
+      _email = $v.email;
+      _firstName = $v.firstName;
+      _lastName = $v.lastName;
+      _pronoun = $v.pronoun;
+      _username = $v.username;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GUserUpdateInput other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GUserUpdateInput;
+  }
+
+  @override
+  void update(void Function(GUserUpdateInputBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GUserUpdateInput build() => _build();
+
+  _$GUserUpdateInput _build() {
+    final _$result = _$v ??
+        new _$GUserUpdateInput._(
+            description: description,
+            email: email,
+            firstName: firstName,
+            lastName: lastName,
+            pronoun: pronoun,
+            username: username);
     replace(_$result);
     return _$result;
   }

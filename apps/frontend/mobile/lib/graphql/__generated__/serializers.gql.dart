@@ -18,9 +18,43 @@ import 'package:mobile/graphql/__generated__/auth.req.gql.dart'
     show GTokenFieldsReq, GloginReq, GrefreshTokenReq;
 import 'package:mobile/graphql/__generated__/auth.var.gql.dart'
     show GTokenFieldsVars, GloginVars, GrefreshTokenVars;
+import 'package:mobile/graphql/__generated__/provider.data.gql.dart'
+    show
+        GBaseProviderData,
+        GProviderManifestActionData,
+        GProviderManifestTriggerData,
+        GProviderWithManifestData,
+        GProviderWithManifestData_manifest,
+        GProviderWithManifestData_manifest_actions,
+        GProviderWithManifestData_manifest_triggers,
+        GgetAllProvidersData,
+        GgetAllProvidersData_getAllProviders,
+        GgetProviderByIdData,
+        GgetProviderByIdData_getProviderById,
+        GgetProviderByIdData_getProviderById_manifest,
+        GgetProviderByIdData_getProviderById_manifest_actions,
+        GgetProviderByIdData_getProviderById_manifest_triggers;
+import 'package:mobile/graphql/__generated__/provider.req.gql.dart'
+    show
+        GBaseProviderReq,
+        GProviderManifestActionReq,
+        GProviderManifestTriggerReq,
+        GProviderWithManifestReq,
+        GgetAllProvidersReq,
+        GgetProviderByIdReq;
+import 'package:mobile/graphql/__generated__/provider.var.gql.dart'
+    show
+        GBaseProviderVars,
+        GProviderManifestActionVars,
+        GProviderManifestTriggerVars,
+        GProviderWithManifestVars,
+        GgetAllProvidersVars,
+        GgetProviderByIdVars;
 import 'package:mobile/graphql/__generated__/schema.schema.gql.dart'
     show
-        GAppletSubscribeInput,
+        GAppletCreateInput,
+        GAppletNodeCreateInput,
+        GAppletNodeType,
         GAuthPasswordInput,
         GAuthRefreshTokenInput,
         GDateTime,
@@ -28,7 +62,8 @@ import 'package:mobile/graphql/__generated__/schema.schema.gql.dart'
         GProviderCreateInput,
         GProviderVisibility,
         GUserCreateInput,
-        GUserRegisterInput;
+        GUserRegisterInput,
+        GUserUpdateInput;
 import 'package:mobile/graphql/__generated__/user.data.gql.dart'
     show
         GUserData,
@@ -47,13 +82,30 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   ..add(OperationSerializer())
   ..addPlugin(StandardJsonPlugin());
 @SerializersFor([
-  GAppletSubscribeInput,
+  GAppletCreateInput,
+  GAppletNodeCreateInput,
+  GAppletNodeType,
   GAuthPasswordInput,
   GAuthRefreshTokenInput,
+  GBaseProviderData,
+  GBaseProviderReq,
+  GBaseProviderVars,
   GDateTime,
   GJSON,
   GProviderCreateInput,
+  GProviderManifestActionData,
+  GProviderManifestActionReq,
+  GProviderManifestActionVars,
+  GProviderManifestTriggerData,
+  GProviderManifestTriggerReq,
+  GProviderManifestTriggerVars,
   GProviderVisibility,
+  GProviderWithManifestData,
+  GProviderWithManifestData_manifest,
+  GProviderWithManifestData_manifest_actions,
+  GProviderWithManifestData_manifest_triggers,
+  GProviderWithManifestReq,
+  GProviderWithManifestVars,
   GTokenFieldsData,
   GTokenFieldsReq,
   GTokenFieldsVars,
@@ -61,11 +113,23 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GUserData,
   GUserRegisterInput,
   GUserReq,
+  GUserUpdateInput,
   GUserVars,
+  GgetAllProvidersData,
+  GgetAllProvidersData_getAllProviders,
+  GgetAllProvidersReq,
+  GgetAllProvidersVars,
   GgetMeData,
   GgetMeData_getMe,
   GgetMeReq,
   GgetMeVars,
+  GgetProviderByIdData,
+  GgetProviderByIdData_getProviderById,
+  GgetProviderByIdData_getProviderById_manifest,
+  GgetProviderByIdData_getProviderById_manifest_actions,
+  GgetProviderByIdData_getProviderById_manifest_triggers,
+  GgetProviderByIdReq,
+  GgetProviderByIdVars,
   GloginData,
   GloginData_login,
   GloginReq,

@@ -11,33 +11,72 @@ import 'package:mobile/graphql/__generated__/serializers.gql.dart' as _i1;
 
 part 'schema.schema.gql.g.dart';
 
-abstract class GAppletSubscribeInput
-    implements Built<GAppletSubscribeInput, GAppletSubscribeInputBuilder> {
-  GAppletSubscribeInput._();
+abstract class GAppletCreateInput
+    implements Built<GAppletCreateInput, GAppletCreateInputBuilder> {
+  GAppletCreateInput._();
 
-  factory GAppletSubscribeInput(
-          [void Function(GAppletSubscribeInputBuilder b) updates]) =
-      _$GAppletSubscribeInput;
+  factory GAppletCreateInput(
+          [void Function(GAppletCreateInputBuilder b) updates]) =
+      _$GAppletCreateInput;
 
-  String get channelIdInput;
-  String get channelIdOutput;
-  String get guildIdInput;
-  String get guildIdOutput;
-  String get message;
+  String? get description;
   String get name;
-  static Serializer<GAppletSubscribeInput> get serializer =>
-      _$gAppletSubscribeInputSerializer;
+  BuiltList<GAppletNodeCreateInput> get triggerNodes;
+  static Serializer<GAppletCreateInput> get serializer =>
+      _$gAppletCreateInputSerializer;
 
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GAppletSubscribeInput.serializer,
+        GAppletCreateInput.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GAppletSubscribeInput? fromJson(Map<String, dynamic> json) =>
+  static GAppletCreateInput? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
-        GAppletSubscribeInput.serializer,
+        GAppletCreateInput.serializer,
         json,
       );
+}
+
+abstract class GAppletNodeCreateInput
+    implements Built<GAppletNodeCreateInput, GAppletNodeCreateInputBuilder> {
+  GAppletNodeCreateInput._();
+
+  factory GAppletNodeCreateInput(
+          [void Function(GAppletNodeCreateInputBuilder b) updates]) =
+      _$GAppletNodeCreateInput;
+
+  String get actionId;
+  GJSON get input;
+  BuiltList<GAppletNodeCreateInput> get next;
+  int get providerId;
+  static Serializer<GAppletNodeCreateInput> get serializer =>
+      _$gAppletNodeCreateInputSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GAppletNodeCreateInput.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GAppletNodeCreateInput? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GAppletNodeCreateInput.serializer,
+        json,
+      );
+}
+
+class GAppletNodeType extends EnumClass {
+  const GAppletNodeType._(String name) : super(name);
+
+  static const GAppletNodeType ACTION = _$gAppletNodeTypeACTION;
+
+  static const GAppletNodeType TRIGGER = _$gAppletNodeTypeTRIGGER;
+
+  static Serializer<GAppletNodeType> get serializer =>
+      _$gAppletNodeTypeSerializer;
+
+  static BuiltSet<GAppletNodeType> get values => _$gAppletNodeTypeValues;
+
+  static GAppletNodeType valueOf(String name) => _$gAppletNodeTypeValueOf(name);
 }
 
 abstract class GAuthPasswordInput
@@ -212,6 +251,34 @@ abstract class GUserRegisterInput
   static GUserRegisterInput? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GUserRegisterInput.serializer,
+        json,
+      );
+}
+
+abstract class GUserUpdateInput
+    implements Built<GUserUpdateInput, GUserUpdateInputBuilder> {
+  GUserUpdateInput._();
+
+  factory GUserUpdateInput([void Function(GUserUpdateInputBuilder b) updates]) =
+      _$GUserUpdateInput;
+
+  String? get description;
+  String? get email;
+  String? get firstName;
+  String? get lastName;
+  String? get pronoun;
+  String? get username;
+  static Serializer<GUserUpdateInput> get serializer =>
+      _$gUserUpdateInputSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GUserUpdateInput.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GUserUpdateInput? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GUserUpdateInput.serializer,
         json,
       );
 }

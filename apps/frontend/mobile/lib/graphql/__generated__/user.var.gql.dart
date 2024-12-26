@@ -29,6 +29,28 @@ abstract class GgetMeVars implements Built<GgetMeVars, GgetMeVarsBuilder> {
       );
 }
 
+abstract class GupdateMeVars
+    implements Built<GupdateMeVars, GupdateMeVarsBuilder> {
+  GupdateMeVars._();
+
+  factory GupdateMeVars([void Function(GupdateMeVarsBuilder b) updates]) =
+      _$GupdateMeVars;
+
+  _i2.GUserUpdateInput get data;
+  static Serializer<GupdateMeVars> get serializer => _$gupdateMeVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GupdateMeVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GupdateMeVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GupdateMeVars.serializer,
+        json,
+      );
+}
+
 abstract class GregisterVars
     implements Built<GregisterVars, GregisterVarsBuilder> {
   GregisterVars._();

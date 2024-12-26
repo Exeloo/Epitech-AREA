@@ -62,8 +62,7 @@ class UserRepository {
     }
   }
 
-  Future<GupdateUserData?> updateUser({
-    required String id,
+  Future<GupdateMeData?> updateUser({
     required String email,
     required String username,
     required String firstName,
@@ -72,8 +71,7 @@ class UserRepository {
     String? pronoun,
     String? picture,
   }) async {
-    final updateUserReq = GupdateUserReq((b) => b
-      ..vars.data.id = id
+    final updateUserReq = GupdateMeReq((b) => b
       ..vars.data.email = email
       ..vars.data.username = username
       ..vars.data.firstName = firstName

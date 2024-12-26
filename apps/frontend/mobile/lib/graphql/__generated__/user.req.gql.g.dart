@@ -7,6 +7,8 @@ part of 'user.req.gql.dart';
 // **************************************************************************
 
 Serializer<GgetMeReq> _$ggetMeReqSerializer = new _$GgetMeReqSerializer();
+Serializer<GupdateMeReq> _$gupdateMeReqSerializer =
+    new _$GupdateMeReqSerializer();
 Serializer<GregisterReq> _$gregisterReqSerializer =
     new _$GregisterReqSerializer();
 Serializer<GUserReq> _$gUserReqSerializer = new _$GUserReqSerializer();
@@ -99,6 +101,123 @@ class _$GgetMeReqSerializer implements StructuredSerializer<GgetMeReq> {
           result.optimisticResponse.replace(serializers.deserialize(value,
                   specifiedType: const FullType(_i2.GgetMeData))!
               as _i2.GgetMeData);
+          break;
+        case 'updateCacheHandlerKey':
+          result.updateCacheHandlerKey = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'updateCacheHandlerContext':
+          result.updateCacheHandlerContext = serializers.deserialize(value,
+              specifiedType: const FullType(Map, const [
+                const FullType(String),
+                const FullType(dynamic)
+              ])) as Map<String, dynamic>?;
+          break;
+        case 'fetchPolicy':
+          result.fetchPolicy = serializers.deserialize(value,
+                  specifiedType: const FullType(_i1.FetchPolicy))
+              as _i1.FetchPolicy?;
+          break;
+        case 'executeOnListen':
+          result.executeOnListen = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GupdateMeReqSerializer implements StructuredSerializer<GupdateMeReq> {
+  @override
+  final Iterable<Type> types = const [GupdateMeReq, _$GupdateMeReq];
+  @override
+  final String wireName = 'GupdateMeReq';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GupdateMeReq object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'vars',
+      serializers.serialize(object.vars,
+          specifiedType: const FullType(_i3.GupdateMeVars)),
+      'operation',
+      serializers.serialize(object.operation,
+          specifiedType: const FullType(_i4.Operation)),
+      'executeOnListen',
+      serializers.serialize(object.executeOnListen,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.requestId;
+    if (value != null) {
+      result
+        ..add('requestId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.optimisticResponse;
+    if (value != null) {
+      result
+        ..add('optimisticResponse')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(_i2.GupdateMeData)));
+    }
+    value = object.updateCacheHandlerKey;
+    if (value != null) {
+      result
+        ..add('updateCacheHandlerKey')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.updateCacheHandlerContext;
+    if (value != null) {
+      result
+        ..add('updateCacheHandlerContext')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                Map, const [const FullType(String), const FullType(dynamic)])));
+    }
+    value = object.fetchPolicy;
+    if (value != null) {
+      result
+        ..add('fetchPolicy')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(_i1.FetchPolicy)));
+    }
+    return result;
+  }
+
+  @override
+  GupdateMeReq deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GupdateMeReqBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'vars':
+          result.vars.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i3.GupdateMeVars))!
+              as _i3.GupdateMeVars);
+          break;
+        case 'operation':
+          result.operation = serializers.deserialize(value,
+              specifiedType: const FullType(_i4.Operation))! as _i4.Operation;
+          break;
+        case 'requestId':
+          result.requestId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'optimisticResponse':
+          result.optimisticResponse.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i2.GupdateMeData))!
+              as _i2.GupdateMeData);
           break;
         case 'updateCacheHandlerKey':
           result.updateCacheHandlerKey = serializers.deserialize(value,
@@ -536,6 +655,239 @@ class GgetMeReqBuilder implements Builder<GgetMeReq, GgetMeReqBuilder> {
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'GgetMeReq', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GupdateMeReq extends GupdateMeReq {
+  @override
+  final _i3.GupdateMeVars vars;
+  @override
+  final _i4.Operation operation;
+  @override
+  final String? requestId;
+  @override
+  final _i2.GupdateMeData? Function(_i2.GupdateMeData?, _i2.GupdateMeData?)?
+      updateResult;
+  @override
+  final _i2.GupdateMeData? optimisticResponse;
+  @override
+  final String? updateCacheHandlerKey;
+  @override
+  final Map<String, dynamic>? updateCacheHandlerContext;
+  @override
+  final _i1.FetchPolicy? fetchPolicy;
+  @override
+  final bool executeOnListen;
+  @override
+  final _i4.Context? context;
+
+  factory _$GupdateMeReq([void Function(GupdateMeReqBuilder)? updates]) =>
+      (new GupdateMeReqBuilder()..update(updates))._build();
+
+  _$GupdateMeReq._(
+      {required this.vars,
+      required this.operation,
+      this.requestId,
+      this.updateResult,
+      this.optimisticResponse,
+      this.updateCacheHandlerKey,
+      this.updateCacheHandlerContext,
+      this.fetchPolicy,
+      required this.executeOnListen,
+      this.context})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(vars, r'GupdateMeReq', 'vars');
+    BuiltValueNullFieldError.checkNotNull(
+        operation, r'GupdateMeReq', 'operation');
+    BuiltValueNullFieldError.checkNotNull(
+        executeOnListen, r'GupdateMeReq', 'executeOnListen');
+  }
+
+  @override
+  GupdateMeReq rebuild(void Function(GupdateMeReqBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GupdateMeReqBuilder toBuilder() => new GupdateMeReqBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    final dynamic _$dynamicOther = other;
+    return other is GupdateMeReq &&
+        vars == other.vars &&
+        operation == other.operation &&
+        requestId == other.requestId &&
+        updateResult == _$dynamicOther.updateResult &&
+        optimisticResponse == other.optimisticResponse &&
+        updateCacheHandlerKey == other.updateCacheHandlerKey &&
+        updateCacheHandlerContext == other.updateCacheHandlerContext &&
+        fetchPolicy == other.fetchPolicy &&
+        executeOnListen == other.executeOnListen &&
+        context == other.context;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, vars.hashCode);
+    _$hash = $jc(_$hash, operation.hashCode);
+    _$hash = $jc(_$hash, requestId.hashCode);
+    _$hash = $jc(_$hash, updateResult.hashCode);
+    _$hash = $jc(_$hash, optimisticResponse.hashCode);
+    _$hash = $jc(_$hash, updateCacheHandlerKey.hashCode);
+    _$hash = $jc(_$hash, updateCacheHandlerContext.hashCode);
+    _$hash = $jc(_$hash, fetchPolicy.hashCode);
+    _$hash = $jc(_$hash, executeOnListen.hashCode);
+    _$hash = $jc(_$hash, context.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GupdateMeReq')
+          ..add('vars', vars)
+          ..add('operation', operation)
+          ..add('requestId', requestId)
+          ..add('updateResult', updateResult)
+          ..add('optimisticResponse', optimisticResponse)
+          ..add('updateCacheHandlerKey', updateCacheHandlerKey)
+          ..add('updateCacheHandlerContext', updateCacheHandlerContext)
+          ..add('fetchPolicy', fetchPolicy)
+          ..add('executeOnListen', executeOnListen)
+          ..add('context', context))
+        .toString();
+  }
+}
+
+class GupdateMeReqBuilder
+    implements Builder<GupdateMeReq, GupdateMeReqBuilder> {
+  _$GupdateMeReq? _$v;
+
+  _i3.GupdateMeVarsBuilder? _vars;
+  _i3.GupdateMeVarsBuilder get vars =>
+      _$this._vars ??= new _i3.GupdateMeVarsBuilder();
+  set vars(_i3.GupdateMeVarsBuilder? vars) => _$this._vars = vars;
+
+  _i4.Operation? _operation;
+  _i4.Operation? get operation => _$this._operation;
+  set operation(_i4.Operation? operation) => _$this._operation = operation;
+
+  String? _requestId;
+  String? get requestId => _$this._requestId;
+  set requestId(String? requestId) => _$this._requestId = requestId;
+
+  _i2.GupdateMeData? Function(_i2.GupdateMeData?, _i2.GupdateMeData?)?
+      _updateResult;
+  _i2.GupdateMeData? Function(_i2.GupdateMeData?, _i2.GupdateMeData?)?
+      get updateResult => _$this._updateResult;
+  set updateResult(
+          _i2.GupdateMeData? Function(_i2.GupdateMeData?, _i2.GupdateMeData?)?
+              updateResult) =>
+      _$this._updateResult = updateResult;
+
+  _i2.GupdateMeDataBuilder? _optimisticResponse;
+  _i2.GupdateMeDataBuilder get optimisticResponse =>
+      _$this._optimisticResponse ??= new _i2.GupdateMeDataBuilder();
+  set optimisticResponse(_i2.GupdateMeDataBuilder? optimisticResponse) =>
+      _$this._optimisticResponse = optimisticResponse;
+
+  String? _updateCacheHandlerKey;
+  String? get updateCacheHandlerKey => _$this._updateCacheHandlerKey;
+  set updateCacheHandlerKey(String? updateCacheHandlerKey) =>
+      _$this._updateCacheHandlerKey = updateCacheHandlerKey;
+
+  Map<String, dynamic>? _updateCacheHandlerContext;
+  Map<String, dynamic>? get updateCacheHandlerContext =>
+      _$this._updateCacheHandlerContext;
+  set updateCacheHandlerContext(
+          Map<String, dynamic>? updateCacheHandlerContext) =>
+      _$this._updateCacheHandlerContext = updateCacheHandlerContext;
+
+  _i1.FetchPolicy? _fetchPolicy;
+  _i1.FetchPolicy? get fetchPolicy => _$this._fetchPolicy;
+  set fetchPolicy(_i1.FetchPolicy? fetchPolicy) =>
+      _$this._fetchPolicy = fetchPolicy;
+
+  bool? _executeOnListen;
+  bool? get executeOnListen => _$this._executeOnListen;
+  set executeOnListen(bool? executeOnListen) =>
+      _$this._executeOnListen = executeOnListen;
+
+  _i4.Context? _context;
+  _i4.Context? get context => _$this._context;
+  set context(_i4.Context? context) => _$this._context = context;
+
+  GupdateMeReqBuilder() {
+    GupdateMeReq._initializeBuilder(this);
+  }
+
+  GupdateMeReqBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _vars = $v.vars.toBuilder();
+      _operation = $v.operation;
+      _requestId = $v.requestId;
+      _updateResult = $v.updateResult;
+      _optimisticResponse = $v.optimisticResponse?.toBuilder();
+      _updateCacheHandlerKey = $v.updateCacheHandlerKey;
+      _updateCacheHandlerContext = $v.updateCacheHandlerContext;
+      _fetchPolicy = $v.fetchPolicy;
+      _executeOnListen = $v.executeOnListen;
+      _context = $v.context;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GupdateMeReq other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GupdateMeReq;
+  }
+
+  @override
+  void update(void Function(GupdateMeReqBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GupdateMeReq build() => _build();
+
+  _$GupdateMeReq _build() {
+    _$GupdateMeReq _$result;
+    try {
+      _$result = _$v ??
+          new _$GupdateMeReq._(
+              vars: vars.build(),
+              operation: BuiltValueNullFieldError.checkNotNull(
+                  operation, r'GupdateMeReq', 'operation'),
+              requestId: requestId,
+              updateResult: updateResult,
+              optimisticResponse: _optimisticResponse?.build(),
+              updateCacheHandlerKey: updateCacheHandlerKey,
+              updateCacheHandlerContext: updateCacheHandlerContext,
+              fetchPolicy: fetchPolicy,
+              executeOnListen: BuiltValueNullFieldError.checkNotNull(
+                  executeOnListen, r'GupdateMeReq', 'executeOnListen'),
+              context: context);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'vars';
+        vars.build();
+
+        _$failedField = 'optimisticResponse';
+        _optimisticResponse?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GupdateMeReq', _$failedField, e.toString());
       }
       rethrow;
     }

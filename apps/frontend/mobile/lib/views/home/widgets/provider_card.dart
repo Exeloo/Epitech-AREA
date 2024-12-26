@@ -4,7 +4,7 @@ class ProviderCard extends StatelessWidget {
   final String logoUrl;
   final String providerName;
 
-  ProviderCard({
+  const ProviderCard({super.key,
     required this.logoUrl,
     required this.providerName,
   });
@@ -26,7 +26,7 @@ class ProviderCard extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          child: Column(
+          child: const Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(height: 20),

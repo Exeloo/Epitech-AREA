@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:ferry/ferry.dart';
 import 'package:mobile/graphql/__generated__/user.data.gql.dart';
-import 'package:mobile/graphql/__generated__/user.req.gql.dart';!
+import 'package:mobile/graphql/__generated__/user.req.gql.dart';
 
 class UserRepository {
   final Client client;

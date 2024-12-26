@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:ferry/ferry.dart';
 import 'package:mobile/graphql/__generated__/provider.req.gql.dart';
 import 'package:mobile/graphql/__generated__/provider.data.gql.dart';
@@ -14,37 +16,37 @@ class ProviderRepository {
       final response = await client.request(getAllProvidersReq).first;
 
       if (response.loading) {
-        print('Loading...');
+        log('Loading...');
       } else if (response.hasErrors) {
-        print('Errors: ${response.graphqlErrors}');
+        log('Errors: ${response.graphqlErrors}');
       } else {
-        print('Response: ${response.data}');
+        log('Response: ${response.data}');
       }
 
       return response.data;
     } catch (e) {
-      print('Login error : $e');
+      log('Login error : $e');
       rethrow;
     }
   }
 
-  Future<GgetProviderByIdData?> getProviderById({required int Id}) async {
-    final getProviderById = GgetProviderByIdReq((b) => b..vars.id = Id);
+  Future<GgetProviderByIdData?> getProviderById({required int id}) async {
+    final getProviderById = GgetProviderByIdReq((b) => b..vars.id = id);
 
     try {
       final response = await client.request(getProviderById).first;
 
       if (response.loading) {
-        print('Loading...');
+        log('Loading...');
       } else if (response.hasErrors) {
-        print('Errors: ${response.graphqlErrors}');
+        log('Errors: ${response.graphqlErrors}');
       } else {
-        print('Response: ${response.data}');
+        log('Response: ${response.data}');
       }
 
       return response.data;
     } catch (e) {
-      print('Login error : $e');
+      log('Login error : $e');
       rethrow;
     }
   }

@@ -36,7 +36,28 @@ class UserRepository {
 
       return response.data;
     } catch (e) {
-      log('Login error : $e');
+      log('Register error: $e');
+      rethrow;
+    }
+  }
+
+  Future<GgetMeData?> getMe() async {
+    final getMeReq = GgetMeReq();
+
+    try {
+      final response = await client.request(getMeReq).first;
+
+      if (response.loading) {
+        log('Loading...');
+      } else if (response.hasErrors) {
+        log('Errors: ${response.graphqlErrors}');
+      } else {
+        log('Response: ${response.data}');
+      }
+
+      return response.data;
+    } catch (e) {
+      log('GetMe error: $e');
       rethrow;
     }
   }

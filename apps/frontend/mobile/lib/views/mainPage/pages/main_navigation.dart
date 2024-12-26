@@ -144,7 +144,6 @@ class Page3 extends StatelessWidget {
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) {
-          // Determine if the screen is in portrait or landscape mode
           bool isPortrait = constraints.maxWidth < constraints.maxHeight;
 
           return Center(
@@ -177,7 +176,6 @@ class Page3 extends StatelessWidget {
                   const SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: () {
-                      // Handle edit profile action
                       print('Edit Profile button pressed');
                     },
                     child: const Text('Edit Profile'),
@@ -185,7 +183,6 @@ class Page3 extends StatelessWidget {
                   const SizedBox(height: 8),
                   ElevatedButton(
                     onPressed: () {
-                      // Handle logout action
                       print('Logout button pressed');
                     },
                     child: const Text('Logout'),

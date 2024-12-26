@@ -13,6 +13,6 @@ void main() {
   testWidgets('Sign in button is present', (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp());
 
-    expect(find.text('Get Started !'), findsOneWidget);
+    expect(find.text('Sign Up'), findsOneWidget);
   });
 }

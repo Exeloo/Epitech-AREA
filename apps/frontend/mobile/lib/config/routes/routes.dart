@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:mobile/views/home/pages/home.dart';
 
 class AppRoutes {
@@ -7,7 +6,7 @@ class AppRoutes {
 
   static Map<String, WidgetBuilder> getRoutes() {
     return {
-      home: (context) => HomePage(),
+      home: (context) => const HomePage(),
     };
   }
 }

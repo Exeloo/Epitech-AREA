@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:mobile/graphql/__generated__/auth.data.gql.dart';
 
@@ -10,13 +12,13 @@ class AuthHelper {
 
       return authToken;
     } catch (e) {
-      print("Failed to get token : $e");
+      log("Failed to get token : $e");
     }
     return null;
   }
 
   Future<void> handleLogin(GloginData? response) async {
-    if (response != null && response.login?.token != null) {
+    if (response != null) {
       try {
         await storage.write(key: "auth_token", value: response.login.token);
       } on Exception catch (e) {

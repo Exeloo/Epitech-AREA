@@ -5,8 +5,7 @@ class MyCard extends StatelessWidget {
   final Color backgroundColor;
   final String text;
 
-  const MyCard({Key? key, required this.backgroundColor, required this.text})
-      : super(key: key);
+  const MyCard({super.key, required this.backgroundColor, required this.text});
 
   @override
   Widget build(BuildContext context) {

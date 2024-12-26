@@ -7,6 +7,7 @@ on:
 
 env:
   MIRROR_URL: "git@github.com:EpitechPromo2027/B-DEV-500-PAR-5-2-area-matteo.emile.git"
+  REGISTRY_URL: "registry.area.tech.showmyteam.fr"
 
 jobs:
   push:
@@ -23,11 +24,16 @@ jobs:
         run: |
           sudo curl -L "https://github.com/docker/compose/releases/download/v2.3.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
           sudo chmod +x /usr/local/bin/docker-compose
-          docker-compose --version
       - name: copy env.example to env
         run: cp apps/frontend/web/.env.example apps/frontend/web/.env
       - name: Build
-        run: "docker-compose --env-file .env.example build"
+        run: docker-compose --env-file .env.example build
+      - name: Save Docker cache
+        uses: actions/cache@v4
+        with:
+          path: /var/lib/docker
+          key: ${{ runner.os }}-docker-cache
+          restore-keys: ${{ runner.os }}-docker-cache
 
   tests:
     name: Tests
@@ -71,3 +77,31 @@ jobs:
             ${{ env.MIRROR_URL }}
           ssh_private_key:
             ${{ secrets.GIT_SSH_PRIVATE_KEY }}
+
+  deploy:
+    name: "Push Docker Images to Docker Registry"
+    runs-on: ubuntu-latest
+
+    needs: tests
+#    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - name: Install Docker using Docker's official script
+        run: |
+          curl -fsSL https://get.docker.com -o get-docker.sh
+          sudo sh get-docker.sh
+      - name: Install Docker Compose
+        run: |
+          sudo curl -L "https://github.com/docker/compose/releases/download/v2.3.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
+      - name: Restore Docker cache
+        uses: actions/cache@v4
+        with:
+          path: /var/lib/docker
+          key: ${{ runner.os }}-docker-cache
+          restore-keys: ${{ runner.os }}-docker-cache
+      - name: Login to Docker Registry
+        run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login ${{ env.REGISTRY_URL }} --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
+      - name: Push images to registry
+        run: |
+          docker-compose images | awk '{print $1}' | tail -n +2 | xargs -I {} docker tag {} ${{ env.REGISTRY_URL }}{}
+          docker-compose images | awk '{print $1}' | tail -n +2 | xargs -I {} docker push ${{ env.REGISTRY_URL }}{}

@@ -12,7 +12,7 @@ import { ID } from "@d-type/id.type";
 
 import { ProviderVisibility } from "@domain/provider/enums/provider-visibility.enum";
 import { ManifestService } from "@domain/provider/manifest/manifest.service";
-import { IManifest } from "@domain/provider/manifest/types/manifest.type";
+import { IExposedManifest } from "@domain/provider/manifest/types/manifest.type";
 import { ProviderService } from "@domain/provider/provider.service";
 import { IProviderCreateInput } from "@domain/provider/types/provider.input.type";
 import { IExposedProvider } from "@domain/provider/types/provider.type";
@@ -49,8 +49,8 @@ export class ProviderResolver {
   @ResolveField(() => ProviderManifest, {
     description: "Provider Manifest with all actions and reactions",
   })
-  manifest(provider: IExposedProvider): Promise<IManifest> {
-    return this.manifestService.getByProviderId(provider.id);
+  manifest(provider: IExposedProvider): Promise<IExposedManifest> {
+    return this.manifestService.getExposedByProviderId(provider.id);
   }
 
   @Query(() => [Provider], { description: "Get all providers" })

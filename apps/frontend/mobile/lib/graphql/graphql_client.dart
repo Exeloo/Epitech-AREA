@@ -1,6 +1,6 @@
 import 'package:ferry/ferry.dart';
-import 'package:gql_http_link/gql_http_link.dart';
 import 'package:mobile/modules/auth/auth_helper.dart';
+import 'httpauthlink.dart'; // The custom link we just defined
 
 class GraphQlClient {
   factory GraphQlClient() {
@@ -19,30 +19,20 @@ class GraphQlClient {
     _client?.dispose();
   }
 
-   static Link _createLink() {
-    final authHelper = AuthHelper();
-    final httpLink = HttpLink(_resolveBaseUrl());
+  static Link _createLink() {
+    // Instead of using HttpLink + your inline logic,
+    // we use HttpAuthLink from the adapted class
+    final authLink = HttpAuthLink(
+      baseUrl: _resolveBaseUrl(),
+      authHelper: AuthHelper(),
+    );
 
-    final authLink = Link.function((request, [forward]) async* {
-      final token = await authHelper.getAuthToken();
-      print('Token: $token');
-      var headers = Map<String, String>.from(request.context.entry<HttpLinkHeaders>()?.headers ?? {});
-      if (token != null) {
-        headers['Authorization'] = 'Bearer $token';
-      }
-      request.updateContextEntry<HttpLinkHeaders>(
-        (_) => HttpLinkHeaders(headers: headers),
-      );
-      print('Request: ${request.operation.document}');
-      print('Headers: ${headers}');
-      yield* forward!(request);
-    });
-
-    return authLink.concat(httpLink);
+    return authLink;
   }
 }
 
 String _resolveBaseUrl() {
+  // same logic from your code for local dev vs. emulator
   const String localhost = 'http://10.0.2.2:8080/graphql';
   const String defaultUrl = 'http://localhost:8080/graphql';
 

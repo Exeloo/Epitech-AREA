@@ -173,6 +173,7 @@ class _Page4State extends State<Page4> {
       setState(() {
         user = userData?.getMe;
         if (user != null) {
+          _emailController.text = user!.email;
           _usernameController.text = user!.username;
           _firstNameController.text = user!.firstName;
           _lastNameController.text = user!.lastName;

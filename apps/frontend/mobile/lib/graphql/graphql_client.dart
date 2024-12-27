@@ -1,6 +1,6 @@
 import 'package:ferry/ferry.dart';
 import 'package:mobile/modules/auth/auth_helper.dart';
-import 'httpauthlink.dart'; // The custom link we just defined
+import 'httpauthlink.dart';
 
 class GraphQlClient {
   factory GraphQlClient() {
@@ -20,8 +20,6 @@ class GraphQlClient {
   }
 
   static Link _createLink() {
-    // Instead of using HttpLink + your inline logic,
-    // we use HttpAuthLink from the adapted class
     final authLink = HttpAuthLink(
       baseUrl: _resolveBaseUrl(),
       authHelper: AuthHelper(),
@@ -32,7 +30,6 @@ class GraphQlClient {
 }
 
 String _resolveBaseUrl() {
-  // same logic from your code for local dev vs. emulator
   const String localhost = 'http://10.0.2.2:8080/graphql';
   const String defaultUrl = 'http://localhost:8080/graphql';
 

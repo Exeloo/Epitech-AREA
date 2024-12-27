@@ -2,7 +2,6 @@ import { HttpService } from "@nestjs/axios";
 import { Injectable, OnModuleInit } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { InjectRepository } from "@nestjs/typeorm";
-import { firstValueFrom } from "rxjs";
 import { Repository } from "typeorm";
 
 import { AppGateway } from "~/app.gateway";
@@ -47,16 +46,16 @@ export class TriggerService implements OnModuleInit {
   }
 
   async fetchAllTriggers(): Promise<void> {
-    const res = await firstValueFrom(
-      this.httpService.get("/area/triggers", {
-        headers: {
-          "api-key": this.apiKey,
-        },
-        baseURL: this.baseUrl,
-      }),
-    );
-    await this.triggerRepository.clear();
-    await this.triggerRepository.save<TriggerEntity>(res.data);
+    // const res = await firstValueFrom(
+    //   this.httpService.get("/area/triggers", {
+    //     headers: {
+    //       "api-key": this.apiKey,
+    //     },
+    //     baseURL: this.baseUrl,
+    //   }),
+    // );
+    // await this.triggerRepository.clear();
+    // await this.triggerRepository.save<TriggerEntity>(res.data);
   }
 
   private async getAllTriggerByAction(

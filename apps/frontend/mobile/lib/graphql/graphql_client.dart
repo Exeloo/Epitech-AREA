@@ -1,9 +1,10 @@
 import 'package:ferry/ferry.dart';
 import 'package:gql_http_link/gql_http_link.dart';
+import 'package:mobile/modules/auth/auth_helper.dart';
 
 class GraphQlClient {
   factory GraphQlClient() {
-    _client ??= Client(link: HttpLink(_resolveBaseUrl()));
+    _client ??= Client(link: _createLink());
     return _singleton;
   }
 
@@ -16,6 +17,28 @@ class GraphQlClient {
 
   void dispose() {
     _client?.dispose();
+  }
+
+   static Link _createLink() {
+    final authHelper = AuthHelper();
+    final httpLink = HttpLink(_resolveBaseUrl());
+
+    final authLink = Link.function((request, [forward]) async* {
+      final token = await authHelper.getAuthToken();
+      print('Token: $token');
+      var headers = Map<String, String>.from(request.context.entry<HttpLinkHeaders>()?.headers ?? {});
+      if (token != null) {
+        headers['Authorization'] = 'Bearer $token';
+      }
+      request.updateContextEntry<HttpLinkHeaders>(
+        (_) => HttpLinkHeaders(headers: headers),
+      );
+      print('Request: ${request.operation.document}');
+      print('Headers: ${headers}');
+      yield* forward!(request);
+    });
+
+    return authLink.concat(httpLink);
   }
 }
 

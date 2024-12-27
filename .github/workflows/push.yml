@@ -30,13 +30,13 @@ jobs:
         run: docker-compose --env-file .env.example build
       - name: Save Docker images as artifacts
         run: |
-          mkdir -p /tmp/docker-images
-          docker images --format '{{.Repository}}:{{.Tag}}' | xargs -I {} sh -c 'docker save {} -o /tmp/docker-images/{}.tar'
+          mkdir -p /mnt/artifacts/docker-images
+          docker images --filter "label=com.docker.compose.project" --format '{{.Repository}}:{{.Tag}}' | xargs -I {} sh -c 'docker save {} -o /mnt/artifacts/docker-images/{}.tar'
       - name: Upload Docker image artifacts
         uses: actions/upload-artifact@v4
         with:
           name: docker-images
-          path: /tmp/docker-images
+          path: /mnt/artifacts/docker-images
 
   tests:
     name: Tests
@@ -100,12 +100,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: docker-images
-          path: /tmp/docker-images
+          path: /mnt/artifacts/docker-images
       - name: Login to Docker Registry
         run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login ${{ env.REGISTRY_URL }} --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Load and Push Docker images
         run: |
-          for image_tar in /tmp/docker-images/*.tar; do
+          for image_tar in /mnt/artifacts/docker-images/*.tar; do
             image_name=$(basename "$image_tar" .tar)
             docker load --input "$image_tar"
             docker tag "$image_name" "${{ env.REGISTRY_URL }}/$image_name:latest"

@@ -1,11 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:mobile/graphql/__generated__/user.data.gql.dart';
-import 'package:mobile/modules/graphql/repository/user_repository.dart';
+import 'package:mobile/views/applet/pages/applet_creation.dart';
 import 'package:mobile/views/home/pages/home.dart';
+import 'package:mobile/modules/graphql/repository/user_repository.dart';
 import 'package:provider/provider.dart';
+import 'package:mobile/graphql/__generated__/user.data.gql.dart';
 
 class MainNavigationPage extends StatefulWidget {
   const MainNavigationPage({super.key});
@@ -94,7 +93,14 @@ class MainNavigationPageState extends State<MainNavigationPage> {
         height: 80,
         width: 80,
         child: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => const AppletCreation(),
+              ),
+            );
+          },
           backgroundColor: const Color(0xff8E44AD),
           shape: const CircleBorder(),
           child: const Icon(
@@ -146,10 +152,10 @@ class Page4 extends StatefulWidget {
   const Page4({super.key});
 
   @override
-  Page4State createState() => Page4State();
+  _Page4State createState() => _Page4State();
 }
 
-class Page4State extends State<Page4> {
+class _Page4State extends State<Page4> {
   late UserRepository userRepository;
   GgetMeData_getMe? user;
 
@@ -170,7 +176,7 @@ class Page4State extends State<Page4> {
 
   Future<void> _fetchUserData() async {
     try {
-      log('Fetching user data');
+      print('Fetching user data');
       final userData = await userRepository.getMe();
       setState(() {
         user = userData?.getMe;
@@ -184,7 +190,7 @@ class Page4State extends State<Page4> {
           _pictureController.text = user!.picture ?? '';
         }
       });
-      log('User data fetched');
+      print('User data fetched');
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('An error occurred: $e')),

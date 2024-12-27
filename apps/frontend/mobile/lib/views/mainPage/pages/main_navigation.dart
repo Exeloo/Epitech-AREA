@@ -226,7 +226,7 @@ class _Page4State extends State<Page4> {
                   children: [
                     CircleAvatar(
                       radius: 50,
-                      backgroundImage: NetworkImage(user!.picture ?? 'https://via.placeholder.com/150'),
+                      backgroundImage: NetworkImage(user!.picture ?? ''),
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
@@ -273,14 +273,6 @@ class _Page4State extends State<Page4> {
                       controller: _pronounController,
                       decoration: const InputDecoration(
                         labelText: 'Pronoun',
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    TextFormField(
-                      controller: _pictureController,
-                      decoration: const InputDecoration(
-                        labelText: 'Picture URL',
                         border: OutlineInputBorder(),
                       ),
                     ),

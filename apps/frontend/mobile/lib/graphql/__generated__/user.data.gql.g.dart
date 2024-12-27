@@ -83,6 +83,9 @@ class _$GgetMeData_getMeSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(int)),
+      'email',
+      serializers.serialize(object.email,
+          specifiedType: const FullType(String)),
       'username',
       serializers.serialize(object.username,
           specifiedType: const FullType(String)),
@@ -137,6 +140,10 @@ class _$GgetMeData_getMeSerializer
         case 'id':
           result.id = serializers.deserialize(value,
               specifiedType: const FullType(int))! as int;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
         case 'username':
           result.username = serializers.deserialize(value,
@@ -238,6 +245,9 @@ class _$GupdateMeData_updateMeSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(int)),
+      'email',
+      serializers.serialize(object.email,
+          specifiedType: const FullType(String)),
       'username',
       serializers.serialize(object.username,
           specifiedType: const FullType(String)),
@@ -292,6 +302,10 @@ class _$GupdateMeData_updateMeSerializer
         case 'id':
           result.id = serializers.deserialize(value,
               specifiedType: const FullType(int))! as int;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
         case 'username':
           result.username = serializers.deserialize(value,
@@ -393,6 +407,9 @@ class _$GregisterData_registerSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(int)),
+      'email',
+      serializers.serialize(object.email,
+          specifiedType: const FullType(String)),
       'username',
       serializers.serialize(object.username,
           specifiedType: const FullType(String)),
@@ -448,6 +465,10 @@ class _$GregisterData_registerSerializer
           result.id = serializers.deserialize(value,
               specifiedType: const FullType(int))! as int;
           break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
         case 'username':
           result.username = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
@@ -494,6 +515,9 @@ class _$GUserDataSerializer implements StructuredSerializer<GUserData> {
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(int)),
+      'email',
+      serializers.serialize(object.email,
+          specifiedType: const FullType(String)),
       'username',
       serializers.serialize(object.username,
           specifiedType: const FullType(String)),
@@ -547,6 +571,10 @@ class _$GUserDataSerializer implements StructuredSerializer<GUserData> {
         case 'id':
           result.id = serializers.deserialize(value,
               specifiedType: const FullType(int))! as int;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
         case 'username':
           result.username = serializers.deserialize(value,
@@ -697,6 +725,8 @@ class _$GgetMeData_getMe extends GgetMeData_getMe {
   @override
   final int id;
   @override
+  final String email;
+  @override
   final String username;
   @override
   final String firstName;
@@ -716,6 +746,7 @@ class _$GgetMeData_getMe extends GgetMeData_getMe {
   _$GgetMeData_getMe._(
       {required this.G__typename,
       required this.id,
+      required this.email,
       required this.username,
       required this.firstName,
       required this.lastName,
@@ -726,6 +757,7 @@ class _$GgetMeData_getMe extends GgetMeData_getMe {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GgetMeData_getMe', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(id, r'GgetMeData_getMe', 'id');
+    BuiltValueNullFieldError.checkNotNull(email, r'GgetMeData_getMe', 'email');
     BuiltValueNullFieldError.checkNotNull(
         username, r'GgetMeData_getMe', 'username');
     BuiltValueNullFieldError.checkNotNull(
@@ -748,6 +780,7 @@ class _$GgetMeData_getMe extends GgetMeData_getMe {
     return other is GgetMeData_getMe &&
         G__typename == other.G__typename &&
         id == other.id &&
+        email == other.email &&
         username == other.username &&
         firstName == other.firstName &&
         lastName == other.lastName &&
@@ -761,6 +794,7 @@ class _$GgetMeData_getMe extends GgetMeData_getMe {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
     _$hash = $jc(_$hash, username.hashCode);
     _$hash = $jc(_$hash, firstName.hashCode);
     _$hash = $jc(_$hash, lastName.hashCode);
@@ -776,6 +810,7 @@ class _$GgetMeData_getMe extends GgetMeData_getMe {
     return (newBuiltValueToStringHelper(r'GgetMeData_getMe')
           ..add('G__typename', G__typename)
           ..add('id', id)
+          ..add('email', email)
           ..add('username', username)
           ..add('firstName', firstName)
           ..add('lastName', lastName)
@@ -797,6 +832,10 @@ class GgetMeData_getMeBuilder
   int? _id;
   int? get id => _$this._id;
   set id(int? id) => _$this._id = id;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
 
   String? _username;
   String? get username => _$this._username;
@@ -831,6 +870,7 @@ class GgetMeData_getMeBuilder
     if ($v != null) {
       _G__typename = $v.G__typename;
       _id = $v.id;
+      _email = $v.email;
       _username = $v.username;
       _firstName = $v.firstName;
       _lastName = $v.lastName;
@@ -863,6 +903,8 @@ class GgetMeData_getMeBuilder
                 G__typename, r'GgetMeData_getMe', 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'GgetMeData_getMe', 'id'),
+            email: BuiltValueNullFieldError.checkNotNull(
+                email, r'GgetMeData_getMe', 'email'),
             username: BuiltValueNullFieldError.checkNotNull(
                 username, r'GgetMeData_getMe', 'username'),
             firstName: BuiltValueNullFieldError.checkNotNull(
@@ -999,6 +1041,8 @@ class _$GupdateMeData_updateMe extends GupdateMeData_updateMe {
   @override
   final int id;
   @override
+  final String email;
+  @override
   final String username;
   @override
   final String firstName;
@@ -1018,6 +1062,7 @@ class _$GupdateMeData_updateMe extends GupdateMeData_updateMe {
   _$GupdateMeData_updateMe._(
       {required this.G__typename,
       required this.id,
+      required this.email,
       required this.username,
       required this.firstName,
       required this.lastName,
@@ -1028,6 +1073,8 @@ class _$GupdateMeData_updateMe extends GupdateMeData_updateMe {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GupdateMeData_updateMe', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(id, r'GupdateMeData_updateMe', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        email, r'GupdateMeData_updateMe', 'email');
     BuiltValueNullFieldError.checkNotNull(
         username, r'GupdateMeData_updateMe', 'username');
     BuiltValueNullFieldError.checkNotNull(
@@ -1051,6 +1098,7 @@ class _$GupdateMeData_updateMe extends GupdateMeData_updateMe {
     return other is GupdateMeData_updateMe &&
         G__typename == other.G__typename &&
         id == other.id &&
+        email == other.email &&
         username == other.username &&
         firstName == other.firstName &&
         lastName == other.lastName &&
@@ -1064,6 +1112,7 @@ class _$GupdateMeData_updateMe extends GupdateMeData_updateMe {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
     _$hash = $jc(_$hash, username.hashCode);
     _$hash = $jc(_$hash, firstName.hashCode);
     _$hash = $jc(_$hash, lastName.hashCode);
@@ -1079,6 +1128,7 @@ class _$GupdateMeData_updateMe extends GupdateMeData_updateMe {
     return (newBuiltValueToStringHelper(r'GupdateMeData_updateMe')
           ..add('G__typename', G__typename)
           ..add('id', id)
+          ..add('email', email)
           ..add('username', username)
           ..add('firstName', firstName)
           ..add('lastName', lastName)
@@ -1100,6 +1150,10 @@ class GupdateMeData_updateMeBuilder
   int? _id;
   int? get id => _$this._id;
   set id(int? id) => _$this._id = id;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
 
   String? _username;
   String? get username => _$this._username;
@@ -1134,6 +1188,7 @@ class GupdateMeData_updateMeBuilder
     if ($v != null) {
       _G__typename = $v.G__typename;
       _id = $v.id;
+      _email = $v.email;
       _username = $v.username;
       _firstName = $v.firstName;
       _lastName = $v.lastName;
@@ -1166,6 +1221,8 @@ class GupdateMeData_updateMeBuilder
                 G__typename, r'GupdateMeData_updateMe', 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'GupdateMeData_updateMe', 'id'),
+            email: BuiltValueNullFieldError.checkNotNull(
+                email, r'GupdateMeData_updateMe', 'email'),
             username: BuiltValueNullFieldError.checkNotNull(
                 username, r'GupdateMeData_updateMe', 'username'),
             firstName: BuiltValueNullFieldError.checkNotNull(
@@ -1302,6 +1359,8 @@ class _$GregisterData_register extends GregisterData_register {
   @override
   final int id;
   @override
+  final String email;
+  @override
   final String username;
   @override
   final String firstName;
@@ -1321,6 +1380,7 @@ class _$GregisterData_register extends GregisterData_register {
   _$GregisterData_register._(
       {required this.G__typename,
       required this.id,
+      required this.email,
       required this.username,
       required this.firstName,
       required this.lastName,
@@ -1331,6 +1391,8 @@ class _$GregisterData_register extends GregisterData_register {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GregisterData_register', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(id, r'GregisterData_register', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        email, r'GregisterData_register', 'email');
     BuiltValueNullFieldError.checkNotNull(
         username, r'GregisterData_register', 'username');
     BuiltValueNullFieldError.checkNotNull(
@@ -1354,6 +1416,7 @@ class _$GregisterData_register extends GregisterData_register {
     return other is GregisterData_register &&
         G__typename == other.G__typename &&
         id == other.id &&
+        email == other.email &&
         username == other.username &&
         firstName == other.firstName &&
         lastName == other.lastName &&
@@ -1367,6 +1430,7 @@ class _$GregisterData_register extends GregisterData_register {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
     _$hash = $jc(_$hash, username.hashCode);
     _$hash = $jc(_$hash, firstName.hashCode);
     _$hash = $jc(_$hash, lastName.hashCode);
@@ -1382,6 +1446,7 @@ class _$GregisterData_register extends GregisterData_register {
     return (newBuiltValueToStringHelper(r'GregisterData_register')
           ..add('G__typename', G__typename)
           ..add('id', id)
+          ..add('email', email)
           ..add('username', username)
           ..add('firstName', firstName)
           ..add('lastName', lastName)
@@ -1403,6 +1468,10 @@ class GregisterData_registerBuilder
   int? _id;
   int? get id => _$this._id;
   set id(int? id) => _$this._id = id;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
 
   String? _username;
   String? get username => _$this._username;
@@ -1437,6 +1506,7 @@ class GregisterData_registerBuilder
     if ($v != null) {
       _G__typename = $v.G__typename;
       _id = $v.id;
+      _email = $v.email;
       _username = $v.username;
       _firstName = $v.firstName;
       _lastName = $v.lastName;
@@ -1469,6 +1539,8 @@ class GregisterData_registerBuilder
                 G__typename, r'GregisterData_register', 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'GregisterData_register', 'id'),
+            email: BuiltValueNullFieldError.checkNotNull(
+                email, r'GregisterData_register', 'email'),
             username: BuiltValueNullFieldError.checkNotNull(
                 username, r'GregisterData_register', 'username'),
             firstName: BuiltValueNullFieldError.checkNotNull(
@@ -1489,6 +1561,8 @@ class _$GUserData extends GUserData {
   @override
   final int id;
   @override
+  final String email;
+  @override
   final String username;
   @override
   final String firstName;
@@ -1507,6 +1581,7 @@ class _$GUserData extends GUserData {
   _$GUserData._(
       {required this.G__typename,
       required this.id,
+      required this.email,
       required this.username,
       required this.firstName,
       required this.lastName,
@@ -1517,6 +1592,7 @@ class _$GUserData extends GUserData {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GUserData', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(id, r'GUserData', 'id');
+    BuiltValueNullFieldError.checkNotNull(email, r'GUserData', 'email');
     BuiltValueNullFieldError.checkNotNull(username, r'GUserData', 'username');
     BuiltValueNullFieldError.checkNotNull(firstName, r'GUserData', 'firstName');
     BuiltValueNullFieldError.checkNotNull(lastName, r'GUserData', 'lastName');
@@ -1535,6 +1611,7 @@ class _$GUserData extends GUserData {
     return other is GUserData &&
         G__typename == other.G__typename &&
         id == other.id &&
+        email == other.email &&
         username == other.username &&
         firstName == other.firstName &&
         lastName == other.lastName &&
@@ -1548,6 +1625,7 @@ class _$GUserData extends GUserData {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
     _$hash = $jc(_$hash, username.hashCode);
     _$hash = $jc(_$hash, firstName.hashCode);
     _$hash = $jc(_$hash, lastName.hashCode);
@@ -1563,6 +1641,7 @@ class _$GUserData extends GUserData {
     return (newBuiltValueToStringHelper(r'GUserData')
           ..add('G__typename', G__typename)
           ..add('id', id)
+          ..add('email', email)
           ..add('username', username)
           ..add('firstName', firstName)
           ..add('lastName', lastName)
@@ -1583,6 +1662,10 @@ class GUserDataBuilder implements Builder<GUserData, GUserDataBuilder> {
   int? _id;
   int? get id => _$this._id;
   set id(int? id) => _$this._id = id;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
 
   String? _username;
   String? get username => _$this._username;
@@ -1617,6 +1700,7 @@ class GUserDataBuilder implements Builder<GUserData, GUserDataBuilder> {
     if ($v != null) {
       _G__typename = $v.G__typename;
       _id = $v.id;
+      _email = $v.email;
       _username = $v.username;
       _firstName = $v.firstName;
       _lastName = $v.lastName;
@@ -1648,6 +1732,8 @@ class GUserDataBuilder implements Builder<GUserData, GUserDataBuilder> {
             G__typename: BuiltValueNullFieldError.checkNotNull(
                 G__typename, r'GUserData', 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(id, r'GUserData', 'id'),
+            email: BuiltValueNullFieldError.checkNotNull(
+                email, r'GUserData', 'email'),
             username: BuiltValueNullFieldError.checkNotNull(
                 username, r'GUserData', 'username'),
             firstName: BuiltValueNullFieldError.checkNotNull(

@@ -50,6 +50,8 @@ abstract class GgetMeData_getMe
   @override
   int get id;
   @override
+  String get email;
+  @override
   String get username;
   @override
   String get firstName;
@@ -122,6 +124,8 @@ abstract class GupdateMeData_updateMe
   String get G__typename;
   @override
   int get id;
+  @override
+  String get email;
   @override
   String get username;
   @override
@@ -196,6 +200,8 @@ abstract class GregisterData_register
   @override
   int get id;
   @override
+  String get email;
+  @override
   String get username;
   @override
   String get firstName;
@@ -226,6 +232,7 @@ abstract class GregisterData_register
 abstract class GUser {
   String get G__typename;
   int get id;
+  String get email;
   String get username;
   String get firstName;
   String get lastName;
@@ -247,6 +254,8 @@ abstract class GUserData implements Built<GUserData, GUserDataBuilder>, GUser {
   String get G__typename;
   @override
   int get id;
+  @override
+  String get email;
   @override
   String get username;
   @override

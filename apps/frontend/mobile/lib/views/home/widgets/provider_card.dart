@@ -67,9 +67,9 @@ class ProviderDescription extends StatefulWidget {
   @override
   ProviderDescriptionState createState() => ProviderDescriptionState();
 }
-
 class ProviderDescriptionState extends State<ProviderDescription> {
-  late final GgetProviderByIdData_getProviderById _provider;
+  late GgetProviderByIdData_getProviderById _provider;
+  bool _isLoading = true;
 
   @override
   void initState() {
@@ -78,21 +78,35 @@ class ProviderDescriptionState extends State<ProviderDescription> {
   }
 
   void _getProvidersById(BuildContext context) async {
-    final providerRepository =
-        Provider.of<ProviderRepository>(context, listen: false);
+    final providerRepository = Provider.of<ProviderRepository>(context, listen: false);
 
     try {
       final response = await providerRepository.getProviderById(id: widget.id);
       setState(() {
         _provider = response!.getProviderById;
+        _isLoading = false;
       });
     } catch (e) {
       log('An error occurred: $e');
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    if (_isLoading) {
+      return const Scaffold(
+        backgroundColor: Color(0xff1B1B1B),
+        body: Center(
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: const Color(0xff1B1B1B),
       appBar: AppBar(
@@ -108,7 +122,7 @@ class ProviderDescriptionState extends State<ProviderDescription> {
                   icon: const Icon(Icons.arrow_back, color: Colors.white, size: 40),
                   onPressed: () => Navigator.of(context).pop(),
                 ),
-                const SizedBox(width: 80,),
+                const SizedBox(width: 80),
                 Text(
                   _provider.name,
                   style: const TextStyle(
@@ -166,9 +180,9 @@ class ProviderDescriptionState extends State<ProviderDescription> {
                           context,
                           MaterialPageRoute(
                             builder: (BuildContext context) =>
-                                const DiscordAuth(),
+                            const DiscordAuth(),
                           ),
-                          (Route<dynamic> route) => false,
+                              (Route<dynamic> route) => false,
                         );
                       },
                       child: const Text('Login',

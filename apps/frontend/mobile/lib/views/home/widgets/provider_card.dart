@@ -1,6 +1,10 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:mobile/views/auth/pages/discord_auth.dart';
+import 'package:provider/provider.dart';
+
+import '../../../modules/graphql/repository/provider_repository.dart';
 
 class ProviderCard extends StatelessWidget {
   final String logoUrl;
@@ -69,8 +73,12 @@ class ProviderDescriptionState extends State<ProviderDescription> {
   }
 
   void _getProvidersById(BuildContext context) async {
+    final providerRepository =
+    Provider.of<ProviderRepository>(context, listen: false);
+
     try {
-      // final response = await providerRepository.getProviderById(id: widget.id);
+      final response = await providerRepository.getProviderById(id: widget.id);
+      //print('response = ${response?.getProviderById.name}');
     } catch (e) {
       log('An error occurred: $e');
     }
@@ -114,12 +122,31 @@ class ProviderDescriptionState extends State<ProviderDescription> {
                     'https://darkanddarker.wiki.spellsandguns.com/images/thumb/1/15/Discord_logo.webp/213px-Discord_logo.webp.png',
                     fit: BoxFit.fitWidth,
                   ),
-                  const SizedBox(height: 16),
                   const Text(
                     'Voici une description détaillée de ce que fait cette application. Elle vous permet de gérer différents paramètres et de configurer des actions personnalisées basées sur des déclencheurs spécifiques.',
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  SizedBox(
+                    width: 150,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xff8E44AD)),
+                      onPressed: () {
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                const DiscordAuth(),
+                          ),
+                          (Route<dynamic> route) => false,
+                        );
+                      },
+                      child: const Text('Login',
+                          style: TextStyle(color: Colors.white)),
                     ),
                   ),
                 ],

@@ -1,7 +1,9 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:mobile/graphql/__generated__/provider.data.gql.dart';
 import 'package:mobile/views/auth/pages/discord_auth.dart';
+import 'package:mobile/views/home/widgets/trigger_action_card.dart';
 import 'package:provider/provider.dart';
 
 import '../../../modules/graphql/repository/provider_repository.dart';
@@ -46,7 +48,8 @@ class ProviderCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(16.0),
               child: Image.network(
                 logoUrl,
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
+                color: Colors.white,
               ),
             ),
           ),
@@ -66,6 +69,8 @@ class ProviderDescription extends StatefulWidget {
 }
 
 class ProviderDescriptionState extends State<ProviderDescription> {
+  late final GgetProviderByIdData_getProviderById _provider;
+
   @override
   void initState() {
     super.initState();
@@ -74,11 +79,13 @@ class ProviderDescriptionState extends State<ProviderDescription> {
 
   void _getProvidersById(BuildContext context) async {
     final providerRepository =
-    Provider.of<ProviderRepository>(context, listen: false);
+        Provider.of<ProviderRepository>(context, listen: false);
 
     try {
       final response = await providerRepository.getProviderById(id: widget.id);
-      //print('response = ${response?.getProviderById.name}');
+      setState(() {
+        _provider = response!.getProviderById;
+      });
     } catch (e) {
       log('An error occurred: $e');
     }
@@ -89,18 +96,33 @@ class ProviderDescriptionState extends State<ProviderDescription> {
     return Scaffold(
       backgroundColor: const Color(0xff1B1B1B),
       appBar: AppBar(
-        backgroundColor: const Color(0xff5865f2),
-        title: const Center(
-          child: Text(
-            'Discord',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 40,
-              fontWeight: FontWeight.bold,
+        backgroundColor: Color(int.parse(_provider.color.replaceFirst('#', '0xff'))),
+        automaticallyImplyLeading: false,
+        flexibleSpace: Padding(
+          padding: const EdgeInsets.only(bottom: 10.0),
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: Row(
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.arrow_back, color: Colors.white, size: 40),
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
+                const SizedBox(width: 80,),
+                Text(
+                  _provider.name,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const Spacer(),
+              ],
             ),
           ),
         ),
-        iconTheme: const IconThemeData(color: Colors.white, size: 40),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -108,9 +130,12 @@ class ProviderDescriptionState extends State<ProviderDescription> {
             Container(
               padding: const EdgeInsets.all(16.0),
               width: double.infinity,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [Color(0xff5865f2), Color(0xff1B1B1B)],
+                  colors: [
+                    Color(int.parse(_provider.color.replaceFirst('#', '0xff'))),
+                    const Color(0xff1B1B1B)
+                  ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                 ),
@@ -119,15 +144,16 @@ class ProviderDescriptionState extends State<ProviderDescription> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Image.network(
-                    'https://darkanddarker.wiki.spellsandguns.com/images/thumb/1/15/Discord_logo.webp/213px-Discord_logo.webp.png',
+                    _provider.img,
                     fit: BoxFit.fitWidth,
+                    color: Colors.white,
                   ),
-                  const Text(
-                    'Voici une description détaillée de ce que fait cette application. Elle vous permet de gérer différents paramètres et de configurer des actions personnalisées basées sur des déclencheurs spécifiques.',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                    ),
+                  Text(
+                    _provider.description,
+                    style: const TextStyle(
+                        fontSize: 24,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 16),
                   SizedBox(
@@ -155,19 +181,31 @@ class ProviderDescriptionState extends State<ProviderDescription> {
             const SizedBox(height: 16),
             _buildSectionTitle('Triggers'),
             const SizedBox(height: 8),
-            _buildSectionContent([
-              'Trigger 1: Événement X déclenche l\'action Y',
-              'Trigger 2: Action Z est activée quand un utilisateur fait ceci',
-              'Trigger 3: Quand une condition est remplie, l\'action suivante se produit',
-            ]),
+            Column(
+              children: _provider.manifest.triggers.map((trigger) {
+                const SizedBox(height: 16);
+                return TriggerActionCard(
+                  logoUrl: _provider.img,
+                  name: trigger.name,
+                  description: trigger.description,
+                  color: trigger.color,
+                );
+              }).toList(),
+            ),
             const SizedBox(height: 16),
             _buildSectionTitle('Actions'),
             const SizedBox(height: 8),
-            _buildSectionContent([
-              'Action 1: Exécuter un script',
-              'Action 2: Afficher un message à l\'utilisateur',
-              'Action 3: Envoyer une notification',
-            ]),
+            Column(
+              children: _provider.manifest.actions.map((actions) {
+                const SizedBox(height: 16);
+                return TriggerActionCard(
+                  logoUrl: _provider.img,
+                  name: actions.name,
+                  description: actions.description,
+                  color: actions.color,
+                );
+              }).toList(),
+            ),
           ],
         ),
       ),
@@ -184,18 +222,6 @@ class ProviderDescriptionState extends State<ProviderDescription> {
           color: Colors.white,
         ),
       ),
-    );
-  }
-
-  Widget _buildSectionContent(List<String> content) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: content
-          .map((item) => Text(
-                '- $item',
-                style: const TextStyle(color: Colors.white),
-              ))
-          .toList(),
     );
   }
 }

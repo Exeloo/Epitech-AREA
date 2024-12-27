@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/modules/graphql/providers.dart';
-import 'package:mobile/views/home/pages/home.dart';
+import 'package:mobile/views/auth/pages/main_auth.dart';
 import 'package:provider/provider.dart';
 void main() {
   runApp(
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: HomePage(),
+      home: MainAuthPage(),
     );
   }
 }

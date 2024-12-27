@@ -11,6 +11,6 @@ export class ProviderService implements IProviderService {
   constructor(private readonly providerRepository: ProviderRepository) {}
 
   getManifest(provider: IProvider): Promise<IManifest> {
-    return this.providerRepository.getManifest(provider.host);
+    return this.providerRepository.getManifest(provider.host, "api-key");
   }
 }

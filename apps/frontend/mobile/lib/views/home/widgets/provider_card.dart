@@ -1,9 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../../../modules/graphql/repository/provider_repository.dart';
 
 class ProviderCard extends StatelessWidget {
   final String logoUrl;
@@ -65,7 +62,6 @@ class ProviderDescription extends StatefulWidget {
 }
 
 class ProviderDescriptionState extends State<ProviderDescription> {
-
   @override
   void initState() {
     super.initState();
@@ -73,10 +69,8 @@ class ProviderDescriptionState extends State<ProviderDescription> {
   }
 
   void _getProvidersById(BuildContext context) async {
-    Provider.of<ProviderRepository>(context, listen: false);
-
     try {
-      //final response = await providerRepository.getProviderById(id: widget.id);
+      // final response = await providerRepository.getProviderById(id: widget.id);
     } catch (e) {
       log('An error occurred: $e');
     }
@@ -87,7 +81,7 @@ class ProviderDescriptionState extends State<ProviderDescription> {
     return Scaffold(
       backgroundColor: const Color(0xff1B1B1B),
       appBar: AppBar(
-        backgroundColor: const Color(0xff1B1B1B),
+        backgroundColor: const Color(0xff5865f2),
         title: const Center(
           child: Text(
             'Discord',
@@ -101,95 +95,80 @@ class ProviderDescriptionState extends State<ProviderDescription> {
         iconTheme: const IconThemeData(color: Colors.white, size: 40),
       ),
       body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Image.network(
-                'https://www.minuitdouze.com/wp-content/uploads/discord-logo.jpg',
-                fit: BoxFit.fitWidth,
-              ),
-
-              const SizedBox(height: 16),
-              const Text(
-                'Voici une description détaillée de ce que fait cette application. Elle vous permet de gérer différents paramètres et de configurer des actions personnalisées basées sur des déclencheurs spécifiques.',
-                style: TextStyle(
-                  fontSize: 22,
-                  color: Colors.white,
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(16.0),
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Color(0xff5865f2), Color(0xff1B1B1B)],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
                 ),
               ),
-
-              const SizedBox(height: 16),
-              const Center(
-                child: Text(
-                  'Triggers :',
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 8),
-              const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text('- Trigger 1: Événement X déclenche l\'action Y', style: TextStyle(color: Colors.white)),
-                  Text('- Trigger 2: Action Z est activée quand un utilisateur fait ceci', style: TextStyle(color: Colors.white)),
-                  Text('- Trigger 3: Quand une condition est remplie, l\'action suivante se produit', style: TextStyle(color: Colors.white)),
+                  Image.network(
+                    'https://darkanddarker.wiki.spellsandguns.com/images/thumb/1/15/Discord_logo.webp/213px-Discord_logo.webp.png',
+                    fit: BoxFit.fitWidth,
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    'Voici une description détaillée de ce que fait cette application. Elle vous permet de gérer différents paramètres et de configurer des actions personnalisées basées sur des déclencheurs spécifiques.',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                    ),
+                  ),
                 ],
               ),
-
-              const SizedBox(height: 16),
-              const Center(
-                child: Text(
-                  'Actions:',
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 8),
-              const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('- Action 1: Exécuter un script', style: TextStyle(color: Colors.white)),
-                  Text('- Action 2: Afficher un message à l\'utilisateur', style: TextStyle(color: Colors.white)),
-                  Text('- Action 3: Envoyer une notification', style: TextStyle(color: Colors.white)),
-                  Text('- Action 1: Exécuter un script', style: TextStyle(color: Colors.white)),
-                  Text('- Action 2: Afficher un message à l\'utilisateur', style: TextStyle(color: Colors.white)),
-                  Text('- Action 3: Envoyer une notification', style: TextStyle(color: Colors.white)),
-                  Text('- Action 1: Exécuter un script', style: TextStyle(color: Colors.white)),
-                  Text('- Action 2: Afficher un message à l\'utilisateur', style: TextStyle(color: Colors.white)),
-                  Text('- Action 3: Envoyer une notification', style: TextStyle(color: Colors.white)),
-                  Text('- Action 1: Exécuter un script', style: TextStyle(color: Colors.white)),
-                  Text('- Action 2: Afficher un message à l\'utilisateur', style: TextStyle(color: Colors.white)),
-                  Text('- Action 3: Envoyer une notification', style: TextStyle(color: Colors.white)),Text('- Action 1: Exécuter un script', style: TextStyle(color: Colors.white)),
-                  Text('- Action 2: Afficher un message à l\'utilisateur', style: TextStyle(color: Colors.white)),
-                  Text('- Action 3: Envoyer une notification', style: TextStyle(color: Colors.white)),Text('- Action 1: Exécuter un script', style: TextStyle(color: Colors.white)),
-                  Text('- Action 2: Afficher un message à l\'utilisateur', style: TextStyle(color: Colors.white)),
-                  Text('- Action 3: Envoyer une notification', style: TextStyle(color: Colors.white)),Text('- Action 1: Exécuter un script', style: TextStyle(color: Colors.white)),
-                  Text('- Action 2: Afficher un message à l\'utilisateur', style: TextStyle(color: Colors.white)),
-                  Text('- Action 3: Envoyer une notification', style: TextStyle(color: Colors.white)),Text('- Action 1: Exécuter un script', style: TextStyle(color: Colors.white)),
-                  Text('- Action 2: Afficher un message à l\'utilisateur', style: TextStyle(color: Colors.white)),
-                  Text('- Action 3: Envoyer une notification', style: TextStyle(color: Colors.white)),Text('- Action 1: Exécuter un script', style: TextStyle(color: Colors.white)),
-                  Text('- Action 2: Afficher un message à l\'utilisateur', style: TextStyle(color: Colors.white)),
-                  Text('- Action 3: Envoyer une notification', style: TextStyle(color: Colors.white)),Text('- Action 1: Exécuter un script', style: TextStyle(color: Colors.white)),
-                  Text('- Action 2: Afficher un message à l\'utilisateur', style: TextStyle(color: Colors.white)),
-                  Text('- Action 3: Envoyer une notification', style: TextStyle(color: Colors.white)),Text('- Action 1: Exécuter un script', style: TextStyle(color: Colors.white)),
-                  Text('- Action 2: Afficher un message à l\'utilisateur', style: TextStyle(color: Colors.white)),
-                  Text('- Action 3: Envoyer une notification', style: TextStyle(color: Colors.white)),Text('- Action 1: Exécuter un script', style: TextStyle(color: Colors.white)),
-                  Text('- Action 2: Afficher un message à l\'utilisateur', style: TextStyle(color: Colors.white)),
-                  Text('- Action 3: Envoyer une notification', style: TextStyle(color: Colors.white)),
-                ],
-              ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 16),
+            _buildSectionTitle('Triggers'),
+            const SizedBox(height: 8),
+            _buildSectionContent([
+              'Trigger 1: Événement X déclenche l\'action Y',
+              'Trigger 2: Action Z est activée quand un utilisateur fait ceci',
+              'Trigger 3: Quand une condition est remplie, l\'action suivante se produit',
+            ]),
+            const SizedBox(height: 16),
+            _buildSectionTitle('Actions'),
+            const SizedBox(height: 8),
+            _buildSectionContent([
+              'Action 1: Exécuter un script',
+              'Action 2: Afficher un message à l\'utilisateur',
+              'Action 3: Envoyer une notification',
+            ]),
+          ],
         ),
       ),
+    );
+  }
+
+  Widget _buildSectionTitle(String title) {
+    return Center(
+      child: Text(
+        title,
+        style: const TextStyle(
+          fontSize: 30,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSectionContent(List<String> content) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: content
+          .map((item) => Text(
+                '- $item',
+                style: const TextStyle(color: Colors.white),
+              ))
+          .toList(),
     );
   }
 }

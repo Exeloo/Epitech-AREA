@@ -69,7 +69,6 @@ class UserRepository {
     required String lastName,
     String? description,
     String? pronoun,
-    String? picture,
   }) async {
     final updateUserReq = GupdateMeReq((b) => b
       ..vars.data.email = email
@@ -77,8 +76,7 @@ class UserRepository {
       ..vars.data.firstName = firstName
       ..vars.data.lastName = lastName
       ..vars.data.description = description
-      ..vars.data.pronoun = pronoun
-      ..vars.data.picture = picture);
+      ..vars.data.pronoun = pronoun);
 
     try {
       final response = await client.request(updateUserReq).first;

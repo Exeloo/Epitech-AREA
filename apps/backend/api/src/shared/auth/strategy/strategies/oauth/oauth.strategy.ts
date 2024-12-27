@@ -27,7 +27,7 @@ export class OAuthStrategy extends AuthStrategy(StrategyEnum.OAUTH) {
     const [provider, value] = Object.entries(input)[0];
     const strategy = this.strategyMap[provider];
     if (!strategy)
-      throw new InternalException(24, {
+      throw new InternalException(28, {
         cause: new Error(`Strategy ${provider} not implemented`),
       });
 

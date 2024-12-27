@@ -1,8 +1,8 @@
 import 'dart:developer';
 
 import 'package:ferry/ferry.dart';
-import 'package:mobile/graphql/__generated__/provider.req.gql.dart';
 import 'package:mobile/graphql/__generated__/provider.data.gql.dart';
+import 'package:mobile/graphql/__generated__/provider.req.gql.dart';
 
 class ProviderRepository {
   final Client client;
@@ -35,11 +35,10 @@ class ProviderRepository {
 
     try {
       final response = await client.request(getProviderById).first;
-
       if (response.loading) {
         log('Loading...');
       } else if (response.hasErrors) {
-        log('Errors: ${response.graphqlErrors}');
+        log('Errors: ${response.linkException}');
       } else {
         log('Response: ${response.data}');
       }

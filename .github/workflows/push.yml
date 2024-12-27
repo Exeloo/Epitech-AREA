@@ -31,7 +31,7 @@ jobs:
       - name: Save Docker images as artifacts
         run: |
           mkdir -p /tmp/docker-images
-          docker-compose images | awk '{print $1}' | tail -n +2 | xargs -I {} sh -c 'docker save {} -o /tmp/docker-images/{}.tar'
+          docker images --format '{{.Repository}}:{{.Tag}}' | xargs -I {} sh -c 'docker save {} -o /tmp/docker-images/{}.tar'
       - name: Upload Docker image artifacts
         uses: actions/upload-artifact@v4
         with:

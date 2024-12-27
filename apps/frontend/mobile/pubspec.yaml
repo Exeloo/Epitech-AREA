@@ -19,6 +19,7 @@ dependencies:
   provider: ^6.1.2
   flutter_secure_storage: ^8.0.0
   test: ^1.25.7
+  built_collection: ^5.1.1
 
 dev_dependencies:
   flutter_test:

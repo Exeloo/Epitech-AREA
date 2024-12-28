@@ -56,8 +56,10 @@ jobs:
         run: |
           docker images --format '{{.Repository}}:{{.Tag}}' | while read -r image; do
             image_name=$(echo "$image" | awk -F':' '{print $1}')
-            docker tag "$image" "${{ env.REGISTRY_URL }}/$image_name:latest"
-            docker push "${{ env.REGISTRY_URL }}/$image_name:latest"
+            if [[ "$image_name" == b-dev-500* ]]; then
+              docker tag "$image" "${{ env.REGISTRY_URL }}/$image_name:latest"
+              docker push "${{ env.REGISTRY_URL }}/$image_name:latest"
+            fi
           done
 
   push_to_mirror:

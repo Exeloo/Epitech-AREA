@@ -1,6 +1,6 @@
-import { ManifestPropertyEnum } from "@lib/manifest";
+import {ManifestPropertyEnum} from "@lib/manifest";
 
-import { IManifestType } from "./manifest-type.type";
+import {IManifestType} from "./manifest-type.type";
 
 interface IBaseManifestProperty {
   description?: string;
@@ -11,7 +11,7 @@ export type IManifestProperty = (
   | {
       type:
         | ManifestPropertyEnum.STRING
-        | ManifestPropertyEnum.INTEGER
+        | ManifestPropertyEnum.NUMBER
         | ManifestPropertyEnum.BOOLEAN
         | ManifestPropertyEnum.DATE;
     }
@@ -34,7 +34,7 @@ export type IManifestPropertyInfo = (
   | {
       type:
         | ManifestPropertyEnum.STRING
-        | ManifestPropertyEnum.INTEGER
+        | ManifestPropertyEnum.NUMBER
         | ManifestPropertyEnum.BOOLEAN
         | ManifestPropertyEnum.DATE;
     }

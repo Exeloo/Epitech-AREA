@@ -1,0 +1,68 @@
+import { Injectable, Logger } from "@nestjs/common";
+
+import { AppletRegisterProcessor } from "@domain/applet/processors/base/register.processor";
+
+import { IAppletCreateInput } from "../../types/applet.input.type";
+import { IApplet } from "../../types/applet.type";
+import {
+  IAppletPreProcessor,
+  IAppletProcessor,
+} from "../applet.processor.type";
+import { AppletInputProcessor } from "../base/input.processor";
+import { AppletSaveProcessor } from "../base/save.processor";
+
+@Injectable()
+export class AppletCreateProcessor
+  implements IAppletProcessor<IAppletCreateInput>
+{
+  private readonly preProcessors: IAppletPreProcessor<IAppletCreateInput>[];
+  private readonly processors: IAppletProcessor<IAppletCreateInput>[];
+  private logger: Logger;
+
+  constructor(
+    appletVerifyInputProcessor: AppletInputProcessor,
+    appletSaveProcessor: AppletSaveProcessor,
+    appletRegisterProcessor: AppletRegisterProcessor,
+  ) {
+    this.preProcessors = [appletVerifyInputProcessor]; // ! Mettre un pre processor pour tester l'authorization et throw une erreur spe qui sera catch par le service
+    this.processors = [appletSaveProcessor, appletRegisterProcessor];
+    this.logger = new Logger(`DOMAIN (Applet ${this.constructor.name})`);
+  }
+
+  async process(applet: IApplet, data: IAppletCreateInput): Promise<IApplet> {
+    this.logger.log(`Processing applet ${applet.id}`);
+
+    [applet, data] = await this.runPreProcess(applet, data);
+    applet = await this.runProcess(applet, data);
+
+    return applet;
+  }
+
+  private async runPreProcess(
+    applet: IApplet,
+    data: IAppletCreateInput,
+  ): Promise<[IApplet, IAppletCreateInput]> {
+    for (const processor of this.preProcessors) {
+      this.logger.debug(
+        `Pre-Processing applet ${applet.id} with ${processor.constructor.name}`,
+      );
+      [applet, data] = await processor.process(applet, data);
+    }
+
+    return [applet, data];
+  }
+
+  private async runProcess(
+    applet: IApplet,
+    data: IAppletCreateInput,
+  ): Promise<IApplet> {
+    for (const processor of this.processors) {
+      this.logger.debug(
+        `Processing applet ${applet.id} with ${processor.constructor.name}`,
+      );
+      applet = await processor.process(applet, data);
+    }
+
+    return applet;
+  }
+}

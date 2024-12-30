@@ -1,6 +1,6 @@
 export enum ManifestPropertyEnum {
   STRING = "string",
-  INTEGER = "integer",
+  NUMBER = "number",
   BOOLEAN = "boolean",
   ENUM = "enum",
   DATE = "date",

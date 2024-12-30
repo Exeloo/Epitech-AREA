@@ -1,7 +1,7 @@
-import { ManifestProperty, ManifestPropertyEnum } from "@lib/manifest";
-import { ManifestType } from "@lib/manifest/decorators/type.decorator";
+import {ManifestProperty, ManifestPropertyEnum} from "@lib/manifest";
+import {ManifestType} from "@lib/manifest/decorators/type.decorator";
 
-import { Snowflake } from "../../types/snowflake.type";
+import {Snowflake} from "../../types/snowflake.type";
 
 @ManifestType()
 export class RoleNode {
@@ -26,7 +26,7 @@ export class RoleNode {
   hoist: boolean;
 
   @ManifestProperty({
-    type: ManifestPropertyEnum.INTEGER,
+    type: ManifestPropertyEnum.NUMBER,
   })
   position: number;
 

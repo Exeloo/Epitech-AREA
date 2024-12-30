@@ -9,7 +9,7 @@ export type IManifestProperty = (
   | {
       type:
         | ManifestPropertyEnum.STRING
-        | ManifestPropertyEnum.INTEGER
+        | ManifestPropertyEnum.NUMBER
         | ManifestPropertyEnum.BOOLEAN
         | ManifestPropertyEnum.DATE;
     }

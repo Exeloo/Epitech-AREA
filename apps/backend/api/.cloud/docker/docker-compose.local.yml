@@ -27,7 +27,7 @@ services:
     networks:
       - area-api
     ports:
-      - "3307:3307"
+      - "3306:3306"
 
   phpmyadmin:
     image: phpmyadmin:latest

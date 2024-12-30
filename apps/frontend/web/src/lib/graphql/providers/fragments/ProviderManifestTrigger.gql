@@ -1,0 +1,9 @@
+fragment ProviderManifestTrigger on ProviderManifestTrigger {
+    id
+    name
+    description
+    img
+    color
+    input
+    output
+}

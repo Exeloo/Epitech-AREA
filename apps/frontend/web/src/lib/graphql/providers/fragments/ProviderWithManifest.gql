@@ -1,0 +1,11 @@
+fragment ProviderWithManifest on Provider {
+    ...BaseProvider
+    manifest {
+        actions {
+            ...ProviderManifestAction
+        }
+        triggers {
+            ...ProviderManifestTrigger
+        }
+    }
+}

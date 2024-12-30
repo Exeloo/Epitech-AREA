@@ -1,0 +1,5 @@
+query getAllProviders {
+    getAllProviders {
+        ...BaseProvider
+    }
+}

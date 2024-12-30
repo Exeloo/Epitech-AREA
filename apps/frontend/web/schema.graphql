@@ -5,32 +5,77 @@ directive @oneOf on INPUT_OBJECT
 
 """Applet"""
 type Applet {
+  """Description of the applet"""
+  description: String
+
   """ID of the applet"""
   id: Int!
 
   """Name of the applet"""
   name: String!
+
+  """ID of the applet"""
+  triggerNodes: [AppletNode!]!
 }
 
-"""Input type to subscribe to an applet"""
-input AppletSubscribeInput {
-  """ID of the channel to listen messages"""
-  channelIdInput: String!
-
-  """ID of the channel to write the message"""
-  channelIdOutput: String!
-
-  """ID of the guild to listen messages"""
-  guildIdInput: String!
-
-  """ID of the guild to write the message"""
-  guildIdOutput: String!
-
-  """Message to write when the trigger is called"""
-  message: String!
+"""Input type to create to an applet"""
+input AppletCreateInput {
+  """Description that the user give to the applet"""
+  description: String
 
   """Name that the user give to the applet"""
   name: String!
+
+  """Name that the user give to the applet"""
+  triggerNodes: [AppletNodeCreateInput!]!
+}
+
+"""AppletNode"""
+type AppletNode {
+  """Action ID of the applet node provide by the provider"""
+  actionId: String!
+
+  """Action type of the applet node provide by the provider"""
+  actionType: AppletNodeType!
+
+  """ID of the applet node"""
+  id: Int!
+
+  """Input of the user for the applet node"""
+  input: JSON!
+
+  """Nodes that is called after"""
+  next: [AppletNode!]!
+
+  """Nodes that is called previous"""
+  previous: [AppletNode!]!
+
+  """Provider that provide the action"""
+  provider: Provider!
+}
+
+"""Node input type to create to an applet"""
+input AppletNodeCreateInput {
+  """Id of the action that is provide by the provider"""
+  actionId: String!
+
+  """Input of the action"""
+  input: JSON!
+
+  """Next nodes of the applet"""
+  next: [AppletNodeCreateInput!]!
+
+  """Id of the provider of the action"""
+  providerId: Int!
+}
+
+"""Type of the applet node"""
+enum AppletNodeType {
+  """Node that is call when a trigger node is triggered"""
+  ACTION
+
+  """Node that is trigger by an external event"""
+  TRIGGER
 }
 
 """Input type for auth with password strategy"""
@@ -77,6 +122,9 @@ The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://
 scalar JSON
 
 type Mutation {
+  """Mutation used to create to an applet"""
+  createApplet(data: AppletCreateInput!): Applet!
+
   """Mutation used to create a provider as admin"""
   createProvider(data: ProviderCreateInput!): Provider!
 
@@ -86,20 +134,29 @@ type Mutation {
   """Mutation used to register yourself"""
   register(data: UserRegisterInput!): User!
 
-  """Mutation used to subscribe to an applet"""
-  subscribeToProvider(data: AppletSubscribeInput!): Applet!
-
   """Mutation used to update self"""
   updateMe(data: UserUpdateInput!): User!
 }
 
 """Provider"""
 type Provider {
+  """Color of the trigger"""
+  color: String!
+
+  """Description of the trigger"""
+  description: String!
+
   """ID of the provider"""
   id: Int!
 
+  """Image that describe the trigger"""
+  img: String!
+
   """Manifest of the provider"""
   manifest: ProviderManifest!
+
+  """Name of the trigger"""
+  name: String!
 
   """Visibility of the provider"""
   visibility: ProviderVisibility!
@@ -122,21 +179,15 @@ type ProviderManifest {
   """Actions of the provider"""
   actions: [ProviderManifestAction!]!
 
-  """Description of the provider"""
-  description: String!
-
-  """Image that describe the provider"""
-  img: String!
-
-  """Name of the provider"""
-  name: String!
-
   """Triggers of the provider"""
   triggers: [ProviderManifestTrigger!]!
 }
 
 """Action Provider Manifest"""
 type ProviderManifestAction {
+  """Color of the action"""
+  color: String!
+
   """Description of the action"""
   description: String!
 
@@ -158,6 +209,9 @@ type ProviderManifestAction {
 
 """Trigger Provider Manifest"""
 type ProviderManifestTrigger {
+  """Color of the trigger"""
+  color: String!
+
   """Description of the trigger"""
   description: String!
 
@@ -192,8 +246,14 @@ enum ProviderVisibility {
 }
 
 type Query {
+  """Get all applets"""
+  getAllApplets: [Applet!]!
+
   """Get all providers"""
   getAllProviders: [Provider!]!
+
+  """Get applet by id"""
+  getAppletById(id: Int!): Applet!
 
   """Get the connected user"""
   getMe: User!

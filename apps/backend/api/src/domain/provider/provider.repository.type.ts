@@ -12,4 +12,6 @@ export interface IProviderPersistenceRepository
   getByProviderId(providerId: string): Promise<IProvider | null>;
 
   getByAppletNodeId(id: ID): Promise<IProvider>;
+
+  getByApiKey(apiKey: string): Promise<IProvider | null>;
 }

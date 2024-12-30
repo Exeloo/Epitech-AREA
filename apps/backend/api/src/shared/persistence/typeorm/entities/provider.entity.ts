@@ -43,6 +43,12 @@ export class ProviderEntity {
   })
   providerId: string;
 
+  @Column({
+    type: "varchar",
+    unique: true,
+  })
+  apiKey: string;
+
   @Column()
   host: string;
 

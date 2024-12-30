@@ -12,17 +12,21 @@ export class ProviderService implements IProviderService {
   constructor(private readonly providerRepository: ProviderRepository) {}
 
   getManifest(provider: IProvider): Promise<IManifest> {
-    return this.providerRepository.getManifest(provider.host, "api-key");
+    return this.providerRepository.getManifest(provider.host, provider.apiKey);
   }
 
   registerTrigger(
     provider: IProvider,
     node: Pick<IAppletNode, "id" | "actionId" | "input">,
   ): Promise<void> {
-    return this.providerRepository.registerTrigger(provider.host, "api-key", {
-      baseId: node.id,
-      actionId: node.actionId,
-      input: node.input,
-    });
+    return this.providerRepository.registerTrigger(
+      provider.host,
+      provider.apiKey,
+      {
+        baseId: node.id,
+        actionId: node.actionId,
+        input: node.input,
+      },
+    );
   }
 }

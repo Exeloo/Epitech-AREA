@@ -8,6 +8,7 @@ import { ID } from "@d-type/id.type";
 import { AsyncArrayUtils } from "@utils/async-array.utils";
 
 import { IAppletNodePersistenceRepository } from "@domain/applet/node/applet-node.repository.type";
+import { AppletNodeType } from "@domain/applet/node/enums/applet-node.type";
 import { IAppletNode } from "@domain/applet/node/types/applet-node.type";
 
 import { AppletNodeRelationRepository } from "~/shared/persistence/typeorm/repositories/applet-node-relations.repository";
@@ -72,5 +73,14 @@ export class AppletNodeRepository
         next,
       };
     });
+  }
+
+  async getAllTriggersByProviderId(id: ID): Promise<IAppletNode[]> {
+    return this.transformer.persistenceToDomains(
+      await this.createQueryBuilder("node")
+        .where("node.provider_id = :id", { id })
+        .andWhere("node.action_type = :type", { type: AppletNodeType.TRIGGER })
+        .getMany(),
+    );
   }
 }

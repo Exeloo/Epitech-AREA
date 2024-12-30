@@ -8,6 +8,7 @@ export interface IProvider extends IIdentifiable, ITimestampable {
   img: string;
   color: string;
   providerId: string;
+  apiKey: string;
   host: string;
   visibility: ProviderVisibility;
 }

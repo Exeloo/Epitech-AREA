@@ -6,8 +6,8 @@ import { OAuthStrategyEnum } from "@domain/auth/strategy/strategies/oauth/oauth.
 import { StrategyEnum } from "@domain/auth/strategy/strategy.enum";
 import { IStrategyInput } from "@domain/auth/strategy/strategy.type";
 import { IOAuthOptions } from "@domain/auth/types/oauth-options.type";
-import { IUser } from "@domain/user/types/user.type";
 
+import { ApiKeyStrategy } from "~/shared/auth/strategy/strategies/apiKey.strategy";
 import { IStrategy } from "~/shared/auth/strategy/strategy.type";
 
 import { OAuthStrategy } from "./strategies/oauth/oauth.strategy";
@@ -22,18 +22,20 @@ export class StrategyService {
     passwordStrategy: PasswordStrategy,
     tokenStrategy: TokenStrategy,
     private readonly oauthStrategy: OAuthStrategy,
+    apiKeyStrategy: ApiKeyStrategy,
   ) {
     this.strategyMap = {
       [StrategyEnum.PASSWORD]: passwordStrategy,
       [StrategyEnum.TOKEN]: tokenStrategy,
       [StrategyEnum.OAUTH]: oauthStrategy,
+      [StrategyEnum.API_KEY]: apiKeyStrategy,
     };
   }
 
   authenticate<K extends keyof IStrategyInput>(
     type: K,
-    input: IStrategyInput[K],
-  ): Promise<IUser> {
+    input: IStrategyInput[K]["params"],
+  ): Promise<IStrategyInput[K]["res"]> {
     const strategy = this.strategyMap[type];
     if (!strategy)
       throw new InternalException(26, {

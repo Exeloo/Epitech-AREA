@@ -9,6 +9,7 @@ import { PROVIDER_PERSISTENCE_REPOSITORY } from "@domain/provider/provider.repos
 import { USER_PERSISTENCE_REPOSITORY } from "@domain/user/user.repository.type";
 
 import { databaseConfig } from "~/config/database.config";
+import { AppletNodeRelationRepository } from "~/shared/persistence/typeorm/repositories/applet-node-relations.repository";
 
 import { AppletNodeRelationEntity } from "./entities/applet-node-relations.entity";
 import { AppletNodeEntity } from "./entities/applet-node.entity";
@@ -55,6 +56,7 @@ import { UserRepository } from "./repositories/user.repository";
       provide: USER_PERSISTENCE_REPOSITORY,
       useClass: UserRepository,
     },
+    AppletNodeRelationRepository,
   ],
   exports: [
     APPLET_PERSISTENCE_REPOSITORY,

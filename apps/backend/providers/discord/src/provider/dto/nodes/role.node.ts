@@ -26,7 +26,7 @@ export class RoleNode {
   hoist: boolean;
 
   @ManifestProperty({
-    type: ManifestPropertyEnum.INTEGER,
+    type: ManifestPropertyEnum.NUMBER,
   })
   position: number;
 

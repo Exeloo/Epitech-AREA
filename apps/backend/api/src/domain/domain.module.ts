@@ -2,6 +2,10 @@ import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 
 import { AppletNodeService } from "@domain/applet/node/applet-node.service";
+import { AppletInputProcessor } from "@domain/applet/processors/base/input.processor";
+import { AppletRegisterProcessor } from "@domain/applet/processors/base/register.processor";
+import { AppletSaveProcessor } from "@domain/applet/processors/base/save.processor";
+import { AppletCreateProcessor } from "@domain/applet/processors/create/create.processor";
 
 import { AuthModule } from "~/shared/auth/auth.module";
 import { PersistenceModule } from "~/shared/persistence/persistence.module";
@@ -19,6 +23,12 @@ import { UserService } from "./user/user.service";
   providers: [
     AppletService,
     AppletNodeService,
+
+    AppletInputProcessor,
+    AppletRegisterProcessor,
+    AppletSaveProcessor,
+    AppletCreateProcessor,
+
     AuthService,
     DocumentationService,
     ManifestService,

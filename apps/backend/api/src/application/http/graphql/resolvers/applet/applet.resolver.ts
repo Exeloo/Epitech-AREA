@@ -38,6 +38,6 @@ export class AppletResolver {
     @Args("data", { type: () => AppletCreateInput })
     data: IAppletCreateInput,
   ): Promise<IExposedApplet> {
-    throw Error(`Not implemented ${user}, ${data}`);
+    return this.appletService.create(user, data);
   }
 }

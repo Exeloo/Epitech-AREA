@@ -2,20 +2,20 @@ import { AuthorizationException } from "@exception";
 
 import { StrategyEnum } from "@domain/auth/strategy/strategy.enum";
 import { IStrategyInput } from "@domain/auth/strategy/strategy.type";
-import { IUser } from "@domain/user/types/user.type";
 
 import { IAuthStrategy } from "~/shared/auth/strategy/common/base.strategy.type";
 
 export const AuthStrategy = <
   K extends keyof IStrategyInput,
-  V extends IStrategyInput[K],
+  V extends IStrategyInput[K]["params"],
+  R extends IStrategyInput[K]["res"],
 >(
   name: K,
 ) => {
-  abstract class BaseStrategy implements IAuthStrategy<V> {
+  abstract class BaseStrategy implements IAuthStrategy<V, R> {
     readonly name: StrategyEnum = name;
 
-    abstract authenticate(input: V): Promise<IUser>;
+    abstract authenticate(input: V): Promise<R>;
 
     invalidAuth(cause: string): void {
       throw new AuthorizationException(

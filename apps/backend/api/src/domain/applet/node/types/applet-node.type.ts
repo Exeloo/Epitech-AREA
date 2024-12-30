@@ -1,3 +1,5 @@
+import { ID } from "@d-type/id.type";
+
 import { AppletNodeType } from "@domain/applet/node/enums/applet-node.type";
 import { IApplet } from "@domain/applet/types/applet.type";
 import { IIdentifiable } from "@domain/common/interfaces/models/identifiable.type";
@@ -18,3 +20,7 @@ export type IExposedAppletNode = Pick<
   IAppletNode,
   "id" | "actionId" | "actionType" | "input"
 >;
+
+export type IProviderAppletNode = Pick<IAppletNode, "actionId" | "input"> & {
+  baseId: ID;
+};

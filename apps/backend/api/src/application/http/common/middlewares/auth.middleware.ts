@@ -18,7 +18,11 @@ export class AuthMiddleware implements NestMiddleware {
         request.headers.authorization,
       );
     }
-    // @todo Put here the apiKey auth
+    if (request.headers["api-key"]) {
+      request["provider"] = await this.authService.authApiKey(
+        request.headers["api-key"] as string,
+      );
+    }
     next();
   }
 }

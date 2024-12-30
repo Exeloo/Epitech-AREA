@@ -14,6 +14,7 @@ import {
   IAuthRefreshTokenInput,
   IAuthToken,
 } from "@domain/auth/types/token.auth.type";
+import { IProvider } from "@domain/provider/types/provider.type";
 import { UserService } from "@domain/user/user.service";
 
 import { IAuthenticateUser, IUser } from "../user/types/user.type";
@@ -64,7 +65,16 @@ export class AuthService {
     });
   }
 
-  authOAuth(provider: OAuthStrategyEnum, req: Request): Promise<IUser> {
+  authApiKey(apiKey: string): Promise<IProvider> {
+    return this.authService.authenticate(StrategyEnum.API_KEY, {
+      apiKey,
+    });
+  }
+
+  authOAuth(
+    provider: OAuthStrategyEnum,
+    req: Request,
+  ): Promise<IAuthenticateUser> {
     if (!req.query) {
       throw new BadInputException("BAD_INPUT", "Invalid Query", {
         cause: new Error("Undefined query on OAuth"),
@@ -106,10 +116,7 @@ export class AuthService {
   ): Promise<{ baseUrl: string }> {
     let auth: IAuthenticateUser;
     try {
-      auth = (await this.authOAuth(
-        provider,
-        req,
-      )) as unknown as IAuthenticateUser;
+      auth = await this.authOAuth(provider, req);
       let curr = await this.userService.getByEmail(auth.email);
       if (!curr) {
         curr = await this.userService.registerUser({

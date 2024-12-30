@@ -1,0 +1,5 @@
+query getProviderById($id: Int!) {
+    getProviderById(id: $id) {
+        ...ProviderWithManifest
+    }
+}

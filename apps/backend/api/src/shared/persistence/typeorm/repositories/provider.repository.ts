@@ -40,4 +40,12 @@ export class ProviderRepository
         .getOneOrFail(),
     );
   }
+
+  async getByApiKey(apiKey: string): Promise<IProvider | null> {
+    return this.transformer.persistenceToDomain(
+      await this.findOneBy({
+        apiKey,
+      }),
+    );
+  }
 }

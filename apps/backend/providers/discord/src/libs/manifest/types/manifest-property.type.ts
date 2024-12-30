@@ -1,6 +1,6 @@
-import {ManifestPropertyEnum} from "@lib/manifest";
+import { ManifestPropertyEnum } from "@lib/manifest";
 
-import {IManifestType} from "./manifest-type.type";
+import { IManifestType } from "./manifest-type.type";
 
 interface IBaseManifestProperty {
   description?: string;

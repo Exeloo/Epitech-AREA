@@ -15,4 +15,6 @@ export interface IAppletNodePersistenceRepository
   getNextById(id: ID): Promise<IAppletNode[]>;
 
   saveNodes(nodes: DeepPartial<IAppletNode[]>): Promise<IAppletNode[]>;
+
+  getAllTriggersByProviderId(id: ID): Promise<IAppletNode[]>;
 }

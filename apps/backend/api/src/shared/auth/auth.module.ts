@@ -5,6 +5,7 @@ import { JwtModule } from "@nestjs/jwt";
 
 import { AUTH_SERVICE } from "@domain/auth/auth.service.type";
 
+import { ApiKeyStrategy } from "~/shared/auth/strategy/strategies/apiKey.strategy";
 import { OAuthStrategy } from "~/shared/auth/strategy/strategies/oauth/oauth.strategy";
 import { GoogleOAuthStrategy } from "~/shared/auth/strategy/strategies/oauth/strategies/google.strategy";
 import { PersistenceModule } from "~/shared/persistence/persistence.module";
@@ -36,6 +37,7 @@ import { StrategyService } from "./strategy/strategy.service";
     PasswordStrategy,
     TokenStrategy,
     OAuthStrategy,
+    ApiKeyStrategy,
 
     GoogleOAuthStrategy,
   ],

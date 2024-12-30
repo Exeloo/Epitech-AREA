@@ -68,6 +68,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GregisterData_register.serializer)
       ..add(GregisterReq.serializer)
       ..add(GregisterVars.serializer)
+      ..add(GupdateMeData.serializer)
+      ..add(GupdateMeData_updateMe.serializer)
+      ..add(GupdateMeReq.serializer)
+      ..add(GupdateMeVars.serializer)
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GAppletNodeCreateInput)]),

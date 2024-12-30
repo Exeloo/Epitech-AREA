@@ -1,9 +1,10 @@
 import 'package:ferry/ferry.dart';
-import 'package:gql_http_link/gql_http_link.dart';
+import 'package:mobile/modules/auth/auth_helper.dart';
+import 'httpauthlink.dart';
 
 class GraphQlClient {
   factory GraphQlClient() {
-    _client ??= Client(link: HttpLink(_resolveBaseUrl()));
+    _client ??= Client(link: _createLink());
     return _singleton;
   }
 
@@ -16,6 +17,15 @@ class GraphQlClient {
 
   void dispose() {
     _client?.dispose();
+  }
+
+  static Link _createLink() {
+    final authLink = HttpAuthLink(
+      baseUrl: _resolveBaseUrl(),
+      authHelper: AuthHelper(),
+    );
+
+    return authLink;
   }
 }
 

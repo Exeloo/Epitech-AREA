@@ -50,6 +50,8 @@ abstract class GgetMeData_getMe
   @override
   int get id;
   @override
+  String get email;
+  @override
   String get username;
   @override
   String get firstName;
@@ -73,6 +75,81 @@ abstract class GgetMeData_getMe
   static GgetMeData_getMe? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GgetMeData_getMe.serializer,
+        json,
+      );
+}
+
+abstract class GupdateMeData
+    implements Built<GupdateMeData, GupdateMeDataBuilder> {
+  GupdateMeData._();
+
+  factory GupdateMeData([void Function(GupdateMeDataBuilder b) updates]) =
+      _$GupdateMeData;
+
+  static void _initializeBuilder(GupdateMeDataBuilder b) =>
+      b..G__typename = 'Mutation';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  GupdateMeData_updateMe get updateMe;
+  static Serializer<GupdateMeData> get serializer => _$gupdateMeDataSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GupdateMeData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GupdateMeData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GupdateMeData.serializer,
+        json,
+      );
+}
+
+abstract class GupdateMeData_updateMe
+    implements
+        Built<GupdateMeData_updateMe, GupdateMeData_updateMeBuilder>,
+        GUser {
+  GupdateMeData_updateMe._();
+
+  factory GupdateMeData_updateMe(
+          [void Function(GupdateMeData_updateMeBuilder b) updates]) =
+      _$GupdateMeData_updateMe;
+
+  static void _initializeBuilder(GupdateMeData_updateMeBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  int get id;
+  @override
+  String get email;
+  @override
+  String get username;
+  @override
+  String get firstName;
+  @override
+  String get lastName;
+  @override
+  String? get pronoun;
+  @override
+  String? get picture;
+  @override
+  String? get description;
+  static Serializer<GupdateMeData_updateMe> get serializer =>
+      _$gupdateMeDataUpdateMeSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GupdateMeData_updateMe.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GupdateMeData_updateMe? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GupdateMeData_updateMe.serializer,
         json,
       );
 }
@@ -123,6 +200,8 @@ abstract class GregisterData_register
   @override
   int get id;
   @override
+  String get email;
+  @override
   String get username;
   @override
   String get firstName;
@@ -153,6 +232,7 @@ abstract class GregisterData_register
 abstract class GUser {
   String get G__typename;
   int get id;
+  String get email;
   String get username;
   String get firstName;
   String get lastName;
@@ -174,6 +254,8 @@ abstract class GUserData implements Built<GUserData, GUserDataBuilder>, GUser {
   String get G__typename;
   @override
   int get id;
+  @override
+  String get email;
   @override
   String get username;
   @override

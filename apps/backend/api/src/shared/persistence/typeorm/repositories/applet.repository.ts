@@ -26,7 +26,7 @@ export class AppletRepository
   async getAllWithOwner(userId: ID): Promise<IApplet[]> {
     return this.transformer.persistenceToDomains(
       await this.createQueryBuilder("applet")
-        .where("applet.ownerId = :userId", { userId })
+        .where("applet.owner_id = :userId", { userId })
         .getMany(),
     );
   }
@@ -35,7 +35,7 @@ export class AppletRepository
     return this.transformer.persistenceToDomain(
       await this.createQueryBuilder("applet")
         .where("applet.id = :id", { id })
-        .andWhere("applet.ownerId = :userId", { userId })
+        .andWhere("applet.owner_id = :userId", { userId })
         .getOneOrFail(),
     );
   }

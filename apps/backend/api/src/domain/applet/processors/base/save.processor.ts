@@ -21,7 +21,10 @@ export class AppletSaveProcessor
   async process(applet: IApplet, data: IAppletCreateInput): Promise<IApplet> {
     return {
       ...applet,
-      nodes: await this.appletNodePRepository.saveNodes(data.triggerNodes),
+      nodes: await this.appletNodePRepository.saveNodes(
+        data.triggerNodes,
+        applet.id,
+      ),
     };
   }
 }

@@ -1,11 +1,22 @@
-import { Args, Int, Mutation, Query, Resolver } from "@nestjs/graphql";
+import {
+  Args,
+  Int,
+  Mutation,
+  Query,
+  ResolveField,
+  Resolver,
+} from "@nestjs/graphql";
 
 import { ID } from "@d-type/id.type";
 
 import { AppletService } from "@domain/applet/applet.service";
+import { AppletNodeService } from "@domain/applet/node/applet-node.service";
+import { IExposedAppletNode } from "@domain/applet/node/types/applet-node.type";
 import { IAppletCreateInput } from "@domain/applet/types/applet.input.type";
 import { IExposedApplet } from "@domain/applet/types/applet.type";
 import { IUser } from "@domain/user/types/user.type";
+
+import { AppletNode } from "~/application/http/graphql/dto/nodes/applet/applet-node.node";
 
 import { GqlCurrentUser } from "../../common/decorators/graphql-current-user.decorator";
 import { AppletCreateInput } from "../../dto/input/applet/applet-create.input";
@@ -13,7 +24,17 @@ import { Applet } from "../../dto/nodes/applet/applet.node";
 
 @Resolver(Applet)
 export class AppletResolver {
-  constructor(private readonly appletService: AppletService) {}
+  constructor(
+    private readonly appletService: AppletService,
+    private readonly appletNodeService: AppletNodeService,
+  ) {}
+
+  @ResolveField(() => [AppletNode], {
+    description: "Triggers of the applet",
+  })
+  triggerNodes(applet: IExposedApplet): Promise<IExposedAppletNode[]> {
+    return this.appletNodeService.getTriggersByAppletId(applet.id);
+  }
 
   @Query(() => [Applet], { description: "Get all applets" })
   async getAllApplets(

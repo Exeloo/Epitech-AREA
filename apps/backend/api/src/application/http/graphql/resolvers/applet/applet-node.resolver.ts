@@ -1,4 +1,12 @@
-import { ResolveField, Resolver, registerEnumType } from "@nestjs/graphql";
+import {
+  Args,
+  Query,
+  ResolveField,
+  Resolver,
+  registerEnumType,
+} from "@nestjs/graphql";
+
+import { ID } from "@d-type/id.type";
 
 import { AppletNodeService } from "@domain/applet/node/applet-node.service";
 import { AppletNodeType } from "@domain/applet/node/enums/applet-node.type";
@@ -35,6 +43,7 @@ export class AppletNodeResolver {
   provider(appletNode: IExposedAppletNode): Promise<IExposedProvider> {
     return this.providerService.getByAppletNodeId(appletNode.id);
   }
+
   @ResolveField(() => [AppletNode], {
     description: "Nodes that is called previous",
   })
@@ -47,5 +56,12 @@ export class AppletNodeResolver {
   })
   next(appletNode: IExposedAppletNode): Promise<IExposedAppletNode[]> {
     return this.appletNodeService.getNextByAppletNodeId(appletNode.id);
+  }
+
+  @Query(() => AppletNode, {
+    description: "Query used to get an applet node",
+  })
+  getAppletNodeById(@Args("id") id: ID): Promise<IExposedAppletNode> {
+    return this.appletNodeService.getById(id);
   }
 }

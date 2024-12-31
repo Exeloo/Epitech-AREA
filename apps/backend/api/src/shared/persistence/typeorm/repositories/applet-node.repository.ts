@@ -10,6 +10,7 @@ import { AsyncArrayUtils } from "@utils/async-array.utils";
 import { IAppletNodePersistenceRepository } from "@domain/applet/node/applet-node.repository.type";
 import { AppletNodeType } from "@domain/applet/node/enums/applet-node.type";
 import { IAppletNode } from "@domain/applet/node/types/applet-node.type";
+import { IAppletNodeCreateInput } from "@domain/applet/types/applet.input.type";
 
 import { AppletNodeRelationRepository } from "~/shared/persistence/typeorm/repositories/applet-node-relations.repository";
 
@@ -37,7 +38,7 @@ export class AppletNodeRepository
     return this.transformer.persistenceToDomains(
       await this.createQueryBuilder("node")
         .innerJoin("node.next", "next")
-        .where("next.secondId = :id", { id })
+        .where("next.second_id = :id", { id })
         .getMany(),
     );
   }
@@ -46,17 +47,29 @@ export class AppletNodeRepository
     return this.transformer.persistenceToDomains(
       await this.createQueryBuilder("node")
         .innerJoin("node.previous", "previous")
-        .where("next.firstId = :id", { id })
+        .where("previous.first_id = :id", { id })
         .getMany(),
     );
   }
 
-  saveNodes(nodes: DeepPartial<IAppletNode[]>): Promise<IAppletNode[]> {
+  saveNodes(
+    nodes: DeepPartial<IAppletNodeCreateInput[]>,
+    appletId: ID,
+    isTrigger = true,
+  ): Promise<IAppletNode[]> {
     return AsyncArrayUtils.map(nodes, async (node): Promise<IAppletNode> => {
-      const res = await this.createEntity(node);
+      const res = await this.createEntity({
+        actionId: node.actionId,
+        input: node.input,
+        actionType: isTrigger ? AppletNodeType.TRIGGER : AppletNodeType.ACTION,
+        provider: {
+          id: node.providerId,
+        },
+        applet: { id: appletId },
+      });
       if (!node.next) return res;
       const next = await AsyncArrayUtils.map(
-        await this.saveNodes(node.next),
+        await this.saveNodes(node.next, appletId, false),
         async (el): Promise<IAppletNode> => {
           await this.relationsRepository.save({
             firstId: res.id,
@@ -79,6 +92,15 @@ export class AppletNodeRepository
     return this.transformer.persistenceToDomains(
       await this.createQueryBuilder("node")
         .where("node.provider_id = :id", { id })
+        .andWhere("node.action_type = :type", { type: AppletNodeType.TRIGGER })
+        .getMany(),
+    );
+  }
+
+  async getAllTriggersByAppletId(id: ID): Promise<IAppletNode[]> {
+    return this.transformer.persistenceToDomains(
+      await this.createQueryBuilder("node")
+        .where("node.applet_id = :id", { id })
         .andWhere("node.action_type = :type", { type: AppletNodeType.TRIGGER })
         .getMany(),
     );

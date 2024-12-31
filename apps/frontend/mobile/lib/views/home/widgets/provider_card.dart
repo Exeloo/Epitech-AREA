@@ -67,6 +67,7 @@ class ProviderDescription extends StatefulWidget {
   @override
   ProviderDescriptionState createState() => ProviderDescriptionState();
 }
+
 class ProviderDescriptionState extends State<ProviderDescription> {
   late GgetProviderByIdData_getProviderById _provider;
   bool _isLoading = true;
@@ -78,7 +79,8 @@ class ProviderDescriptionState extends State<ProviderDescription> {
   }
 
   void _getProvidersById(BuildContext context) async {
-    final providerRepository = Provider.of<ProviderRepository>(context, listen: false);
+    final providerRepository =
+        Provider.of<ProviderRepository>(context, listen: false);
 
     try {
       final response = await providerRepository.getProviderById(id: widget.id);
@@ -110,7 +112,8 @@ class ProviderDescriptionState extends State<ProviderDescription> {
     return Scaffold(
       backgroundColor: const Color(0xff1B1B1B),
       appBar: AppBar(
-        backgroundColor: Color(int.parse(_provider.color.replaceFirst('#', '0xff'))),
+        backgroundColor:
+            Color(int.parse(_provider.color.replaceFirst('#', '0xff'))),
         automaticallyImplyLeading: false,
         flexibleSpace: Padding(
           padding: const EdgeInsets.only(bottom: 10.0),
@@ -119,7 +122,8 @@ class ProviderDescriptionState extends State<ProviderDescription> {
             child: Row(
               children: [
                 IconButton(
-                  icon: const Icon(Icons.arrow_back, color: Colors.white, size: 40),
+                  icon: const Icon(Icons.arrow_back,
+                      color: Colors.white, size: 40),
                   onPressed: () => Navigator.of(context).pop(),
                 ),
                 const SizedBox(width: 80),
@@ -180,9 +184,9 @@ class ProviderDescriptionState extends State<ProviderDescription> {
                           context,
                           MaterialPageRoute(
                             builder: (BuildContext context) =>
-                            const DiscordAuth(),
+                                const DiscordAuth(),
                           ),
-                              (Route<dynamic> route) => false,
+                          (Route<dynamic> route) => false,
                         );
                       },
                       child: const Text('Login',

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile/modules/graphql/providers.dart';
 import 'package:mobile/views/auth/pages/main_auth.dart';
 import 'package:provider/provider.dart';
+
 void main() {
   runApp(
     MultiProvider(

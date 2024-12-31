@@ -50,6 +50,8 @@ jobs:
         with:
           flutter-version: '3.27.1'
           channel: 'stable'
+      - name: Run lint
+        run: "yarn lint"
       - name: Run tests
         run: "yarn test:unit"
 

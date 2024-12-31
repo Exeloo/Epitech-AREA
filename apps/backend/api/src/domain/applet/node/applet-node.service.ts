@@ -7,7 +7,7 @@ import {
   IAppletNodePersistenceRepository,
 } from "@domain/applet/node/applet-node.repository.type";
 import {
-  IExposedAppletNode,
+  IAppletNode,
   IProviderAppletNode,
 } from "@domain/applet/node/types/applet-node.type";
 
@@ -18,11 +18,11 @@ export class AppletNodeService {
     private readonly appletNodePRepository: IAppletNodePersistenceRepository,
   ) {}
 
-  getPreviousByAppletNodeId(id: ID): Promise<IExposedAppletNode[]> {
+  getPreviousByAppletNodeId(id: ID): Promise<IAppletNode[]> {
     return this.appletNodePRepository.getPreviousById(id);
   }
 
-  getNextByAppletNodeId(id: ID): Promise<IExposedAppletNode[]> {
+  getNextByAppletNodeId(id: ID): Promise<IAppletNode[]> {
     return this.appletNodePRepository.getNextById(id);
   }
 
@@ -36,5 +36,13 @@ export class AppletNodeService {
       actionId: node.actionId,
       input: node.input,
     }));
+  }
+
+  getTriggersByAppletId(id: ID): Promise<IAppletNode[]> {
+    return this.appletNodePRepository.getAllTriggersByAppletId(id);
+  }
+
+  getById(id: ID): Promise<IAppletNode> {
+    return this.appletNodePRepository.getById(id);
   }
 }

@@ -7,7 +7,7 @@ import {
   PROVIDER_PERSISTENCE_REPOSITORY,
 } from "../provider.repository.type";
 import { IProviderService, PROVIDER_SERVICE } from "../provider.service.type";
-import { IManifest } from "./types/manifest.type";
+import { IExposedManifest, IManifest } from "./types/manifest.type";
 
 @Injectable()
 export class ManifestService {
@@ -21,5 +21,21 @@ export class ManifestService {
   async getByProviderId(id: ID): Promise<IManifest> {
     const provider = await this.providerPRepository.getById(id);
     return this.providerService.getManifest(provider);
+  }
+
+  async getExposedByProviderId(id: ID): Promise<IExposedManifest> {
+    const manifest = await this.getByProviderId(id);
+    return {
+      actions: manifest.actions.map((action) => ({
+        ...action,
+        input: JSON.stringify(action.input),
+        output: JSON.stringify(action.output),
+      })),
+      triggers: manifest.triggers.map((trigger) => ({
+        ...trigger,
+        input: JSON.stringify(trigger.input),
+        output: JSON.stringify(trigger.output),
+      })),
+    };
   }
 }

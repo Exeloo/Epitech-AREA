@@ -45,6 +45,13 @@ jobs:
         run: "npm install -g yarn"
       - name: Install dependencies
         run: "yarn install"
+      - name: Set Up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.27.1'
+          channel: 'stable'
+      - name: Run lint
+        run: "yarn lint"
       - name: Run tests
         run: "yarn test:unit"
 

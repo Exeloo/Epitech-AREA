@@ -1,0 +1,66 @@
+fragment ProviderManifestAction on ProviderManifestAction {
+    id
+    name
+    description
+    img
+    color
+    input
+    output
+}
+
+fragment BaseAppletNode on AppletNode {
+    id
+    actionId
+    actionType
+
+}
+
+fragment ExtendedAppletNode on AppletNode {
+    input
+    provider {
+        ...BaseProvider
+    }
+    previous {
+        ...BaseAppletNode
+    }
+    next {
+        ...BaseAppletNode
+    }
+}
+
+fragment BaseApplet on Applet {
+    id
+    name
+    description
+}
+
+fragment AppletWithNodes on Applet {
+    ...BaseApplet
+    triggerNodes {
+        ...ExtendedAppletNode
+    }
+}
+
+query getAllApplets {
+    getAllApplets {
+        ...BaseApplet
+    }
+}
+
+query getAppletById($id: Int!) {
+    getAppletById(id: $id) {
+        ...AppletWithNodes
+    }
+}
+
+query getAppletNodeById($id: Int!) {
+    getAppletNodeById(id: $id) {
+        ...ExtendedAppletNode
+    }
+}
+
+mutation createApplet($data: AppletCreateInput!) {
+    createApplet(data: $data) {
+        ...BaseApplet
+    }
+}

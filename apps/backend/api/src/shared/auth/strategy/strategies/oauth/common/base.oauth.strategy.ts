@@ -5,8 +5,11 @@ import { firstValueFrom } from "rxjs";
 import { camelToSnake } from "@utils/case.utils";
 import { urlQueryBuilder } from "@utils/url-query.utils";
 
+import { AuthorizationException } from "@exception";
+
 import { OAuthStrategyEnum } from "@domain/auth/strategy/strategies/oauth/oauth.strategy.enum";
 import { IOAuthStrategy } from "@domain/auth/strategy/strategies/oauth/oauth.strategy.type";
+import { IOAuthOptions } from "@domain/auth/types/oauth-options.type";
 import { IAuthenticateUser } from "@domain/user/types/user.type";
 
 import { IOAuthAuthStrategy } from "~/shared/auth/strategy/strategies/oauth/common/base.oauth.strategy.type";
@@ -26,6 +29,7 @@ export const BaseOAuthStrategy = <
       readonly httpService: HttpService,
       readonly baseURL: string,
       readonly redirectFieldName: string,
+      readonly stateFieldName: string,
       readonly options: object,
       readonly tokenURL: string,
       readonly tokenOptions: object,
@@ -33,10 +37,13 @@ export const BaseOAuthStrategy = <
       this.redirectUrl = `${this.configService.getOrThrow("API_BASE_URL")}/auth/${this.name}/callback`;
     }
 
-    async redirect(): Promise<string> {
+    async redirect(options?: IOAuthOptions): Promise<string> {
       return urlQueryBuilder(
         {
           [this.redirectFieldName]: this.redirectUrl,
+          [this.stateFieldName]: options
+            ? Buffer.from(JSON.stringify(options)).toString("base64")
+            : undefined,
           ...this.options,
         },
         this.baseURL,
@@ -61,8 +68,15 @@ export const BaseOAuthStrategy = <
 
     abstract validate(input: V): Promise<IAuthenticateUser>;
 
-    invalidAuth(): void {
-      throw Error(); // @todo Error invalid credentials
+    invalidAuth(cause: string): void {
+      throw new AuthorizationException(
+        "UNAUTHORIZED_INVALID_OAUTH_CREDENTIALS",
+        "Invalid authentication",
+        {
+          cause: new Error(cause),
+          trace: 25,
+        },
+      );
     }
   }
   return BaseStrategy;

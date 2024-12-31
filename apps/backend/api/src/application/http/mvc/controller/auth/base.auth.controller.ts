@@ -15,8 +15,9 @@ export const BaseAuthController = (
 
     @Get()
     @Render("auth.hbs")
-    auth() {
-      return this.authService.getOAuthRedirect(provider);
+    auth(@Request() req: Express.Request) {
+      const device = req.query.device as string;
+      return this.authService.getOAuthRedirect(provider, { device });
     }
 
     @Get("callback")

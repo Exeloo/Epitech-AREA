@@ -9,7 +9,7 @@ export type IManifestProperty = (
   | {
       type:
         | ManifestPropertyEnum.STRING
-        | ManifestPropertyEnum.INTEGER
+        | ManifestPropertyEnum.NUMBER
         | ManifestPropertyEnum.BOOLEAN
         | ManifestPropertyEnum.DATE;
     }
@@ -37,29 +37,48 @@ export interface IManifestTrigger {
   name: string;
   description: string;
   img: string;
+  color: string;
   input: IManifestField;
   output: IManifestField;
 }
+
+export type IExposedManifestTrigger = Pick<
+  IManifestTrigger,
+  "id" | "name" | "description" | "img" | "color"
+> & {
+  input: string;
+  output: string;
+};
 
 export interface IManifestAction {
   id: string;
   name: string;
   description: string;
   img: string;
+  color: string;
   input: IManifestField;
   output: IManifestField;
 }
+
+export type IExposedManifestAction = Pick<
+  IManifestAction,
+  "id" | "name" | "description" | "img" | "color"
+> & {
+  input: string;
+  output: string;
+};
 
 export interface IManifest {
   id: string;
   name: string;
   description: string;
   img: string;
+  color: string;
   triggers: IManifestTrigger[];
   actions: IManifestAction[];
 }
 
-export type IExposedManifest = Pick<
-  IManifest,
-  "name" | "description" | "img" | "triggers" | "actions"
->;
+export type IExposedManifest = {
+  triggers: IExposedManifestTrigger[];
+  actions: IExposedManifestAction[];
+};

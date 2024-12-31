@@ -2,15 +2,15 @@ import { Field, ObjectType } from "@nestjs/graphql";
 import GraphQLJSON from "graphql-type-json";
 
 import {
-  IManifestAction,
-  IManifestField,
-  IManifestTrigger,
+  IExposedManifest,
+  IExposedManifestAction,
+  IExposedManifestTrigger,
 } from "@domain/provider/manifest/types/manifest.type";
 
 @ObjectType({
   description: "Trigger Provider Manifest",
 })
-export class ProviderManifestTrigger implements IManifestTrigger {
+export class ProviderManifestTrigger implements IExposedManifestTrigger {
   @Field(() => String, {
     description: "ID of the trigger",
   })
@@ -31,21 +31,26 @@ export class ProviderManifestTrigger implements IManifestTrigger {
   })
   img: string;
 
+  @Field(() => String, {
+    description: "Color of the trigger",
+  })
+  color: string;
+
   @Field(() => GraphQLJSON, {
     description: "Input of the trigger",
   })
-  input: IManifestField;
+  input: string;
 
   @Field(() => GraphQLJSON, {
     description: "Output of the trigger",
   })
-  output: IManifestField;
+  output: string;
 }
 
 @ObjectType({
   description: "Action Provider Manifest",
 })
-export class ProviderManifestAction implements IManifestAction {
+export class ProviderManifestAction implements IExposedManifestAction {
   @Field(() => String, {
     description: "ID of the action",
   })
@@ -66,43 +71,33 @@ export class ProviderManifestAction implements IManifestAction {
   })
   img: string;
 
+  @Field(() => String, {
+    description: "Color of the action",
+  })
+  color: string;
+
   @Field(() => GraphQLJSON, {
     description: "Input of the action",
   })
-  input: IManifestField;
+  input: string;
 
   @Field(() => GraphQLJSON, {
     description: "Output of the action",
   })
-  output: IManifestField;
+  output: string;
 }
 
 @ObjectType({
   description: "Provider Manifest",
 })
-export class ProviderManifest /*implements IExposedManifest*/ {
-  @Field(() => String, {
-    description: "Name of the provider",
-  })
-  name: string;
-
-  @Field(() => String, {
-    description: "Description of the provider",
-  })
-  description: string;
-
-  @Field(() => String, {
-    description: "Image that describe the provider",
-  })
-  img: string;
-
+export class ProviderManifest implements IExposedManifest {
   @Field(() => [ProviderManifestTrigger], {
     description: "Triggers of the provider",
   })
-  triggers: IManifestTrigger[];
+  triggers: IExposedManifestTrigger[];
 
   @Field(() => [ProviderManifestAction], {
     description: "Actions of the provider",
   })
-  actions: IManifestAction[];
+  actions: IExposedManifestAction[];
 }

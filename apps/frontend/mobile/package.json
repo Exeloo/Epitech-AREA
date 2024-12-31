@@ -6,10 +6,12 @@
     "private": true,
     "packageManager": "yarn@1.22.22",
     "scripts": {
-        "lint": "echo 'Not implemented yet : ignored'",
-        "fix": "echo 'Not implemented yet : ignored'",
-        "test:unit": "echo 'Not implemented yet : ignored'",
-        "test:e2e": "echo 'Not implemented yet : ignored'"
+        "lint": "flutter analyze",
+        "fix": "dart format .",
+        "test:unit": "flutter test",
+        "test:e2e": "flutter drive --target=test_driver/app.dart",
+        "generate": "get-graphql-schema http://localhost:8080/graphql > lib/graphql/schema.graphql",
+        "web": "flutter run -d web-server --web-port 7070"
     },
     "engines": {
         "node": ">=22.11.0",
@@ -24,5 +26,8 @@
         "nohoist": [
             "**"
         ]
+    },
+    "devDependencies": {
+        "get-graphql-schema": "^2.1.2"
     }
 }

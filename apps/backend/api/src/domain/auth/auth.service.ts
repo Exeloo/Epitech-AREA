@@ -4,13 +4,17 @@ import { Request } from "express";
 
 import { urlQueryBuilder } from "@utils/url-query.utils";
 
+import { AuthorizationException, BadInputException } from "@exception";
+
 import { OAuthStrategyEnum } from "@domain/auth/strategy/strategies/oauth/oauth.strategy.enum";
 import { IOAuthStrategy } from "@domain/auth/strategy/strategies/oauth/oauth.strategy.type";
+import { IOAuthOptions } from "@domain/auth/types/oauth-options.type";
 import { IAuthPasswordInput } from "@domain/auth/types/password.auth.type";
 import {
   IAuthRefreshTokenInput,
   IAuthToken,
 } from "@domain/auth/types/token.auth.type";
+import { IProvider } from "@domain/provider/types/provider.type";
 import { UserService } from "@domain/user/user.service";
 
 import { IAuthenticateUser, IUser } from "../user/types/user.type";
@@ -61,12 +65,31 @@ export class AuthService {
     });
   }
 
-  authOAuth(provider: OAuthStrategyEnum, req: Request): Promise<IUser> {
+  authApiKey(apiKey: string): Promise<IProvider> {
+    return this.authService.authenticate(StrategyEnum.API_KEY, {
+      apiKey,
+    });
+  }
+
+  authOAuth(
+    provider: OAuthStrategyEnum,
+    req: Request,
+  ): Promise<IAuthenticateUser> {
     if (!req.query) {
-      throw Error(); // @todo Error no query
+      throw new BadInputException("BAD_INPUT", "Invalid Query", {
+        cause: new Error("Undefined query on OAuth"),
+        trace: 28,
+      });
     }
     if (req.query.error) {
-      throw Error(); // @todo Error error during oauth
+      throw new AuthorizationException(
+        "UNAUTHORIZED_ERROR_FROM_PROVIDER",
+        "OAuth throw error",
+        {
+          cause: new Error(`OAuth throw error: ${req.query.error}`),
+          trace: 29,
+        },
+      );
     }
     return this.authService.authenticate(StrategyEnum.OAUTH, {
       [provider]: req.query as unknown as IOAuthStrategy[typeof provider],
@@ -75,18 +98,25 @@ export class AuthService {
 
   async getOAuthRedirect(
     provider: OAuthStrategyEnum,
+    options?: IOAuthOptions,
   ): Promise<{ baseUrl: string }> {
     return {
-      baseUrl: await this.authService.getOAuthRedirect(provider),
+      baseUrl: await this.authService.getOAuthRedirect(provider, options),
     };
+  }
+
+  getRedirect(options?: IOAuthOptions) {
+    if (options?.device === "mobile") return "mobile://oauth-callback";
+    return `${this.configService.getOrThrow("APP_BASE_URL")}/login`;
   }
 
   async authOAuthRedirect(
     provider: OAuthStrategyEnum,
     req: Request,
   ): Promise<{ baseUrl: string }> {
+    let auth: IAuthenticateUser;
     try {
-      const auth: IAuthenticateUser = await this.authOAuth(provider, req);
+      auth = await this.authOAuth(provider, req);
       let curr = await this.userService.getByEmail(auth.email);
       if (!curr) {
         curr = await this.userService.registerUser({
@@ -102,14 +132,14 @@ export class AuthService {
             refreshToken: token.refreshToken,
             tokenExpiresAt: Math.floor(token.tokenExpiresAt.getTime() / 1000),
           },
-          this.configService.getOrThrow("APP_BASE_URL"),
+          this.getRedirect(auth.state),
         ),
       };
     } catch (error) {
       return {
         baseUrl: urlQueryBuilder(
           { error: error },
-          this.configService.getOrThrow("APP_BASE_URL"),
+          this.getRedirect(auth?.state),
         ),
       };
     }

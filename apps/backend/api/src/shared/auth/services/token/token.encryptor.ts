@@ -2,6 +2,8 @@ import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { JwtService } from "@nestjs/jwt";
 
+import { InternalException } from "@exception";
+
 import { TokenEnum } from "~/shared/auth/services/token/token.enum";
 import { TokenPayload } from "~/shared/auth/services/token/token.type";
 
@@ -18,8 +20,10 @@ export class TokenEncryptor {
         secret: this.resolveSecret(type),
         expiresIn: this.resolveExpiration(type),
       });
-    } catch {
-      throw Error(); // @todo Error
+    } catch (error) {
+      throw new InternalException(7, {
+        cause: error,
+      });
     }
   }
 
@@ -47,8 +51,10 @@ export class TokenEncryptor {
         case TokenEnum.REFRESH:
           return this.configService.getOrThrow("REFRESH_TOKEN_SECRET");
       }
-    } catch {
-      throw Error(); // @todo Error
+    } catch (error) {
+      throw new InternalException(8, {
+        cause: error,
+      });
     }
   }
 
@@ -60,8 +66,10 @@ export class TokenEncryptor {
         case TokenEnum.REFRESH:
           return this.configService.getOrThrow("REFRESH_TOKEN_EXPIRATION");
       }
-    } catch {
-      throw Error(); // @todo Error
+    } catch (error) {
+      throw new InternalException(9, {
+        cause: error,
+      });
     }
   }
 

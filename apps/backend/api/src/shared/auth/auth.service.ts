@@ -5,8 +5,8 @@ import { ID } from "@d-type/id.type";
 import { IAuthService } from "@domain/auth/auth.service.type";
 import { OAuthStrategyEnum } from "@domain/auth/strategy/strategies/oauth/oauth.strategy.enum";
 import { IStrategyInput } from "@domain/auth/strategy/strategy.type";
+import { IOAuthOptions } from "@domain/auth/types/oauth-options.type";
 import { IAuthToken } from "@domain/auth/types/token.auth.type";
-import { IUser } from "@domain/user/types/user.type";
 
 import { PasswordService } from "./services/password/password.service";
 import { TokenService } from "./services/token/token.service";
@@ -22,8 +22,8 @@ export class AuthService implements IAuthService {
 
   authenticate<K extends keyof IStrategyInput>(
     type: K,
-    input: IStrategyInput[K],
-  ): Promise<IUser> {
+    input: IStrategyInput[K]["params"],
+  ): Promise<IStrategyInput[K]["res"]> {
     return this.strategyService.authenticate(type, input);
   }
 
@@ -39,7 +39,10 @@ export class AuthService implements IAuthService {
     return this.tokenService.generateToken(userId);
   }
 
-  getOAuthRedirect(provider: OAuthStrategyEnum): Promise<string> {
-    return this.strategyService.getOAuthRedirect(provider);
+  getOAuthRedirect(
+    provider: OAuthStrategyEnum,
+    options?: IOAuthOptions,
+  ): Promise<string> {
+    return this.strategyService.getOAuthRedirect(provider, options);
   }
 }

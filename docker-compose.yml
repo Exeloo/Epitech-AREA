@@ -30,7 +30,7 @@ services:
     depends_on:
       - server
     ports:
-      - "6001:6001"
+      - "3001:3001"
 
   client_mobile:
     build:

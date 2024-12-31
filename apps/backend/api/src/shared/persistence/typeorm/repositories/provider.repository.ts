@@ -1,6 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { DataSource, FindOptionsRelations } from "typeorm";
 
+import { ID } from "@d-type/id.type";
+
 import { IProviderPersistenceRepository } from "@domain/provider/provider.repository.type";
 import { IProvider } from "@domain/provider/types/provider.type";
 
@@ -26,6 +28,23 @@ export class ProviderRepository
       await this.findOne({
         where: { providerId },
         relations: this.relations,
+      }),
+    );
+  }
+
+  async getByAppletNodeId(nodeId: ID): Promise<IProvider> {
+    return this.transformer.persistenceToDomain(
+      await this.createQueryBuilder("provider")
+        .innerJoin("provider.appletNodes", "node")
+        .where("node.id = :nodeId", { nodeId })
+        .getOneOrFail(),
+    );
+  }
+
+  async getByApiKey(apiKey: string): Promise<IProvider | null> {
+    return this.transformer.persistenceToDomain(
+      await this.findOneBy({
+        apiKey,
       }),
     );
   }

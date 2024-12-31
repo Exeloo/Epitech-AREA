@@ -22,6 +22,8 @@ dependencies:
   gql_error_link: ^1.0.0+1
   gql_transform_link: ^1.0.0
   built_collection: ^5.1.1
+  gql_exec: ^1.0.0+1
+  gql_link: ^1.0.0+1
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import {onMount} from "svelte";
+	import { onMount } from 'svelte';
 
 	let selectedButton = $state(0);
 
@@ -11,7 +11,6 @@
 			selectedButton = 0;
 		}
 	});
-
 </script>
 
 <div class="relative mb-10 flex gap-6">

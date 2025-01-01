@@ -1,8 +1,0 @@
-fragment BaseProvider on Provider {
-    id
-    name
-    description
-    img
-    color
-    visibility
-}

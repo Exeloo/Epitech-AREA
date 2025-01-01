@@ -1,5 +1,17 @@
 <script lang="ts">
+	import {onMount} from "svelte";
+
 	let selectedButton = $state(0);
+
+	onMount(() => {
+		const currentUrl = window.location.pathname;
+		if (currentUrl === '/providers') {
+			selectedButton = 1;
+		} else {
+			selectedButton = 0;
+		}
+	});
+
 </script>
 
 <div class="relative mb-10 flex gap-6">

@@ -3,7 +3,7 @@
 	import Card from './Card.svelte';
 </script>
 
-<Card>
+<Card color="#ffffff">
 	<div class="flex justify-between">
 		<a href="/apps/frontend/web/static" class="font-bold">BillHarper_</a>
 		<div class="flex w-14 gap-2">

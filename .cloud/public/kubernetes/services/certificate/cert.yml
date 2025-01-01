@@ -11,3 +11,4 @@ spec:
   dnsNames:
     - registry.area.tech.showmyteam.fr
     - argocd.area.tech.showmyteam.fr
+    - phpmyadmin.area.tech.showmyteam.fr

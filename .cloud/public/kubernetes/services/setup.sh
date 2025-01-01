@@ -16,6 +16,8 @@ kubectl taint nodes $NODE_NAME node-role.kubernetes.io/control-plane:NoSchedule-
 # Install all services
 /tmp/kubernetes/services/certificate/install.sh
 /tmp/kubernetes/services/registry/install.sh
+/tmp/kubernetes/services/mariadb/install.sh
+/tmp/kubernetes/services/phpmyadmin/install.sh
 /tmp/kubernetes/services/argocd/install.sh
 /tmp/kubernetes/services/ingress/install.sh
 #/tmp/kubernetes/services/dashboard/install.sh

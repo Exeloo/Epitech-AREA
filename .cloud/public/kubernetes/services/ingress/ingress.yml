@@ -29,8 +29,19 @@ spec:
                 name: argocd-server
                 port:
                   number: 443
+    - host: phpmyadmin.area.tech.showmyteam.fr
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: phpmyadmin
+                port:
+                  number: 443
   tls:
     - hosts:
         - registry.area.tech.showmyteam.fr
         - argocd.area.tech.showmyteam.fr
+        - phpmyadmin.area.tech.showmyteam.fr
       secretName: area-tech-tls

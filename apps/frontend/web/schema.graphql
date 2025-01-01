@@ -3,6 +3,81 @@ Indicates exactly one field must be supplied and this field must not be `null`.
 """
 directive @oneOf on INPUT_OBJECT
 
+"""Applet"""
+type Applet {
+  """Description of the applet"""
+  description: String
+
+  """ID of the applet"""
+  id: Int!
+
+  """Name of the applet"""
+  name: String!
+
+  """ID of the applet"""
+  triggerNodes: [AppletNode!]!
+}
+
+"""Input type to create to an applet"""
+input AppletCreateInput {
+  """Description that the user give to the applet"""
+  description: String
+
+  """Name that the user give to the applet"""
+  name: String!
+
+  """Name that the user give to the applet"""
+  triggerNodes: [AppletNodeCreateInput!]!
+}
+
+"""AppletNode"""
+type AppletNode {
+  """Action ID of the applet node provide by the provider"""
+  actionId: String!
+
+  """Action type of the applet node provide by the provider"""
+  actionType: AppletNodeType!
+
+  """ID of the applet node"""
+  id: Int!
+
+  """Input of the user for the applet node"""
+  input: JSON!
+
+  """Nodes that is called after"""
+  next: [AppletNode!]!
+
+  """Nodes that is called previous"""
+  previous: [AppletNode!]!
+
+  """Provider that provide the action"""
+  provider: Provider!
+}
+
+"""Node input type to create to an applet"""
+input AppletNodeCreateInput {
+  """Id of the action that is provide by the provider"""
+  actionId: String!
+
+  """Input of the action"""
+  input: JSON!
+
+  """Next nodes of the applet"""
+  next: [AppletNodeCreateInput!]!
+
+  """Id of the provider of the action"""
+  providerId: Int!
+}
+
+"""Type of the applet node"""
+enum AppletNodeType {
+  """Node that is call when a trigger node is triggered"""
+  ACTION
+
+  """Node that is trigger by an external event"""
+  TRIGGER
+}
+
 """Input type for auth with password strategy"""
 input AuthPasswordInput {
   """Email address to auth with"""
@@ -41,15 +116,151 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
 type Mutation {
+  """Mutation used to create to an applet"""
+  createApplet(data: AppletCreateInput!): Applet!
+
+  """Mutation used to create a provider as admin"""
+  createProvider(data: ProviderCreateInput!): Provider!
+
   """Mutation used to create a user as admin"""
   createUser(data: UserCreateInput!): User!
 
   """Mutation used to register yourself"""
   register(data: UserRegisterInput!): User!
+
+  """Mutation used to update self"""
+  updateMe(data: UserUpdateInput!): User!
+}
+
+"""Provider"""
+type Provider {
+  """Color of the trigger"""
+  color: String!
+
+  """Description of the trigger"""
+  description: String!
+
+  """ID of the provider"""
+  id: Int!
+
+  """Image that describe the trigger"""
+  img: String!
+
+  """Manifest of the provider"""
+  manifest: ProviderManifest!
+
+  """Name of the trigger"""
+  name: String!
+
+  """Visibility of the provider"""
+  visibility: ProviderVisibility!
+}
+
+"""Input type to create provider"""
+input ProviderCreateInput {
+  """Host of the provider to create"""
+  host: String!
+
+  """Foreign id of the provider to create"""
+  providerId: String!
+
+  """Visibility of the provider to create"""
+  visibility: ProviderVisibility!
+}
+
+"""Provider Manifest"""
+type ProviderManifest {
+  """Actions of the provider"""
+  actions: [ProviderManifestAction!]!
+
+  """Triggers of the provider"""
+  triggers: [ProviderManifestTrigger!]!
+}
+
+"""Action Provider Manifest"""
+type ProviderManifestAction {
+  """Color of the action"""
+  color: String!
+
+  """Description of the action"""
+  description: String!
+
+  """ID of the action"""
+  id: String!
+
+  """Image that describe the action"""
+  img: String!
+
+  """Input of the action"""
+  input: JSON!
+
+  """Name of the action"""
+  name: String!
+
+  """Output of the action"""
+  output: JSON!
+}
+
+"""Trigger Provider Manifest"""
+type ProviderManifestTrigger {
+  """Color of the trigger"""
+  color: String!
+
+  """Description of the trigger"""
+  description: String!
+
+  """ID of the trigger"""
+  id: String!
+
+  """Image that describe the trigger"""
+  img: String!
+
+  """Input of the trigger"""
+  input: JSON!
+
+  """Name of the trigger"""
+  name: String!
+
+  """Output of the trigger"""
+  output: JSON!
+}
+
+"""Visibility of the provider"""
+enum ProviderVisibility {
+  """Private provider, visible only to the owner"""
+  PRIVATE
+
+  """Public provider, visible to everyone"""
+  PUBLIC
+
+  """
+  Unlisted provider, visible only to the owner but can be used by everyone
+  """
+  UNLISTED
 }
 
 type Query {
+  """Get all applets"""
+  getAllApplets: [Applet!]!
+
+  """Get all providers"""
+  getAllProviders: [Provider!]!
+
+  """Get applet by id"""
+  getAppletById(id: Int!): Applet!
+
+  """Get the connected user"""
+  getMe: User!
+
+  """Get provider by id"""
+  getProviderById(id: Int!): Provider!
+
   """Query used to auth with password strategy"""
   login(data: AuthPasswordInput!): AuthTokenResponse!
 
@@ -124,4 +335,25 @@ input UserRegisterInput {
 
   """Username of the user to register"""
   username: String!
+}
+
+"""Input type to update user"""
+input UserUpdateInput {
+  """Description of the user to update"""
+  description: String
+
+  """Email of the user to update"""
+  email: String
+
+  """First name of the user to update"""
+  firstName: String
+
+  """Last name of the user to update"""
+  lastName: String
+
+  """Pronoun of the user to update"""
+  pronoun: String
+
+  """Username of the user to update"""
+  username: String
 }

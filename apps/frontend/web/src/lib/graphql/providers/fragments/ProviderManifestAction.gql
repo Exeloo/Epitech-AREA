@@ -1,0 +1,9 @@
+fragment ProviderManifestAction on ProviderManifestAction {
+    id
+    name
+    description
+    img
+    color
+    input
+    output
+}

@@ -1,7 +1,5 @@
 <script lang="ts">
-	let colors = ['#77DDFF', '#FF77B2', '#FF9C77', '#F5DF4D'];
-
-	let color = colors[Math.floor(Math.random() * colors.length)];
+	export let color;
 </script>
 
 <div

@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: docker-registry
+  namespace: deployment
   labels:
     app: registry
 spec:
@@ -24,6 +25,8 @@ spec:
               mountPath: /auth
             - name: registry-storage
               mountPath: /var/lib/registry
+            - name: tls-certificate
+              mountPath: /etc/registry/certs
           env:
             - name: REGISTRY_AUTH
               value: htpasswd
@@ -31,23 +34,30 @@ spec:
               value: "Registry Realm"
             - name: REGISTRY_AUTH_HTPASSWD_PATH
               value: /auth/htpasswd
+            - name: REGISTRY_HTTP_TLS_CERTIFICATE
+              value: /etc/registry/certs/tls.crt
+            - name: REGISTRY_HTTP_TLS_KEY
+              value: /etc/registry/certs/tls.key
       volumes:
         - name: auth
           secret:
             secretName: docker-registry-secret
         - name: registry-storage
           emptyDir: {}
+        - name: tls-certificate
+          secret:
+            secretName: area-tech-tls
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: docker-registry
+  namespace: deployment
 spec:
   selector:
     app: registry
   ports:
     - protocol: TCP
-      port: 5000
+      port: 443
       targetPort: 5000
-      nodePort: 30001
-  type: NodePort
+  type: ClusterIP

@@ -1,4 +1,7 @@
 #!/bin/sh
 
 # Install Argo-CD
-kubectl apply -n deployment -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+helm repo add argo-cd https://argoproj.github.io/argo-hel
+helm dep update /tmp/kubernetes/services/argocd/charts/argo-cd/
+
+helm install argo-cd /tmp/kubernetes/services/argocd/charts/argo-cd/

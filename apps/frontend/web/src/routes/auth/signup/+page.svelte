@@ -14,7 +14,7 @@
 		event.preventDefault();
 
 		try {
-			console.log("register");
+			console.log('register');
 		} catch (error) {
 			console.error('Unexpected error:', error);
 		}

@@ -1,14 +1,14 @@
 <script lang="ts">
-    import SettingsNav from "$lib/settings/SettingsNav.svelte";
+	import SettingsNav from '$lib/settings/SettingsNav.svelte';
 
-    let { children } = $props();
+	let { children } = $props();
 </script>
 
-<div class="h-screen w-full flex">
-    <div class="basis-1/4 flex-shrink-0 bg-gray-200">
-        <SettingsNav/>
-    </div>
-    <div class="basis-3/4 flex-grow bg-white">
-        {@render children()}
-    </div>
+<div class="flex h-screen w-full">
+	<div class="flex-shrink-0 basis-1/4 bg-gray-200">
+		<SettingsNav />
+	</div>
+	<div class="flex-grow basis-3/4 bg-white">
+		{@render children()}
+	</div>
 </div>

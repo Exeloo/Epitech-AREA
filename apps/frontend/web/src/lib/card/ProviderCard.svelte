@@ -6,21 +6,23 @@
 		provider: BaseProvider;
 	}
 
-	let {provider}: Props = $props();
+	let { provider }: Props = $props();
 
-	let info = $state(fragment(
-		provider,
-		graphql(`
-			fragment BaseProvider on Provider {
-				id
-				name
-				description
-				img
-				color
-				visibility
-			}
-		`)
-	));
+	let info = $state(
+		fragment(
+			provider,
+			graphql(`
+				fragment BaseProvider on Provider {
+					id
+					name
+					description
+					img
+					color
+					visibility
+				}
+			`)
+		)
+	);
 </script>
 
 <Card color={$info.color}>

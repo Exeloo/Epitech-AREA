@@ -2,7 +2,7 @@
 	import Input from '$lib/components/Input.svelte';
 	import Checkbox from '$lib/auth/Checkbox.svelte';
 	import Submit from '$lib/auth/Submit.svelte';
-	import {fragment, graphql, load_login} from '$houdini';
+	import { fragment, graphql, load_login } from '$houdini';
 
 	let email = $state('');
 	let password = $state('');
@@ -22,16 +22,18 @@
 				return errors;
 			}
 
-			let queryResult = $state(fragment(
-				data.login,
-				graphql(`
-					fragment TokenFields on AuthTokenResponse {
-						token
-						refreshToken
-						tokenExpiresAt
-					}
-				`)
-			));
+			let queryResult = $state(
+				fragment(
+					data.login,
+					graphql(`
+						fragment TokenFields on AuthTokenResponse {
+							token
+							refreshToken
+							tokenExpiresAt
+						}
+					`)
+				)
+			);
 
 			queryResult.subscribe((data) => {
 				console.log('Login successful:', query);

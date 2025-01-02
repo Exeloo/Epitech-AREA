@@ -32,7 +32,7 @@ export class AppletCreateProcessor
   async process(applet: IApplet, data: IAppletCreateInput): Promise<IApplet> {
     this.logger.log(`Processing applet ${applet.id}`);
 
-    [applet, data] = await this.runPreProcess(applet, data);
+    data = await this.runPreProcess(applet, data);
     applet = await this.runProcess(applet, data);
 
     return applet;
@@ -41,15 +41,15 @@ export class AppletCreateProcessor
   private async runPreProcess(
     applet: IApplet,
     data: IAppletCreateInput,
-  ): Promise<[IApplet, IAppletCreateInput]> {
+  ): Promise<IAppletCreateInput> {
     for (const processor of this.preProcessors) {
       this.logger.debug(
         `Pre-Processing applet ${applet.id} with ${processor.constructor.name}`,
       );
-      [applet, data] = await processor.process(applet, data);
+      data = await processor.process(applet, data);
     }
 
-    return [applet, data];
+    return data;
   }
 
   private async runProcess(

@@ -36,14 +36,14 @@ export class AppletInputProcessor
   ) {}
 
   async process(
-    applet: IApplet,
+    _applet: IApplet,
     data: IAppletCreateInput,
-  ): Promise<[IApplet, IAppletCreateInput]> {
+  ): Promise<IAppletCreateInput> {
     data = {
       ...data,
       triggerNodes: await this.processNodes(data.triggerNodes),
     };
-    return [applet, data];
+    return data;
   }
 
   private async processNodes(

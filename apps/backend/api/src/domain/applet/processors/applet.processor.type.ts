@@ -5,5 +5,5 @@ export interface IAppletProcessor<T> {
 }
 
 export interface IAppletPreProcessor<T> {
-  process(applet: IApplet, data: T): Promise<[IApplet, T]>;
+  process(applet: IApplet, data: T): Promise<T>;
 }

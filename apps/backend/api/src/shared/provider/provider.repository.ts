@@ -4,6 +4,8 @@ import { AxiosRequestConfig } from "axios";
 
 import { ID } from "@d-type/id.type";
 
+import { InternalException } from "@exception";
+
 import { HttpRepository } from "@domain/common/repositories/http.repository";
 import { IManifest } from "@domain/provider/manifest/types/manifest.type";
 
@@ -34,5 +36,29 @@ export class ProviderRepository extends HttpRepository("PROVIDER") {
         "api-key": key,
       },
     });
+  }
+
+  async runAction(
+    host: string,
+    key: string,
+    body: { name: string; data: object },
+  ): Promise<object> {
+    let res: { message: any; data: any };
+    try {
+      res = await this.post(`${host}/actions`, body, {
+        headers: {
+          "api-key": key,
+        },
+      });
+    } catch (e) {
+      throw new InternalException(31, {
+        cause: e,
+      });
+    }
+    if (res.message !== "success")
+      throw new InternalException(32, {
+        cause: new Error(`Failed to run action (res message : ${res.message})`),
+      });
+    return res.data;
   }
 }

@@ -11,4 +11,10 @@ export interface IProviderService {
     provider: IProvider,
     node: Pick<IAppletNode, "id" | "actionId" | "input">,
   ): Promise<void>;
+
+  runAction(
+    provider: IProvider,
+    node: Pick<IAppletNode, "id" | "actionId">,
+    data: object,
+  ): Promise<object>;
 }

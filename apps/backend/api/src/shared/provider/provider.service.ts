@@ -29,4 +29,15 @@ export class ProviderService implements IProviderService {
       },
     );
   }
+
+  runAction(
+    provider: IProvider,
+    node: Pick<IAppletNode, "id" | "actionId">,
+    data: object,
+  ): Promise<object> {
+    return this.providerRepository.runAction(provider.host, provider.apiKey, {
+      name: node.actionId,
+      data: data,
+    });
+  }
 }

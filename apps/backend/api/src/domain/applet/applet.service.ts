@@ -2,6 +2,15 @@ import { Inject, Injectable } from "@nestjs/common";
 
 import { ID } from "@d-type/id.type";
 
+import { AuthorizationException } from "@exception";
+
+import { AppletRunProcessor } from "@domain/applet/processors/run/run.processor";
+import { ITriggerInput } from "@domain/applet/types/trigger-input.type";
+import {
+  IProviderPersistenceRepository,
+  PROVIDER_PERSISTENCE_REPOSITORY,
+} from "@domain/provider/provider.repository.type";
+
 import { IUser } from "../user/types/user.type";
 import {
   APPLET_PERSISTENCE_REPOSITORY,
@@ -16,7 +25,10 @@ export class AppletService {
   constructor(
     @Inject(APPLET_PERSISTENCE_REPOSITORY)
     private readonly appletPRepository: IAppletPersistenceRepository,
+    @Inject(PROVIDER_PERSISTENCE_REPOSITORY)
+    private readonly providerPRepository: IProviderPersistenceRepository,
     private readonly appletCreateProcessor: AppletCreateProcessor,
+    private readonly appletRunProcessor: AppletRunProcessor,
   ) {}
 
   getAllWithOwner(user: IUser): Promise<IApplet[]> {
@@ -36,5 +48,25 @@ export class AppletService {
       },
     });
     return this.appletCreateProcessor.process(applet, data);
+  }
+
+  async handleTrigger(providerIds: Set<string>, data: ITriggerInput) {
+    let provider;
+    for (const pId of providerIds) {
+      provider = await this.providerPRepository.getByProviderId(pId);
+      if (provider) break;
+    }
+    if (!provider)
+      throw new AuthorizationException(
+        "UNAUTHORIZED_NOT_AUTHENTICATE",
+        "You must authenticate first",
+        {
+          cause: new Error("Not ids of existing provider"),
+        },
+      );
+    await this.appletRunProcessor.process(provider, data);
+    return {
+      message: "success",
+    };
   }
 }

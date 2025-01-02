@@ -10,7 +10,7 @@ export class AppGateway {
   constructor(private readonly configService: ConfigService) {
     this.socket = io(configService.getOrThrow("BASE_API_WS_URL"), {
       autoConnect: false,
-      transports: ["websocket", "polling"],
+      transports: ["websocket"],
     });
     this.logger = new Logger("AppGateway");
     this.connect();
@@ -21,14 +21,17 @@ export class AppGateway {
     this.socket.connect();
     this.socket.on("connect", () => {
       this.logger.log("Connected to the server");
+      this.socket.emit("identify", {
+        apiKey: this.configService.getOrThrow("API_KEY"),
+      });
+      this.logger.log(`Identify send to the server`);
     });
     this.socket.on("ok", () => {
       this.logger.log("Registered to the server");
     });
-    this.socket.emit("identify", {
-      apiKey: this.configService.getOrThrow("API_KEY"),
+    this.socket.on("error", (err) => {
+      this.logger.error(err);
     });
-    this.logger.log(`Identify send to the server`);
   }
 
   emit(trigger: string, triggered: number[], data: any) {

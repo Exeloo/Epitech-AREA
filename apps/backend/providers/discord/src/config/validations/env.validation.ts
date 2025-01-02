@@ -81,6 +81,10 @@ export class EnvironmentVariables {
 
   @IsNotEmpty()
   @IsString()
+  DISCORD_CLIENT_ID: string;
+
+  @IsNotEmpty()
+  @IsString()
   DISCORD_TOKEN: string;
 }
 

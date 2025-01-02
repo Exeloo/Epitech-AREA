@@ -56,6 +56,30 @@ abstract class GgetAppletByIdVars
       );
 }
 
+abstract class GgetAppletNodeByIdVars
+    implements Built<GgetAppletNodeByIdVars, GgetAppletNodeByIdVarsBuilder> {
+  GgetAppletNodeByIdVars._();
+
+  factory GgetAppletNodeByIdVars(
+          [void Function(GgetAppletNodeByIdVarsBuilder b) updates]) =
+      _$GgetAppletNodeByIdVars;
+
+  int get id;
+  static Serializer<GgetAppletNodeByIdVars> get serializer =>
+      _$ggetAppletNodeByIdVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetAppletNodeByIdVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetAppletNodeByIdVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetAppletNodeByIdVars.serializer,
+        json,
+      );
+}
+
 abstract class GcreateAppletVars
     implements Built<GcreateAppletVars, GcreateAppletVarsBuilder> {
   GcreateAppletVars._();
@@ -100,6 +124,29 @@ abstract class GProviderManifestActionVars
   static GProviderManifestActionVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GProviderManifestActionVars.serializer,
+        json,
+      );
+}
+
+abstract class GBaseAppletProviderVars
+    implements Built<GBaseAppletProviderVars, GBaseAppletProviderVarsBuilder> {
+  GBaseAppletProviderVars._();
+
+  factory GBaseAppletProviderVars(
+          [void Function(GBaseAppletProviderVarsBuilder b) updates]) =
+      _$GBaseAppletProviderVars;
+
+  static Serializer<GBaseAppletProviderVars> get serializer =>
+      _$gBaseAppletProviderVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GBaseAppletProviderVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GBaseAppletProviderVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GBaseAppletProviderVars.serializer,
         json,
       );
 }

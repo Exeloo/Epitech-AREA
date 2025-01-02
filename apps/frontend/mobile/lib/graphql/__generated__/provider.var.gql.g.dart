@@ -325,8 +325,9 @@ class GgetProviderByIdVarsBuilder
   _$GgetProviderByIdVars _build() {
     final _$result = _$v ??
         new _$GgetProviderByIdVars._(
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GgetProviderByIdVars', 'id'));
+          id: BuiltValueNullFieldError.checkNotNull(
+              id, r'GgetProviderByIdVars', 'id'),
+        );
     replace(_$result);
     return _$result;
   }

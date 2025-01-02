@@ -27,13 +27,17 @@ class _MyAppletsPageState extends State<MyAppletsPage> {
       body: Operation(
         client: client,
         operationRequest: GGetAllAppletsReq(),
-        builder: (context, OperationResponse<GGetAllAppletsData, GGetAllAppletsVars>? response, error) {
+        builder: (context,
+            OperationResponse<GGetAllAppletsData, GGetAllAppletsVars>? response,
+            error) {
           if (response!.loading) {
             return const Center(child: CircularProgressIndicator());
           }
 
           if (response.hasErrors) {
-            return Center(child: Text('Error: ${response.graphqlErrors?.map((e) => e.message).join(', ')}'));
+            return Center(
+                child: Text(
+                    'Error: ${response.graphqlErrors?.map((e) => e.message).join(', ')}'));
           }
 
           final applets = response.data?.getAllApplets ?? [];

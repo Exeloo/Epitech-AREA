@@ -255,7 +255,7 @@ type Query {
   getAppletById(id: Int!): Applet!
 
   """Query used to get an applet node"""
-  getAppletNodeById(id: Float!): AppletNode!
+  getAppletNodeById(id: Int!): AppletNode!
 
   """Get the connected user"""
   getMe: User!

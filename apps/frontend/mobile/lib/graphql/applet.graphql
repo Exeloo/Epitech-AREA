@@ -25,6 +25,7 @@ fragment BaseAppletNode on AppletNode {
 }
 
 fragment ExtendedAppletNode on AppletNode {
+    ...BaseAppletNode
     input
     provider {
         ...BaseAppletProvider

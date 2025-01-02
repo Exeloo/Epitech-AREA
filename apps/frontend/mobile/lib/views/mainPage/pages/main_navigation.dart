@@ -145,7 +145,6 @@ class Page3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MyAppletsPage();
   }
-
 }
 
 class Page4 extends StatefulWidget {

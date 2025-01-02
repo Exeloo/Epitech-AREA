@@ -700,9 +700,10 @@ class GgetMeDataBuilder implements Builder<GgetMeData, GgetMeDataBuilder> {
     try {
       _$result = _$v ??
           new _$GgetMeData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GgetMeData', 'G__typename'),
-              getMe: getMe.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GgetMeData', 'G__typename'),
+            getMe: getMe.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -899,21 +900,22 @@ class GgetMeData_getMeBuilder
   _$GgetMeData_getMe _build() {
     final _$result = _$v ??
         new _$GgetMeData_getMe._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GgetMeData_getMe', 'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GgetMeData_getMe', 'id'),
-            email: BuiltValueNullFieldError.checkNotNull(
-                email, r'GgetMeData_getMe', 'email'),
-            username: BuiltValueNullFieldError.checkNotNull(
-                username, r'GgetMeData_getMe', 'username'),
-            firstName: BuiltValueNullFieldError.checkNotNull(
-                firstName, r'GgetMeData_getMe', 'firstName'),
-            lastName: BuiltValueNullFieldError.checkNotNull(
-                lastName, r'GgetMeData_getMe', 'lastName'),
-            pronoun: pronoun,
-            picture: picture,
-            description: description);
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename, r'GgetMeData_getMe', 'G__typename'),
+          id: BuiltValueNullFieldError.checkNotNull(
+              id, r'GgetMeData_getMe', 'id'),
+          email: BuiltValueNullFieldError.checkNotNull(
+              email, r'GgetMeData_getMe', 'email'),
+          username: BuiltValueNullFieldError.checkNotNull(
+              username, r'GgetMeData_getMe', 'username'),
+          firstName: BuiltValueNullFieldError.checkNotNull(
+              firstName, r'GgetMeData_getMe', 'firstName'),
+          lastName: BuiltValueNullFieldError.checkNotNull(
+              lastName, r'GgetMeData_getMe', 'lastName'),
+          pronoun: pronoun,
+          picture: picture,
+          description: description,
+        );
     replace(_$result);
     return _$result;
   }
@@ -1016,9 +1018,10 @@ class GupdateMeDataBuilder
     try {
       _$result = _$v ??
           new _$GupdateMeData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GupdateMeData', 'G__typename'),
-              updateMe: updateMe.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GupdateMeData', 'G__typename'),
+            updateMe: updateMe.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -1217,21 +1220,22 @@ class GupdateMeData_updateMeBuilder
   _$GupdateMeData_updateMe _build() {
     final _$result = _$v ??
         new _$GupdateMeData_updateMe._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GupdateMeData_updateMe', 'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GupdateMeData_updateMe', 'id'),
-            email: BuiltValueNullFieldError.checkNotNull(
-                email, r'GupdateMeData_updateMe', 'email'),
-            username: BuiltValueNullFieldError.checkNotNull(
-                username, r'GupdateMeData_updateMe', 'username'),
-            firstName: BuiltValueNullFieldError.checkNotNull(
-                firstName, r'GupdateMeData_updateMe', 'firstName'),
-            lastName: BuiltValueNullFieldError.checkNotNull(
-                lastName, r'GupdateMeData_updateMe', 'lastName'),
-            pronoun: pronoun,
-            picture: picture,
-            description: description);
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename, r'GupdateMeData_updateMe', 'G__typename'),
+          id: BuiltValueNullFieldError.checkNotNull(
+              id, r'GupdateMeData_updateMe', 'id'),
+          email: BuiltValueNullFieldError.checkNotNull(
+              email, r'GupdateMeData_updateMe', 'email'),
+          username: BuiltValueNullFieldError.checkNotNull(
+              username, r'GupdateMeData_updateMe', 'username'),
+          firstName: BuiltValueNullFieldError.checkNotNull(
+              firstName, r'GupdateMeData_updateMe', 'firstName'),
+          lastName: BuiltValueNullFieldError.checkNotNull(
+              lastName, r'GupdateMeData_updateMe', 'lastName'),
+          pronoun: pronoun,
+          picture: picture,
+          description: description,
+        );
     replace(_$result);
     return _$result;
   }
@@ -1334,9 +1338,10 @@ class GregisterDataBuilder
     try {
       _$result = _$v ??
           new _$GregisterData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GregisterData', 'G__typename'),
-              register: register.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GregisterData', 'G__typename'),
+            register: register.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -1535,21 +1540,22 @@ class GregisterData_registerBuilder
   _$GregisterData_register _build() {
     final _$result = _$v ??
         new _$GregisterData_register._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GregisterData_register', 'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GregisterData_register', 'id'),
-            email: BuiltValueNullFieldError.checkNotNull(
-                email, r'GregisterData_register', 'email'),
-            username: BuiltValueNullFieldError.checkNotNull(
-                username, r'GregisterData_register', 'username'),
-            firstName: BuiltValueNullFieldError.checkNotNull(
-                firstName, r'GregisterData_register', 'firstName'),
-            lastName: BuiltValueNullFieldError.checkNotNull(
-                lastName, r'GregisterData_register', 'lastName'),
-            pronoun: pronoun,
-            picture: picture,
-            description: description);
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename, r'GregisterData_register', 'G__typename'),
+          id: BuiltValueNullFieldError.checkNotNull(
+              id, r'GregisterData_register', 'id'),
+          email: BuiltValueNullFieldError.checkNotNull(
+              email, r'GregisterData_register', 'email'),
+          username: BuiltValueNullFieldError.checkNotNull(
+              username, r'GregisterData_register', 'username'),
+          firstName: BuiltValueNullFieldError.checkNotNull(
+              firstName, r'GregisterData_register', 'firstName'),
+          lastName: BuiltValueNullFieldError.checkNotNull(
+              lastName, r'GregisterData_register', 'lastName'),
+          pronoun: pronoun,
+          picture: picture,
+          description: description,
+        );
     replace(_$result);
     return _$result;
   }
@@ -1729,20 +1735,21 @@ class GUserDataBuilder implements Builder<GUserData, GUserDataBuilder> {
   _$GUserData _build() {
     final _$result = _$v ??
         new _$GUserData._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GUserData', 'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(id, r'GUserData', 'id'),
-            email: BuiltValueNullFieldError.checkNotNull(
-                email, r'GUserData', 'email'),
-            username: BuiltValueNullFieldError.checkNotNull(
-                username, r'GUserData', 'username'),
-            firstName: BuiltValueNullFieldError.checkNotNull(
-                firstName, r'GUserData', 'firstName'),
-            lastName: BuiltValueNullFieldError.checkNotNull(
-                lastName, r'GUserData', 'lastName'),
-            pronoun: pronoun,
-            picture: picture,
-            description: description);
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename, r'GUserData', 'G__typename'),
+          id: BuiltValueNullFieldError.checkNotNull(id, r'GUserData', 'id'),
+          email: BuiltValueNullFieldError.checkNotNull(
+              email, r'GUserData', 'email'),
+          username: BuiltValueNullFieldError.checkNotNull(
+              username, r'GUserData', 'username'),
+          firstName: BuiltValueNullFieldError.checkNotNull(
+              firstName, r'GUserData', 'firstName'),
+          lastName: BuiltValueNullFieldError.checkNotNull(
+              lastName, r'GUserData', 'lastName'),
+          pronoun: pronoun,
+          picture: picture,
+          description: description,
+        );
     replace(_$result);
     return _$result;
   }

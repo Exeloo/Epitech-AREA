@@ -2,9 +2,13 @@
 	import Card from '$lib/card/Card.svelte';
 	import { graphql, fragment, type BaseProvider } from '$houdini';
 
-	export let provider: BaseProvider;
+	interface Props {
+		provider: BaseProvider;
+	}
 
-	$: info = fragment(
+	let {provider}: Props = $props();
+
+	let info = $state(fragment(
 		provider,
 		graphql(`
 			fragment BaseProvider on Provider {
@@ -16,7 +20,7 @@
 				visibility
 			}
 		`)
-	);
+	));
 </script>
 
 <Card color={$info.color}>

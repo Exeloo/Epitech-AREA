@@ -5,6 +5,7 @@ import 'package:mobile/modules/graphql/repository/user_repository.dart';
 import 'package:mobile/views/applet/pages/applet_creation.dart';
 import 'package:mobile/views/home/pages/home.dart';
 import 'package:provider/provider.dart';
+import 'my_applets_page.dart';
 
 class MainNavigationPage extends StatefulWidget {
   const MainNavigationPage({super.key});
@@ -142,10 +143,9 @@ class Page3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text("Bienvenue sur la page Liste")),
-    );
+    return const MyAppletsPage();
   }
+
 }
 
 class Page4 extends StatefulWidget {

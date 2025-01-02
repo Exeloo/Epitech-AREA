@@ -1,5 +1,3 @@
-#import 'provider.graphql'
-
 fragment ProviderManifestAction on ProviderManifestAction {
     id
     name
@@ -8,6 +6,15 @@ fragment ProviderManifestAction on ProviderManifestAction {
     color
     input
     output
+}
+
+fragment BaseAppletProvider on Provider {
+    id
+    name
+    description
+    img
+    color
+    visibility
 }
 
 fragment BaseAppletNode on AppletNode {
@@ -20,7 +27,7 @@ fragment BaseAppletNode on AppletNode {
 fragment ExtendedAppletNode on AppletNode {
     input
     provider {
-        ...BaseProvider
+        ...BaseAppletProvider
     }
     previous {
         ...BaseAppletNode
@@ -52,6 +59,12 @@ query getAllApplets {
 query getAppletById($id: Int!) {
     getAppletById(id: $id) {
         ...AppletWithNodes
+    }
+}
+
+query getAppletNodeById($id: Int!) {
+    getAppletNodeById(id: $id) {
+        ...ExtendedAppletNode
     }
 }
 

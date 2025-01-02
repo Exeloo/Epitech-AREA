@@ -1,0 +1,52 @@
+fragment ProviderManifestAction on ProviderManifestAction {
+    id
+    name
+    description
+    img
+    color
+    input
+    output
+}
+
+fragment ProviderManifestTrigger on ProviderManifestTrigger {
+    id
+    name
+    description
+    img
+    color
+    input
+    output
+}
+
+fragment BaseProvider on Provider {
+    id
+    name
+    description
+    img
+    color
+    visibility
+}
+
+fragment ProviderWithManifest on Provider {
+    ...BaseProvider
+    manifest {
+        actions {
+            ...ProviderManifestAction
+        }
+        triggers {
+            ...ProviderManifestTrigger
+        }
+    }
+}
+
+query getAllProviders {
+    getAllProviders {
+        ...BaseProvider
+    }
+}
+
+query getProviderById($id: Int!) {
+    getProviderById(id: $id) {
+        ...ProviderWithManifest
+    }
+}

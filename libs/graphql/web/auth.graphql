@@ -1,0 +1,17 @@
+fragment TokenFields on AuthTokenResponse {
+    token
+    refreshToken
+    tokenExpiresAt
+}
+
+query login($data: AuthPasswordInput!) {
+    login(data: $data) {
+        ...TokenFields
+    }
+}
+
+query refreshToken($data: AuthRefreshTokenInput!) {
+    refreshToken(data: $data) {
+        ...TokenFields
+    }
+}

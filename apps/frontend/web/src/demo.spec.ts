@@ -3,7 +3,7 @@ import { render } from '@testing-library/svelte';
 import Submit from './lib/auth/Submit.svelte';
 import Checkbox from './lib/auth/Checkbox.svelte';
 import Validation from './lib/auth/Validation.svelte';
-import Input from './lib/auth/Input.svelte';
+import Input from '$lib/components/Input.svelte';
 import Layout from './routes/+layout.svelte';
 
 describe('sum test', () => {

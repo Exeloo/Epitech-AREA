@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Input from '$lib/auth/Input.svelte';
+	import Input from '$lib/components/Input.svelte';
 	import Checkbox from '$lib/auth/Checkbox.svelte';
 	import Submit from '$lib/auth/Submit.svelte';
-	import { load_Login } from '$houdini';
+	import {fragment, graphql, load_login} from '$houdini';
 
 	let email = $state('');
 	let password = $state('');
@@ -12,29 +12,40 @@
 		event.preventDefault();
 
 		try {
-			console.log(email);
-			const query = await load_Login({});
-			const { data, errors } = await query.Login.fetch({
+			const query = await load_login({});
+			const { data, errors } = await query.login.fetch({
 				variables: { data: { email: email, password: password } }
 			});
 
-			if (!data) {
+			if (!data || !data.login) {
 				console.log(errors);
 				return errors;
 			}
 
-			console.log('Login successful:', query);
-			alert('Login successful!');
+			let queryResult = $state(fragment(
+				data.login,
+				graphql(`
+					fragment TokenFields on AuthTokenResponse {
+						token
+						refreshToken
+						tokenExpiresAt
+					}
+				`)
+			));
 
-			if (rememberMe) {
-				localStorage.setItem('token', data.login.token);
-				localStorage.setItem('refreshToken', data.login.refreshToken);
-			} else {
-				sessionStorage.setItem('token', data.login.token);
-				sessionStorage.setItem('refreshToken', data.login.refreshToken);
-			}
+			queryResult.subscribe((data) => {
+				console.log('Login successful:', query);
+				alert('Login successful!');
 
-			window.location.href = '/';
+				if (rememberMe) {
+					localStorage.setItem('token', data.token);
+					localStorage.setItem('refreshToken', data.refreshToken);
+				} else {
+					sessionStorage.setItem('token', data.token);
+					sessionStorage.setItem('refreshToken', data.refreshToken);
+				}
+				window.location.href = '/';
+			});
 		} catch (error) {
 			console.error('Unexpected error:', error);
 		}

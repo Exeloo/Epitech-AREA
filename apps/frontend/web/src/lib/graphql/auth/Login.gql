@@ -1,0 +1,5 @@
+query login($data: AuthPasswordInput!) {
+	login(data: $data) {
+		...TokenFields
+	}
+}

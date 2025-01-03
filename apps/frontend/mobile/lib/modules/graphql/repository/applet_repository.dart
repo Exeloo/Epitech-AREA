@@ -79,3 +79,25 @@ class AppletRepository {
       rethrow;
     }
   }
+
+  Future<GgetAppletNodeByIdData_getAppletNodeById?> getAppletNodeById(int id) async {
+    final getAppletNodeByIdReq = GgetAppletNodeByIdReq((b) => b..vars.id = id);
+    try {
+      final response = await client.request(getAppletNodeByIdReq).first;
+
+      if (response.loading) {
+        log('Loading...');
+        return null;
+      } else if (response.hasErrors) {
+        log('Errors: ${response.graphqlErrors}');
+        return null;
+      } else {
+        log('Response: ${response.data}');
+        return response.data?.getAppletNodeById;
+      }
+    } catch (e) {
+      log('GetAppletNodeById error: $e');
+      rethrow;
+    }
+  }
+}

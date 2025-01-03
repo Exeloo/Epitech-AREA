@@ -37,4 +37,45 @@ class AppletRepository {
       rethrow;
     }
   }
-}
+
+  Future<List<GgetAllAppletsData_getAllApplets>?> getAllApplets() async {
+    final getAllAppletsReq = GgetAllAppletsReq();
+    try {
+      final response = await client.request(getAllAppletsReq).first;
+
+      if (response.loading) {
+        log('Loading...');
+        return null;
+      } else if (response.hasErrors) {
+        log('Errors: ${response.graphqlErrors}');
+        return null;
+      } else {
+        log('Response: ${response.data}');
+        return response.data?.getAllApplets;
+      }
+    } catch (e) {
+      log('GetAllApplets error: $e');
+      rethrow;
+    }
+  }
+
+  Future<GgetAppletByIdData_getAppletById?> getAppletById(int id) async {
+    final getAppletByIdReq = GgetAppletByIdReq((b) => b..vars.id = id);
+    try {
+      final response = await client.request(getAppletByIdReq).first;
+
+      if (response.loading) {
+        log('Loading...');
+        return null;
+      } else if (response.hasErrors) {
+        log('Errors: ${response.graphqlErrors}');
+        return null;
+      } else {
+        log('Response: ${response.data}');
+        return response.data?.getAppletById;
+      }
+    } catch (e) {
+      log('GetAppletById error: $e');
+      rethrow;
+    }
+  }

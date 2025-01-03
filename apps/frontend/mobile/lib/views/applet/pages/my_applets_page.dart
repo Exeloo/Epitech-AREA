@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 // implementer les imports necessaires
-import 'applet_card.dart';
+import 'package:mobile/views/applet/widgets/applet_card.dart';
 
 class MyAppletsPage extends StatefulWidget {
   const MyAppletsPage({Key? key}) : super(key: key);

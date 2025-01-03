@@ -267,10 +267,7 @@ class GupdateMeVarsBuilder
   _$GupdateMeVars _build() {
     _$GupdateMeVars _$result;
     try {
-      _$result = _$v ??
-          new _$GupdateMeVars._(
-            data: data.build(),
-          );
+      _$result = _$v ?? new _$GupdateMeVars._(data: data.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -363,10 +360,7 @@ class GregisterVarsBuilder
   _$GregisterVars _build() {
     _$GregisterVars _$result;
     try {
-      _$result = _$v ??
-          new _$GregisterVars._(
-            data: data.build(),
-          );
+      _$result = _$v ?? new _$GregisterVars._(data: data.build());
     } catch (_) {
       late String _$failedField;
       try {

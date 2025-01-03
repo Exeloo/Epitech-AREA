@@ -464,9 +464,8 @@ class GgetAppletByIdVarsBuilder
   _$GgetAppletByIdVars _build() {
     final _$result = _$v ??
         new _$GgetAppletByIdVars._(
-          id: BuiltValueNullFieldError.checkNotNull(
-              id, r'GgetAppletByIdVars', 'id'),
-        );
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GgetAppletByIdVars', 'id'));
     replace(_$result);
     return _$result;
   }
@@ -551,9 +550,8 @@ class GgetAppletNodeByIdVarsBuilder
   _$GgetAppletNodeByIdVars _build() {
     final _$result = _$v ??
         new _$GgetAppletNodeByIdVars._(
-          id: BuiltValueNullFieldError.checkNotNull(
-              id, r'GgetAppletNodeByIdVars', 'id'),
-        );
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GgetAppletNodeByIdVars', 'id'));
     replace(_$result);
     return _$result;
   }
@@ -638,10 +636,7 @@ class GcreateAppletVarsBuilder
   _$GcreateAppletVars _build() {
     _$GcreateAppletVars _$result;
     try {
-      _$result = _$v ??
-          new _$GcreateAppletVars._(
-            data: data.build(),
-          );
+      _$result = _$v ?? new _$GcreateAppletVars._(data: data.build());
     } catch (_) {
       late String _$failedField;
       try {

@@ -779,11 +779,10 @@ class GAppletCreateInputBuilder
     try {
       _$result = _$v ??
           new _$GAppletCreateInput._(
-            description: description,
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GAppletCreateInput', 'name'),
-            triggerNodes: triggerNodes.build(),
-          );
+              description: description,
+              name: BuiltValueNullFieldError.checkNotNull(
+                  name, r'GAppletCreateInput', 'name'),
+              triggerNodes: triggerNodes.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -925,13 +924,12 @@ class GAppletNodeCreateInputBuilder
     try {
       _$result = _$v ??
           new _$GAppletNodeCreateInput._(
-            actionId: BuiltValueNullFieldError.checkNotNull(
-                actionId, r'GAppletNodeCreateInput', 'actionId'),
-            input: input.build(),
-            next: next.build(),
-            providerId: BuiltValueNullFieldError.checkNotNull(
-                providerId, r'GAppletNodeCreateInput', 'providerId'),
-          );
+              actionId: BuiltValueNullFieldError.checkNotNull(
+                  actionId, r'GAppletNodeCreateInput', 'actionId'),
+              input: input.build(),
+              next: next.build(),
+              providerId: BuiltValueNullFieldError.checkNotNull(
+                  providerId, r'GAppletNodeCreateInput', 'providerId'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -1044,11 +1042,10 @@ class GAuthPasswordInputBuilder
   _$GAuthPasswordInput _build() {
     final _$result = _$v ??
         new _$GAuthPasswordInput._(
-          email: BuiltValueNullFieldError.checkNotNull(
-              email, r'GAuthPasswordInput', 'email'),
-          password: BuiltValueNullFieldError.checkNotNull(
-              password, r'GAuthPasswordInput', 'password'),
-        );
+            email: BuiltValueNullFieldError.checkNotNull(
+                email, r'GAuthPasswordInput', 'email'),
+            password: BuiltValueNullFieldError.checkNotNull(
+                password, r'GAuthPasswordInput', 'password'));
     replace(_$result);
     return _$result;
   }
@@ -1135,9 +1132,8 @@ class GAuthRefreshTokenInputBuilder
   _$GAuthRefreshTokenInput _build() {
     final _$result = _$v ??
         new _$GAuthRefreshTokenInput._(
-          refreshToken: BuiltValueNullFieldError.checkNotNull(
-              refreshToken, r'GAuthRefreshTokenInput', 'refreshToken'),
-        );
+            refreshToken: BuiltValueNullFieldError.checkNotNull(
+                refreshToken, r'GAuthRefreshTokenInput', 'refreshToken'));
     replace(_$result);
     return _$result;
   }
@@ -1217,9 +1213,8 @@ class GDateTimeBuilder implements Builder<GDateTime, GDateTimeBuilder> {
   _$GDateTime _build() {
     final _$result = _$v ??
         new _$GDateTime._(
-          value: BuiltValueNullFieldError.checkNotNull(
-              value, r'GDateTime', 'value'),
-        );
+            value: BuiltValueNullFieldError.checkNotNull(
+                value, r'GDateTime', 'value'));
     replace(_$result);
     return _$result;
   }
@@ -1299,9 +1294,8 @@ class GJSONBuilder implements Builder<GJSON, GJSONBuilder> {
   _$GJSON _build() {
     final _$result = _$v ??
         new _$GJSON._(
-          value:
-              BuiltValueNullFieldError.checkNotNull(value, r'GJSON', 'value'),
-        );
+            value: BuiltValueNullFieldError.checkNotNull(
+                value, r'GJSON', 'value'));
     replace(_$result);
     return _$result;
   }
@@ -1415,13 +1409,12 @@ class GProviderCreateInputBuilder
   _$GProviderCreateInput _build() {
     final _$result = _$v ??
         new _$GProviderCreateInput._(
-          host: BuiltValueNullFieldError.checkNotNull(
-              host, r'GProviderCreateInput', 'host'),
-          providerId: BuiltValueNullFieldError.checkNotNull(
-              providerId, r'GProviderCreateInput', 'providerId'),
-          visibility: BuiltValueNullFieldError.checkNotNull(
-              visibility, r'GProviderCreateInput', 'visibility'),
-        );
+            host: BuiltValueNullFieldError.checkNotNull(
+                host, r'GProviderCreateInput', 'host'),
+            providerId: BuiltValueNullFieldError.checkNotNull(
+                providerId, r'GProviderCreateInput', 'providerId'),
+            visibility: BuiltValueNullFieldError.checkNotNull(
+                visibility, r'GProviderCreateInput', 'visibility'));
     replace(_$result);
     return _$result;
   }
@@ -1580,18 +1573,17 @@ class GUserCreateInputBuilder
   _$GUserCreateInput _build() {
     final _$result = _$v ??
         new _$GUserCreateInput._(
-          description: description,
-          email: BuiltValueNullFieldError.checkNotNull(
-              email, r'GUserCreateInput', 'email'),
-          firstName: BuiltValueNullFieldError.checkNotNull(
-              firstName, r'GUserCreateInput', 'firstName'),
-          lastName: BuiltValueNullFieldError.checkNotNull(
-              lastName, r'GUserCreateInput', 'lastName'),
-          password: password,
-          pronoun: pronoun,
-          username: BuiltValueNullFieldError.checkNotNull(
-              username, r'GUserCreateInput', 'username'),
-        );
+            description: description,
+            email: BuiltValueNullFieldError.checkNotNull(
+                email, r'GUserCreateInput', 'email'),
+            firstName: BuiltValueNullFieldError.checkNotNull(
+                firstName, r'GUserCreateInput', 'firstName'),
+            lastName: BuiltValueNullFieldError.checkNotNull(
+                lastName, r'GUserCreateInput', 'lastName'),
+            password: password,
+            pronoun: pronoun,
+            username: BuiltValueNullFieldError.checkNotNull(
+                username, r'GUserCreateInput', 'username'));
     replace(_$result);
     return _$result;
   }
@@ -1730,16 +1722,15 @@ class GUserRegisterInputBuilder
   _$GUserRegisterInput _build() {
     final _$result = _$v ??
         new _$GUserRegisterInput._(
-          email: BuiltValueNullFieldError.checkNotNull(
-              email, r'GUserRegisterInput', 'email'),
-          firstName: BuiltValueNullFieldError.checkNotNull(
-              firstName, r'GUserRegisterInput', 'firstName'),
-          lastName: BuiltValueNullFieldError.checkNotNull(
-              lastName, r'GUserRegisterInput', 'lastName'),
-          password: password,
-          username: BuiltValueNullFieldError.checkNotNull(
-              username, r'GUserRegisterInput', 'username'),
-        );
+            email: BuiltValueNullFieldError.checkNotNull(
+                email, r'GUserRegisterInput', 'email'),
+            firstName: BuiltValueNullFieldError.checkNotNull(
+                firstName, r'GUserRegisterInput', 'firstName'),
+            lastName: BuiltValueNullFieldError.checkNotNull(
+                lastName, r'GUserRegisterInput', 'lastName'),
+            password: password,
+            username: BuiltValueNullFieldError.checkNotNull(
+                username, r'GUserRegisterInput', 'username'));
     replace(_$result);
     return _$result;
   }
@@ -1879,13 +1870,12 @@ class GUserUpdateInputBuilder
   _$GUserUpdateInput _build() {
     final _$result = _$v ??
         new _$GUserUpdateInput._(
-          description: description,
-          email: email,
-          firstName: firstName,
-          lastName: lastName,
-          pronoun: pronoun,
-          username: username,
-        );
+            description: description,
+            email: email,
+            firstName: firstName,
+            lastName: lastName,
+            pronoun: pronoun,
+            username: username);
     replace(_$result);
     return _$result;
   }

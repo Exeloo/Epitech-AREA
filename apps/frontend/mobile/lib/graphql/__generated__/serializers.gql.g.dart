@@ -18,13 +18,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GAppletWithNodesData_triggerNodes_provider.serializer)
       ..add(GAppletWithNodesReq.serializer)
       ..add(GAppletWithNodesVars.serializer)
-      ..add(GAppletWithNodesData.serializer)
-      ..add(GAppletWithNodesData_triggerNodes.serializer)
-      ..add(GAppletWithNodesData_triggerNodes_next.serializer)
-      ..add(GAppletWithNodesData_triggerNodes_previous.serializer)
-      ..add(GAppletWithNodesData_triggerNodes_provider.serializer)
-      ..add(GAppletWithNodesReq.serializer)
-      ..add(GAppletWithNodesVars.serializer)
       ..add(GAuthPasswordInput.serializer)
       ..add(GAuthRefreshTokenInput.serializer)
       ..add(GBaseAppletData.serializer)
@@ -40,12 +33,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GBaseProviderReq.serializer)
       ..add(GBaseProviderVars.serializer)
       ..add(GDateTime.serializer)
-      ..add(GExtendedAppletNodeData.serializer)
-      ..add(GExtendedAppletNodeData_next.serializer)
-      ..add(GExtendedAppletNodeData_previous.serializer)
-      ..add(GExtendedAppletNodeData_provider.serializer)
-      ..add(GExtendedAppletNodeReq.serializer)
-      ..add(GExtendedAppletNodeVars.serializer)
       ..add(GExtendedAppletNodeData.serializer)
       ..add(GExtendedAppletNodeData_next.serializer)
       ..add(GExtendedAppletNodeData_previous.serializer)
@@ -76,14 +63,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GUserReq.serializer)
       ..add(GUserUpdateInput.serializer)
       ..add(GUserVars.serializer)
-      ..add(GcreateAppletData.serializer)
-      ..add(GcreateAppletData_createApplet.serializer)
-      ..add(GcreateAppletReq.serializer)
-      ..add(GcreateAppletVars.serializer)
-      ..add(GgetAllAppletsData.serializer)
-      ..add(GgetAllAppletsData_getAllApplets.serializer)
-      ..add(GgetAllAppletsReq.serializer)
-      ..add(GgetAllAppletsVars.serializer)
       ..add(GcreateAppletData.serializer)
       ..add(GcreateAppletData_createApplet.serializer)
       ..add(GcreateAppletReq.serializer)
@@ -168,27 +147,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
               BuiltList, const [const FullType(GExtendedAppletNodeData_next)]),
           () => new ListBuilder<GExtendedAppletNodeData_next>())
       ..addBuilderFactory(
-          const FullType(BuiltList,
-              const [const FullType(GAppletWithNodesData_triggerNodes)]),
-          () => new ListBuilder<GAppletWithNodesData_triggerNodes>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [
-            const FullType(GAppletWithNodesData_triggerNodes_previous)
-          ]),
-          () => new ListBuilder<GAppletWithNodesData_triggerNodes_previous>())
-      ..addBuilderFactory(
-          const FullType(BuiltList,
-              const [const FullType(GAppletWithNodesData_triggerNodes_next)]),
-          () => new ListBuilder<GAppletWithNodesData_triggerNodes_next>())
-      ..addBuilderFactory(
-          const FullType(BuiltList,
-              const [const FullType(GExtendedAppletNodeData_previous)]),
-          () => new ListBuilder<GExtendedAppletNodeData_previous>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(GExtendedAppletNodeData_next)]),
-          () => new ListBuilder<GExtendedAppletNodeData_next>())
-      ..addBuilderFactory(
           const FullType(BuiltList, const [
             const FullType(GProviderWithManifestData_manifest_actions)
           ]),
@@ -198,10 +156,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
             const FullType(GProviderWithManifestData_manifest_triggers)
           ]),
           () => new ListBuilder<GProviderWithManifestData_manifest_triggers>())
-      ..addBuilderFactory(
-          const FullType(BuiltList,
-              const [const FullType(GgetAllAppletsData_getAllApplets)]),
-          () => new ListBuilder<GgetAllAppletsData_getAllApplets>())
       ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(GgetAllAppletsData_getAllApplets)]),

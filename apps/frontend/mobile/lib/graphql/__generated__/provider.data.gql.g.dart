@@ -1321,10 +1321,9 @@ class GgetAllProvidersDataBuilder
     try {
       _$result = _$v ??
           new _$GgetAllProvidersData._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GgetAllProvidersData', 'G__typename'),
-            getAllProviders: getAllProviders.build(),
-          );
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GgetAllProvidersData', 'G__typename'),
+              getAllProviders: getAllProviders.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -1511,21 +1510,20 @@ class GgetAllProvidersData_getAllProvidersBuilder
   _$GgetAllProvidersData_getAllProviders _build() {
     final _$result = _$v ??
         new _$GgetAllProvidersData_getAllProviders._(
-          G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-              r'GgetAllProvidersData_getAllProviders', 'G__typename'),
-          id: BuiltValueNullFieldError.checkNotNull(
-              id, r'GgetAllProvidersData_getAllProviders', 'id'),
-          name: BuiltValueNullFieldError.checkNotNull(
-              name, r'GgetAllProvidersData_getAllProviders', 'name'),
-          description: BuiltValueNullFieldError.checkNotNull(description,
-              r'GgetAllProvidersData_getAllProviders', 'description'),
-          img: BuiltValueNullFieldError.checkNotNull(
-              img, r'GgetAllProvidersData_getAllProviders', 'img'),
-          color: BuiltValueNullFieldError.checkNotNull(
-              color, r'GgetAllProvidersData_getAllProviders', 'color'),
-          visibility: BuiltValueNullFieldError.checkNotNull(visibility,
-              r'GgetAllProvidersData_getAllProviders', 'visibility'),
-        );
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GgetAllProvidersData_getAllProviders', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GgetAllProvidersData_getAllProviders', 'id'),
+            name: BuiltValueNullFieldError.checkNotNull(
+                name, r'GgetAllProvidersData_getAllProviders', 'name'),
+            description: BuiltValueNullFieldError.checkNotNull(description,
+                r'GgetAllProvidersData_getAllProviders', 'description'),
+            img: BuiltValueNullFieldError.checkNotNull(
+                img, r'GgetAllProvidersData_getAllProviders', 'img'),
+            color: BuiltValueNullFieldError.checkNotNull(
+                color, r'GgetAllProvidersData_getAllProviders', 'color'),
+            visibility: BuiltValueNullFieldError.checkNotNull(
+                visibility, r'GgetAllProvidersData_getAllProviders', 'visibility'));
     replace(_$result);
     return _$result;
   }
@@ -1634,10 +1632,9 @@ class GgetProviderByIdDataBuilder
     try {
       _$result = _$v ??
           new _$GgetProviderByIdData._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GgetProviderByIdData', 'G__typename'),
-            getProviderById: getProviderById.build(),
-          );
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GgetProviderByIdData', 'G__typename'),
+              getProviderById: getProviderById.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -1843,22 +1840,21 @@ class GgetProviderByIdData_getProviderByIdBuilder
     try {
       _$result = _$v ??
           new _$GgetProviderByIdData_getProviderById._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                r'GgetProviderByIdData_getProviderById', 'G__typename'),
-            manifest: manifest.build(),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GgetProviderByIdData_getProviderById', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GgetProviderByIdData_getProviderById', 'name'),
-            description: BuiltValueNullFieldError.checkNotNull(description,
-                r'GgetProviderByIdData_getProviderById', 'description'),
-            img: BuiltValueNullFieldError.checkNotNull(
-                img, r'GgetProviderByIdData_getProviderById', 'img'),
-            color: BuiltValueNullFieldError.checkNotNull(
-                color, r'GgetProviderByIdData_getProviderById', 'color'),
-            visibility: BuiltValueNullFieldError.checkNotNull(visibility,
-                r'GgetProviderByIdData_getProviderById', 'visibility'),
-          );
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GgetProviderByIdData_getProviderById', 'G__typename'),
+              manifest: manifest.build(),
+              id: BuiltValueNullFieldError.checkNotNull(
+                  id, r'GgetProviderByIdData_getProviderById', 'id'),
+              name: BuiltValueNullFieldError.checkNotNull(
+                  name, r'GgetProviderByIdData_getProviderById', 'name'),
+              description: BuiltValueNullFieldError.checkNotNull(description,
+                  r'GgetProviderByIdData_getProviderById', 'description'),
+              img: BuiltValueNullFieldError.checkNotNull(
+                  img, r'GgetProviderByIdData_getProviderById', 'img'),
+              color: BuiltValueNullFieldError.checkNotNull(
+                  color, r'GgetProviderByIdData_getProviderById', 'color'),
+              visibility: BuiltValueNullFieldError.checkNotNull(
+                  visibility, r'GgetProviderByIdData_getProviderById', 'visibility'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -2013,13 +2009,12 @@ class GgetProviderByIdData_getProviderById_manifestBuilder
     try {
       _$result = _$v ??
           new _$GgetProviderByIdData_getProviderById_manifest._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename,
-                r'GgetProviderByIdData_getProviderById_manifest',
-                'G__typename'),
-            actions: actions.build(),
-            triggers: triggers.build(),
-          );
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename,
+                  r'GgetProviderByIdData_getProviderById_manifest',
+                  'G__typename'),
+              actions: actions.build(),
+              triggers: triggers.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -2237,31 +2232,24 @@ class GgetProviderByIdData_getProviderById_manifest_actionsBuilder
     try {
       _$result = _$v ??
           new _$GgetProviderByIdData_getProviderById_manifest_actions._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename,
-                r'GgetProviderByIdData_getProviderById_manifest_actions',
-                'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(id,
-                r'GgetProviderByIdData_getProviderById_manifest_actions', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name,
-                r'GgetProviderByIdData_getProviderById_manifest_actions',
-                'name'),
-            description: BuiltValueNullFieldError.checkNotNull(
-                description,
-                r'GgetProviderByIdData_getProviderById_manifest_actions',
-                'description'),
-            img: BuiltValueNullFieldError.checkNotNull(
-                img,
-                r'GgetProviderByIdData_getProviderById_manifest_actions',
-                'img'),
-            color: BuiltValueNullFieldError.checkNotNull(
-                color,
-                r'GgetProviderByIdData_getProviderById_manifest_actions',
-                'color'),
-            input: input.build(),
-            output: output.build(),
-          );
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename,
+                  r'GgetProviderByIdData_getProviderById_manifest_actions',
+                  'G__typename'),
+              id: BuiltValueNullFieldError.checkNotNull(
+                  id, r'GgetProviderByIdData_getProviderById_manifest_actions', 'id'),
+              name: BuiltValueNullFieldError.checkNotNull(
+                  name, r'GgetProviderByIdData_getProviderById_manifest_actions', 'name'),
+              description: BuiltValueNullFieldError.checkNotNull(
+                  description,
+                  r'GgetProviderByIdData_getProviderById_manifest_actions',
+                  'description'),
+              img: BuiltValueNullFieldError.checkNotNull(
+                  img, r'GgetProviderByIdData_getProviderById_manifest_actions', 'img'),
+              color: BuiltValueNullFieldError.checkNotNull(
+                  color, r'GgetProviderByIdData_getProviderById_manifest_actions', 'color'),
+              input: input.build(),
+              output: output.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -2479,33 +2467,24 @@ class GgetProviderByIdData_getProviderById_manifest_triggersBuilder
     try {
       _$result = _$v ??
           new _$GgetProviderByIdData_getProviderById_manifest_triggers._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename,
-                r'GgetProviderByIdData_getProviderById_manifest_triggers',
-                'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id,
-                r'GgetProviderByIdData_getProviderById_manifest_triggers',
-                'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name,
-                r'GgetProviderByIdData_getProviderById_manifest_triggers',
-                'name'),
-            description: BuiltValueNullFieldError.checkNotNull(
-                description,
-                r'GgetProviderByIdData_getProviderById_manifest_triggers',
-                'description'),
-            img: BuiltValueNullFieldError.checkNotNull(
-                img,
-                r'GgetProviderByIdData_getProviderById_manifest_triggers',
-                'img'),
-            color: BuiltValueNullFieldError.checkNotNull(
-                color,
-                r'GgetProviderByIdData_getProviderById_manifest_triggers',
-                'color'),
-            input: input.build(),
-            output: output.build(),
-          );
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename,
+                  r'GgetProviderByIdData_getProviderById_manifest_triggers',
+                  'G__typename'),
+              id: BuiltValueNullFieldError.checkNotNull(
+                  id, r'GgetProviderByIdData_getProviderById_manifest_triggers', 'id'),
+              name: BuiltValueNullFieldError.checkNotNull(
+                  name, r'GgetProviderByIdData_getProviderById_manifest_triggers', 'name'),
+              description: BuiltValueNullFieldError.checkNotNull(
+                  description,
+                  r'GgetProviderByIdData_getProviderById_manifest_triggers',
+                  'description'),
+              img: BuiltValueNullFieldError.checkNotNull(
+                  img, r'GgetProviderByIdData_getProviderById_manifest_triggers', 'img'),
+              color: BuiltValueNullFieldError.checkNotNull(
+                  color, r'GgetProviderByIdData_getProviderById_manifest_triggers', 'color'),
+              input: input.build(),
+              output: output.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -2706,21 +2685,20 @@ class GProviderManifestActionDataBuilder
     try {
       _$result = _$v ??
           new _$GProviderManifestActionData._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GProviderManifestActionData', 'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GProviderManifestActionData', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GProviderManifestActionData', 'name'),
-            description: BuiltValueNullFieldError.checkNotNull(
-                description, r'GProviderManifestActionData', 'description'),
-            img: BuiltValueNullFieldError.checkNotNull(
-                img, r'GProviderManifestActionData', 'img'),
-            color: BuiltValueNullFieldError.checkNotNull(
-                color, r'GProviderManifestActionData', 'color'),
-            input: input.build(),
-            output: output.build(),
-          );
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GProviderManifestActionData', 'G__typename'),
+              id: BuiltValueNullFieldError.checkNotNull(
+                  id, r'GProviderManifestActionData', 'id'),
+              name: BuiltValueNullFieldError.checkNotNull(
+                  name, r'GProviderManifestActionData', 'name'),
+              description: BuiltValueNullFieldError.checkNotNull(
+                  description, r'GProviderManifestActionData', 'description'),
+              img: BuiltValueNullFieldError.checkNotNull(
+                  img, r'GProviderManifestActionData', 'img'),
+              color: BuiltValueNullFieldError.checkNotNull(
+                  color, r'GProviderManifestActionData', 'color'),
+              input: input.build(),
+              output: output.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -2919,21 +2897,20 @@ class GProviderManifestTriggerDataBuilder
     try {
       _$result = _$v ??
           new _$GProviderManifestTriggerData._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GProviderManifestTriggerData', 'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GProviderManifestTriggerData', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GProviderManifestTriggerData', 'name'),
-            description: BuiltValueNullFieldError.checkNotNull(
-                description, r'GProviderManifestTriggerData', 'description'),
-            img: BuiltValueNullFieldError.checkNotNull(
-                img, r'GProviderManifestTriggerData', 'img'),
-            color: BuiltValueNullFieldError.checkNotNull(
-                color, r'GProviderManifestTriggerData', 'color'),
-            input: input.build(),
-            output: output.build(),
-          );
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GProviderManifestTriggerData', 'G__typename'),
+              id: BuiltValueNullFieldError.checkNotNull(
+                  id, r'GProviderManifestTriggerData', 'id'),
+              name: BuiltValueNullFieldError.checkNotNull(
+                  name, r'GProviderManifestTriggerData', 'name'),
+              description: BuiltValueNullFieldError.checkNotNull(
+                  description, r'GProviderManifestTriggerData', 'description'),
+              img: BuiltValueNullFieldError.checkNotNull(
+                  img, r'GProviderManifestTriggerData', 'img'),
+              color: BuiltValueNullFieldError.checkNotNull(
+                  color, r'GProviderManifestTriggerData', 'color'),
+              input: input.build(),
+              output: output.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -3111,21 +3088,20 @@ class GBaseProviderDataBuilder
   _$GBaseProviderData _build() {
     final _$result = _$v ??
         new _$GBaseProviderData._(
-          G__typename: BuiltValueNullFieldError.checkNotNull(
-              G__typename, r'GBaseProviderData', 'G__typename'),
-          id: BuiltValueNullFieldError.checkNotNull(
-              id, r'GBaseProviderData', 'id'),
-          name: BuiltValueNullFieldError.checkNotNull(
-              name, r'GBaseProviderData', 'name'),
-          description: BuiltValueNullFieldError.checkNotNull(
-              description, r'GBaseProviderData', 'description'),
-          img: BuiltValueNullFieldError.checkNotNull(
-              img, r'GBaseProviderData', 'img'),
-          color: BuiltValueNullFieldError.checkNotNull(
-              color, r'GBaseProviderData', 'color'),
-          visibility: BuiltValueNullFieldError.checkNotNull(
-              visibility, r'GBaseProviderData', 'visibility'),
-        );
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GBaseProviderData', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GBaseProviderData', 'id'),
+            name: BuiltValueNullFieldError.checkNotNull(
+                name, r'GBaseProviderData', 'name'),
+            description: BuiltValueNullFieldError.checkNotNull(
+                description, r'GBaseProviderData', 'description'),
+            img: BuiltValueNullFieldError.checkNotNull(
+                img, r'GBaseProviderData', 'img'),
+            color: BuiltValueNullFieldError.checkNotNull(
+                color, r'GBaseProviderData', 'color'),
+            visibility: BuiltValueNullFieldError.checkNotNull(
+                visibility, r'GBaseProviderData', 'visibility'));
     replace(_$result);
     return _$result;
   }
@@ -3313,22 +3289,21 @@ class GProviderWithManifestDataBuilder
     try {
       _$result = _$v ??
           new _$GProviderWithManifestData._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GProviderWithManifestData', 'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GProviderWithManifestData', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GProviderWithManifestData', 'name'),
-            description: BuiltValueNullFieldError.checkNotNull(
-                description, r'GProviderWithManifestData', 'description'),
-            img: BuiltValueNullFieldError.checkNotNull(
-                img, r'GProviderWithManifestData', 'img'),
-            color: BuiltValueNullFieldError.checkNotNull(
-                color, r'GProviderWithManifestData', 'color'),
-            visibility: BuiltValueNullFieldError.checkNotNull(
-                visibility, r'GProviderWithManifestData', 'visibility'),
-            manifest: manifest.build(),
-          );
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GProviderWithManifestData', 'G__typename'),
+              id: BuiltValueNullFieldError.checkNotNull(
+                  id, r'GProviderWithManifestData', 'id'),
+              name: BuiltValueNullFieldError.checkNotNull(
+                  name, r'GProviderWithManifestData', 'name'),
+              description: BuiltValueNullFieldError.checkNotNull(
+                  description, r'GProviderWithManifestData', 'description'),
+              img: BuiltValueNullFieldError.checkNotNull(
+                  img, r'GProviderWithManifestData', 'img'),
+              color: BuiltValueNullFieldError.checkNotNull(
+                  color, r'GProviderWithManifestData', 'color'),
+              visibility: BuiltValueNullFieldError.checkNotNull(
+                  visibility, r'GProviderWithManifestData', 'visibility'),
+              manifest: manifest.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -3472,11 +3447,10 @@ class GProviderWithManifestData_manifestBuilder
     try {
       _$result = _$v ??
           new _$GProviderWithManifestData_manifest._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                r'GProviderWithManifestData_manifest', 'G__typename'),
-            actions: actions.build(),
-            triggers: triggers.build(),
-          );
+              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                  r'GProviderWithManifestData_manifest', 'G__typename'),
+              actions: actions.build(),
+              triggers: triggers.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -3682,21 +3656,20 @@ class GProviderWithManifestData_manifest_actionsBuilder
     try {
       _$result = _$v ??
           new _$GProviderWithManifestData_manifest_actions._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                r'GProviderWithManifestData_manifest_actions', 'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GProviderWithManifestData_manifest_actions', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GProviderWithManifestData_manifest_actions', 'name'),
-            description: BuiltValueNullFieldError.checkNotNull(description,
-                r'GProviderWithManifestData_manifest_actions', 'description'),
-            img: BuiltValueNullFieldError.checkNotNull(
-                img, r'GProviderWithManifestData_manifest_actions', 'img'),
-            color: BuiltValueNullFieldError.checkNotNull(
-                color, r'GProviderWithManifestData_manifest_actions', 'color'),
-            input: input.build(),
-            output: output.build(),
-          );
+              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                  r'GProviderWithManifestData_manifest_actions', 'G__typename'),
+              id: BuiltValueNullFieldError.checkNotNull(
+                  id, r'GProviderWithManifestData_manifest_actions', 'id'),
+              name: BuiltValueNullFieldError.checkNotNull(
+                  name, r'GProviderWithManifestData_manifest_actions', 'name'),
+              description: BuiltValueNullFieldError.checkNotNull(description,
+                  r'GProviderWithManifestData_manifest_actions', 'description'),
+              img: BuiltValueNullFieldError.checkNotNull(
+                  img, r'GProviderWithManifestData_manifest_actions', 'img'),
+              color: BuiltValueNullFieldError.checkNotNull(
+                  color, r'GProviderWithManifestData_manifest_actions', 'color'),
+              input: input.build(),
+              output: output.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -3905,21 +3878,24 @@ class GProviderWithManifestData_manifest_triggersBuilder
     try {
       _$result = _$v ??
           new _$GProviderWithManifestData_manifest_triggers._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                r'GProviderWithManifestData_manifest_triggers', 'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GProviderWithManifestData_manifest_triggers', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GProviderWithManifestData_manifest_triggers', 'name'),
-            description: BuiltValueNullFieldError.checkNotNull(description,
-                r'GProviderWithManifestData_manifest_triggers', 'description'),
-            img: BuiltValueNullFieldError.checkNotNull(
-                img, r'GProviderWithManifestData_manifest_triggers', 'img'),
-            color: BuiltValueNullFieldError.checkNotNull(
-                color, r'GProviderWithManifestData_manifest_triggers', 'color'),
-            input: input.build(),
-            output: output.build(),
-          );
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename,
+                  r'GProviderWithManifestData_manifest_triggers',
+                  'G__typename'),
+              id: BuiltValueNullFieldError.checkNotNull(
+                  id, r'GProviderWithManifestData_manifest_triggers', 'id'),
+              name: BuiltValueNullFieldError.checkNotNull(
+                  name, r'GProviderWithManifestData_manifest_triggers', 'name'),
+              description: BuiltValueNullFieldError.checkNotNull(
+                  description,
+                  r'GProviderWithManifestData_manifest_triggers',
+                  'description'),
+              img: BuiltValueNullFieldError.checkNotNull(
+                  img, r'GProviderWithManifestData_manifest_triggers', 'img'),
+              color: BuiltValueNullFieldError.checkNotNull(
+                  color, r'GProviderWithManifestData_manifest_triggers', 'color'),
+              input: input.build(),
+              output: output.build());
     } catch (_) {
       late String _$failedField;
       try {

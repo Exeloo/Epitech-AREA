@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:mobile/graphql/__generated__/user.data.gql.dart';
-import 'package:mobile/modules/graphql/repository/user_repository.dart';
 import 'package:mobile/views/applet/pages/applet_creation.dart';
 import 'package:mobile/views/home/pages/home.dart';
-import 'package:provider/provider.dart';
 import 'package:mobile/views/profile/profile.dart';
 
 class MainNavigationPage extends StatefulWidget {

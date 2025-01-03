@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Input from '$lib/components/Input.svelte';
+	import Input from '$lib/Inputs/Input.svelte';
 	import Submit from '$lib/auth/Submit.svelte';
 	import Validation from '$lib/auth/Validation.svelte';
 

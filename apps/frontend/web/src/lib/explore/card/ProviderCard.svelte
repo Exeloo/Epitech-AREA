@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Card from '$lib/card/Card.svelte';
+	import Card from '$lib/explore/card/Card.svelte';
 	import { graphql, fragment, type BaseProvider } from '$houdini';
 
 	interface Props {

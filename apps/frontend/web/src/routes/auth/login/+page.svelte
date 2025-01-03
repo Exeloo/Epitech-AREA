@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Input from '$lib/components/Input.svelte';
+	import Input from '$lib/Inputs/Input.svelte';
 	import Checkbox from '$lib/auth/Checkbox.svelte';
 	import Submit from '$lib/auth/Submit.svelte';
 	import { fragment, graphql, load_login } from '$houdini';

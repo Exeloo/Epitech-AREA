@@ -6,13 +6,13 @@ WORKDIR /home/builder/app
 
 COPY . .
 
-RUN chown -R builder:builder /home/builder/app
+RUN chown -R builder:builder /home/builder/explore
 
 USER builder
 
 RUN flutter pub get
 RUN flutter build apk --release
-RUN mkdir /home/builder/app/apk
+RUN mkdir /home/builder/explore/apk
 
 USER root
 

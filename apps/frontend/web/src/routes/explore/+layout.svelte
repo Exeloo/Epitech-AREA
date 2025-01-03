@@ -9,7 +9,9 @@
 	</div>
 </div>
 <a aria-label="new" href="/applet/new/">
-	<div class="fixed bottom-10 right-10 w-16 h-16 rounded-full bg-primary flex justify-center items-center text-2xl text-white">
-		<i class="fi fi-br-plus flex justify-center items-center"></i>
+	<div
+		class="fixed bottom-10 right-10 flex h-16 w-16 items-center justify-center rounded-full bg-primary text-2xl text-white"
+	>
+		<i class="fi fi-br-plus flex items-center justify-center"></i>
 	</div>
 </a>

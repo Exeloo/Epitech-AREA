@@ -331,55 +331,6 @@ abstract class GcreateAppletReq
       );
 }
 
-abstract class GProviderManifestActionReq
-    implements
-        Built<GProviderManifestActionReq, GProviderManifestActionReqBuilder>,
-        _i1.FragmentRequest<_i2.GProviderManifestActionData,
-            _i3.GProviderManifestActionVars> {
-  GProviderManifestActionReq._();
-
-  factory GProviderManifestActionReq(
-          [void Function(GProviderManifestActionReqBuilder b) updates]) =
-      _$GProviderManifestActionReq;
-
-  static void _initializeBuilder(GProviderManifestActionReqBuilder b) => b
-    ..document = _i5.document
-    ..fragmentName = 'ProviderManifestAction';
-
-  @override
-  _i3.GProviderManifestActionVars get vars;
-  @override
-  _i7.DocumentNode get document;
-  @override
-  String? get fragmentName;
-  @override
-  Map<String, dynamic> get idFields;
-  @override
-  _i2.GProviderManifestActionData? parseData(Map<String, dynamic> json) =>
-      _i2.GProviderManifestActionData.fromJson(json);
-
-  @override
-  Map<String, dynamic> varsToJson() => vars.toJson();
-
-  @override
-  Map<String, dynamic> dataToJson(_i2.GProviderManifestActionData data) =>
-      data.toJson();
-
-  static Serializer<GProviderManifestActionReq> get serializer =>
-      _$gProviderManifestActionReqSerializer;
-
-  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
-        GProviderManifestActionReq.serializer,
-        this,
-      ) as Map<String, dynamic>);
-
-  static GProviderManifestActionReq? fromJson(Map<String, dynamic> json) =>
-      _i6.serializers.deserializeWith(
-        GProviderManifestActionReq.serializer,
-        json,
-      );
-}
-
 abstract class GBaseAppletProviderReq
     implements
         Built<GBaseAppletProviderReq, GBaseAppletProviderReqBuilder>,

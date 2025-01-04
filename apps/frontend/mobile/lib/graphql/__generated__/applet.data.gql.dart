@@ -622,64 +622,6 @@ abstract class GcreateAppletData_createApplet
       );
 }
 
-abstract class GProviderManifestAction {
-  String get G__typename;
-  String get id;
-  String get name;
-  String get description;
-  String get img;
-  String get color;
-  _i2.GJSON get input;
-  _i2.GJSON get output;
-  Map<String, dynamic> toJson();
-}
-
-abstract class GProviderManifestActionData
-    implements
-        Built<GProviderManifestActionData, GProviderManifestActionDataBuilder>,
-        GProviderManifestAction {
-  GProviderManifestActionData._();
-
-  factory GProviderManifestActionData(
-          [void Function(GProviderManifestActionDataBuilder b) updates]) =
-      _$GProviderManifestActionData;
-
-  static void _initializeBuilder(GProviderManifestActionDataBuilder b) =>
-      b..G__typename = 'ProviderManifestAction';
-
-  @override
-  @BuiltValueField(wireName: '__typename')
-  String get G__typename;
-  @override
-  String get id;
-  @override
-  String get name;
-  @override
-  String get description;
-  @override
-  String get img;
-  @override
-  String get color;
-  @override
-  _i2.GJSON get input;
-  @override
-  _i2.GJSON get output;
-  static Serializer<GProviderManifestActionData> get serializer =>
-      _$gProviderManifestActionDataSerializer;
-
-  @override
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GProviderManifestActionData.serializer,
-        this,
-      ) as Map<String, dynamic>);
-
-  static GProviderManifestActionData? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        GProviderManifestActionData.serializer,
-        json,
-      );
-}
-
 abstract class GBaseAppletProvider {
   String get G__typename;
   int get id;

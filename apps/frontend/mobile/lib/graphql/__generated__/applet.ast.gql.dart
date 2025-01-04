@@ -4,66 +4,6 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:gql/ast.dart' as _i1;
 
-const ProviderManifestAction = _i1.FragmentDefinitionNode(
-  name: _i1.NameNode(value: 'ProviderManifestAction'),
-  typeCondition: _i1.TypeConditionNode(
-      on: _i1.NamedTypeNode(
-    name: _i1.NameNode(value: 'ProviderManifestAction'),
-    isNonNull: false,
-  )),
-  directives: [],
-  selectionSet: _i1.SelectionSetNode(selections: [
-    _i1.FieldNode(
-      name: _i1.NameNode(value: 'id'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-    _i1.FieldNode(
-      name: _i1.NameNode(value: 'name'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-    _i1.FieldNode(
-      name: _i1.NameNode(value: 'description'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-    _i1.FieldNode(
-      name: _i1.NameNode(value: 'img'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-    _i1.FieldNode(
-      name: _i1.NameNode(value: 'color'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-    _i1.FieldNode(
-      name: _i1.NameNode(value: 'input'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-    _i1.FieldNode(
-      name: _i1.NameNode(value: 'output'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-  ]),
-);
 const BaseAppletProvider = _i1.FragmentDefinitionNode(
   name: _i1.NameNode(value: 'BaseAppletProvider'),
   typeCondition: _i1.TypeConditionNode(
@@ -392,7 +332,6 @@ const createApplet = _i1.OperationDefinitionNode(
   ]),
 );
 const document = _i1.DocumentNode(definitions: [
-  ProviderManifestAction,
   BaseAppletProvider,
   BaseAppletNode,
   ExtendedAppletNode,

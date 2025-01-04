@@ -104,30 +104,6 @@ abstract class GcreateAppletVars
       );
 }
 
-abstract class GProviderManifestActionVars
-    implements
-        Built<GProviderManifestActionVars, GProviderManifestActionVarsBuilder> {
-  GProviderManifestActionVars._();
-
-  factory GProviderManifestActionVars(
-          [void Function(GProviderManifestActionVarsBuilder b) updates]) =
-      _$GProviderManifestActionVars;
-
-  static Serializer<GProviderManifestActionVars> get serializer =>
-      _$gProviderManifestActionVarsSerializer;
-
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GProviderManifestActionVars.serializer,
-        this,
-      ) as Map<String, dynamic>);
-
-  static GProviderManifestActionVars? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        GProviderManifestActionVars.serializer,
-        json,
-      );
-}
-
 abstract class GBaseAppletProviderVars
     implements Built<GBaseAppletProviderVars, GBaseAppletProviderVarsBuilder> {
   GBaseAppletProviderVars._();

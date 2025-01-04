@@ -1,13 +1,3 @@
-fragment ProviderManifestAction on ProviderManifestAction {
-    id
-    name
-    description
-    img
-    color
-    input
-    output
-}
-
 fragment BaseAppletProvider on Provider {
     id
     name

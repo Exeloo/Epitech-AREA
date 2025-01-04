@@ -14,9 +14,6 @@ Serializer<GgetAppletNodeByIdVars> _$ggetAppletNodeByIdVarsSerializer =
     new _$GgetAppletNodeByIdVarsSerializer();
 Serializer<GcreateAppletVars> _$gcreateAppletVarsSerializer =
     new _$GcreateAppletVarsSerializer();
-Serializer<GProviderManifestActionVars>
-    _$gProviderManifestActionVarsSerializer =
-    new _$GProviderManifestActionVarsSerializer();
 Serializer<GBaseAppletProviderVars> _$gBaseAppletProviderVarsSerializer =
     new _$GBaseAppletProviderVarsSerializer();
 Serializer<GBaseAppletNodeVars> _$gBaseAppletNodeVarsSerializer =
@@ -177,31 +174,6 @@ class _$GcreateAppletVarsSerializer
     }
 
     return result.build();
-  }
-}
-
-class _$GProviderManifestActionVarsSerializer
-    implements StructuredSerializer<GProviderManifestActionVars> {
-  @override
-  final Iterable<Type> types = const [
-    GProviderManifestActionVars,
-    _$GProviderManifestActionVars
-  ];
-  @override
-  final String wireName = 'GProviderManifestActionVars';
-
-  @override
-  Iterable<Object?> serialize(
-      Serializers serializers, GProviderManifestActionVars object,
-      {FullType specifiedType = FullType.unspecified}) {
-    return <Object?>[];
-  }
-
-  @override
-  GProviderManifestActionVars deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    return new GProviderManifestActionVarsBuilder().build();
   }
 }
 
@@ -648,69 +620,6 @@ class GcreateAppletVarsBuilder
       }
       rethrow;
     }
-    replace(_$result);
-    return _$result;
-  }
-}
-
-class _$GProviderManifestActionVars extends GProviderManifestActionVars {
-  factory _$GProviderManifestActionVars(
-          [void Function(GProviderManifestActionVarsBuilder)? updates]) =>
-      (new GProviderManifestActionVarsBuilder()..update(updates))._build();
-
-  _$GProviderManifestActionVars._() : super._();
-
-  @override
-  GProviderManifestActionVars rebuild(
-          void Function(GProviderManifestActionVarsBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
-
-  @override
-  GProviderManifestActionVarsBuilder toBuilder() =>
-      new GProviderManifestActionVarsBuilder()..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is GProviderManifestActionVars;
-  }
-
-  @override
-  int get hashCode {
-    return 75716004;
-  }
-
-  @override
-  String toString() {
-    return newBuiltValueToStringHelper(r'GProviderManifestActionVars')
-        .toString();
-  }
-}
-
-class GProviderManifestActionVarsBuilder
-    implements
-        Builder<GProviderManifestActionVars,
-            GProviderManifestActionVarsBuilder> {
-  _$GProviderManifestActionVars? _$v;
-
-  GProviderManifestActionVarsBuilder();
-
-  @override
-  void replace(GProviderManifestActionVars other) {
-    ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GProviderManifestActionVars;
-  }
-
-  @override
-  void update(void Function(GProviderManifestActionVarsBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  GProviderManifestActionVars build() => _build();
-
-  _$GProviderManifestActionVars _build() {
-    final _$result = _$v ?? new _$GProviderManifestActionVars._();
     replace(_$result);
     return _$result;
   }

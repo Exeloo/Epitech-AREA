@@ -21,7 +21,6 @@ import 'package:mobile/graphql/__generated__/applet.data.gql.dart'
         GExtendedAppletNodeData_next,
         GExtendedAppletNodeData_previous,
         GExtendedAppletNodeData_provider,
-        GProviderManifestActionData,
         GcreateAppletData,
         GcreateAppletData_createApplet,
         GgetAllAppletsData,
@@ -44,7 +43,6 @@ import 'package:mobile/graphql/__generated__/applet.req.gql.dart'
         GBaseAppletProviderReq,
         GBaseAppletReq,
         GExtendedAppletNodeReq,
-        GProviderManifestActionReq,
         GcreateAppletReq,
         GgetAllAppletsReq,
         GgetAppletByIdReq,
@@ -56,7 +54,6 @@ import 'package:mobile/graphql/__generated__/applet.var.gql.dart'
         GBaseAppletProviderVars,
         GBaseAppletVars,
         GExtendedAppletNodeVars,
-        GProviderManifestActionVars,
         GcreateAppletVars,
         GgetAllAppletsVars,
         GgetAppletByIdVars,
@@ -75,6 +72,7 @@ import 'package:mobile/graphql/__generated__/auth.var.gql.dart'
 import 'package:mobile/graphql/__generated__/provider.data.gql.dart'
     show
         GBaseProviderData,
+        GProviderManifestActionData,
         GProviderManifestTriggerData,
         GProviderWithManifestData,
         GProviderWithManifestData_manifest,
@@ -90,6 +88,7 @@ import 'package:mobile/graphql/__generated__/provider.data.gql.dart'
 import 'package:mobile/graphql/__generated__/provider.req.gql.dart'
     show
         GBaseProviderReq,
+        GProviderManifestActionReq,
         GProviderManifestTriggerReq,
         GProviderWithManifestReq,
         GgetAllProvidersReq,
@@ -97,6 +96,7 @@ import 'package:mobile/graphql/__generated__/provider.req.gql.dart'
 import 'package:mobile/graphql/__generated__/provider.var.gql.dart'
     show
         GBaseProviderVars,
+        GProviderManifestActionVars,
         GProviderManifestTriggerVars,
         GProviderWithManifestVars,
         GgetAllProvidersVars,

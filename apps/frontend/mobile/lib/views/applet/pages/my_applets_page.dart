@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ferry/ferry.dart';
-import 'package:provider/provider.dart';
 import 'package:mobile/graphql/graphql_client.dart';
 import 'package:mobile/graphql/__generated__/applet.data.gql.dart';
-import 'package:mobile/graphql/__generated__/applet.req.gql.dart';
 import 'package:mobile/views/home/widgets/applet_card.dart';
 import 'package:mobile/modules/graphql/repository/applet_repository.dart';
 

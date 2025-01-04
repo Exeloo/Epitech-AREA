@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:mobile/views/applet/pages/applet_creation.dart';
 import 'package:mobile/views/home/pages/home.dart';
 import 'package:mobile/views/profile/profile.dart';
+import 'package:mobile/views/applet/pages/my_applets_page.dart'; 
 
 class MainNavigationPage extends StatefulWidget {
   const MainNavigationPage({super.key});
@@ -25,7 +26,7 @@ class MainNavigationPageState extends State<MainNavigationPage> {
     final List<Widget> pages = [
       const HomePage(),
       const Page2(),
-      const Page3(),
+      const MyAppletsPage(),
       const Page4(),
     ];
 

@@ -1,62 +1,65 @@
-// import 'package:flutter/material.dart';
-// // implementer les imports necessaires
-// import 'package:mobile/views/applet/widgets/applet_card.dart';
+import 'package:flutter/material.dart';
+import 'package:ferry/ferry.dart';
+import 'package:provider/provider.dart';
+import 'package:mobile/graphql/graphql_client.dart';
+import 'package:mobile/graphql/__generated__/applet.data.gql.dart';
+import 'package:mobile/graphql/__generated__/applet.req.gql.dart';
+import 'package:mobile/views/home/widgets/applet_card.dart';
+import 'package:mobile/modules/graphql/repository/applet_repository.dart';
 
-// class MyAppletsPage extends StatefulWidget {
-//   const MyAppletsPage({Key? key}) : super(key: key);
-// // 
-//   @override
-//   _MyAppletsPageState createState() => _MyAppletsPageState();
-// }
+class MyAppletsPage extends StatefulWidget {
+  const MyAppletsPage({Key? key}) : super(key: key);
 
-// class _MyAppletsPageState extends State<MyAppletsPage> {
-//   late Client client;
+  @override
+  _MyAppletsPageState createState() => _MyAppletsPageState();
+}
 
-//   @override
-//   void initState() {
-//     super.initState();
-//     client = GraphQlClient().client;
-//   }
+class _MyAppletsPageState extends State<MyAppletsPage> {
+  late AppletRepository appletRepository;
+  late Future<List<GgetAllAppletsData_getAllApplets>?> appletsFuture;
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('My Applets'),
-//       ),
-//       body: Operation(
-//         client: client,
-//         operationRequest: GGetAllAppletsReq(),
-//         builder: (context,
-//             OperationResponse<GGetAllAppletsData, GGetAllAppletsVars>? response,
-//             error) {
-//           if (response!.loading) {
-//             return const Center(child: CircularProgressIndicator());
-//           }
+  @override
+  void initState() {
+    super.initState();
+    final client = GraphQlClient().client;
+    appletRepository = AppletRepository(client: client);
+    appletsFuture = appletRepository.getAllApplets();
+  }
 
-//           if (response.hasErrors) {
-//             return Center(
-//                 child: Text(
-//                     'Error: ${response.graphqlErrors?.map((e) => e.message).join(', ')}'));
-//           }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('My Applets'),
+      ),
+      body: FutureBuilder<List<GgetAllAppletsData_getAllApplets>?>(
+        future: appletsFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return const Center(child: Text('No applets found.'));
+          }
 
-//           final applets = response.data?.getAllApplets ?? [];
+          final applets = snapshot.data!;
 
-//           return ListView.builder(
-//             itemCount: applets.length,
-//             itemBuilder: (context, index) {
-//               final applet = applets[index];
-//               return Padding(
-//                 padding: const EdgeInsets.all(8.0),
-//                 child: MyCard(
-//                   backgroundColor: Colors.blue,
-//                   text: applet.name,
-//                 ),
-//               );
-//             },
-//           );
-//         },
-//       ),
-//     );
-//   }
-// }
+          return ListView.builder(
+            itemCount: applets.length,
+            itemBuilder: (context, index) {
+              final applet = applets[index];
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: MyCard(
+                  backgroundColor: Colors.blue,
+                  text: applet.name,
+                ),
+              );
+            },
+          );
+        },
+      ),
+    );
+  }
+}

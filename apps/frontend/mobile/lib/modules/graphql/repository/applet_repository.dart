@@ -51,7 +51,7 @@ class AppletRepository {
         return null;
       } else {
         log('Response: ${response.data}');
-        return response.data?.getAllApplets;
+        return response.data?.getAllApplets?.toList();
       }
     } catch (e) {
       log('GetAllApplets error: $e');

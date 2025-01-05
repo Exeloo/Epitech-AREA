@@ -78,15 +78,6 @@ class Page4State extends State<Page4> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profile'),
-        backgroundColor: const Color(0xff1B1B1B),
-        titleTextStyle: const TextStyle(
-          color: Colors.white,
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
       backgroundColor: const Color(0xff1B1B1B),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

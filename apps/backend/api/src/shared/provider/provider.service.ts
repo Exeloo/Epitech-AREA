@@ -4,6 +4,7 @@ import { IAppletNode } from "@domain/applet/node/types/applet-node.type";
 import { IManifest } from "@domain/provider/manifest/types/manifest.type";
 import { IProviderService } from "@domain/provider/provider.service.type";
 import { IProvider } from "@domain/provider/types/provider.type";
+import { IUser } from "@domain/user/types/user.type";
 
 import { ProviderRepository } from "./provider.repository";
 
@@ -17,6 +18,7 @@ export class ProviderService implements IProviderService {
 
   registerTrigger(
     provider: IProvider,
+    user: IUser,
     node: Pick<IAppletNode, "id" | "actionId" | "input">,
   ): Promise<void> {
     return this.providerRepository.registerTrigger(
@@ -24,6 +26,7 @@ export class ProviderService implements IProviderService {
       provider.apiKey,
       {
         baseId: node.id,
+        userId: user.id,
         actionId: node.actionId,
         input: node.input,
       },

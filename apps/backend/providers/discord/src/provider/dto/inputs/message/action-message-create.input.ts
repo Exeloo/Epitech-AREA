@@ -1,5 +1,8 @@
-import { ManifestProperty, ManifestPropertyEnum } from "@lib/manifest";
-import { ManifestType } from "@lib/manifest/decorators/type.decorator";
+import {
+  ManifestProperty,
+  ManifestPropertyEnum,
+  ManifestType,
+} from "@lib/manifest";
 
 import { Snowflake } from "../../../types/snowflake.type";
 

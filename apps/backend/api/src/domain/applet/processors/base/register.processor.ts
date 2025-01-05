@@ -29,7 +29,7 @@ export class AppletRegisterProcessor
       const provider = await this.providerPRepository.getByAppletNodeId(
         node.id,
       );
-      await this.providerService.registerTrigger(provider, node);
+      await this.providerService.registerTrigger(provider, applet.owner, node);
     }
     return applet;
   }

@@ -110,6 +110,12 @@
         name: docker
         extra_args: --break-system-packages
 
+    - name: Ensure user is in docker group
+      user:
+        name: "{{ ansible_user_master }}"
+        groups: docker
+        append: true
+
     - name: Restart Docker service to apply changes
       service:
         name: docker

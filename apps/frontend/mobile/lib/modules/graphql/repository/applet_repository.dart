@@ -65,17 +65,17 @@ class AppletRepository {
       final response = await client.request(getAppletByIdReq).first;
 
       if (response.loading) {
-        log('Loading...');
+        print('Loading...');
         return null;
       } else if (response.hasErrors) {
-        log('Errors: ${response.graphqlErrors}');
+        print('Errors: ${response.linkException}');
         return null;
       } else {
-        log('Response: ${response.data}');
+        print('Response: ${response.data}');
         return response.data?.getAppletById;
       }
     } catch (e) {
-      log('GetAppletById error: $e');
+      print('GetAppletById error: $e');
       rethrow;
     }
   }
@@ -86,17 +86,17 @@ class AppletRepository {
       final response = await client.request(getAppletNodeByIdReq).first;
 
       if (response.loading) {
-        log('Loading...');
+        print('Loading...');
         return null;
       } else if (response.hasErrors) {
-        log('Errors: ${response.graphqlErrors}');
+        print('Errors: ${response}');
         return null;
       } else {
-        log('Response: ${response.data}');
+        print('Response: ${response.data}');
         return response.data?.getAppletNodeById;
       }
     } catch (e) {
-      log('GetAppletNodeById error: $e');
+      print('GetAppletNodeById error: $e');
       rethrow;
     }
   }

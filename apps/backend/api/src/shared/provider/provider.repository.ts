@@ -29,7 +29,7 @@ export class ProviderRepository extends HttpRepository("PROVIDER") {
   async registerTrigger(
     host: string,
     key: string,
-    body: { baseId: ID; actionId: string; input: object },
+    body: { baseId: ID; userId: ID; actionId: string; input: object },
   ): Promise<void> {
     return this.post(`${host}/triggers`, body, {
       headers: {

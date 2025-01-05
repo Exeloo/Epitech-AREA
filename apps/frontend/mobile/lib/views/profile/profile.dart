@@ -80,7 +80,14 @@ class Page4State extends State<Page4> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile'),
+        backgroundColor: const Color(0xff1B1B1B),
+        titleTextStyle: const TextStyle(
+          color: Colors.white,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
       ),
+      backgroundColor: const Color(0xff1B1B1B),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: user == null
@@ -138,48 +145,96 @@ class UserProfileForm extends StatelessWidget {
             controller: emailController,
             decoration: const InputDecoration(
               labelText: 'Email',
+              labelStyle: TextStyle(color: Colors.white),
               border: OutlineInputBorder(),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.white),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.white),
+              ),
             ),
+            style: const TextStyle(color: Colors.white),
           ),
           const SizedBox(height: 16),
           TextFormField(
             controller: usernameController,
             decoration: const InputDecoration(
               labelText: 'Username',
+              labelStyle: TextStyle(color: Colors.white),
               border: OutlineInputBorder(),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.white),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.white),
+              ),
             ),
+            style: const TextStyle(color: Colors.white),
           ),
           const SizedBox(height: 16),
           TextFormField(
             controller: firstNameController,
             decoration: const InputDecoration(
               labelText: 'First Name',
+              labelStyle: TextStyle(color: Colors.white),
               border: OutlineInputBorder(),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.white),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.white),
+              ),
             ),
+            style: const TextStyle(color: Colors.white),
           ),
           const SizedBox(height: 16),
           TextFormField(
             controller: lastNameController,
             decoration: const InputDecoration(
               labelText: 'Last Name',
+              labelStyle: TextStyle(color: Colors.white),
               border: OutlineInputBorder(),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.white),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.white),
+              ),
             ),
+            style: const TextStyle(color: Colors.white),
           ),
           const SizedBox(height: 16),
           TextFormField(
             controller: descriptionController,
             decoration: const InputDecoration(
               labelText: 'Description',
+              labelStyle: TextStyle(color: Colors.white),
               border: OutlineInputBorder(),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.white),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.white),
+              ),
             ),
+            style: const TextStyle(color: Colors.white),
           ),
           const SizedBox(height: 16),
           TextFormField(
             controller: pronounController,
             decoration: const InputDecoration(
               labelText: 'Pronoun',
+              labelStyle: TextStyle(color: Colors.white),
               border: OutlineInputBorder(),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.white),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.white),
+              ),
             ),
+            style: const TextStyle(color: Colors.white),
           ),
           const SizedBox(height: 16),
           ElevatedButton(

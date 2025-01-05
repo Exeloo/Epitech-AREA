@@ -38,7 +38,14 @@ class _MyAppletsPageState extends State<MyAppletsPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('My Applets'),
+        backgroundColor: const Color(0xff1B1B1B),
+        titleTextStyle: const TextStyle(
+          color: Colors.white,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
       ),
+      backgroundColor: const Color(0xff1B1B1B),
       body: FutureBuilder<List<GgetAllAppletsData_getAllApplets>?>(
         future: appletsFuture,
         builder: (context, snapshot) {

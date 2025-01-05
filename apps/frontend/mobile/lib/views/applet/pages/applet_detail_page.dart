@@ -9,10 +9,10 @@ class AppletDetailPage extends StatefulWidget {
   const AppletDetailPage({super.key, required this.applet});
 
   @override
-  State<AppletDetailPage> createState() => AppletDetailPageState();
+  _AppletDetailPageState createState() => _AppletDetailPageState();
 }
 
-class AppletDetailPageState extends State<AppletDetailPage> {
+class _AppletDetailPageState extends State<AppletDetailPage> {
   late AppletRepository appletRepository;
   GgetAppletByIdData_getAppletById? appletData;
   bool isLoading = true;
@@ -36,15 +36,13 @@ class AppletDetailPageState extends State<AppletDetailPage> {
         appletData = data;
         isLoading = false;
 
-        if (data != null && data.triggerNodes.isNotEmpty) {
-          final providerColor = data.triggerNodes.first.provider?.color;
-          if (providerColor != null) {
-            themeColor = Color(
-              int.parse('0xFF${providerColor.substring(1)}'),
-            );
-          } else {
-            themeColor = Colors.deepPurple;
-          }
+        if (data?.triggerNodes.isNotEmpty == true &&
+            data!.triggerNodes.first.provider.color != null) {
+          themeColor = Color(
+            int.parse('0xFF${data.triggerNodes.first.provider.color.substring(1)}'),
+          );
+        } else {
+          themeColor = Colors.deepPurple;
         }
       });
     } catch (error) {
@@ -117,15 +115,17 @@ class AppletDetailPageState extends State<AppletDetailPage> {
                                   ),
                                   const SizedBox(height: 24),
                                   _buildSectionTitle('Triggers', Icons.flash_on),
-                                  for (var node in appletData!.triggerNodes)
-                                    _buildNodeCard(node),
+                                  ...appletData!.triggerNodes.map(
+                                    (node) => _buildNodeCard(node),
+                                  ),
                                   const SizedBox(height: 24),
                                   _buildSectionTitle('Actions', Icons.run_circle),
                                   if (appletData!.triggerNodes.isNotEmpty)
-                                    for (var node in appletData!.triggerNodes)
-                                      for (var actionNode in node.next)
-                                        _buildActionCard(
-                                            actionNode, node.provider),
+                                    ...appletData!.triggerNodes
+                                        .expand((node) => node.next)
+                                        .map((actionNode) => _buildActionCard(
+                                            actionNode, appletData!.triggerNodes.first.provider))
+                                        .toList(),
                                 ],
                               ),
                             ),
@@ -156,8 +156,8 @@ class AppletDetailPageState extends State<AppletDetailPage> {
 
   Widget _buildNodeCard(GgetAppletByIdData_getAppletById_triggerNodes node) {
     final provider = node.provider;
-    final providerColor = (provider != null && provider.color != null)
-        ? Color(int.parse('0xFF${provider.color!.substring(1)}'))
+    final providerColor = provider.color != null
+        ? Color(int.parse('0xFF${provider.color.substring(1)}'))
         : Colors.grey;
 
     return Card(
@@ -181,12 +181,10 @@ class AppletDetailPageState extends State<AppletDetailPage> {
     );
   }
 
-  Widget _buildActionCard(
-    GgetAppletByIdData_getAppletById_triggerNodes_next actionNode,
-    GgetAppletByIdData_getAppletById_triggerNodes_provider? provider,
-  ) {
-    final providerColor = (provider != null && provider.color != null)
-        ? Color(int.parse('0xFF${provider.color!.substring(1)}'))
+  Widget _buildActionCard(GgetAppletByIdData_getAppletById_triggerNodes_next actionNode,
+      GgetAppletByIdData_getAppletById_triggerNodes_provider? provider) {
+    final providerColor = provider?.color != null
+        ? Color(int.parse('0xFF${provider!.color.substring(1)}'))
         : Colors.grey;
 
     return Card(

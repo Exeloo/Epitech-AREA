@@ -9,7 +9,7 @@ class MyAppletsPage extends StatefulWidget {
   const MyAppletsPage({Key? key}) : super(key: key);
 
   @override
-  _MyAppletsPageState createState() => _MyAppletsPageState();
+  State<MyAppletsPage> createState() => _MyAppletsPageState();
 }
 
 class _MyAppletsPageState extends State<MyAppletsPage> {
@@ -52,9 +52,19 @@ class _MyAppletsPageState extends State<MyAppletsPage> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
+            return Center(
+              child: Text(
+                'Error: ${snapshot.error}',
+                style: const TextStyle(color: Colors.red),
+              ),
+            );
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(child: Text('No applets found.'));
+            return const Center(
+              child: Text(
+                'No applets found.',
+                style: TextStyle(color: Colors.white),
+              ),
+            );
           }
 
           final applets = snapshot.data!;

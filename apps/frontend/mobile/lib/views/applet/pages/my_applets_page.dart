@@ -3,6 +3,7 @@ import 'package:mobile/graphql/graphql_client.dart';
 import 'package:mobile/graphql/__generated__/applet.data.gql.dart';
 import 'package:mobile/views/home/widgets/applet_card.dart';
 import 'package:mobile/modules/graphql/repository/applet_repository.dart';
+import 'applet_detail_page.dart';
 
 class MyAppletsPage extends StatefulWidget {
   const MyAppletsPage({Key? key}) : super(key: key);
@@ -21,6 +22,15 @@ class _MyAppletsPageState extends State<MyAppletsPage> {
     final client = GraphQlClient().client;
     appletRepository = AppletRepository(client: client);
     appletsFuture = appletRepository.getAllApplets();
+  }
+
+  void _onAppletTap(GgetAllAppletsData_getAllApplets applet) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => AppletDetailPage(applet: applet),
+      ),
+    );
   }
 
   @override
@@ -51,6 +61,7 @@ class _MyAppletsPageState extends State<MyAppletsPage> {
                 child: MyCard(
                   backgroundColor: Colors.blue,
                   text: applet.name,
+                  onTap: () => _onAppletTap(applet),
                 ),
               );
             },

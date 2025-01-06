@@ -48,12 +48,13 @@ export class AppletInputProcessor
 
   private async processNodes(
     data: IAppletNodeCreateInput[],
+    isFirst: boolean = true,
   ): Promise<IAppletNodeCreateInput[]> {
     data = await AsyncArrayUtils.map(data, async (node) => {
-      node = await this.processNode(node);
+      node = await this.processNode(node, isFirst);
       return {
         ...node,
-        next: await this.processNodes(node.next),
+        next: await this.processNodes(node.next, false),
       };
     });
     return data;
@@ -61,10 +62,11 @@ export class AppletInputProcessor
 
   private async processNode(
     node: IAppletNodeCreateInput,
+    isFirst: boolean,
   ): Promise<IAppletNodeCreateInput> {
     const provider = await this.providerService.getById(node.providerId);
     const manifest = await this.foreignProviderService.getManifest(provider);
-    const action = getManifestElement(node.actionId, manifest);
+    const action = getManifestElement(node.actionId, manifest, !isFirst);
 
     if (!action) {
       throw new BadInputException("BAD_INPUT", "Invalid Action ID", {

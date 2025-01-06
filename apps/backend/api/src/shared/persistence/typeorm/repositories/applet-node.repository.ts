@@ -93,6 +93,8 @@ export class AppletNodeRepository
       await this.createQueryBuilder("node")
         .where("node.provider_id = :id", { id })
         .andWhere("node.action_type = :type", { type: AppletNodeType.TRIGGER })
+        .innerJoinAndSelect("node.applet", "applet")
+        .innerJoinAndSelect("applet.owner", "owner")
         .getMany(),
     );
   }

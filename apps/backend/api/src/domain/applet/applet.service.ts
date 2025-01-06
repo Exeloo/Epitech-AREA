@@ -47,7 +47,7 @@ export class AppletService {
         id: user.id,
       },
     });
-    return this.appletCreateProcessor.process(applet, data);
+    return this.appletCreateProcessor.process({ ...applet, owner: user }, data);
   }
 
   async handleTrigger(providerIds: Set<string>, data: ITriggerInput) {

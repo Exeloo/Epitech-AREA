@@ -1,3 +1,4 @@
+import { UseGuards } from "@nestjs/common";
 import {
   Args,
   Int,
@@ -16,12 +17,14 @@ import { IAppletCreateInput } from "@domain/applet/types/applet.input.type";
 import { IExposedApplet } from "@domain/applet/types/applet.type";
 import { IUser } from "@domain/user/types/user.type";
 
+import { GqlAuthGuard } from "~/application/http/graphql/common/guards/gql-auth.guard";
 import { AppletNode } from "~/application/http/graphql/dto/nodes/applet/applet-node.node";
 
 import { GqlCurrentUser } from "../../common/decorators/graphql-current-user.decorator";
 import { AppletCreateInput } from "../../dto/input/applet/applet-create.input";
 import { Applet } from "../../dto/nodes/applet/applet.node";
 
+@UseGuards(GqlAuthGuard)
 @Resolver(Applet)
 export class AppletResolver {
   constructor(

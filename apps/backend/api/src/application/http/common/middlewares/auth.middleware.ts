@@ -14,14 +14,22 @@ export class AuthMiddleware implements NestMiddleware {
   ): Promise<void> {
     if (!request.headers) next();
     if (request.headers.authorization) {
-      request["user"] = await this.authService.authToken(
-        request.headers.authorization,
-      );
+      try {
+        request["user"] = await this.authService.authToken(
+          request.headers.authorization,
+        );
+      } catch {
+        request["user"] = undefined;
+      }
     }
     if (request.headers["api-key"]) {
-      request["provider"] = await this.authService.authApiKey(
-        request.headers["api-key"] as string,
-      );
+      try {
+        request["provider"] = await this.authService.authApiKey(
+          request.headers["api-key"] as string,
+        );
+      } catch {
+        request["provider"] = undefined;
+      }
     }
     next();
   }

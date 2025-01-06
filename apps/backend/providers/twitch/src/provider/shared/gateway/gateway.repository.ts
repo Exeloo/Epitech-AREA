@@ -65,6 +65,8 @@ export class GatewayRepository extends WebSocketClient<any> {
   }
 
   private handleNotification(data: TwitchPayload) {
-    this.eventEmitter.emit(data.metadata.subscription_type, data.payload.event);
+    this.eventEmitter.emit(data.metadata.subscription_type, [
+      data.payload.event,
+    ]);
   }
 }

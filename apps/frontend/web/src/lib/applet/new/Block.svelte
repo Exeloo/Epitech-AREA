@@ -1,11 +1,13 @@
 <script lang="ts">
 	import SelectModal from '$lib/applet/new/SelectModal.svelte';
+	import type { BlockType } from '$lib/applet/new/types';
 
 	interface Props {
 		title: string;
+		type: BlockType;
 		focus?: boolean;
 	}
-	let { title, focus = false }: Props = $props();
+	let { title, type, focus = false }: Props = $props();
 
 	let selectOption = $state(false);
 </script>
@@ -23,4 +25,4 @@
 		add
 	</button>
 </div>
-<SelectModal bind:open={selectOption} />
+<SelectModal bind:open={selectOption} {type} />

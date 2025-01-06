@@ -5,13 +5,14 @@
 		type ProviderWithManifest$data
 	} from '$houdini';
 	import ProvidersGrid from '$lib/applet/new/grid/providers/ProvidersGrid.svelte';
-	import ActionsGrid from '$lib/applet/new/grid/actions/ActionsGrid.svelte';
+	import ElementsGrid from '$lib/applet/new/grid/elements/ElementsGrid.svelte';
+	import { BlockType } from '$lib/applet/new/types';
 
 	interface Props {
-		type?: 'Triggers' | 'Actions';
+		type: BlockType;
 		open?: boolean;
 	}
-	let { type = 'Actions', open = $bindable(false) }: Props = $props();
+	let { type, open = $bindable(false) }: Props = $props();
 
 	const baseProviderStore = new BaseProviderStore();
 
@@ -38,17 +39,30 @@
 >
 	<div class="absolute inset-0 bg-black opacity-50"></div>
 	<div class="relative flex h-1/2 w-96 flex-col rounded-lg bg-white shadow">
-		<div class="flex items-center justify-end rounded-t p-4">
-			<h3 class="text-base font-semibold">{type}</h3>
-			<button
-				onclick={() => (open = false)}
-				type="button"
-				class="ms-auto inline-flex h-8 w-8 items-center justify-center rounded-full bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900"
-				data-modal-hide="default-modal"
-			>
-				<i class="fi fi-br-cross flex justify-center"></i>
-				<span class="sr-only">Close modal</span>
-			</button>
+		<div class="flex items-center justify-between rounded-t p-4">
+			<h3 class="text-base font-semibold">{type === BlockType.Actions ? 'Action' : 'Trigger'}</h3>
+			<div class="flex justify-end">
+				{#if selectedProvider}
+					<button
+						onclick={() => (selectedProvider = null)}
+						type="button"
+						class="ms-auto inline-flex h-8 w-8 items-center justify-center rounded-full bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900"
+						data-modal-hide="default-modal"
+					>
+						<i class="fi fi-br-undo flex justify-center"></i>
+						<span class="sr-only">back</span>
+					</button>
+				{/if}
+				<button
+					onclick={() => (open = false)}
+					type="button"
+					class="ms-auto inline-flex h-8 w-8 items-center justify-center rounded-full bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900"
+					data-modal-hide="default-modal"
+				>
+					<i class="fi fi-br-cross flex justify-center"></i>
+					<span class="sr-only">Close modal</span>
+				</button>
+			</div>
 		</div>
 		<div
 			class="relative flex h-20 w-full items-center justify-center text-lg font-bold"
@@ -62,7 +76,7 @@
 		</div>
 		<div class="p-8">
 			{#if selectedProvider}
-				<ActionsGrid />
+				<ElementsGrid provider={selectedProvider} {type} />
 			{:else}
 				<ProvidersGrid bind:selectedProvider />
 			{/if}

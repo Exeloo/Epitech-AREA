@@ -13,18 +13,20 @@
 	}
 	let { provider, selectedProvider = $bindable() }: Props = $props();
 
-	let info = $state(new BaseProviderStore().get(provider));
+	let baseProviderStore = new BaseProviderStore();
+	let providerWithManifestStore = new ProviderWithManifestStore();
+
+	let info = $state(baseProviderStore.get(provider));
 
 	async function selectProvider() {
 		if (!$info) return;
 
 		const query = await load_getProviderById({ variables: { id: $info.id } });
-		const { data, errors } = await query.getProviderById.fetch();
+		const { data } = await query.getProviderById.fetch();
 
-		console.log(errors);
 		if (!data || !data.getProviderById) return;
 
-		new ProviderWithManifestStore().get(data.getProviderById).subscribe((provider) => {
+		providerWithManifestStore.get(data.getProviderById).subscribe((provider) => {
 			selectedProvider = provider;
 		});
 	}

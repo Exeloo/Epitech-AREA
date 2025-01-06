@@ -11,9 +11,5 @@ export class TriggerMessageUpdateInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
   })
-  id: Snowflake;
-  @ManifestProperty({
-    type: ManifestPropertyEnum.STRING,
-  })
   channel_id: Snowflake;
 }

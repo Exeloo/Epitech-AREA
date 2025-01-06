@@ -6,6 +6,7 @@ import { ManifestAction } from "@lib/manifest";
 
 import { BaseHttpRepository } from "~/provider/common/base-http.repository";
 import { ActionMessageCreateInput } from "~/provider/dto/inputs/message/action-message-create.input";
+import { ActionMessageUpdateInput } from "~/provider/dto/inputs/message/action-message-update.input";
 import { MessageNode } from "~/provider/dto/nodes/message.node";
 
 @Injectable()
@@ -28,6 +29,23 @@ export class MessageAction extends BaseHttpRepository {
     input: ActionMessageCreateInput,
   ): Promise<MessageNode> {
     return this.post(`/channels/${input.channel_id}/messages`, {
+      content: input.content,
+    });
+  }
+
+  @ManifestAction({
+    id: "message-update",
+    name: "Update Message",
+    description: "Action to update a message on a channel",
+    img: "",
+    color: "#ffffff",
+    input: ActionMessageUpdateInput,
+    output: MessageNode,
+  })
+  async messageUpdateAction(
+      input: ActionMessageUpdateInput,
+  ): Promise<MessageNode> {
+    return this.post(`/channels/${input.channel_id}/messages/${input.id}`, {
       content: input.content,
     });
   }

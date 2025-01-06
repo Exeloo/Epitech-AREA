@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/graphql/__generated__/applet.data.gql.dart';
-import 'package:mobile/modules/graphql/repository/applet_repository.dart';
 import 'package:mobile/graphql/graphql_client.dart';
+import 'package:mobile/modules/graphql/repository/applet_repository.dart';
 
 class AppletDetailPage extends StatefulWidget {
   final GgetAllAppletsData_getAllApplets applet;
@@ -9,10 +9,10 @@ class AppletDetailPage extends StatefulWidget {
   const AppletDetailPage({super.key, required this.applet});
 
   @override
-  _AppletDetailPageState createState() => _AppletDetailPageState();
+  AppletDetailPageState createState() => AppletDetailPageState();
 }
 
-class _AppletDetailPageState extends State<AppletDetailPage> {
+class AppletDetailPageState extends State<AppletDetailPage> {
   late AppletRepository appletRepository;
   GgetAppletByIdData_getAppletById? appletData;
   bool isLoading = true;
@@ -36,14 +36,12 @@ class _AppletDetailPageState extends State<AppletDetailPage> {
         appletData = data;
         isLoading = false;
 
-        if (data?.triggerNodes.isNotEmpty == true &&
-            data!.triggerNodes.first.provider.color != null) {
-          themeColor = Color(
-            int.parse('0xFF${data.triggerNodes.first.provider.color.substring(1)}'),
-          );
-        } else {
-          themeColor = Colors.deepPurple;
-        }
+        themeColor = data?.triggerNodes.isNotEmpty == true
+            ? Color(
+                int.parse(
+                    '0xFF${data!.triggerNodes.first.provider.color.substring(1)}'),
+              )
+            : Colors.deepPurple;
       });
     } catch (error) {
       setState(() {
@@ -91,7 +89,9 @@ class _AppletDetailPageState extends State<AppletDetailPage> {
                                         radius: 40,
                                         backgroundColor: Colors.white,
                                         child: Icon(Icons.bolt,
-                                            size: 50, color: themeColor ?? Colors.deepPurple),
+                                            size: 50,
+                                            color: themeColor ??
+                                                Colors.deepPurple),
                                       ),
                                       const SizedBox(height: 16),
                                       Text(
@@ -104,7 +104,8 @@ class _AppletDetailPageState extends State<AppletDetailPage> {
                                       ),
                                       const SizedBox(height: 8),
                                       Text(
-                                        appletData!.description ?? 'No description available',
+                                        appletData!.description ??
+                                            'No description available',
                                         style: const TextStyle(
                                           fontSize: 16,
                                           color: Colors.white70,
@@ -114,18 +115,21 @@ class _AppletDetailPageState extends State<AppletDetailPage> {
                                     ],
                                   ),
                                   const SizedBox(height: 24),
-                                  _buildSectionTitle('Triggers', Icons.flash_on),
+                                  _buildSectionTitle(
+                                      'Triggers', Icons.flash_on),
                                   ...appletData!.triggerNodes.map(
                                     (node) => _buildNodeCard(node),
                                   ),
                                   const SizedBox(height: 24),
-                                  _buildSectionTitle('Actions', Icons.run_circle),
+                                  _buildSectionTitle(
+                                      'Actions', Icons.run_circle),
                                   if (appletData!.triggerNodes.isNotEmpty)
                                     ...appletData!.triggerNodes
                                         .expand((node) => node.next)
                                         .map((actionNode) => _buildActionCard(
-                                            actionNode, appletData!.triggerNodes.first.provider))
-                                        .toList(),
+                                            actionNode,
+                                            appletData!
+                                                .triggerNodes.first.provider)),
                                 ],
                               ),
                             ),
@@ -156,54 +160,53 @@ class _AppletDetailPageState extends State<AppletDetailPage> {
 
   Widget _buildNodeCard(GgetAppletByIdData_getAppletById_triggerNodes node) {
     final provider = node.provider;
-    final providerColor = provider.color != null
-        ? Color(int.parse('0xFF${provider.color.substring(1)}'))
-        : Colors.grey;
+    final providerColor =
+        Color(int.parse('0xFF${provider.color.substring(1)}'));
 
     return Card(
-      color: providerColor.withOpacity(0.7),
+      color: providerColor.withAlpha(180),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: ListTile(
         title: Text(
           '${node.actionType} - ${node.actionId}',
           style: const TextStyle(color: Colors.white),
         ),
-        subtitle: provider != null
-            ? Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Provider: ${provider.name}', style: const TextStyle(color: Colors.white)),
-                  Text('Description: ${provider.description}', style: const TextStyle(color: Colors.white70)),
-                ],
-              )
-            : const SizedBox.shrink(),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Provider: ${provider.name}',
+                style: const TextStyle(color: Colors.white)),
+            Text('Description: ${provider.description}',
+                style: const TextStyle(color: Colors.white70)),
+          ],
+        ),
       ),
     );
   }
 
-  Widget _buildActionCard(GgetAppletByIdData_getAppletById_triggerNodes_next actionNode,
-      GgetAppletByIdData_getAppletById_triggerNodes_provider? provider) {
-    final providerColor = provider?.color != null
-        ? Color(int.parse('0xFF${provider!.color.substring(1)}'))
-        : Colors.grey;
+  Widget _buildActionCard(
+      GgetAppletByIdData_getAppletById_triggerNodes_next actionNode,
+      GgetAppletByIdData_getAppletById_triggerNodes_provider provider) {
+    final providerColor =
+        Color(int.parse('0xFF${provider.color.substring(1)}'));
 
     return Card(
-      color: providerColor.withOpacity(0.7),
+      color: providerColor.withAlpha(180), // Correction ici
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: ListTile(
         title: Text(
           '${actionNode.actionType} - ${actionNode.actionId}',
           style: const TextStyle(color: Colors.white),
         ),
-        subtitle: provider != null
-            ? Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Provider: ${provider.name}', style: const TextStyle(color: Colors.white)),
-                  Text('Description: ${provider.description}', style: const TextStyle(color: Colors.white70)),
-                ],
-              )
-            : const SizedBox.shrink(),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Provider: ${provider.name}',
+                style: const TextStyle(color: Colors.white)),
+            Text('Description: ${provider.description}',
+                style: const TextStyle(color: Colors.white70)),
+          ],
+        ),
       ),
     );
   }

@@ -1,70 +1,111 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../graphql/__generated__/provider.data.gql.dart';
+import '../../../modules/graphql/repository/provider_repository.dart';
 
 class AppletCreation extends StatefulWidget {
-  const AppletCreation({super.key});
+  final int providerId;
+
+  const AppletCreation({super.key, required this.providerId});
 
   @override
   State<AppletCreation> createState() => _AppletCreationState();
 }
 
 class _AppletCreationState extends State<AppletCreation> {
-  String? _selectedOption1;
-  String? _selectedOption2;
-  final List<String?> _additionalSelectedOptions = [];
-  final List<String> _options1 = [
-    'Option 1',
-    'Option 2',
-    'Option 3',
-    'Option 4'
-  ];
-  final List<String> _options2 = [
-    'Option A',
-    'Option B',
-    'Option C',
-    'Option D'
-  ];
+  late GgetProviderByIdData_getProviderById _provider;
+  List<String> _triggers = [];
+  List<String> _actions = [];
+  String? _selectedTrigger;
+  List<String?> _selectedActions = [null]; // Inclut un bouton "Then That" par défaut.
+  bool _isLoading = true;
 
-  void _addDropdown() {
-    setState(() {
-      _additionalSelectedOptions.add(null);
-    });
+  @override
+  void initState() {
+    super.initState();
+    _loadProviderData();
   }
 
-  Widget _buildDropdown({
-    required String? selectedOption,
-    required List<String> options,
-    required ValueChanged<String?> onChanged,
-  }) {
-    return Container(
-      height: 120,
-      width: 380,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(color: Colors.white, width: 2),
-        borderRadius: BorderRadius.circular(8),
+  Future<void> _loadProviderData() async {
+    final providerRepo = Provider.of<ProviderRepository>(context, listen: false);
+    try {
+      final response = await providerRepo.getProviderById(id: widget.providerId);
+      setState(() {
+        _provider = response!.getProviderById;
+        _triggers = _provider.manifest.triggers.map((t) => t.name).toList();
+        _actions = _provider.manifest.actions.map((a) => a.name).toList();
+        _isLoading = false;
+      });
+    } catch (e) {
+      log('Error fetching provider data: $e');
+      setState(() => _isLoading = false);
+    }
+  }
+
+  void _selectTrigger() async {
+    final trigger = await _showSelectionDialog('Select a Trigger', _triggers);
+    setState(() => _selectedTrigger = trigger);
+  }
+
+  void _selectAction(int index) async {
+    final action = await _showSelectionDialog('Select an Action', _actions);
+    setState(() => _selectedActions[index] = action);
+  }
+
+  Future<String?> _showSelectionDialog(String title, List<String> options) {
+    return showDialog<String>(
+      context: context,
+      builder: (context) => SimpleDialog(
+        title: Text(title),
+        children: options.map((option) {
+          return SimpleDialogOption(
+            onPressed: () => Navigator.pop(context, option),
+            child: Text(option),
+          );
+        }).toList(),
       ),
-      child: Center(
-        child: DropdownButton<String>(
-          value: selectedOption,
-          dropdownColor: Colors.black87,
-          hint: const Text('Trigger ',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold)),
-          icon: const Icon(Icons.arrow_drop_down, color: Colors.black),
-          style: const TextStyle(color: Colors.white, fontSize: 16),
-          underline: Container(),
-          isExpanded: true,
-          alignment: Alignment.centerLeft,
-          items: options.map((String option) {
-            return DropdownMenuItem<String>(
-              value: option,
-              child: Text(option),
-            );
-          }).toList(),
-          onChanged: onChanged,
+    );
+  }
+
+  void _addAction() {
+    setState(() => _selectedActions.add(null));
+  }
+
+  void _removeAction(int index) {
+    if (_selectedActions.length > 1) {
+      setState(() => _selectedActions.removeAt(index));
+    }
+  }
+
+  Widget _buildActionButton({
+    required String label,
+    required Color color,
+    required VoidCallback onPressed,
+    IconData? trailingIcon,
+    VoidCallback? onTrailingPressed,
+    bool canDelete = true,
+  }) {
+    return SizedBox(
+      height: 60,
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: color,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(child: Text(label, textAlign: TextAlign.center, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white))),
+            if (canDelete && trailingIcon != null)
+              IconButton(
+                icon: Icon(trailingIcon, color: Colors.red),
+                onPressed: onTrailingPressed,
+              ),
+          ],
         ),
       ),
     );
@@ -73,75 +114,46 @@ class _AppletCreationState extends State<AppletCreation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff1B1B1B),
       appBar: AppBar(
-        title: const Text('Applet Creation'),
-        titleTextStyle: const TextStyle(
-            color: Colors.white, fontSize: 40, fontWeight: FontWeight.bold),
+        title: const Text('Applet Creation', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
         backgroundColor: const Color(0xff1B1B1B),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
+        centerTitle: true,
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
-      body: Center(
+      backgroundColor: const Color(0xff1B1B1B),
+      body: _isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _buildDropdown(
-              selectedOption: _selectedOption1,
-              options: _options1,
-              onChanged: (String? newValue) {
-                setState(() {
-                  _selectedOption1 = newValue;
-                });
-              },
+            const SizedBox(height: 20),
+            _buildActionButton(
+              label: _selectedTrigger ?? 'If This',
+              color: _selectedTrigger != null ? Colors.blueGrey : Colors.blue,
+              onPressed: _selectTrigger,
             ),
             const SizedBox(height: 20),
-            const Icon(Icons.arrow_downward, color: Colors.white, size: 24),
-            const SizedBox(height: 20),
-            _buildDropdown(
-              selectedOption: _selectedOption2,
-              options: _options2,
-              onChanged: (String? newValue) {
-                setState(() {
-                  _selectedOption2 = newValue;
-                });
-              },
-            ),
-            const SizedBox(height: 20),
-            ..._additionalSelectedOptions.asMap().entries.map((entry) {
-              int index = entry.key;
-              String? selectedOption = entry.value;
+            ..._selectedActions.asMap().entries.map((entry) {
+              final index = entry.key;
+              final action = entry.value;
               return Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: _buildDropdown(
-                  selectedOption: selectedOption,
-                  options: _options2,
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      _additionalSelectedOptions[index] = newValue;
-                    });
-                  },
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: _buildActionButton(
+                  label: action ?? 'Then That',
+                  color: action != null ? Colors.green : Colors.lightGreen,
+                  onPressed: () => _selectAction(index),
+                  trailingIcon: Icons.delete,
+                  onTrailingPressed: () => _removeAction(index),
+                  canDelete: index != 0, // Le premier "Then That" ne peut pas être supprimé.
                 ),
               );
-            }),
-            const SizedBox(height: 20),
+            }).toList(),
+            const SizedBox(height: 10),
             ElevatedButton(
-              onPressed: _addDropdown,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xff8E44AD),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                shape: const CircleBorder(),
-              ),
-              child: const Icon(
-                Icons.add,
-                color: Colors.white,
-                size: 48,
-              ),
+              onPressed: _addAction,
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.grey.shade800),
+              child: const Icon(Icons.add, color: Colors.white),
             ),
           ],
         ),

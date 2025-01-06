@@ -81,7 +81,7 @@ export class MessageTrigger {
     output: EmptyResponse,
   })
   @OnEvent(EventsEnum.MESSAGE_UPDATE)
-  async messageUpdateTrigger(message: MessageNode) {
+  async messageDeleteTrigger(message: MessageNode) {
     if (
         message.author.id === this.configService.getOrThrow("DISCORD_CLIENT_ID")
     )
@@ -90,7 +90,7 @@ export class MessageTrigger {
       channel_id: message.channel_id,
     });
     this.appGateway.emit(
-        "message-update",
+        "message-delete",
         triggers.map((trigger) => trigger.baseId),
         message,
     );

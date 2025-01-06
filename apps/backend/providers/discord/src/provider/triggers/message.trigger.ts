@@ -6,7 +6,7 @@ import { ManifestTrigger } from "@lib/manifest";
 
 import { AppGateway } from "~/app.gateway";
 import { TriggerMessageCreateInput } from "~/provider/dto/inputs/message/trigger-message-create.input";
-import { TriggerMessageUpdateInput } from "~/provider/dto/inputs/message/trigger-message-update.input"
+import { TriggerMessageUpdateInput } from "~/provider/dto/inputs/message/trigger-message-update.input";
 import { MessageNode } from "~/provider/dto/nodes/message.node";
 import { TriggerService } from "~/provider/services/trigger.service";
 import { EventsEnum } from "~/provider/shared/event/event.enum";
@@ -56,7 +56,7 @@ export class MessageTrigger {
   @OnEvent(EventsEnum.MESSAGE_UPDATE)
   async messageUpdateTrigger(message: MessageNode) {
     if (
-        message.author.id === this.configService.getOrThrow("DISCORD_CLIENT_ID")
+      message.author.id === this.configService.getOrThrow("DISCORD_CLIENT_ID")
     )
       return;
     const triggers = await this.triggerService.getTriggers("message-update", {
@@ -64,9 +64,9 @@ export class MessageTrigger {
       id: message.channel_id,
     });
     this.appGateway.emit(
-        "message-update",
-        triggers.map((trigger) => trigger.baseId),
-        message,
+      "message-update",
+      triggers.map((trigger) => trigger.baseId),
+      message,
     );
   }
 }

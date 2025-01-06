@@ -20,7 +20,7 @@ class _AppletCreationState extends State<AppletCreation> {
   List<String> _triggers = [];
   List<String> _actions = [];
   String? _selectedTrigger;
-  List<String?> _selectedActions = [null]; // Inclut un bouton "Then That" par défaut.
+  final List<String?> _selectedActions = [null]; // Inclut un bouton "Then That" par défaut.
   bool _isLoading = true;
 
   @override
@@ -148,7 +148,7 @@ class _AppletCreationState extends State<AppletCreation> {
                   canDelete: index != 0, // Le premier "Then That" ne peut pas être supprimé.
                 ),
               );
-            }).toList(),
+            }),
             const SizedBox(height: 10),
             ElevatedButton(
               onPressed: _addAction,

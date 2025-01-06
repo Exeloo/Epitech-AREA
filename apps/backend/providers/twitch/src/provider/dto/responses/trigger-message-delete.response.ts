@@ -4,8 +4,6 @@ import {
   ManifestType,
 } from "@lib/manifest";
 
-import { TriggerMessageSubResponse } from "~/provider/dto/responses/trigger-message-sub.response";
-
 @ManifestType()
 export class TriggerMessageDeleteResponse {
   @ManifestProperty({

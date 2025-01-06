@@ -31,7 +31,6 @@ export class MessageTrigger {
   async messageDeleteTrigger(message: TriggerMessageDeleteResponse) {
     const triggers = await this.triggerService.getTriggers("message-delete", {
       broadcaster_user_id: message.broadcaster_user_id,
-
     });
     this.appGateway.emit(
       "message-delete",

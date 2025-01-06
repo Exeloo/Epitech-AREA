@@ -6,10 +6,10 @@ import { ManifestAction } from "@lib/manifest";
 
 import { BaseHttpRepository } from "~/provider/common/base-http.repository";
 import { ActionMessageCreateInput } from "~/provider/dto/inputs/message/action-message-create.input";
-import { ActionMessageUpdateInput } from "~/provider/dto/inputs/message/action-message-update.input";
 import { ActionMessageDeleteInput } from "~/provider/dto/inputs/message/action-message-delete.input";
+import { ActionMessageUpdateInput } from "~/provider/dto/inputs/message/action-message-update.input";
 import { MessageNode } from "~/provider/dto/nodes/message.node";
-import { EmptyResponse} from "~/provider/dto/response/empty.response";
+import { EmptyResponse } from "~/provider/dto/response/empty.response";
 
 @Injectable()
 export class MessageAction extends BaseHttpRepository {
@@ -62,9 +62,11 @@ export class MessageAction extends BaseHttpRepository {
     output: EmptyResponse,
   })
   async messageDeleteAction(
-      input: ActionMessageDeleteInput,
+    input: ActionMessageDeleteInput,
   ): Promise<EmptyResponse> {
-    return this.delete(`/channels/${input.channel_id}/messages/${input.id}`, {
-    });
+    return this.delete(
+      `/channels/${input.channel_id}/messages/${input.id}`,
+      {},
+    );
   }
 }

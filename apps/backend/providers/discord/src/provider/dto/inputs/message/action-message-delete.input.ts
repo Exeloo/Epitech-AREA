@@ -1,21 +1,21 @@
 import {
-    ManifestProperty,
-    ManifestPropertyEnum,
-    ManifestType,
+  ManifestProperty,
+  ManifestPropertyEnum,
+  ManifestType,
 } from "@lib/manifest";
 
 import { Snowflake } from "../../../types/snowflake.type";
 
 @ManifestType()
 export class ActionMessageDeleteInput {
-    // * Params
-    @ManifestProperty({
-        type: ManifestPropertyEnum.STRING,
-    })
-    id: Snowflake;
+  // * Params
+  @ManifestProperty({
+    type: ManifestPropertyEnum.STRING,
+  })
+  id: Snowflake;
 
-    @ManifestProperty({
-        type: ManifestPropertyEnum.STRING,
-    })
-    channel_id: Snowflake;
+  @ManifestProperty({
+    type: ManifestPropertyEnum.STRING,
+  })
+  channel_id: Snowflake;
 }

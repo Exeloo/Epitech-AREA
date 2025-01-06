@@ -1,7 +1,4 @@
-import {
-    ManifestType,
-} from "@lib/manifest";
+import { ManifestType } from "@lib/manifest";
 
 @ManifestType()
-export class EmptyResponse {
-}
+export class EmptyResponse {}

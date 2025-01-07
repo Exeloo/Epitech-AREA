@@ -1,9 +1,11 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../graphql/__generated__/provider.data.gql.dart';
+import '../../../modules/graphql/repository/applet_repository.dart';
 import '../../../modules/graphql/repository/provider_repository.dart';
 
 class AppletCreation extends StatefulWidget {
@@ -17,11 +19,17 @@ class AppletCreation extends StatefulWidget {
 
 class _AppletCreationState extends State<AppletCreation> {
   late GgetProviderByIdData_getProviderById _provider;
-  List<String> _triggers = [];
-  List<String> _actions = [];
+  List<String> _triggers = [], _actions = [];
   String? _selectedTrigger;
-  final List<String?> _selectedActions = [null]; // Inclut un bouton "Then That" par défaut.
+  Map<String, dynamic>? _triggerInputs;
+  List<String> _selectedActions = [];
+  List<Map<String, dynamic>> _actionsInputs = [];
   bool _isLoading = true;
+
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
+
+  final List<TextEditingController> _inputControllers = [];
 
   @override
   void initState() {
@@ -30,9 +38,11 @@ class _AppletCreationState extends State<AppletCreation> {
   }
 
   Future<void> _loadProviderData() async {
-    final providerRepo = Provider.of<ProviderRepository>(context, listen: false);
+    final providerRepo =
+        Provider.of<ProviderRepository>(context, listen: false);
     try {
-      final response = await providerRepo.getProviderById(id: widget.providerId);
+      final response =
+          await providerRepo.getProviderById(id: widget.providerId);
       setState(() {
         _provider = response!.getProviderById;
         _triggers = _provider.manifest.triggers.map((t) => t.name).toList();
@@ -45,77 +55,149 @@ class _AppletCreationState extends State<AppletCreation> {
     }
   }
 
-  void _selectTrigger() async {
-    final trigger = await _showSelectionDialog('Select a Trigger', _triggers);
-    setState(() => _selectedTrigger = trigger);
+  void _onTriggerSelected(String triggerName) {
+    setState(() {
+      _selectedTrigger = triggerName;
+      final trigger =
+          _provider.manifest.triggers.firstWhere((t) => t.name == triggerName);
+      _triggerInputs = _formatInputs(trigger.input.value);
+    });
   }
 
-  void _selectAction(int index) async {
-    final action = await _showSelectionDialog('Select an Action', _actions);
-    setState(() => _selectedActions[index] = action);
-  }
-
-  Future<String?> _showSelectionDialog(String title, List<String> options) {
-    return showDialog<String>(
-      context: context,
-      builder: (context) => SimpleDialog(
-        title: Text(title),
-        children: options.map((option) {
-          return SimpleDialogOption(
-            onPressed: () => Navigator.pop(context, option),
-            child: Text(option),
+  void _onActionSelected(String actionName) {
+    setState(() {
+      _selectedActions = [actionName];
+      final action = _provider.manifest.actions.firstWhere(
+        (a) => a.name == actionName,
+        orElse: () {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+                content: Text(
+                    'Selected action not found. Please select a valid action.')),
           );
-        }).toList(),
-      ),
+          return _provider.manifest.actions.first;
+        },
+      );
+      _actionsInputs = [_formatInputs(action.input.value)];
+    });
+  }
+
+  Map<String, dynamic> _formatInputs(String inputJson) {
+    final Map<String, dynamic> inputs = jsonDecode(inputJson);
+    final Map<String, dynamic> formattedInputs = {};
+    inputs.forEach((key, value) {
+      formattedInputs[key] = value;
+    });
+    return formattedInputs;
+  }
+
+  void _updateInputValue(
+      Map<String, dynamic> inputs, String key, String value) {
+    setState(() {
+      inputs[key] = value;
+    });
+  }
+
+  void _createApplet() async {
+    if (_selectedTrigger == null ||
+        _selectedActions.isEmpty ||
+        _nameController.text.isEmpty ||
+        _descriptionController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text(
+            'Please provide all fields: name, description, trigger, and action'),
+      ));
+      return;
+    }
+
+    final selectedTrigger = _provider.manifest.triggers.firstWhere(
+      (t) => t.name == _selectedTrigger,
+      orElse: () {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+              content: Text(
+                  'Selected trigger not found. Please select a valid trigger.')),
+        );
+        return _provider.manifest.triggers.first;
+      },
     );
-  }
 
-  void _addAction() {
-    setState(() => _selectedActions.add(null));
-  }
+    final selectedAction = _provider.manifest.actions.firstWhere(
+      (a) => a.name == _selectedActions.first,
+      orElse: () {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+              content: Text(
+                  'Selected action not found. Please select a valid action.')),
+        );
+        return _provider.manifest.actions.first;
+      },
+    );
 
-  void _removeAction(int index) {
-    if (_selectedActions.length > 1) {
-      setState(() => _selectedActions.removeAt(index));
+    if (selectedAction.name == 'message-create') {
+      _actionsInputs.first['channel_id'] = '1164114981986512987';
+      _actionsInputs.first['content'] = 'Hello World!';
+    }
+
+    final appletData = {
+      'name': _nameController.text,
+      'description': _descriptionController.text,
+      'triggerNodes': [
+        {
+          'providerId': widget.providerId,
+          'actionId': selectedTrigger.id,
+          'input': _triggerInputs,
+          'next': [
+            {
+              'providerId': widget.providerId,
+              'actionId': selectedAction.id,
+              'input': _actionsInputs.first,
+              'next': [],
+            },
+          ],
+        }
+      ],
+    };
+
+    final appletRepo = Provider.of<AppletRepository>(context, listen: false);
+
+    try {
+      final response = await appletRepo.createApplet(
+        name: _nameController.text,
+        description: _descriptionController.text,
+        triggerNodesData: List<Map<String, dynamic>>.from(
+            appletData['triggerNodes'] as Iterable),
+      );
+
+      if (response != null) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content:
+              Text('Applet "${_nameController.text}" created successfully!'),
+        ));
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Failed to create applet: No response received'),
+        ));
+      }
+    } catch (e) {
+      log('Error creating applet: $e');
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Failed to create applet'),
+      ));
     }
   }
 
-  Widget _buildActionButton({
-    required String label,
-    required Color color,
-    required VoidCallback onPressed,
-    IconData? trailingIcon,
-    VoidCallback? onTrailingPressed,
-    bool canDelete = true,
-  }) {
-    return SizedBox(
-      height: 60,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: color,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(child: Text(label, textAlign: TextAlign.center, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white))),
-            if (canDelete && trailingIcon != null)
-              IconButton(
-                icon: Icon(trailingIcon, color: Colors.red),
-                onPressed: onTrailingPressed,
-              ),
-          ],
-        ),
-      ),
-    );
-  }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Applet Creation', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+        title: const Text('Applet Creation',
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 30,
+                fontWeight: FontWeight.bold)),
         backgroundColor: const Color(0xff1B1B1B),
         centerTitle: true,
         iconTheme: const IconThemeData(color: Colors.white),
@@ -124,39 +206,194 @@ class _AppletCreationState extends State<AppletCreation> {
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
-            _buildActionButton(
-              label: _selectedTrigger ?? 'If This',
-              color: _selectedTrigger != null ? Colors.blueGrey : Colors.blue,
-              onPressed: _selectTrigger,
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: [
+                  const SizedBox(height: 20),
+                  _buildButton('If This', _selectedTrigger, _triggers,
+                      _onTriggerSelected),
+                  const SizedBox(height: 20),
+                  if (_triggerInputs != null)
+                    ..._buildInputFields(_triggerInputs!),
+                  const SizedBox(height: 40),
+                  ElevatedButton(
+                    onPressed: () async {
+                      final selectedAction =
+                          await _showSelectionDialog('Select Action', _actions);
+                      if (selectedAction != null) {
+                        _onActionSelected(selectedAction);
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blueGrey.shade200,
+                      minimumSize: const Size(double.infinity, 60),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30)),
+                    ),
+                    child: const Text(
+                      'Add Action',
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  ..._selectedActions.asMap().entries.map((entry) {
+                    final index = entry.key;
+                    final actionName = entry.key;
+
+                    return Column(
+                      children: [
+                        Text('Action: $actionName',
+                            style: const TextStyle(color: Colors.white)),
+                        ..._buildInputFields(_actionsInputs[index]),
+                        const Divider(color: Colors.grey),
+                      ],
+                    );
+                  }),
+                  const SizedBox(height: 20),
+                  TextField(
+                    controller: _nameController,
+                    decoration: const InputDecoration(
+                      labelText: 'Applet Name',
+                      labelStyle: TextStyle(color: Colors.white),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blueGrey)),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue)),
+                    ),
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                  const SizedBox(height: 20),
+                  TextField(
+                    controller: _descriptionController,
+                    decoration: const InputDecoration(
+                      labelText: 'Applet Description',
+                      labelStyle: TextStyle(color: Colors.white),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blueGrey)),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue)),
+                    ),
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                  const SizedBox(height: 40),
+                  ElevatedButton(
+                    onPressed: _createApplet,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      minimumSize: const Size(double.infinity, 60),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30)),
+                    ),
+                    child: const Text(
+                      'Create Applet',
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                ],
+              ),
             ),
-            const SizedBox(height: 20),
-            ..._selectedActions.asMap().entries.map((entry) {
-              final index = entry.key;
-              final action = entry.value;
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                child: _buildActionButton(
-                  label: action ?? 'Then That',
-                  color: action != null ? Colors.green : Colors.lightGreen,
-                  onPressed: () => _selectAction(index),
-                  trailingIcon: Icons.delete,
-                  onTrailingPressed: () => _removeAction(index),
-                  canDelete: index != 0, // Le premier "Then That" ne peut pas être supprimé.
-                ),
+    );
+  }
+
+  List<Widget> _buildInputFields(Map<String, dynamic> inputs) {
+    _inputControllers.clear();
+
+    return inputs.entries.map((entry) {
+      final key = entry.key;
+      final value = entry.value;
+
+      final controller = TextEditingController(text: value.toString());
+      _inputControllers.add(controller);
+
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(key, style: const TextStyle(color: Colors.white)),
+          TextField(
+            controller: controller,
+            style: const TextStyle(color: Colors.white),
+            decoration: const InputDecoration(
+              labelStyle: TextStyle(color: Colors.white),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.blueGrey),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.blue),
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+          ElevatedButton(
+            onPressed: () {
+              _updateInputValue(inputs, key, controller.text);
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Field "$key" updated!')),
               );
-            }),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: _addAction,
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.grey.shade800),
-              child: const Icon(Icons.add, color: Colors.white),
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.blue.shade400,
+              minimumSize: const Size(double.infinity, 40),
             ),
-          ],
-        ),
+            child: const Text(
+              'Valider',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+          const SizedBox(height: 20),
+        ],
+      );
+    }).toList();
+  }
+
+  Future<String?> _showSelectionDialog(
+      String title, List<String> options) async {
+    return showDialog<String>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(title),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: options
+                .map((e) => ListTile(
+                      title: Text(e),
+                      onTap: () {
+                        Navigator.pop(context, e);
+                      },
+                    ))
+                .toList(),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildButton(String text, String? selected, List<String> options,
+      Function(String) onSelect) {
+    return ElevatedButton(
+      onPressed: () async {
+        final selectedOption = await _showSelectionDialog(text, options);
+        if (selectedOption != null) {
+          onSelect(selectedOption);
+        }
+      },
+      style: ElevatedButton.styleFrom(
+        backgroundColor:
+            selected == null ? Colors.blueGrey.shade200 : Colors.blue.shade200,
+        minimumSize: const Size(double.infinity, 60),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+      ),
+      child: Text(
+        selected ?? text,
+        style: const TextStyle(
+            fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
       ),
     );
   }

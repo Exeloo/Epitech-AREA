@@ -68,6 +68,8 @@ export class AppletInputProcessor
     const manifest = await this.foreignProviderService.getManifest(provider);
     const action = getManifestElement(node.actionId, manifest, !isFirst);
 
+    node.input = JSON.parse(node.input as unknown as string);
+
     if (!action) {
       throw new BadInputException("BAD_INPUT", "Invalid Action ID", {
         cause: new Error(

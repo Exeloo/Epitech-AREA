@@ -46,6 +46,17 @@ class _ProviderSelectionState extends State<ProviderSelection> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Provider Selection'),
+        titleTextStyle: const TextStyle(
+          color: Colors.white,
+          fontSize: 30,
+          fontWeight: FontWeight.bold,
+        ),
+        backgroundColor: const Color(0xff1B1B1B),
+        centerTitle: true,
+        iconTheme: const IconThemeData(color: Colors.white),
+      ),
       backgroundColor: const Color(0xff1B1B1B),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())

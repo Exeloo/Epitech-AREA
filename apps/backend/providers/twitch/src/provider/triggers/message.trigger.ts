@@ -6,6 +6,8 @@ import { ManifestTrigger } from "@lib/manifest";
 
 import { AppGateway } from "~/app.gateway";
 import { TriggerMessageCreateInput } from "~/provider/dto/inputs/message/trigger-message-create.input";
+import { TriggerMessageDeleteInput } from "~/provider/dto/inputs/message/trigger-message-delete.input";
+import { TriggerMessageDeleteResponse } from "~/provider/dto/responses/trigger-message-delete.response";
 import { TriggerMessageResponse } from "~/provider/dto/responses/trigger-message.response";
 import { TriggerService } from "~/provider/services/trigger.service";
 import { EventsEnum } from "~/provider/shared/event/event.enum";
@@ -34,6 +36,27 @@ export class MessageTrigger {
     });
     this.appGateway.emit(
       "message-create",
+      triggers.map((trigger) => trigger.baseId),
+      message,
+    );
+  }
+
+  @ManifestTrigger({
+    id: "message-delete",
+    name: "On Message Create",
+    description: "Triggered when a message is deleted in a channel",
+    img: "",
+    color: "#ffffff",
+    input: TriggerMessageDeleteInput,
+    output: TriggerMessageDeleteResponse,
+  })
+  @OnEvent(EventsEnum.Channel_Chat_Message_Delete)
+  async messageDeleteTrigger(message: TriggerMessageDeleteResponse) {
+    const triggers = await this.triggerService.getTriggers("message-delete", {
+      broadcaster_user_id: message.broadcaster_user_id,
+    });
+    this.appGateway.emit(
+      "message-delete",
       triggers.map((trigger) => trigger.baseId),
       message,
     );

@@ -34,6 +34,7 @@ export class AppletNodeService {
       await this.appletNodePRepository.getAllTriggersByProviderId(id);
     return nodes.map((node) => ({
       baseId: node.id,
+      userId: node.applet.owner.id,
       actionId: node.actionId,
       input: node.input,
     }));

@@ -18,6 +18,8 @@ import { TriggerService } from "~/provider/services/trigger.service";
 import { AuthService } from "~/provider/shared/auth/auth.service";
 import { EventModule } from "~/provider/shared/event/event.module";
 import { GatewayRepository } from "~/provider/shared/gateway/gateway.repository";
+import { AutomodTrigger } from "~/provider/triggers/automod.trigger";
+import { ChannelTrigger } from "~/provider/triggers/channel.trigger";
 import { MessageTrigger } from "~/provider/triggers/message.trigger";
 
 import { AppController } from "./app.controller";
@@ -60,6 +62,8 @@ import { throttlerConfig } from "./config/throttler.config";
     MessageAction,
 
     MessageTrigger,
+    AutomodTrigger,
+    ChannelTrigger,
   ],
 })
 export class AppModule {}

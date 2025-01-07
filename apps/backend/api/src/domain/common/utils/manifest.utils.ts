@@ -12,11 +12,12 @@ import {
 export const getManifestElement = (
   actionId: string,
   manifest: IManifest,
+  forceAction: boolean = false,
 ): IManifestTrigger | IManifestAction | null => {
-  return (
-    getManifestTrigger(actionId, manifest) ??
-    getManifestAction(actionId, manifest)
-  );
+  return forceAction
+    ? getManifestAction(actionId, manifest)
+    : (getManifestTrigger(actionId, manifest) ??
+        getManifestAction(actionId, manifest));
 };
 
 export const getManifestTrigger = (

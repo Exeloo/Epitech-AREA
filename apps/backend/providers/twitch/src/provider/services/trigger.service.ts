@@ -94,7 +94,7 @@ export class TriggerService implements OnModuleInit {
   }
 
   async registerTriggerToProvider(trigger: Omit<TriggerEntity, "id">) {
-    const e = EVENTS.find((value) => trigger.actionId in value[0])[1];
+    const e = EVENTS.find((value) => value[0].includes(trigger.actionId))[1];
     return this.registerEventToProvider(e, trigger.input, trigger.userId);
   }
 

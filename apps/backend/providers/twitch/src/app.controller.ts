@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UseGuards } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, UseGuards } from "@nestjs/common";
 
 import { AuthGuard } from "@lib/auth";
 import { IManifest } from "@lib/manifest";
@@ -41,5 +41,17 @@ export class AppController {
       message: "success",
       data: res,
     };
+  }
+
+  @Get("oauth/:id")
+  getOAuth(@Param("id") id: string): Promise<{ baseUrl: string }> {
+    return this.appService.getOAuthUrl({ userId: +id });
+  }
+
+  @Post("oauth") async runOAuth(
+    @Body() body: { code: string; state: string },
+  ): Promise<{ message: string }> {
+    await this.appService.runOAuth(body);
+    return { message: "success" };
   }
 }

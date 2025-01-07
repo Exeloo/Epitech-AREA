@@ -4,21 +4,22 @@ import { ID } from "@d-type/id.type";
 
 import { AuthorizationException } from "@exception";
 
-import { AppletRunProcessor } from "@domain/applet/processors/run/run.processor";
-import { ITriggerInput } from "@domain/applet/types/trigger-input.type";
 import {
   IProviderPersistenceRepository,
   PROVIDER_PERSISTENCE_REPOSITORY,
 } from "@domain/provider/provider.repository.type";
 
+import { IProvider } from "../provider/types/provider.type";
 import { IUser } from "../user/types/user.type";
 import {
   APPLET_PERSISTENCE_REPOSITORY,
   IAppletPersistenceRepository,
 } from "./applet.repository.type";
 import { AppletCreateProcessor } from "./processors/create/create.processor";
+import { AppletRunProcessor } from "./processors/run/run.processor";
 import { IAppletCreateInput } from "./types/applet.input.type";
 import { IApplet } from "./types/applet.type";
+import { ITriggerInput } from "./types/trigger-input.type";
 
 @Injectable()
 export class AppletService {
@@ -51,7 +52,7 @@ export class AppletService {
   }
 
   async handleTrigger(providerIds: Set<string>, data: ITriggerInput) {
-    let provider;
+    let provider: IProvider;
     for (const pId of providerIds) {
       provider = await this.providerPRepository.getByProviderId(pId);
       if (provider) break;

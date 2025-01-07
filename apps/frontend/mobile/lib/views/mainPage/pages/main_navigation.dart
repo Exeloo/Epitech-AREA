@@ -27,7 +27,7 @@ class MainNavigationPageState extends State<MainNavigationPage> {
       const HomePage(),
       const Page2(),
       const MyAppletsPage(),
-      const Page4(),
+      const Profile(),
     ];
 
     return Scaffold(

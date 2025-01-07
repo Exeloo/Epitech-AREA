@@ -5,14 +5,14 @@ import 'package:mobile/graphql/__generated__/user.data.gql.dart';
 import 'package:mobile/modules/graphql/repository/user_repository.dart';
 import 'package:provider/provider.dart';
 
-class Page4 extends StatefulWidget {
-  const Page4({super.key});
+class Profile extends StatefulWidget {
+  const Profile({super.key});
 
   @override
-  Page4State createState() => Page4State();
+  ProfileState createState() => ProfileState();
 }
 
-class Page4State extends State<Page4> {
+class ProfileState extends State<Profile> {
   late UserRepository userRepository;
   GgetMeData_getMe? user;
 

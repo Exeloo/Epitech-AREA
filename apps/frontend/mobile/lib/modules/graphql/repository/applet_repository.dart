@@ -46,7 +46,7 @@ class AppletRepository {
     return GAppletNodeCreateInput((b) => b
       ..providerId = nodeData['providerId']
       ..actionId = nodeData['actionId']
-      ..input.replace(_mapInput(nodeData['input'])) // Conversion ici
+      ..input.replace(_mapInput(nodeData['input']))
       ..next.replace((nodeData['next'] as List<dynamic>?)
           ?.map((nextNode) => _createNode(nextNode as Map<String, dynamic>))
           .toList() ??

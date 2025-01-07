@@ -65,10 +65,7 @@ export class MessageAction extends BaseHttpRepository {
   async messageDeleteAction(
     input: ActionMessageDeleteInput,
   ): Promise<EmptyResponse> {
-    return this.delete(
-      `/channels/${input.channel_id}/messages/${input.id}`,
-      {},
-    );
+    return this.delete(`/channels/${input.channel_id}/messages/${input.id}`);
   }
 
   @ManifestAction({
@@ -103,7 +100,6 @@ export class MessageAction extends BaseHttpRepository {
   ): Promise<EmptyResponse> {
     return this.delete(
       `/channels/${input.channel_id}/messages/${input.message_id}/reactions/${input.emoji}/@me`,
-      {},
     );
   }
 }

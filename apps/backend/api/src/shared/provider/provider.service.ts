@@ -1,4 +1,5 @@
 import { Injectable } from "@nestjs/common";
+import { ObjectLiteral } from "typeorm";
 
 import { IAppletNode } from "@domain/applet/node/types/applet-node.type";
 import { IManifest } from "@domain/provider/manifest/types/manifest.type";
@@ -42,5 +43,26 @@ export class ProviderService implements IProviderService {
       name: node.actionId,
       data: data,
     });
+  }
+
+  getOAuthRedirect(
+    provider: IProvider,
+    userId: number,
+  ): Promise<{ baseUrl: string }> {
+    return this.providerRepository.getOAuthRedirect(
+      provider.host,
+      provider.apiKey,
+      {
+        userId: userId,
+      },
+    );
+  }
+
+  runOAuth(provider: IProvider, body: ObjectLiteral): Promise<void> {
+    return this.providerRepository.runOAuth(
+      provider.host,
+      provider.apiKey,
+      body,
+    );
   }
 }

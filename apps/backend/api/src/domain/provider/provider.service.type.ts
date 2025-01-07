@@ -1,3 +1,5 @@
+import { ObjectLiteral } from "@type/object.type";
+
 import { IAppletNode } from "@domain/applet/node/types/applet-node.type";
 import { IManifest } from "@domain/provider/manifest/types/manifest.type";
 import { IProvider } from "@domain/provider/types/provider.type";
@@ -19,4 +21,11 @@ export interface IProviderService {
     node: Pick<IAppletNode, "id" | "actionId">,
     data: object,
   ): Promise<object>;
+
+  getOAuthRedirect(
+    provider: IProvider,
+    userId: number,
+  ): Promise<{ baseUrl: string }>;
+
+  runOAuth(provider: IProvider, body: ObjectLiteral): Promise<void>;
 }

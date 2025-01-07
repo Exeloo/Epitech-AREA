@@ -2,6 +2,8 @@ import { HttpService } from "@nestjs/axios";
 import { Injectable } from "@nestjs/common";
 import { AxiosRequestConfig } from "axios";
 
+import { ObjectLiteral } from "@type/object.type";
+
 import { ID } from "@d-type/id.type";
 
 import { InternalException } from "@exception";
@@ -60,5 +62,45 @@ export class ProviderRepository extends HttpRepository("PROVIDER") {
         cause: new Error(`Failed to run action (res message : ${res.message})`),
       });
     return res.data;
+  }
+
+  async getOAuthRedirect(
+    host: string,
+    apiKey: string,
+    body: { userId: number },
+  ): Promise<{ baseUrl: string }> {
+    let res: any;
+    try {
+      res = await this.get(`${host}/oauth/${body.userId}`, {
+        headers: {
+          "api-key": apiKey,
+        },
+      });
+    } catch (e) {
+      throw new InternalException(41, {
+        cause: e,
+      });
+    }
+    return res;
+  }
+
+  async runOAuth(
+    host: string,
+    apiKey: string,
+    body: ObjectLiteral,
+  ): Promise<void> {
+    let res: any;
+    try {
+      res = await this.post(`${host}/oauth`, body, {
+        headers: {
+          "api-key": apiKey,
+        },
+      });
+    } catch (e) {
+      throw new InternalException(43, {
+        cause: e,
+      });
+    }
+    return res;
   }
 }

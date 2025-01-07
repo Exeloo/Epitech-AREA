@@ -12,14 +12,35 @@ import { EventsEnum } from "~/provider/shared/event/event.enum";
 
 const EVENTS: [string[], EventsEnum][] = [
   [["message-create"], EventsEnum.Channel_Chat_Message],
+  [["message-delete"], EventsEnum.Channel_Chat_Message_Delete],
+  [["channel-follow"], EventsEnum.Channel_follow],
+  [["channel-raid"], EventsEnum.Channel_raid],
+  [["channel-subscribe"], EventsEnum.Channel_Sub],
+  [["channel-subscribe-end"], EventsEnum.Channel_sub_end],
+  [["automod-message-hold"], EventsEnum.Automod_hold],
+  [["automod-terms-update"], EventsEnum.Automod_terms_update],
 ];
 
 const VERSIONS = {
   [EventsEnum.Channel_Chat_Message]: 1,
+  [EventsEnum.Channel_Chat_Message_Delete]: 1,
+  [EventsEnum.Channel_follow]: 2,
+  [EventsEnum.Channel_raid]: 1,
+  [EventsEnum.Channel_Sub]: 1,
+  [EventsEnum.Channel_sub_end]: 1,
+  [EventsEnum.Automod_hold]: 2,
+  [EventsEnum.Automod_terms_update]: 1,
 };
 
 const OWNERS_FIELD = {
   [EventsEnum.Channel_Chat_Message]: "user_id",
+  [EventsEnum.Channel_Chat_Message_Delete]: "user_id",
+  [EventsEnum.Channel_follow]: "moderator_user_id",
+  [EventsEnum.Channel_raid]: "to_broadcaster_user_id",
+  [EventsEnum.Channel_Sub]: "broadcaster_user_id",
+  [EventsEnum.Channel_sub_end]: "broadcaster_user_id",
+  [EventsEnum.Automod_hold]: "moderator_user_id",
+  [EventsEnum.Automod_terms_update]: "moderator_user_id",
 };
 
 @Injectable()

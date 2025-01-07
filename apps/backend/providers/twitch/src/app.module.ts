@@ -15,6 +15,7 @@ import { MessageAction } from "~/provider/actions/message.action";
 import { ActionService } from "~/provider/services/action.service";
 import { TriggerEntity } from "~/provider/services/trigger.entity";
 import { TriggerService } from "~/provider/services/trigger.service";
+import { AccountEntity } from "~/provider/shared/auth/account.entity";
 import { AuthService } from "~/provider/shared/auth/auth.service";
 import { EventModule } from "~/provider/shared/event/event.module";
 import { GatewayRepository } from "~/provider/shared/gateway/gateway.repository";
@@ -41,7 +42,7 @@ import { throttlerConfig } from "./config/throttler.config";
       imports: [ConfigModule],
       useFactory: () => databaseConfig,
     }),
-    TypeOrmModule.forFeature([TriggerEntity]),
+    TypeOrmModule.forFeature([AccountEntity, TriggerEntity]),
     EventModule,
     HttpModule,
   ],

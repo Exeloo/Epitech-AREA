@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:ferry/ferry.dart';
@@ -13,13 +14,16 @@ class AppletRepository {
   Future<GcreateAppletData?> createApplet({
     required String name,
     required String description,
-    required List<GAppletNodeCreateInput> triggerNodes,
+    required List<Map<String, dynamic>> triggerNodesData,
   }) async {
-    final createAppletReq = GcreateAppletReq((b) => b
-      ..vars.data.name = name
-      ..vars.data.description = description
-      ..vars.data.triggerNodes.replace(triggerNodes));
     try {
+      final triggerNodes = triggerNodesData.map((nodeData) => _createNode(nodeData)).toList();
+
+      final createAppletReq = GcreateAppletReq((b) => b
+        ..vars.data.name = name
+        ..vars.data.description = description
+        ..vars.data.triggerNodes.replace(triggerNodes));
+
       final response = await client.request(createAppletReq).first;
 
       if (response.loading) {
@@ -35,6 +39,27 @@ class AppletRepository {
     } catch (e) {
       log('CreateApplet error: $e');
       rethrow;
+    }
+  }
+
+  GAppletNodeCreateInput _createNode(Map<String, dynamic> nodeData) {
+    return GAppletNodeCreateInput((b) => b
+      ..providerId = nodeData['providerId']
+      ..actionId = nodeData['actionId']
+      ..input.replace(_mapInput(nodeData['input']))
+      ..next.replace((nodeData['next'] as List<dynamic>?)
+          ?.map((nextNode) => _createNode(nextNode as Map<String, dynamic>))
+          .toList() ??
+          []));
+  }
+
+  GJSON _mapInput(dynamic inputData) {
+    if (inputData is Map<String, dynamic>) {
+      return GJSON(jsonEncode(inputData));
+    } else if (inputData is String) {
+      return GJSON(inputData);
+    } else {
+      throw ArgumentError('Unsupported input type for GJSON: $inputData');
     }
   }
 

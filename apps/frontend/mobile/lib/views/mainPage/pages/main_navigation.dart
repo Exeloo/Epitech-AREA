@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:mobile/views/applet/pages/applet_creation.dart';
+import 'package:mobile/views/applet/pages/my_applets_page.dart';
 import 'package:mobile/views/home/pages/home.dart';
 import 'package:mobile/views/profile/profile.dart';
-import 'package:mobile/views/applet/pages/my_applets_page.dart'; 
+
+import '../../applet/pages/provider_selection.dart';
 
 class MainNavigationPage extends StatefulWidget {
   const MainNavigationPage({super.key});
@@ -96,7 +97,7 @@ class MainNavigationPageState extends State<MainNavigationPage> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (BuildContext context) => const AppletCreation(),
+                builder: (BuildContext context) => const ProviderSelection(),
               ),
             );
           },

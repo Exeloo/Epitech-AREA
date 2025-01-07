@@ -37,12 +37,12 @@ async function bootstrap() {
       contentSecurityPolicy: {
         directives: {
           scriptSrc: [`'self'`, `https: 'unsafe-inline'`, `'unsafe-eval'`],
-          frameAncestors: process.env.WEBAPP_DOMAINS?.split(",") ?? ["'none'"],
+         // frameAncestors: process.env.WEBAPP_DOMAINS?.split(",") ?? ["'none'"],
         },
       },
     }),
   );
-  app.enableCors({ origin: process.env.WEBAPP_DOMAINS?.split(",") });
+  app.enableCors(/*{ origin: process.env.WEBAPP_DOMAINS?.split(",") }*/);
 
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
   app.useGlobalPipes(

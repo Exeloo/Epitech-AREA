@@ -16,6 +16,7 @@ import 'package:mobile/graphql/__generated__/applet.data.gql.dart'
         GAppletWithNodesData_triggerNodes_provider,
         GBaseAppletData,
         GBaseAppletNodeData,
+        GBaseAppletProviderData,
         GExtendedAppletNodeData,
         GExtendedAppletNodeData_next,
         GExtendedAppletNodeData_previous,
@@ -29,25 +30,34 @@ import 'package:mobile/graphql/__generated__/applet.data.gql.dart'
         GgetAppletByIdData_getAppletById_triggerNodes,
         GgetAppletByIdData_getAppletById_triggerNodes_next,
         GgetAppletByIdData_getAppletById_triggerNodes_previous,
-        GgetAppletByIdData_getAppletById_triggerNodes_provider;
+        GgetAppletByIdData_getAppletById_triggerNodes_provider,
+        GgetAppletNodeByIdData,
+        GgetAppletNodeByIdData_getAppletNodeById,
+        GgetAppletNodeByIdData_getAppletNodeById_next,
+        GgetAppletNodeByIdData_getAppletNodeById_previous,
+        GgetAppletNodeByIdData_getAppletNodeById_provider;
 import 'package:mobile/graphql/__generated__/applet.req.gql.dart'
     show
         GAppletWithNodesReq,
         GBaseAppletNodeReq,
+        GBaseAppletProviderReq,
         GBaseAppletReq,
         GExtendedAppletNodeReq,
         GcreateAppletReq,
         GgetAllAppletsReq,
-        GgetAppletByIdReq;
+        GgetAppletByIdReq,
+        GgetAppletNodeByIdReq;
 import 'package:mobile/graphql/__generated__/applet.var.gql.dart'
     show
         GAppletWithNodesVars,
         GBaseAppletNodeVars,
+        GBaseAppletProviderVars,
         GBaseAppletVars,
         GExtendedAppletNodeVars,
         GcreateAppletVars,
         GgetAllAppletsVars,
-        GgetAppletByIdVars;
+        GgetAppletByIdVars,
+        GgetAppletNodeByIdVars;
 import 'package:mobile/graphql/__generated__/auth.data.gql.dart'
     show
         GTokenFieldsData,
@@ -141,6 +151,9 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GBaseAppletNodeData,
   GBaseAppletNodeReq,
   GBaseAppletNodeVars,
+  GBaseAppletProviderData,
+  GBaseAppletProviderReq,
+  GBaseAppletProviderVars,
   GBaseAppletReq,
   GBaseAppletVars,
   GBaseProviderData,
@@ -197,6 +210,13 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GgetAppletByIdData_getAppletById_triggerNodes_provider,
   GgetAppletByIdReq,
   GgetAppletByIdVars,
+  GgetAppletNodeByIdData,
+  GgetAppletNodeByIdData_getAppletNodeById,
+  GgetAppletNodeByIdData_getAppletNodeById_next,
+  GgetAppletNodeByIdData_getAppletNodeById_previous,
+  GgetAppletNodeByIdData_getAppletNodeById_provider,
+  GgetAppletNodeByIdReq,
+  GgetAppletNodeByIdVars,
   GgetMeData,
   GgetMeData_getMe,
   GgetMeReq,

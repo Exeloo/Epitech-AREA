@@ -33,7 +33,9 @@ export class AppletResolver {
     description: "Triggers of the applet",
   })
   triggerNodes(applet: IExposedApplet): Promise<IExposedAppletNode[]> {
-    return this.appletNodeService.getTriggersByAppletId(applet.id);
+    return this.appletNodeService.getExposedApplets(
+      this.appletNodeService.getTriggersByAppletId(applet.id),
+    );
   }
 
   @Query(() => [Applet], { description: "Get all applets" })

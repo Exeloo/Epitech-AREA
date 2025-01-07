@@ -24,6 +24,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GBaseAppletNodeData.serializer)
       ..add(GBaseAppletNodeReq.serializer)
       ..add(GBaseAppletNodeVars.serializer)
+      ..add(GBaseAppletProviderData.serializer)
+      ..add(GBaseAppletProviderReq.serializer)
+      ..add(GBaseAppletProviderVars.serializer)
       ..add(GBaseAppletReq.serializer)
       ..add(GBaseAppletVars.serializer)
       ..add(GBaseProviderData.serializer)
@@ -80,6 +83,13 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GgetAppletByIdData_getAppletById_triggerNodes_provider.serializer)
       ..add(GgetAppletByIdReq.serializer)
       ..add(GgetAppletByIdVars.serializer)
+      ..add(GgetAppletNodeByIdData.serializer)
+      ..add(GgetAppletNodeByIdData_getAppletNodeById.serializer)
+      ..add(GgetAppletNodeByIdData_getAppletNodeById_next.serializer)
+      ..add(GgetAppletNodeByIdData_getAppletNodeById_previous.serializer)
+      ..add(GgetAppletNodeByIdData_getAppletNodeById_provider.serializer)
+      ..add(GgetAppletNodeByIdReq.serializer)
+      ..add(GgetAppletNodeByIdVars.serializer)
       ..add(GgetMeData.serializer)
       ..add(GgetMeData_getMe.serializer)
       ..add(GgetMeReq.serializer)
@@ -173,6 +183,18 @@ Serializers _$serializers = (new Serializers().toBuilder()
           ]),
           () => new ListBuilder<
               GgetAppletByIdData_getAppletById_triggerNodes_next>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(GgetAppletNodeByIdData_getAppletNodeById_previous)
+          ]),
+          () => new ListBuilder<
+              GgetAppletNodeByIdData_getAppletNodeById_previous>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(GgetAppletNodeByIdData_getAppletNodeById_next)
+          ]),
+          () =>
+              new ListBuilder<GgetAppletNodeByIdData_getAppletNodeById_next>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [
             const FullType(

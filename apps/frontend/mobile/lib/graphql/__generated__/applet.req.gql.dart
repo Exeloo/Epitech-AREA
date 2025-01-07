@@ -172,6 +172,87 @@ abstract class GgetAppletByIdReq
       );
 }
 
+abstract class GgetAppletNodeByIdReq
+    implements
+        Built<GgetAppletNodeByIdReq, GgetAppletNodeByIdReqBuilder>,
+        _i1.OperationRequest<_i2.GgetAppletNodeByIdData,
+            _i3.GgetAppletNodeByIdVars> {
+  GgetAppletNodeByIdReq._();
+
+  factory GgetAppletNodeByIdReq(
+          [void Function(GgetAppletNodeByIdReqBuilder b) updates]) =
+      _$GgetAppletNodeByIdReq;
+
+  static void _initializeBuilder(GgetAppletNodeByIdReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'getAppletNodeById',
+    )
+    ..executeOnListen = true;
+
+  @override
+  _i3.GgetAppletNodeByIdVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+        context: context ?? const _i4.Context(),
+      );
+
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.GgetAppletNodeByIdData? Function(
+    _i2.GgetAppletNodeByIdData?,
+    _i2.GgetAppletNodeByIdData?,
+  )? get updateResult;
+  @override
+  _i2.GgetAppletNodeByIdData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  @BuiltValueField(serialize: false)
+  _i4.Context? get context;
+  @override
+  _i2.GgetAppletNodeByIdData? parseData(Map<String, dynamic> json) =>
+      _i2.GgetAppletNodeByIdData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(_i2.GgetAppletNodeByIdData data) =>
+      data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.GgetAppletNodeByIdData, _i3.GgetAppletNodeByIdVars>
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
+
+  static Serializer<GgetAppletNodeByIdReq> get serializer =>
+      _$ggetAppletNodeByIdReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GgetAppletNodeByIdReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetAppletNodeByIdReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GgetAppletNodeByIdReq.serializer,
+        json,
+      );
+}
+
 abstract class GcreateAppletReq
     implements
         Built<GcreateAppletReq, GcreateAppletReqBuilder>,
@@ -250,23 +331,23 @@ abstract class GcreateAppletReq
       );
 }
 
-abstract class GProviderManifestActionReq
+abstract class GBaseAppletProviderReq
     implements
-        Built<GProviderManifestActionReq, GProviderManifestActionReqBuilder>,
-        _i1.FragmentRequest<_i2.GProviderManifestActionData,
-            _i3.GProviderManifestActionVars> {
-  GProviderManifestActionReq._();
+        Built<GBaseAppletProviderReq, GBaseAppletProviderReqBuilder>,
+        _i1.FragmentRequest<_i2.GBaseAppletProviderData,
+            _i3.GBaseAppletProviderVars> {
+  GBaseAppletProviderReq._();
 
-  factory GProviderManifestActionReq(
-          [void Function(GProviderManifestActionReqBuilder b) updates]) =
-      _$GProviderManifestActionReq;
+  factory GBaseAppletProviderReq(
+          [void Function(GBaseAppletProviderReqBuilder b) updates]) =
+      _$GBaseAppletProviderReq;
 
-  static void _initializeBuilder(GProviderManifestActionReqBuilder b) => b
+  static void _initializeBuilder(GBaseAppletProviderReqBuilder b) => b
     ..document = _i5.document
-    ..fragmentName = 'ProviderManifestAction';
+    ..fragmentName = 'BaseAppletProvider';
 
   @override
-  _i3.GProviderManifestActionVars get vars;
+  _i3.GBaseAppletProviderVars get vars;
   @override
   _i7.DocumentNode get document;
   @override
@@ -274,27 +355,27 @@ abstract class GProviderManifestActionReq
   @override
   Map<String, dynamic> get idFields;
   @override
-  _i2.GProviderManifestActionData? parseData(Map<String, dynamic> json) =>
-      _i2.GProviderManifestActionData.fromJson(json);
+  _i2.GBaseAppletProviderData? parseData(Map<String, dynamic> json) =>
+      _i2.GBaseAppletProviderData.fromJson(json);
 
   @override
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(_i2.GProviderManifestActionData data) =>
+  Map<String, dynamic> dataToJson(_i2.GBaseAppletProviderData data) =>
       data.toJson();
 
-  static Serializer<GProviderManifestActionReq> get serializer =>
-      _$gProviderManifestActionReqSerializer;
+  static Serializer<GBaseAppletProviderReq> get serializer =>
+      _$gBaseAppletProviderReqSerializer;
 
   Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
-        GProviderManifestActionReq.serializer,
+        GBaseAppletProviderReq.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GProviderManifestActionReq? fromJson(Map<String, dynamic> json) =>
+  static GBaseAppletProviderReq? fromJson(Map<String, dynamic> json) =>
       _i6.serializers.deserializeWith(
-        GProviderManifestActionReq.serializer,
+        GBaseAppletProviderReq.serializer,
         json,
       );
 }

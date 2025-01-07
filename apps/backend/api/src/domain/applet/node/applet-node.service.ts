@@ -8,6 +8,7 @@ import {
 } from "@domain/applet/node/applet-node.repository.type";
 import {
   IAppletNode,
+  IExposedAppletNode,
   IProviderAppletNode,
 } from "@domain/applet/node/types/applet-node.type";
 
@@ -40,6 +41,33 @@ export class AppletNodeService {
 
   getTriggersByAppletId(id: ID): Promise<IAppletNode[]> {
     return this.appletNodePRepository.getAllTriggersByAppletId(id);
+  }
+
+  async getExposedApplets(
+    applets: Promise<IAppletNode[]>,
+  ): Promise<IExposedAppletNode[]> {
+    return (await applets).map(this.getExposedApplet);
+  }
+
+  getExposedApplet(applet: IAppletNode): IExposedAppletNode {
+    return {
+      id: applet.id,
+      actionId: applet.actionId,
+      actionType: applet.actionType,
+      input: JSON.stringify(applet.input),
+    };
+  }
+
+  async getAsyncExposedApplet(
+    applet: Promise<IAppletNode>,
+  ): Promise<IExposedAppletNode> {
+    const value = await applet;
+    return {
+      id: value.id,
+      actionId: value.actionId,
+      actionType: value.actionType,
+      input: JSON.stringify(value.input),
+    };
   }
 
   getById(id: ID): Promise<IAppletNode> {

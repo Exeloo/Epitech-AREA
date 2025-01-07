@@ -56,6 +56,30 @@ abstract class GgetAppletByIdVars
       );
 }
 
+abstract class GgetAppletNodeByIdVars
+    implements Built<GgetAppletNodeByIdVars, GgetAppletNodeByIdVarsBuilder> {
+  GgetAppletNodeByIdVars._();
+
+  factory GgetAppletNodeByIdVars(
+          [void Function(GgetAppletNodeByIdVarsBuilder b) updates]) =
+      _$GgetAppletNodeByIdVars;
+
+  int get id;
+  static Serializer<GgetAppletNodeByIdVars> get serializer =>
+      _$ggetAppletNodeByIdVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetAppletNodeByIdVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetAppletNodeByIdVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetAppletNodeByIdVars.serializer,
+        json,
+      );
+}
+
 abstract class GcreateAppletVars
     implements Built<GcreateAppletVars, GcreateAppletVarsBuilder> {
   GcreateAppletVars._();
@@ -80,26 +104,25 @@ abstract class GcreateAppletVars
       );
 }
 
-abstract class GProviderManifestActionVars
-    implements
-        Built<GProviderManifestActionVars, GProviderManifestActionVarsBuilder> {
-  GProviderManifestActionVars._();
+abstract class GBaseAppletProviderVars
+    implements Built<GBaseAppletProviderVars, GBaseAppletProviderVarsBuilder> {
+  GBaseAppletProviderVars._();
 
-  factory GProviderManifestActionVars(
-          [void Function(GProviderManifestActionVarsBuilder b) updates]) =
-      _$GProviderManifestActionVars;
+  factory GBaseAppletProviderVars(
+          [void Function(GBaseAppletProviderVarsBuilder b) updates]) =
+      _$GBaseAppletProviderVars;
 
-  static Serializer<GProviderManifestActionVars> get serializer =>
-      _$gProviderManifestActionVarsSerializer;
+  static Serializer<GBaseAppletProviderVars> get serializer =>
+      _$gBaseAppletProviderVarsSerializer;
 
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GProviderManifestActionVars.serializer,
+        GBaseAppletProviderVars.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GProviderManifestActionVars? fromJson(Map<String, dynamic> json) =>
+  static GBaseAppletProviderVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
-        GProviderManifestActionVars.serializer,
+        GBaseAppletProviderVars.serializer,
         json,
       );
 }

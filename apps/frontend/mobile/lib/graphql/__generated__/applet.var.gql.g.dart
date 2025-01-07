@@ -10,11 +10,12 @@ Serializer<GgetAllAppletsVars> _$ggetAllAppletsVarsSerializer =
     new _$GgetAllAppletsVarsSerializer();
 Serializer<GgetAppletByIdVars> _$ggetAppletByIdVarsSerializer =
     new _$GgetAppletByIdVarsSerializer();
+Serializer<GgetAppletNodeByIdVars> _$ggetAppletNodeByIdVarsSerializer =
+    new _$GgetAppletNodeByIdVarsSerializer();
 Serializer<GcreateAppletVars> _$gcreateAppletVarsSerializer =
     new _$GcreateAppletVarsSerializer();
-Serializer<GProviderManifestActionVars>
-    _$gProviderManifestActionVarsSerializer =
-    new _$GProviderManifestActionVarsSerializer();
+Serializer<GBaseAppletProviderVars> _$gBaseAppletProviderVarsSerializer =
+    new _$GBaseAppletProviderVarsSerializer();
 Serializer<GBaseAppletNodeVars> _$gBaseAppletNodeVarsSerializer =
     new _$GBaseAppletNodeVarsSerializer();
 Serializer<GExtendedAppletNodeVars> _$gExtendedAppletNodeVarsSerializer =
@@ -88,6 +89,51 @@ class _$GgetAppletByIdVarsSerializer
   }
 }
 
+class _$GgetAppletNodeByIdVarsSerializer
+    implements StructuredSerializer<GgetAppletNodeByIdVars> {
+  @override
+  final Iterable<Type> types = const [
+    GgetAppletNodeByIdVars,
+    _$GgetAppletNodeByIdVars
+  ];
+  @override
+  final String wireName = 'GgetAppletNodeByIdVars';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GgetAppletNodeByIdVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(int)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GgetAppletNodeByIdVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GgetAppletNodeByIdVarsBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$GcreateAppletVarsSerializer
     implements StructuredSerializer<GcreateAppletVars> {
   @override
@@ -131,28 +177,28 @@ class _$GcreateAppletVarsSerializer
   }
 }
 
-class _$GProviderManifestActionVarsSerializer
-    implements StructuredSerializer<GProviderManifestActionVars> {
+class _$GBaseAppletProviderVarsSerializer
+    implements StructuredSerializer<GBaseAppletProviderVars> {
   @override
   final Iterable<Type> types = const [
-    GProviderManifestActionVars,
-    _$GProviderManifestActionVars
+    GBaseAppletProviderVars,
+    _$GBaseAppletProviderVars
   ];
   @override
-  final String wireName = 'GProviderManifestActionVars';
+  final String wireName = 'GBaseAppletProviderVars';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GProviderManifestActionVars object,
+      Serializers serializers, GBaseAppletProviderVars object,
       {FullType specifiedType = FullType.unspecified}) {
     return <Object?>[];
   }
 
   @override
-  GProviderManifestActionVars deserialize(
+  GBaseAppletProviderVars deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    return new GProviderManifestActionVarsBuilder().build();
+    return new GBaseAppletProviderVarsBuilder().build();
   }
 }
 
@@ -397,6 +443,92 @@ class GgetAppletByIdVarsBuilder
   }
 }
 
+class _$GgetAppletNodeByIdVars extends GgetAppletNodeByIdVars {
+  @override
+  final int id;
+
+  factory _$GgetAppletNodeByIdVars(
+          [void Function(GgetAppletNodeByIdVarsBuilder)? updates]) =>
+      (new GgetAppletNodeByIdVarsBuilder()..update(updates))._build();
+
+  _$GgetAppletNodeByIdVars._({required this.id}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(id, r'GgetAppletNodeByIdVars', 'id');
+  }
+
+  @override
+  GgetAppletNodeByIdVars rebuild(
+          void Function(GgetAppletNodeByIdVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GgetAppletNodeByIdVarsBuilder toBuilder() =>
+      new GgetAppletNodeByIdVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GgetAppletNodeByIdVars && id == other.id;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GgetAppletNodeByIdVars')
+          ..add('id', id))
+        .toString();
+  }
+}
+
+class GgetAppletNodeByIdVarsBuilder
+    implements Builder<GgetAppletNodeByIdVars, GgetAppletNodeByIdVarsBuilder> {
+  _$GgetAppletNodeByIdVars? _$v;
+
+  int? _id;
+  int? get id => _$this._id;
+  set id(int? id) => _$this._id = id;
+
+  GgetAppletNodeByIdVarsBuilder();
+
+  GgetAppletNodeByIdVarsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GgetAppletNodeByIdVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GgetAppletNodeByIdVars;
+  }
+
+  @override
+  void update(void Function(GgetAppletNodeByIdVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GgetAppletNodeByIdVars build() => _build();
+
+  _$GgetAppletNodeByIdVars _build() {
+    final _$result = _$v ??
+        new _$GgetAppletNodeByIdVars._(
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GgetAppletNodeByIdVars', 'id'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$GcreateAppletVars extends GcreateAppletVars {
   @override
   final _i2.GAppletCreateInput data;
@@ -493,64 +625,62 @@ class GcreateAppletVarsBuilder
   }
 }
 
-class _$GProviderManifestActionVars extends GProviderManifestActionVars {
-  factory _$GProviderManifestActionVars(
-          [void Function(GProviderManifestActionVarsBuilder)? updates]) =>
-      (new GProviderManifestActionVarsBuilder()..update(updates))._build();
+class _$GBaseAppletProviderVars extends GBaseAppletProviderVars {
+  factory _$GBaseAppletProviderVars(
+          [void Function(GBaseAppletProviderVarsBuilder)? updates]) =>
+      (new GBaseAppletProviderVarsBuilder()..update(updates))._build();
 
-  _$GProviderManifestActionVars._() : super._();
+  _$GBaseAppletProviderVars._() : super._();
 
   @override
-  GProviderManifestActionVars rebuild(
-          void Function(GProviderManifestActionVarsBuilder) updates) =>
+  GBaseAppletProviderVars rebuild(
+          void Function(GBaseAppletProviderVarsBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GProviderManifestActionVarsBuilder toBuilder() =>
-      new GProviderManifestActionVarsBuilder()..replace(this);
+  GBaseAppletProviderVarsBuilder toBuilder() =>
+      new GBaseAppletProviderVarsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GProviderManifestActionVars;
+    return other is GBaseAppletProviderVars;
   }
 
   @override
   int get hashCode {
-    return 75716004;
+    return 255751447;
   }
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper(r'GProviderManifestActionVars')
-        .toString();
+    return newBuiltValueToStringHelper(r'GBaseAppletProviderVars').toString();
   }
 }
 
-class GProviderManifestActionVarsBuilder
+class GBaseAppletProviderVarsBuilder
     implements
-        Builder<GProviderManifestActionVars,
-            GProviderManifestActionVarsBuilder> {
-  _$GProviderManifestActionVars? _$v;
+        Builder<GBaseAppletProviderVars, GBaseAppletProviderVarsBuilder> {
+  _$GBaseAppletProviderVars? _$v;
 
-  GProviderManifestActionVarsBuilder();
+  GBaseAppletProviderVarsBuilder();
 
   @override
-  void replace(GProviderManifestActionVars other) {
+  void replace(GBaseAppletProviderVars other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GProviderManifestActionVars;
+    _$v = other as _$GBaseAppletProviderVars;
   }
 
   @override
-  void update(void Function(GProviderManifestActionVarsBuilder)? updates) {
+  void update(void Function(GBaseAppletProviderVarsBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  GProviderManifestActionVars build() => _build();
+  GBaseAppletProviderVars build() => _build();
 
-  _$GProviderManifestActionVars _build() {
-    final _$result = _$v ?? new _$GProviderManifestActionVars._();
+  _$GBaseAppletProviderVars _build() {
+    final _$result = _$v ?? new _$GBaseAppletProviderVars._();
     replace(_$result);
     return _$result;
   }

@@ -261,6 +261,9 @@ type Query {
   """Get applet by id"""
   getAppletById(id: Int!): Applet!
 
+  """Query used to get an applet node"""
+  getAppletNodeById(id: Int!): AppletNode!
+
   """Get the connected user"""
   getMe: User!
 

@@ -34,6 +34,16 @@ class HomePage extends StatelessWidget {
 class AllContent extends StatelessWidget {
   const AllContent({super.key});
 
+  void _onAppletTap(BuildContext context, String appletName) {
+    // Navigate to the detail page or perform any action on tap
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => AppletDetailPage(appletName: appletName),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,11 +88,12 @@ class AllContent extends StatelessWidget {
             child: ListView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               itemCount: 10,
-              itemBuilder: (context, index) => const Padding(
-                padding: EdgeInsets.only(bottom: 16.0),
+              itemBuilder: (context, index) => Padding(
+                padding: const EdgeInsets.only(bottom: 16.0),
                 child: MyCard(
                   backgroundColor: Colors.lightBlueAccent,
                   text: 'Amazon to X',
+                  onTap: () => _onAppletTap(context, 'Amazon to X'),
                 ),
               ),
             ),
@@ -154,6 +165,24 @@ class _ProvidersContentState extends State<ProvidersContent> {
                 );
               },
             ),
+    );
+  }
+}
+
+class AppletDetailPage extends StatelessWidget {
+  final String appletName;
+
+  const AppletDetailPage({super.key, required this.appletName});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(appletName),
+      ),
+      body: Center(
+        child: Text('Details for $appletName'),
+      ),
     );
   }
 }

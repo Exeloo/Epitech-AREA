@@ -10,10 +10,12 @@ Serializer<GgetAllAppletsReq> _$ggetAllAppletsReqSerializer =
     new _$GgetAllAppletsReqSerializer();
 Serializer<GgetAppletByIdReq> _$ggetAppletByIdReqSerializer =
     new _$GgetAppletByIdReqSerializer();
+Serializer<GgetAppletNodeByIdReq> _$ggetAppletNodeByIdReqSerializer =
+    new _$GgetAppletNodeByIdReqSerializer();
 Serializer<GcreateAppletReq> _$gcreateAppletReqSerializer =
     new _$GcreateAppletReqSerializer();
-Serializer<GProviderManifestActionReq> _$gProviderManifestActionReqSerializer =
-    new _$GProviderManifestActionReqSerializer();
+Serializer<GBaseAppletProviderReq> _$gBaseAppletProviderReqSerializer =
+    new _$GBaseAppletProviderReqSerializer();
 Serializer<GBaseAppletNodeReq> _$gBaseAppletNodeReqSerializer =
     new _$GBaseAppletNodeReqSerializer();
 Serializer<GExtendedAppletNodeReq> _$gExtendedAppletNodeReqSerializer =
@@ -259,6 +261,128 @@ class _$GgetAppletByIdReqSerializer
   }
 }
 
+class _$GgetAppletNodeByIdReqSerializer
+    implements StructuredSerializer<GgetAppletNodeByIdReq> {
+  @override
+  final Iterable<Type> types = const [
+    GgetAppletNodeByIdReq,
+    _$GgetAppletNodeByIdReq
+  ];
+  @override
+  final String wireName = 'GgetAppletNodeByIdReq';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GgetAppletNodeByIdReq object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'vars',
+      serializers.serialize(object.vars,
+          specifiedType: const FullType(_i3.GgetAppletNodeByIdVars)),
+      'operation',
+      serializers.serialize(object.operation,
+          specifiedType: const FullType(_i4.Operation)),
+      'executeOnListen',
+      serializers.serialize(object.executeOnListen,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.requestId;
+    if (value != null) {
+      result
+        ..add('requestId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.optimisticResponse;
+    if (value != null) {
+      result
+        ..add('optimisticResponse')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(_i2.GgetAppletNodeByIdData)));
+    }
+    value = object.updateCacheHandlerKey;
+    if (value != null) {
+      result
+        ..add('updateCacheHandlerKey')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.updateCacheHandlerContext;
+    if (value != null) {
+      result
+        ..add('updateCacheHandlerContext')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                Map, const [const FullType(String), const FullType(dynamic)])));
+    }
+    value = object.fetchPolicy;
+    if (value != null) {
+      result
+        ..add('fetchPolicy')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(_i1.FetchPolicy)));
+    }
+    return result;
+  }
+
+  @override
+  GgetAppletNodeByIdReq deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GgetAppletNodeByIdReqBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'vars':
+          result.vars.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i3.GgetAppletNodeByIdVars))!
+              as _i3.GgetAppletNodeByIdVars);
+          break;
+        case 'operation':
+          result.operation = serializers.deserialize(value,
+              specifiedType: const FullType(_i4.Operation))! as _i4.Operation;
+          break;
+        case 'requestId':
+          result.requestId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'optimisticResponse':
+          result.optimisticResponse.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i2.GgetAppletNodeByIdData))!
+              as _i2.GgetAppletNodeByIdData);
+          break;
+        case 'updateCacheHandlerKey':
+          result.updateCacheHandlerKey = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'updateCacheHandlerContext':
+          result.updateCacheHandlerContext = serializers.deserialize(value,
+              specifiedType: const FullType(Map, const [
+                const FullType(String),
+                const FullType(dynamic)
+              ])) as Map<String, dynamic>?;
+          break;
+        case 'fetchPolicy':
+          result.fetchPolicy = serializers.deserialize(value,
+                  specifiedType: const FullType(_i1.FetchPolicy))
+              as _i1.FetchPolicy?;
+          break;
+        case 'executeOnListen':
+          result.executeOnListen = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$GcreateAppletReqSerializer
     implements StructuredSerializer<GcreateAppletReq> {
   @override
@@ -377,24 +501,24 @@ class _$GcreateAppletReqSerializer
   }
 }
 
-class _$GProviderManifestActionReqSerializer
-    implements StructuredSerializer<GProviderManifestActionReq> {
+class _$GBaseAppletProviderReqSerializer
+    implements StructuredSerializer<GBaseAppletProviderReq> {
   @override
   final Iterable<Type> types = const [
-    GProviderManifestActionReq,
-    _$GProviderManifestActionReq
+    GBaseAppletProviderReq,
+    _$GBaseAppletProviderReq
   ];
   @override
-  final String wireName = 'GProviderManifestActionReq';
+  final String wireName = 'GBaseAppletProviderReq';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GProviderManifestActionReq object,
+      Serializers serializers, GBaseAppletProviderReq object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       'vars',
       serializers.serialize(object.vars,
-          specifiedType: const FullType(_i3.GProviderManifestActionVars)),
+          specifiedType: const FullType(_i3.GBaseAppletProviderVars)),
       'document',
       serializers.serialize(object.document,
           specifiedType: const FullType(_i7.DocumentNode)),
@@ -415,10 +539,10 @@ class _$GProviderManifestActionReqSerializer
   }
 
   @override
-  GProviderManifestActionReq deserialize(
+  GBaseAppletProviderReq deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GProviderManifestActionReqBuilder();
+    final result = new GBaseAppletProviderReqBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -428,9 +552,8 @@ class _$GProviderManifestActionReqSerializer
       switch (key) {
         case 'vars':
           result.vars.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(_i3.GProviderManifestActionVars))!
-              as _i3.GProviderManifestActionVars);
+                  specifiedType: const FullType(_i3.GBaseAppletProviderVars))!
+              as _i3.GBaseAppletProviderVars);
           break;
         case 'document':
           result.document = serializers.deserialize(value,
@@ -1230,6 +1353,246 @@ class GgetAppletByIdReqBuilder
   }
 }
 
+class _$GgetAppletNodeByIdReq extends GgetAppletNodeByIdReq {
+  @override
+  final _i3.GgetAppletNodeByIdVars vars;
+  @override
+  final _i4.Operation operation;
+  @override
+  final String? requestId;
+  @override
+  final _i2.GgetAppletNodeByIdData? Function(
+      _i2.GgetAppletNodeByIdData?, _i2.GgetAppletNodeByIdData?)? updateResult;
+  @override
+  final _i2.GgetAppletNodeByIdData? optimisticResponse;
+  @override
+  final String? updateCacheHandlerKey;
+  @override
+  final Map<String, dynamic>? updateCacheHandlerContext;
+  @override
+  final _i1.FetchPolicy? fetchPolicy;
+  @override
+  final bool executeOnListen;
+  @override
+  final _i4.Context? context;
+
+  factory _$GgetAppletNodeByIdReq(
+          [void Function(GgetAppletNodeByIdReqBuilder)? updates]) =>
+      (new GgetAppletNodeByIdReqBuilder()..update(updates))._build();
+
+  _$GgetAppletNodeByIdReq._(
+      {required this.vars,
+      required this.operation,
+      this.requestId,
+      this.updateResult,
+      this.optimisticResponse,
+      this.updateCacheHandlerKey,
+      this.updateCacheHandlerContext,
+      this.fetchPolicy,
+      required this.executeOnListen,
+      this.context})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        vars, r'GgetAppletNodeByIdReq', 'vars');
+    BuiltValueNullFieldError.checkNotNull(
+        operation, r'GgetAppletNodeByIdReq', 'operation');
+    BuiltValueNullFieldError.checkNotNull(
+        executeOnListen, r'GgetAppletNodeByIdReq', 'executeOnListen');
+  }
+
+  @override
+  GgetAppletNodeByIdReq rebuild(
+          void Function(GgetAppletNodeByIdReqBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GgetAppletNodeByIdReqBuilder toBuilder() =>
+      new GgetAppletNodeByIdReqBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    final dynamic _$dynamicOther = other;
+    return other is GgetAppletNodeByIdReq &&
+        vars == other.vars &&
+        operation == other.operation &&
+        requestId == other.requestId &&
+        updateResult == _$dynamicOther.updateResult &&
+        optimisticResponse == other.optimisticResponse &&
+        updateCacheHandlerKey == other.updateCacheHandlerKey &&
+        updateCacheHandlerContext == other.updateCacheHandlerContext &&
+        fetchPolicy == other.fetchPolicy &&
+        executeOnListen == other.executeOnListen &&
+        context == other.context;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, vars.hashCode);
+    _$hash = $jc(_$hash, operation.hashCode);
+    _$hash = $jc(_$hash, requestId.hashCode);
+    _$hash = $jc(_$hash, updateResult.hashCode);
+    _$hash = $jc(_$hash, optimisticResponse.hashCode);
+    _$hash = $jc(_$hash, updateCacheHandlerKey.hashCode);
+    _$hash = $jc(_$hash, updateCacheHandlerContext.hashCode);
+    _$hash = $jc(_$hash, fetchPolicy.hashCode);
+    _$hash = $jc(_$hash, executeOnListen.hashCode);
+    _$hash = $jc(_$hash, context.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GgetAppletNodeByIdReq')
+          ..add('vars', vars)
+          ..add('operation', operation)
+          ..add('requestId', requestId)
+          ..add('updateResult', updateResult)
+          ..add('optimisticResponse', optimisticResponse)
+          ..add('updateCacheHandlerKey', updateCacheHandlerKey)
+          ..add('updateCacheHandlerContext', updateCacheHandlerContext)
+          ..add('fetchPolicy', fetchPolicy)
+          ..add('executeOnListen', executeOnListen)
+          ..add('context', context))
+        .toString();
+  }
+}
+
+class GgetAppletNodeByIdReqBuilder
+    implements Builder<GgetAppletNodeByIdReq, GgetAppletNodeByIdReqBuilder> {
+  _$GgetAppletNodeByIdReq? _$v;
+
+  _i3.GgetAppletNodeByIdVarsBuilder? _vars;
+  _i3.GgetAppletNodeByIdVarsBuilder get vars =>
+      _$this._vars ??= new _i3.GgetAppletNodeByIdVarsBuilder();
+  set vars(_i3.GgetAppletNodeByIdVarsBuilder? vars) => _$this._vars = vars;
+
+  _i4.Operation? _operation;
+  _i4.Operation? get operation => _$this._operation;
+  set operation(_i4.Operation? operation) => _$this._operation = operation;
+
+  String? _requestId;
+  String? get requestId => _$this._requestId;
+  set requestId(String? requestId) => _$this._requestId = requestId;
+
+  _i2.GgetAppletNodeByIdData? Function(
+      _i2.GgetAppletNodeByIdData?, _i2.GgetAppletNodeByIdData?)? _updateResult;
+  _i2.GgetAppletNodeByIdData? Function(
+          _i2.GgetAppletNodeByIdData?, _i2.GgetAppletNodeByIdData?)?
+      get updateResult => _$this._updateResult;
+  set updateResult(
+          _i2.GgetAppletNodeByIdData? Function(
+                  _i2.GgetAppletNodeByIdData?, _i2.GgetAppletNodeByIdData?)?
+              updateResult) =>
+      _$this._updateResult = updateResult;
+
+  _i2.GgetAppletNodeByIdDataBuilder? _optimisticResponse;
+  _i2.GgetAppletNodeByIdDataBuilder get optimisticResponse =>
+      _$this._optimisticResponse ??= new _i2.GgetAppletNodeByIdDataBuilder();
+  set optimisticResponse(
+          _i2.GgetAppletNodeByIdDataBuilder? optimisticResponse) =>
+      _$this._optimisticResponse = optimisticResponse;
+
+  String? _updateCacheHandlerKey;
+  String? get updateCacheHandlerKey => _$this._updateCacheHandlerKey;
+  set updateCacheHandlerKey(String? updateCacheHandlerKey) =>
+      _$this._updateCacheHandlerKey = updateCacheHandlerKey;
+
+  Map<String, dynamic>? _updateCacheHandlerContext;
+  Map<String, dynamic>? get updateCacheHandlerContext =>
+      _$this._updateCacheHandlerContext;
+  set updateCacheHandlerContext(
+          Map<String, dynamic>? updateCacheHandlerContext) =>
+      _$this._updateCacheHandlerContext = updateCacheHandlerContext;
+
+  _i1.FetchPolicy? _fetchPolicy;
+  _i1.FetchPolicy? get fetchPolicy => _$this._fetchPolicy;
+  set fetchPolicy(_i1.FetchPolicy? fetchPolicy) =>
+      _$this._fetchPolicy = fetchPolicy;
+
+  bool? _executeOnListen;
+  bool? get executeOnListen => _$this._executeOnListen;
+  set executeOnListen(bool? executeOnListen) =>
+      _$this._executeOnListen = executeOnListen;
+
+  _i4.Context? _context;
+  _i4.Context? get context => _$this._context;
+  set context(_i4.Context? context) => _$this._context = context;
+
+  GgetAppletNodeByIdReqBuilder() {
+    GgetAppletNodeByIdReq._initializeBuilder(this);
+  }
+
+  GgetAppletNodeByIdReqBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _vars = $v.vars.toBuilder();
+      _operation = $v.operation;
+      _requestId = $v.requestId;
+      _updateResult = $v.updateResult;
+      _optimisticResponse = $v.optimisticResponse?.toBuilder();
+      _updateCacheHandlerKey = $v.updateCacheHandlerKey;
+      _updateCacheHandlerContext = $v.updateCacheHandlerContext;
+      _fetchPolicy = $v.fetchPolicy;
+      _executeOnListen = $v.executeOnListen;
+      _context = $v.context;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GgetAppletNodeByIdReq other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GgetAppletNodeByIdReq;
+  }
+
+  @override
+  void update(void Function(GgetAppletNodeByIdReqBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GgetAppletNodeByIdReq build() => _build();
+
+  _$GgetAppletNodeByIdReq _build() {
+    _$GgetAppletNodeByIdReq _$result;
+    try {
+      _$result = _$v ??
+          new _$GgetAppletNodeByIdReq._(
+              vars: vars.build(),
+              operation: BuiltValueNullFieldError.checkNotNull(
+                  operation, r'GgetAppletNodeByIdReq', 'operation'),
+              requestId: requestId,
+              updateResult: updateResult,
+              optimisticResponse: _optimisticResponse?.build(),
+              updateCacheHandlerKey: updateCacheHandlerKey,
+              updateCacheHandlerContext: updateCacheHandlerContext,
+              fetchPolicy: fetchPolicy,
+              executeOnListen: BuiltValueNullFieldError.checkNotNull(
+                  executeOnListen, r'GgetAppletNodeByIdReq', 'executeOnListen'),
+              context: context);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'vars';
+        vars.build();
+
+        _$failedField = 'optimisticResponse';
+        _optimisticResponse?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GgetAppletNodeByIdReq', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$GcreateAppletReq extends GcreateAppletReq {
   @override
   final _i3.GcreateAppletVars vars;
@@ -1467,9 +1830,9 @@ class GcreateAppletReqBuilder
   }
 }
 
-class _$GProviderManifestActionReq extends GProviderManifestActionReq {
+class _$GBaseAppletProviderReq extends GBaseAppletProviderReq {
   @override
-  final _i3.GProviderManifestActionVars vars;
+  final _i3.GBaseAppletProviderVars vars;
   @override
   final _i7.DocumentNode document;
   @override
@@ -1477,37 +1840,37 @@ class _$GProviderManifestActionReq extends GProviderManifestActionReq {
   @override
   final Map<String, dynamic> idFields;
 
-  factory _$GProviderManifestActionReq(
-          [void Function(GProviderManifestActionReqBuilder)? updates]) =>
-      (new GProviderManifestActionReqBuilder()..update(updates))._build();
+  factory _$GBaseAppletProviderReq(
+          [void Function(GBaseAppletProviderReqBuilder)? updates]) =>
+      (new GBaseAppletProviderReqBuilder()..update(updates))._build();
 
-  _$GProviderManifestActionReq._(
+  _$GBaseAppletProviderReq._(
       {required this.vars,
       required this.document,
       this.fragmentName,
       required this.idFields})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        vars, r'GProviderManifestActionReq', 'vars');
+        vars, r'GBaseAppletProviderReq', 'vars');
     BuiltValueNullFieldError.checkNotNull(
-        document, r'GProviderManifestActionReq', 'document');
+        document, r'GBaseAppletProviderReq', 'document');
     BuiltValueNullFieldError.checkNotNull(
-        idFields, r'GProviderManifestActionReq', 'idFields');
+        idFields, r'GBaseAppletProviderReq', 'idFields');
   }
 
   @override
-  GProviderManifestActionReq rebuild(
-          void Function(GProviderManifestActionReqBuilder) updates) =>
+  GBaseAppletProviderReq rebuild(
+          void Function(GBaseAppletProviderReqBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GProviderManifestActionReqBuilder toBuilder() =>
-      new GProviderManifestActionReqBuilder()..replace(this);
+  GBaseAppletProviderReqBuilder toBuilder() =>
+      new GBaseAppletProviderReqBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GProviderManifestActionReq &&
+    return other is GBaseAppletProviderReq &&
         vars == other.vars &&
         document == other.document &&
         fragmentName == other.fragmentName &&
@@ -1527,7 +1890,7 @@ class _$GProviderManifestActionReq extends GProviderManifestActionReq {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GProviderManifestActionReq')
+    return (newBuiltValueToStringHelper(r'GBaseAppletProviderReq')
           ..add('vars', vars)
           ..add('document', document)
           ..add('fragmentName', fragmentName)
@@ -1536,15 +1899,14 @@ class _$GProviderManifestActionReq extends GProviderManifestActionReq {
   }
 }
 
-class GProviderManifestActionReqBuilder
-    implements
-        Builder<GProviderManifestActionReq, GProviderManifestActionReqBuilder> {
-  _$GProviderManifestActionReq? _$v;
+class GBaseAppletProviderReqBuilder
+    implements Builder<GBaseAppletProviderReq, GBaseAppletProviderReqBuilder> {
+  _$GBaseAppletProviderReq? _$v;
 
-  _i3.GProviderManifestActionVarsBuilder? _vars;
-  _i3.GProviderManifestActionVarsBuilder get vars =>
-      _$this._vars ??= new _i3.GProviderManifestActionVarsBuilder();
-  set vars(_i3.GProviderManifestActionVarsBuilder? vars) => _$this._vars = vars;
+  _i3.GBaseAppletProviderVarsBuilder? _vars;
+  _i3.GBaseAppletProviderVarsBuilder get vars =>
+      _$this._vars ??= new _i3.GBaseAppletProviderVarsBuilder();
+  set vars(_i3.GBaseAppletProviderVarsBuilder? vars) => _$this._vars = vars;
 
   _i7.DocumentNode? _document;
   _i7.DocumentNode? get document => _$this._document;
@@ -1558,11 +1920,11 @@ class GProviderManifestActionReqBuilder
   Map<String, dynamic>? get idFields => _$this._idFields;
   set idFields(Map<String, dynamic>? idFields) => _$this._idFields = idFields;
 
-  GProviderManifestActionReqBuilder() {
-    GProviderManifestActionReq._initializeBuilder(this);
+  GBaseAppletProviderReqBuilder() {
+    GBaseAppletProviderReq._initializeBuilder(this);
   }
 
-  GProviderManifestActionReqBuilder get _$this {
+  GBaseAppletProviderReqBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _vars = $v.vars.toBuilder();
@@ -1575,30 +1937,30 @@ class GProviderManifestActionReqBuilder
   }
 
   @override
-  void replace(GProviderManifestActionReq other) {
+  void replace(GBaseAppletProviderReq other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GProviderManifestActionReq;
+    _$v = other as _$GBaseAppletProviderReq;
   }
 
   @override
-  void update(void Function(GProviderManifestActionReqBuilder)? updates) {
+  void update(void Function(GBaseAppletProviderReqBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  GProviderManifestActionReq build() => _build();
+  GBaseAppletProviderReq build() => _build();
 
-  _$GProviderManifestActionReq _build() {
-    _$GProviderManifestActionReq _$result;
+  _$GBaseAppletProviderReq _build() {
+    _$GBaseAppletProviderReq _$result;
     try {
       _$result = _$v ??
-          new _$GProviderManifestActionReq._(
+          new _$GBaseAppletProviderReq._(
               vars: vars.build(),
               document: BuiltValueNullFieldError.checkNotNull(
-                  document, r'GProviderManifestActionReq', 'document'),
+                  document, r'GBaseAppletProviderReq', 'document'),
               fragmentName: fragmentName,
               idFields: BuiltValueNullFieldError.checkNotNull(
-                  idFields, r'GProviderManifestActionReq', 'idFields'));
+                  idFields, r'GBaseAppletProviderReq', 'idFields'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -1606,7 +1968,7 @@ class GProviderManifestActionReqBuilder
         vars.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GProviderManifestActionReq', _$failedField, e.toString());
+            r'GBaseAppletProviderReq', _$failedField, e.toString());
       }
       rethrow;
     }

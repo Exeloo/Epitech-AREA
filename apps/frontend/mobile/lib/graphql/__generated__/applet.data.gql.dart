@@ -5,7 +5,6 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:mobile/graphql/__generated__/provider.data.gql.dart' as _i3;
 import 'package:mobile/graphql/__generated__/schema.schema.gql.dart' as _i2;
 import 'package:mobile/graphql/__generated__/serializers.gql.dart' as _i1;
 
@@ -179,6 +178,12 @@ abstract class GgetAppletByIdData_getAppletById_triggerNodes
       get previous;
   @override
   BuiltList<GgetAppletByIdData_getAppletById_triggerNodes_next> get next;
+  @override
+  int get id;
+  @override
+  String get actionId;
+  @override
+  _i2.GAppletNodeType get actionType;
   static Serializer<GgetAppletByIdData_getAppletById_triggerNodes>
       get serializer => _$ggetAppletByIdDataGetAppletByIdTriggerNodesSerializer;
 
@@ -202,7 +207,7 @@ abstract class GgetAppletByIdData_getAppletById_triggerNodes_provider
             GgetAppletByIdData_getAppletById_triggerNodes_providerBuilder>,
         GAppletWithNodes_triggerNodes_provider,
         GExtendedAppletNode_provider,
-        _i3.GBaseProvider {
+        GBaseAppletProvider {
   GgetAppletByIdData_getAppletById_triggerNodes_provider._();
 
   factory GgetAppletByIdData_getAppletById_triggerNodes_provider(
@@ -337,6 +342,218 @@ abstract class GgetAppletByIdData_getAppletById_triggerNodes_next
       );
 }
 
+abstract class GgetAppletNodeByIdData
+    implements Built<GgetAppletNodeByIdData, GgetAppletNodeByIdDataBuilder> {
+  GgetAppletNodeByIdData._();
+
+  factory GgetAppletNodeByIdData(
+          [void Function(GgetAppletNodeByIdDataBuilder b) updates]) =
+      _$GgetAppletNodeByIdData;
+
+  static void _initializeBuilder(GgetAppletNodeByIdDataBuilder b) =>
+      b..G__typename = 'Query';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  GgetAppletNodeByIdData_getAppletNodeById get getAppletNodeById;
+  static Serializer<GgetAppletNodeByIdData> get serializer =>
+      _$ggetAppletNodeByIdDataSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetAppletNodeByIdData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetAppletNodeByIdData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetAppletNodeByIdData.serializer,
+        json,
+      );
+}
+
+abstract class GgetAppletNodeByIdData_getAppletNodeById
+    implements
+        Built<GgetAppletNodeByIdData_getAppletNodeById,
+            GgetAppletNodeByIdData_getAppletNodeByIdBuilder>,
+        GExtendedAppletNode {
+  GgetAppletNodeByIdData_getAppletNodeById._();
+
+  factory GgetAppletNodeByIdData_getAppletNodeById(
+      [void Function(GgetAppletNodeByIdData_getAppletNodeByIdBuilder b)
+          updates]) = _$GgetAppletNodeByIdData_getAppletNodeById;
+
+  static void _initializeBuilder(
+          GgetAppletNodeByIdData_getAppletNodeByIdBuilder b) =>
+      b..G__typename = 'AppletNode';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  _i2.GJSON get input;
+  @override
+  GgetAppletNodeByIdData_getAppletNodeById_provider get provider;
+  @override
+  BuiltList<GgetAppletNodeByIdData_getAppletNodeById_previous> get previous;
+  @override
+  BuiltList<GgetAppletNodeByIdData_getAppletNodeById_next> get next;
+  @override
+  int get id;
+  @override
+  String get actionId;
+  @override
+  _i2.GAppletNodeType get actionType;
+  static Serializer<GgetAppletNodeByIdData_getAppletNodeById> get serializer =>
+      _$ggetAppletNodeByIdDataGetAppletNodeByIdSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetAppletNodeByIdData_getAppletNodeById.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetAppletNodeByIdData_getAppletNodeById? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetAppletNodeByIdData_getAppletNodeById.serializer,
+        json,
+      );
+}
+
+abstract class GgetAppletNodeByIdData_getAppletNodeById_provider
+    implements
+        Built<GgetAppletNodeByIdData_getAppletNodeById_provider,
+            GgetAppletNodeByIdData_getAppletNodeById_providerBuilder>,
+        GExtendedAppletNode_provider,
+        GBaseAppletProvider {
+  GgetAppletNodeByIdData_getAppletNodeById_provider._();
+
+  factory GgetAppletNodeByIdData_getAppletNodeById_provider(
+      [void Function(GgetAppletNodeByIdData_getAppletNodeById_providerBuilder b)
+          updates]) = _$GgetAppletNodeByIdData_getAppletNodeById_provider;
+
+  static void _initializeBuilder(
+          GgetAppletNodeByIdData_getAppletNodeById_providerBuilder b) =>
+      b..G__typename = 'Provider';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  int get id;
+  @override
+  String get name;
+  @override
+  String get description;
+  @override
+  String get img;
+  @override
+  String get color;
+  @override
+  _i2.GProviderVisibility get visibility;
+  static Serializer<GgetAppletNodeByIdData_getAppletNodeById_provider>
+      get serializer =>
+          _$ggetAppletNodeByIdDataGetAppletNodeByIdProviderSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetAppletNodeByIdData_getAppletNodeById_provider.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetAppletNodeByIdData_getAppletNodeById_provider? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetAppletNodeByIdData_getAppletNodeById_provider.serializer,
+        json,
+      );
+}
+
+abstract class GgetAppletNodeByIdData_getAppletNodeById_previous
+    implements
+        Built<GgetAppletNodeByIdData_getAppletNodeById_previous,
+            GgetAppletNodeByIdData_getAppletNodeById_previousBuilder>,
+        GExtendedAppletNode_previous,
+        GBaseAppletNode {
+  GgetAppletNodeByIdData_getAppletNodeById_previous._();
+
+  factory GgetAppletNodeByIdData_getAppletNodeById_previous(
+      [void Function(GgetAppletNodeByIdData_getAppletNodeById_previousBuilder b)
+          updates]) = _$GgetAppletNodeByIdData_getAppletNodeById_previous;
+
+  static void _initializeBuilder(
+          GgetAppletNodeByIdData_getAppletNodeById_previousBuilder b) =>
+      b..G__typename = 'AppletNode';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  int get id;
+  @override
+  String get actionId;
+  @override
+  _i2.GAppletNodeType get actionType;
+  static Serializer<GgetAppletNodeByIdData_getAppletNodeById_previous>
+      get serializer =>
+          _$ggetAppletNodeByIdDataGetAppletNodeByIdPreviousSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetAppletNodeByIdData_getAppletNodeById_previous.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetAppletNodeByIdData_getAppletNodeById_previous? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetAppletNodeByIdData_getAppletNodeById_previous.serializer,
+        json,
+      );
+}
+
+abstract class GgetAppletNodeByIdData_getAppletNodeById_next
+    implements
+        Built<GgetAppletNodeByIdData_getAppletNodeById_next,
+            GgetAppletNodeByIdData_getAppletNodeById_nextBuilder>,
+        GExtendedAppletNode_next,
+        GBaseAppletNode {
+  GgetAppletNodeByIdData_getAppletNodeById_next._();
+
+  factory GgetAppletNodeByIdData_getAppletNodeById_next(
+      [void Function(GgetAppletNodeByIdData_getAppletNodeById_nextBuilder b)
+          updates]) = _$GgetAppletNodeByIdData_getAppletNodeById_next;
+
+  static void _initializeBuilder(
+          GgetAppletNodeByIdData_getAppletNodeById_nextBuilder b) =>
+      b..G__typename = 'AppletNode';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  int get id;
+  @override
+  String get actionId;
+  @override
+  _i2.GAppletNodeType get actionType;
+  static Serializer<GgetAppletNodeByIdData_getAppletNodeById_next>
+      get serializer => _$ggetAppletNodeByIdDataGetAppletNodeByIdNextSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetAppletNodeByIdData_getAppletNodeById_next.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetAppletNodeByIdData_getAppletNodeById_next? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetAppletNodeByIdData_getAppletNodeById_next.serializer,
+        json,
+      );
+}
+
 abstract class GcreateAppletData
     implements Built<GcreateAppletData, GcreateAppletDataBuilder> {
   GcreateAppletData._();
@@ -405,36 +622,35 @@ abstract class GcreateAppletData_createApplet
       );
 }
 
-abstract class GProviderManifestAction {
+abstract class GBaseAppletProvider {
   String get G__typename;
-  String get id;
+  int get id;
   String get name;
   String get description;
   String get img;
   String get color;
-  _i2.GJSON get input;
-  _i2.GJSON get output;
+  _i2.GProviderVisibility get visibility;
   Map<String, dynamic> toJson();
 }
 
-abstract class GProviderManifestActionData
+abstract class GBaseAppletProviderData
     implements
-        Built<GProviderManifestActionData, GProviderManifestActionDataBuilder>,
-        GProviderManifestAction {
-  GProviderManifestActionData._();
+        Built<GBaseAppletProviderData, GBaseAppletProviderDataBuilder>,
+        GBaseAppletProvider {
+  GBaseAppletProviderData._();
 
-  factory GProviderManifestActionData(
-          [void Function(GProviderManifestActionDataBuilder b) updates]) =
-      _$GProviderManifestActionData;
+  factory GBaseAppletProviderData(
+          [void Function(GBaseAppletProviderDataBuilder b) updates]) =
+      _$GBaseAppletProviderData;
 
-  static void _initializeBuilder(GProviderManifestActionDataBuilder b) =>
-      b..G__typename = 'ProviderManifestAction';
+  static void _initializeBuilder(GBaseAppletProviderDataBuilder b) =>
+      b..G__typename = 'Provider';
 
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   @override
-  String get id;
+  int get id;
   @override
   String get name;
   @override
@@ -444,21 +660,19 @@ abstract class GProviderManifestActionData
   @override
   String get color;
   @override
-  _i2.GJSON get input;
-  @override
-  _i2.GJSON get output;
-  static Serializer<GProviderManifestActionData> get serializer =>
-      _$gProviderManifestActionDataSerializer;
+  _i2.GProviderVisibility get visibility;
+  static Serializer<GBaseAppletProviderData> get serializer =>
+      _$gBaseAppletProviderDataSerializer;
 
   @override
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GProviderManifestActionData.serializer,
+        GBaseAppletProviderData.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GProviderManifestActionData? fromJson(Map<String, dynamic> json) =>
+  static GBaseAppletProviderData? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
-        GProviderManifestActionData.serializer,
+        GBaseAppletProviderData.serializer,
         json,
       );
 }
@@ -509,16 +723,24 @@ abstract class GBaseAppletNodeData
       );
 }
 
-abstract class GExtendedAppletNode {
+abstract class GExtendedAppletNode implements GBaseAppletNode {
+  @override
   String get G__typename;
+  @override
+  int get id;
+  @override
+  String get actionId;
+  @override
+  _i2.GAppletNodeType get actionType;
   _i2.GJSON get input;
   GExtendedAppletNode_provider get provider;
   BuiltList<GExtendedAppletNode_previous> get previous;
   BuiltList<GExtendedAppletNode_next> get next;
+  @override
   Map<String, dynamic> toJson();
 }
 
-abstract class GExtendedAppletNode_provider implements _i3.GBaseProvider {
+abstract class GExtendedAppletNode_provider implements GBaseAppletProvider {
   @override
   String get G__typename;
   @override
@@ -566,7 +788,8 @@ abstract class GExtendedAppletNode_next implements GBaseAppletNode {
 abstract class GExtendedAppletNodeData
     implements
         Built<GExtendedAppletNodeData, GExtendedAppletNodeDataBuilder>,
-        GExtendedAppletNode {
+        GExtendedAppletNode,
+        GBaseAppletNode {
   GExtendedAppletNodeData._();
 
   factory GExtendedAppletNodeData(
@@ -579,6 +802,12 @@ abstract class GExtendedAppletNodeData
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
+  @override
+  int get id;
+  @override
+  String get actionId;
+  @override
+  _i2.GAppletNodeType get actionType;
   @override
   _i2.GJSON get input;
   @override
@@ -608,7 +837,7 @@ abstract class GExtendedAppletNodeData_provider
         Built<GExtendedAppletNodeData_provider,
             GExtendedAppletNodeData_providerBuilder>,
         GExtendedAppletNode_provider,
-        _i3.GBaseProvider {
+        GBaseAppletProvider {
   GExtendedAppletNodeData_provider._();
 
   factory GExtendedAppletNodeData_provider(
@@ -800,11 +1029,17 @@ abstract class GAppletWithNodes_triggerNodes implements GExtendedAppletNode {
   @override
   BuiltList<GAppletWithNodes_triggerNodes_next> get next;
   @override
+  int get id;
+  @override
+  String get actionId;
+  @override
+  _i2.GAppletNodeType get actionType;
+  @override
   Map<String, dynamic> toJson();
 }
 
 abstract class GAppletWithNodes_triggerNodes_provider
-    implements GExtendedAppletNode_provider, _i3.GBaseProvider {
+    implements GExtendedAppletNode_provider, GBaseAppletProvider {
   @override
   String get G__typename;
   @override
@@ -918,6 +1153,12 @@ abstract class GAppletWithNodesData_triggerNodes
   BuiltList<GAppletWithNodesData_triggerNodes_previous> get previous;
   @override
   BuiltList<GAppletWithNodesData_triggerNodes_next> get next;
+  @override
+  int get id;
+  @override
+  String get actionId;
+  @override
+  _i2.GAppletNodeType get actionType;
   static Serializer<GAppletWithNodesData_triggerNodes> get serializer =>
       _$gAppletWithNodesDataTriggerNodesSerializer;
 
@@ -941,7 +1182,7 @@ abstract class GAppletWithNodesData_triggerNodes_provider
             GAppletWithNodesData_triggerNodes_providerBuilder>,
         GAppletWithNodes_triggerNodes_provider,
         GExtendedAppletNode_provider,
-        _i3.GBaseProvider {
+        GBaseAppletProvider {
   GAppletWithNodesData_triggerNodes_provider._();
 
   factory GAppletWithNodesData_triggerNodes_provider(

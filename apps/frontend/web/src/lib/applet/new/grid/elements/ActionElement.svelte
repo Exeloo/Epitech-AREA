@@ -1,11 +1,13 @@
 <script lang="ts">
 	import { type ProviderManifestAction, ProviderManifestActionStore } from '$houdini';
 	import Element from '$lib/applet/new/grid/elements/Element.svelte';
+	import type { ElementValues } from '$lib/applet/new/types';
 
 	interface Props {
 		action: ProviderManifestAction;
+		element: ElementValues | null;
 	}
-	let { action }: Props = $props();
+	let { action, element = $bindable() }: Props = $props();
 
 	let providerManifestActionStore = new ProviderManifestActionStore();
 
@@ -13,5 +15,5 @@
 </script>
 
 {#if $info}
-	<Element title={$info.name} description={$info.description} inputs={$info.input} />
+	<Element title={$info.name} description={$info.description} inputs={$info.input} bind:element />
 {/if}

@@ -1,12 +1,13 @@
 <script lang="ts">
 	import ProviderOption from '$lib/applet/new/grid/providers/ProviderOption.svelte';
-	import { load_getAllProviders, type ProviderWithManifest$data } from '$houdini';
+	import { load_getAllProviders } from '$houdini';
 	import { onMount } from 'svelte';
+	import type { ElementValues } from '$lib/applet/new/types';
 
 	interface Props {
-		selectedProvider: ProviderWithManifest$data | null;
+		element: ElementValues | null;
 	}
-	let { selectedProvider = $bindable() }: Props = $props();
+	let { element = $bindable() }: Props = $props();
 
 	let providers: any[] = $state([]);
 
@@ -22,6 +23,6 @@
 
 <div class="grid grid-cols-3 grid-rows-3 overflow-hidden rounded-xl bg-neutral-100">
 	{#each providers as provider}
-		<ProviderOption {provider} bind:selectedProvider />
+		<ProviderOption {provider} bind:element />
 	{/each}
 </div>

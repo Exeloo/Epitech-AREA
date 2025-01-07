@@ -1,4 +1,6 @@
 <script lang="ts">
+	import type { ElementValues } from '$lib/applet/new/types';
+
 	interface EntryParams {
 		type: string;
 	}
@@ -7,8 +9,14 @@
 		title?: string;
 		description?: string;
 		inputs: string;
+		element: ElementValues | null;
 	}
-	let { title = 'Title', description = 'Description', inputs }: Props = $props();
+	let {
+		title = 'Title',
+		description = 'Description',
+		inputs,
+		element = $bindable()
+	}: Props = $props();
 
 	let open = $state(false);
 
@@ -30,17 +38,17 @@
 		</span>
 		<i class="fi fi-rr-angle-small-down flex justify-center"></i>
 	</button>
-	{#if open}
+	{#if open && element}
 		<hr class="my-3" />
 		<div class="flex flex-col gap-2">
 			{#each inputsArray as input}
 				<div class="flex justify-between gap-2">
 					<span class="font-bold">{input.title}</span>
-					<input class="rounded-lg border px-2" />
+					<input bind:value={element.inputs[input.title]} class="rounded-lg border px-2" />
 				</div>
 			{/each}
 			<div class="flex justify-center">
-				<button class="w-fit rounded-xl bg-primary px-2 py-1 text-lg font-bold text-white shadow">
+				<button class="w-fit rounded-full bg-primary px-2 py-1 text-lg font-bold text-white shadow">
 					Add
 				</button>
 			</div>

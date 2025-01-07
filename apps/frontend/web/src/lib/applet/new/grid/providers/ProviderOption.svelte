@@ -3,15 +3,15 @@
 		type BaseProvider,
 		BaseProviderStore,
 		load_getProviderById,
-		type ProviderWithManifest$data,
 		ProviderWithManifestStore
 	} from '$houdini';
+	import type { ElementValues } from '$lib/applet/new/types';
 
 	interface Props {
 		provider: BaseProvider;
-		selectedProvider: ProviderWithManifest$data | null;
+		element: ElementValues | null;
 	}
-	let { provider, selectedProvider = $bindable() }: Props = $props();
+	let { provider, element = $bindable() }: Props = $props();
 
 	let baseProviderStore = new BaseProviderStore();
 	let providerWithManifestStore = new ProviderWithManifestStore();
@@ -27,7 +27,9 @@
 		if (!data || !data.getProviderById) return;
 
 		providerWithManifestStore.get(data.getProviderById).subscribe((provider) => {
-			selectedProvider = provider;
+			if (provider) {
+				element = { provider: provider, inputs: {}, actionId: undefined };
+			}
 		});
 	}
 </script>

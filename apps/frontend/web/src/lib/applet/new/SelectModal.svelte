@@ -1,27 +1,23 @@
 <script lang="ts">
-	import {
-		type BaseProvider$data,
-		BaseProviderStore,
-		type ProviderWithManifest$data
-	} from '$houdini';
+	import { type BaseProvider$data, BaseProviderStore } from '$houdini';
 	import ProvidersGrid from '$lib/applet/new/grid/providers/ProvidersGrid.svelte';
 	import ElementsGrid from '$lib/applet/new/grid/elements/ElementsGrid.svelte';
-	import { BlockType } from '$lib/applet/new/types';
+	import { BlockType, type ElementValues } from '$lib/applet/new/types';
 
 	interface Props {
 		type: BlockType;
 		open?: boolean;
+		element: ElementValues | null;
 	}
-	let { type, open = $bindable(false) }: Props = $props();
+	let { type, open = $bindable(false), element = $bindable() }: Props = $props();
 
 	const baseProviderStore = new BaseProviderStore();
 
-	let selectedProvider: ProviderWithManifest$data | null = $state(null);
 	let currentProviderInfo: BaseProvider$data | null = $state(null);
 
 	$effect(() => {
-		if (selectedProvider) {
-			baseProviderStore.get(selectedProvider).subscribe((provider) => {
+		if (element) {
+			baseProviderStore.get(element.provider).subscribe((provider) => {
 				currentProviderInfo = provider;
 			});
 		} else {
@@ -42,9 +38,9 @@
 		<div class="flex items-center justify-between rounded-t p-4">
 			<h3 class="text-base font-semibold">{type === BlockType.Actions ? 'Action' : 'Trigger'}</h3>
 			<div class="flex justify-end">
-				{#if selectedProvider}
+				{#if element}
 					<button
-						onclick={() => (selectedProvider = null)}
+						onclick={() => (element = null)}
 						type="button"
 						class="ms-auto inline-flex h-8 w-8 items-center justify-center rounded-full bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900"
 						data-modal-hide="default-modal"
@@ -75,10 +71,10 @@
 			{/if}
 		</div>
 		<div class="p-8">
-			{#if selectedProvider}
-				<ElementsGrid provider={selectedProvider} {type} />
+			{#if element}
+				<ElementsGrid {type} bind:element />
 			{:else}
-				<ProvidersGrid bind:selectedProvider />
+				<ProvidersGrid bind:element />
 			{/if}
 		</div>
 	</div>

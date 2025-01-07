@@ -1,0 +1,5 @@
+settings:
+  existingSecret: mariadb-password
+  rootPassword:
+    secretKey: mariadb-root-password
+extraScripts: mariadb-init-sql

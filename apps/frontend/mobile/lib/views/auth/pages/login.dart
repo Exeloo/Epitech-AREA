@@ -42,6 +42,7 @@ class LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xff1B1B1B),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -50,7 +51,7 @@ class LoginPageState extends State<LoginPage> {
           children: [
             const Text(
               'Login in to your account',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
@@ -64,8 +65,16 @@ class LoginPageState extends State<LoginPage> {
               controller: _emailController,
               decoration: const InputDecoration(
                 labelText: 'Email',
+                labelStyle: TextStyle(color: Colors.white),
                 border: OutlineInputBorder(),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                ),
               ),
+              style: const TextStyle(color: Colors.white),
             ),
             const SizedBox(height: 16),
             TextFormField(
@@ -73,8 +82,16 @@ class LoginPageState extends State<LoginPage> {
               obscureText: true,
               decoration: const InputDecoration(
                 labelText: 'Password',
+                labelStyle: TextStyle(color: Colors.white),
                 border: OutlineInputBorder(),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                ),
               ),
+              style: const TextStyle(color: Colors.white),
             ),
             const SizedBox(height: 8),
             Row(
@@ -90,12 +107,12 @@ class LoginPageState extends State<LoginPage> {
                         });
                       },
                     ),
-                    const Text('Remember me'),
+                    const Text('Remember me', style: TextStyle(color: Colors.white)),
                   ],
                 ),
                 TextButton(
                   onPressed: () {},
-                  child: const Text('Forgot password?'),
+                  child: const Text('Forgot password?', style: TextStyle(color: Colors.white)),
                 ),
               ],
             ),
@@ -121,7 +138,7 @@ class LoginPageState extends State<LoginPage> {
                         builder: (BuildContext context) => const SignUpPage()),
                     (Route<dynamic> route) => false);
               },
-              child: const Text('Don\'t have an account? Sign up'),
+              child: const Text('Don\'t have an account? Sign up', style: TextStyle(color: Colors.white)),
             ),
           ],
         ),

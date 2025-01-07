@@ -31,7 +31,7 @@ export class AppletNode implements IExposedAppletNode {
   @Field(() => GraphQLJSON, {
     description: "Input of the user for the applet node",
   })
-  input: object;
+  input: string;
 
   @Field(() => Provider, {
     description: "Provider that provide the action",

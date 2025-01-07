@@ -13,14 +13,19 @@ export class AuthResolver {
   @Query(() => AuthTokenResponse, {
     description: "Query used to auth with password strategy",
   })
-  login(@Args("data") data: AuthPasswordInput) {
+  login(
+    @Args("data", { type: () => AuthPasswordInput }) data: AuthPasswordInput,
+  ) {
     return this.authService.login(data);
   }
 
   @Query(() => AuthTokenResponse, {
     description: "Query used to refresh access token",
   })
-  refreshToken(@Args("data") data: AuthRefreshTokenInput) {
+  refreshToken(
+    @Args("data", { type: () => AuthRefreshTokenInput })
+    data: AuthRefreshTokenInput,
+  ) {
     return this.authService.refreshToken(data);
   }
 }

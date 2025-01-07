@@ -110,15 +110,6 @@
         name: docker
         extra_args: --break-system-packages
 
-    - name: Configure Docker to allow HTTP connections to the registry
-      copy:
-        dest: /etc/docker/daemon.json
-        content: |
-          {
-            "insecure-registries" : ["{{ master_ip }}:30001"]
-          }
-        mode: '0644'
-
     - name: Restart Docker service to apply changes
       service:
         name: docker

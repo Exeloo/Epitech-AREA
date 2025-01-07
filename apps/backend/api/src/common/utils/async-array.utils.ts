@@ -11,21 +11,21 @@ export class AsyncArrayUtils {
 
   static async forEach<T>(
     array: T[],
-    callback: (element: T) => void | Promise<void>,
+    callback: (element: T, index: number, array: T[]) => void | Promise<void>,
   ): Promise<void> {
-    for (const e of array) {
-      await callback(e);
+    for (let i = 0; i < array.length; i++) {
+      await callback(array[i], i, array);
     }
   }
 
   static async map<T, V>(
     array: T[],
-    callback: (element: T) => V | Promise<V>,
+    callback: (element: T, index: number, array: V[]) => V | Promise<V>,
   ): Promise<V[]> {
     const result = [];
-    for (const e of array) {
-      result.push(await callback(e));
-    }
+    await this.forEach(array, async (element: T, index: number) => {
+      result.push(await callback(element, index, result));
+    });
     return result;
   }
 }

@@ -1,5 +1,7 @@
+import { UseGuards } from "@nestjs/common";
 import {
   Args,
+  Int,
   Query,
   ResolveField,
   Resolver,
@@ -14,6 +16,7 @@ import { IExposedAppletNode } from "@domain/applet/node/types/applet-node.type";
 import { ProviderService } from "@domain/provider/provider.service";
 import { IExposedProvider } from "@domain/provider/types/provider.type";
 
+import { GqlAuthGuard } from "~/application/http/graphql/common/guards/gql-auth.guard";
 import { AppletNode } from "~/application/http/graphql/dto/nodes/applet/applet-node.node";
 import { Provider } from "~/application/http/graphql/dto/nodes/provider/provider.node";
 
@@ -31,6 +34,7 @@ registerEnumType(AppletNodeType, {
 });
 
 @Resolver(AppletNode)
+@UseGuards(GqlAuthGuard)
 export class AppletNodeResolver {
   constructor(
     private readonly appletNodeService: AppletNodeService,
@@ -48,20 +52,28 @@ export class AppletNodeResolver {
     description: "Nodes that is called previous",
   })
   previous(appletNode: IExposedAppletNode): Promise<IExposedAppletNode[]> {
-    return this.appletNodeService.getPreviousByAppletNodeId(appletNode.id);
+    return this.appletNodeService.getExposedApplets(
+      this.appletNodeService.getPreviousByAppletNodeId(appletNode.id),
+    );
   }
 
   @ResolveField(() => [AppletNode], {
     description: "Nodes that is called after",
   })
   next(appletNode: IExposedAppletNode): Promise<IExposedAppletNode[]> {
-    return this.appletNodeService.getNextByAppletNodeId(appletNode.id);
+    return this.appletNodeService.getExposedApplets(
+      this.appletNodeService.getNextByAppletNodeId(appletNode.id),
+    );
   }
 
   @Query(() => AppletNode, {
     description: "Query used to get an applet node",
   })
-  getAppletNodeById(@Args("id") id: ID): Promise<IExposedAppletNode> {
-    return this.appletNodeService.getById(id);
+  getAppletNodeById(
+    @Args("id", { type: () => Int }) id: ID,
+  ): Promise<IExposedAppletNode> {
+    return this.appletNodeService.getAsyncExposedApplet(
+      this.appletNodeService.getById(id),
+    );
   }
 }

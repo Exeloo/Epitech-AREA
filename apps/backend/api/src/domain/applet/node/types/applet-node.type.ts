@@ -18,8 +18,10 @@ export interface IAppletNode extends IIdentifiable, ITimestampable {
 
 export type IExposedAppletNode = Pick<
   IAppletNode,
-  "id" | "actionId" | "actionType" | "input"
->;
+  "id" | "actionId" | "actionType"
+> & {
+  input: string;
+};
 
 export type IProviderAppletNode = Pick<IAppletNode, "actionId" | "input"> & {
   baseId: ID;

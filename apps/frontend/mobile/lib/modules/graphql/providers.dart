@@ -1,8 +1,9 @@
+import 'package:mobile/graphql/graphql_client.dart';
+import 'package:mobile/modules/graphql/repository/applet_repository.dart';
 import 'package:mobile/modules/graphql/repository/auth_repository.dart';
 import 'package:mobile/modules/graphql/repository/provider_repository.dart';
 import 'package:mobile/modules/graphql/repository/user_repository.dart';
 import 'package:provider/provider.dart';
-import 'package:mobile/graphql/graphql_client.dart';
 import 'package:provider/single_child_widget.dart';
 
 class AppProvider {
@@ -18,6 +19,9 @@ class AppProvider {
       ),
       Provider<ProviderRepository>(
         create: (_) => ProviderRepository(client: client),
+      ),
+      Provider<AppletRepository>(
+        create: (_) => AppletRepository(client: client),
       )
     ];
   }

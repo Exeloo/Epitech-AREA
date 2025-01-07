@@ -1,0 +1,47 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ingress
+  namespace: deployment
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/proxy-body-size: 20480m
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: registry.area.tech.showmyteam.fr
+      http:
+        paths:
+          - path: /v2
+            pathType: Prefix
+            backend:
+              service:
+                name: docker-registry
+                port:
+                  number: 443
+    - host: argocd.area.tech.showmyteam.fr
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: argocd-server
+                port:
+                  number: 443
+    - host: phpmyadmin.area.tech.showmyteam.fr
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: phpmyadmin
+                port:
+                  number: 443
+  tls:
+    - hosts:
+        - registry.area.tech.showmyteam.fr
+        - argocd.area.tech.showmyteam.fr
+        - phpmyadmin.area.tech.showmyteam.fr
+      secretName: area-tech-tls

@@ -1,0 +1,18 @@
+services:
+  twitch:
+    image: node:22-alpine
+    build:
+      context: ../..
+    ports:
+      - "3002:3002"
+    working_dir: /app
+    volumes:
+      - ../../:/app
+    networks:
+      - area-api
+    command: yarn serve-nest
+
+networks:
+  area-api:
+    name: area_api
+    external: true

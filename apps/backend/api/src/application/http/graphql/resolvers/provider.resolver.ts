@@ -1,3 +1,4 @@
+import { UseGuards } from "@nestjs/common";
 import {
   Args,
   Int,
@@ -17,6 +18,7 @@ import { ProviderService } from "@domain/provider/provider.service";
 import { IProviderCreateInput } from "@domain/provider/types/provider.input.type";
 import { IExposedProvider } from "@domain/provider/types/provider.type";
 
+import { GqlAuthGuard } from "~/application/http/graphql/common/guards/gql-auth.guard";
 import { ProviderManifest } from "~/application/http/graphql/dto/nodes/provider/provider-manifest.node";
 
 import { ProviderCreateInput } from "../dto/input/provider/provider-create.input";
@@ -40,6 +42,7 @@ registerEnumType(ProviderVisibility, {
 });
 
 @Resolver(Provider)
+@UseGuards(GqlAuthGuard)
 export class ProviderResolver {
   constructor(
     private readonly providerService: ProviderService,

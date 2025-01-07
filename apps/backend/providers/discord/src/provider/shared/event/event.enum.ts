@@ -1,6 +1,6 @@
 import { MessageNode } from "~/provider/dto/nodes/message.node";
-import { DeleteMessageResponse } from "~/provider/dto/response/delete-message.response";
 import { AddReactionMessageResponse } from "~/provider/dto/response/add-reaction-message.response";
+import { DeleteMessageResponse } from "~/provider/dto/response/delete-message.response";
 import { DeleteReactionMessageResponse } from "~/provider/dto/response/delete-reaction-message.response";
 
 export enum EventsEnum {
@@ -8,7 +8,7 @@ export enum EventsEnum {
   MESSAGE_UPDATE = "MESSAGE_UPDATE",
   MESSAGE_DELETE = "MESSAGE_DELETE",
   MESSAGE_REACTION_ADD = "MESSAGE_REACTION_ADD",
-  MESSAGE_REACTION_DELETE = "MESSAGE_REACTION_DELETE"
+  MESSAGE_REACTION_DELETE = "MESSAGE_REACTION_DELETE",
 }
 
 export interface IEvents {
@@ -16,5 +16,7 @@ export interface IEvents {
   [EventsEnum.MESSAGE_UPDATE]: [message: MessageNode];
   [EventsEnum.MESSAGE_DELETE]: [response: DeleteMessageResponse];
   [EventsEnum.MESSAGE_REACTION_ADD]: [reaction: AddReactionMessageResponse];
-  [EventsEnum.MESSAGE_REACTION_DELETE]: [reaction: DeleteReactionMessageResponse];
+  [EventsEnum.MESSAGE_REACTION_DELETE]: [
+    reaction: DeleteReactionMessageResponse,
+  ];
 }

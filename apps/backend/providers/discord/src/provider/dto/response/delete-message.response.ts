@@ -7,7 +7,7 @@ import {
 import { Snowflake } from "../../types/snowflake.type";
 
 @ManifestType()
-export class EmojiNode {
+export class DeleteMessageResponse {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
   })
@@ -16,15 +16,5 @@ export class EmojiNode {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
   })
-  name: string;
-
-  @ManifestProperty({
-    type: ManifestPropertyEnum.BOOLEAN,
-  })
-  animated: boolean;
-
-  @ManifestProperty({
-    type: ManifestPropertyEnum.BOOLEAN,
-  })
-  available: boolean;
+  channel_id: Snowflake;
 }

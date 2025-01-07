@@ -5,16 +5,16 @@ import { OnEvent } from "@nestjs/event-emitter";
 import { ManifestTrigger } from "@lib/manifest";
 
 import { AppGateway } from "~/app.gateway";
+import { TriggerAddReactionMessageInput } from "~/provider/dto/inputs/message/trigger-add-reaction-message.input";
 import { TriggerMessageCreateInput } from "~/provider/dto/inputs/message/trigger-message-create.input";
 import { TriggerMessageDeleteInput } from "~/provider/dto/inputs/message/trigger-message-delete.input";
 import { TriggerMessageUpdateInput } from "~/provider/dto/inputs/message/trigger-message-update.input";
 import { MessageNode } from "~/provider/dto/nodes/message.node";
+import { AddReactionMessageResponse } from "~/provider/dto/response/add-reaction-message.response";
 import { DeleteMessageResponse } from "~/provider/dto/response/delete-message.response";
+import { DeleteReactionMessageResponse } from "~/provider/dto/response/delete-reaction-message.response";
 import { TriggerService } from "~/provider/services/trigger.service";
 import { EventsEnum } from "~/provider/shared/event/event.enum";
-import { TriggerAddReactionMessageInput } from "~/provider/dto/inputs/message/trigger-add-reaction-message.input";
-import { AddReactionMessageResponse } from "~/provider/dto/response/add-reaction-message.response";
-import { DeleteReactionMessageResponse } from "~/provider/dto/response/delete-reaction-message.response";
 
 @Injectable()
 export class MessageTrigger {
@@ -106,13 +106,16 @@ export class MessageTrigger {
   })
   @OnEvent(EventsEnum.MESSAGE_REACTION_ADD)
   async messageReactionAddTrigger(reaction: AddReactionMessageResponse) {
-    const triggers = await this.triggerService.getTriggers("message-reaction-add", {
-      reaction_id: reaction.emoji.id,
-    });
+    const triggers = await this.triggerService.getTriggers(
+      "message-reaction-add",
+      {
+        reaction_id: reaction.emoji.id,
+      },
+    );
     this.appGateway.emit(
-        "message-reaction-add",
-        triggers.map((trigger) => trigger.baseId),
-        reaction,
+      "message-reaction-add",
+      triggers.map((trigger) => trigger.baseId),
+      reaction,
     );
   }
 
@@ -127,13 +130,16 @@ export class MessageTrigger {
   })
   @OnEvent(EventsEnum.MESSAGE_REACTION_DELETE)
   async messageReactionDeleteTrigger(reaction: DeleteReactionMessageResponse) {
-    const triggers = await this.triggerService.getTriggers("message-reaction-delete", {
-      reaction_id: reaction.emoji.id,
-    });
+    const triggers = await this.triggerService.getTriggers(
+      "message-reaction-delete",
+      {
+        reaction_id: reaction.emoji.id,
+      },
+    );
     this.appGateway.emit(
-        "message-reaction-delete",
-        triggers.map((trigger) => trigger.baseId),
-        reaction,
+      "message-reaction-delete",
+      triggers.map((trigger) => trigger.baseId),
+      reaction,
     );
   }
 }

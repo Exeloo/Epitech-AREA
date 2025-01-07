@@ -1,26 +1,26 @@
 import {
-    ManifestProperty,
-    ManifestPropertyEnum,
-    ManifestType,
+  ManifestProperty,
+  ManifestPropertyEnum,
+  ManifestType,
 } from "@lib/manifest";
 
 import { Snowflake } from "../../../types/snowflake.type";
 
 @ManifestType()
 export class ActionMessageOwnReactionInput {
-    // * Params
-    @ManifestProperty({
-        type: ManifestPropertyEnum.STRING,
-    })
-    message_id: Snowflake;
+  // * Params
+  @ManifestProperty({
+    type: ManifestPropertyEnum.STRING,
+  })
+  message_id: Snowflake;
 
-    @ManifestProperty({
-        type: ManifestPropertyEnum.STRING,
-    })
-    channel_id: Snowflake;
+  @ManifestProperty({
+    type: ManifestPropertyEnum.STRING,
+  })
+  channel_id: Snowflake;
 
-    @ManifestProperty({
-        type: ManifestPropertyEnum.STRING,
-    })
-    emoji: Snowflake;
+  @ManifestProperty({
+    type: ManifestPropertyEnum.STRING,
+  })
+  emoji: Snowflake;
 }

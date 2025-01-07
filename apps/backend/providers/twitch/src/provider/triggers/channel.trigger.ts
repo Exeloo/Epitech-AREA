@@ -45,6 +45,7 @@ export class ChannelTrigger {
       message,
     );
   }
+
   @ManifestTrigger({
     id: "channel-subscribe",
     name: "On channel subscribe",
@@ -68,6 +69,7 @@ export class ChannelTrigger {
       message,
     );
   }
+
   @ManifestTrigger({
     id: "channel-follow",
     name: "On channel follow",
@@ -88,6 +90,7 @@ export class ChannelTrigger {
       message,
     );
   }
+
   @ManifestTrigger({
     id: "channel-subscribe-end",
     name: "On channel subscribe end",

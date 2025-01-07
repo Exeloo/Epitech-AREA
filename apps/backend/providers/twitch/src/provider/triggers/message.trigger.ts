@@ -40,6 +40,7 @@ export class MessageTrigger {
       message,
     );
   }
+
   @ManifestTrigger({
     id: "message-delete",
     name: "On Message Create",

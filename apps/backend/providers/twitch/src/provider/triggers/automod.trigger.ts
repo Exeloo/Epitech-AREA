@@ -43,6 +43,7 @@ export class AutomodTrigger {
       message,
     );
   }
+
   @ManifestTrigger({
     id: "automod-message-hold",
     name: "On Automod Message Hold",

@@ -28,10 +28,15 @@ export class MessageTrigger {
     output: TriggerSubscriptionEndEventResponse,
   })
   @OnEvent(EventsEnum.Channel_sub_end)
-  async channelSubscribeEndTrigger(message: TriggerSubscriptionEndEventResponse) {
-    const triggers = await this.triggerService.getTriggers("channel-subscribe-end", {
-      broadcaster_user_id: message.broadcaster_user_id,
-    });
+  async channelSubscribeEndTrigger(
+    message: TriggerSubscriptionEndEventResponse,
+  ) {
+    const triggers = await this.triggerService.getTriggers(
+      "channel-subscribe-end",
+      {
+        broadcaster_user_id: message.broadcaster_user_id,
+      },
+    );
     this.appGateway.emit(
       "channel-subscribe-end",
       triggers.map((trigger) => trigger.baseId),

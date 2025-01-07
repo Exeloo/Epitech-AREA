@@ -6,7 +6,7 @@ import { ManifestTrigger } from "@lib/manifest";
 
 import { AppGateway } from "~/app.gateway";
 import { TriggerTermsUpdateInput } from "~/provider/dto/inputs/automod/trigger-terms-update.input";
-import { TriggerTermsChangeEventResponse} from "~/provider/dto/responses/trigger-terms-update.response";
+import { TriggerTermsChangeEventResponse } from "~/provider/dto/responses/trigger-terms-update.response";
 import { TriggerService } from "~/provider/services/trigger.service";
 import { EventsEnum } from "~/provider/shared/event/event.enum";
 
@@ -29,9 +29,12 @@ export class MessageTrigger {
   })
   @OnEvent(EventsEnum.Automod_terms_update)
   async automodTermsUpdateTrigger(message: TriggerTermsChangeEventResponse) {
-    const triggers = await this.triggerService.getTriggers("automod-terms-update", {
-      broadcaster_user_id: message.broadcaster_user_id,
-    });
+    const triggers = await this.triggerService.getTriggers(
+      "automod-terms-update",
+      {
+        broadcaster_user_id: message.broadcaster_user_id,
+      },
+    );
     this.appGateway.emit(
       "automod-terms-update",
       triggers.map((trigger) => trigger.baseId),

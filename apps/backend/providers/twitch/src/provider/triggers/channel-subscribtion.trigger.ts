@@ -29,9 +29,12 @@ export class MessageTrigger {
   })
   @OnEvent(EventsEnum.Channel_sub)
   async channelSubscribeTrigger(message: TriggerSubscriptionEventResponse) {
-    const triggers = await this.triggerService.getTriggers("channel-subscribe", {
-      broadcaster_user_id: message.broadcaster_user_id,
-    });
+    const triggers = await this.triggerService.getTriggers(
+      "channel-subscribe",
+      {
+        broadcaster_user_id: message.broadcaster_user_id,
+      },
+    );
     this.appGateway.emit(
       "channel-subscribe",
       triggers.map((trigger) => trigger.baseId),

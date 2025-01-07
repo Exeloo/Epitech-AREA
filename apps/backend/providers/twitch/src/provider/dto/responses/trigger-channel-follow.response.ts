@@ -39,5 +39,5 @@ export class TriggerFollowEventResponse {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
   })
-  followed_at: string;  // mettre RFC3339 Timestamp
+  followed_at: string; // mettre RFC3339 Timestamp
 }

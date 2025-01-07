@@ -7,7 +7,6 @@ import { ManifestTrigger } from "@lib/manifest";
 import { AppGateway } from "~/app.gateway";
 import { TriggerChannelRaidInput } from "~/provider/dto/inputs/channel/trigger-channel-raid.input";
 import { TriggerRaidEventResponse } from "~/provider/dto/responses/trigger-channel-raid.response";
-
 import { TriggerService } from "~/provider/services/trigger.service";
 import { EventsEnum } from "~/provider/shared/event/event.enum";
 

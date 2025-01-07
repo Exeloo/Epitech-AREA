@@ -6,7 +6,7 @@ import { ManifestTrigger } from "@lib/manifest";
 
 import { AppGateway } from "~/app.gateway";
 import { TriggerMessageHoldInput } from "~/provider/dto/inputs/automod/trigger-message-hold.input";
-import { TriggerAutomodFlagEventResponse} from "~/provider/dto/responses/trigger-message-hold.response";
+import { TriggerAutomodFlagEventResponse } from "~/provider/dto/responses/trigger-message-hold.response";
 import { TriggerService } from "~/provider/services/trigger.service";
 import { EventsEnum } from "~/provider/shared/event/event.enum";
 
@@ -29,9 +29,12 @@ export class MessageTrigger {
   })
   @OnEvent(EventsEnum.Automod_hold)
   async automodMessageHoldTrigger(message: TriggerAutomodFlagEventResponse) {
-    const triggers = await this.triggerService.getTriggers("automod-message-hold", {
-      broadcaster_user_id: message.broadcaster_user_id,
-    });
+    const triggers = await this.triggerService.getTriggers(
+      "automod-message-hold",
+      {
+        broadcaster_user_id: message.broadcaster_user_id,
+      },
+    );
     this.appGateway.emit(
       "automod-message-hold",
       triggers.map((trigger) => trigger.baseId),

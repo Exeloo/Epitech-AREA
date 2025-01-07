@@ -1,11 +1,11 @@
-import { TriggerMessageResponse } from "~/provider/dto/responses/trigger-message.response";
-import { TriggerMessageDeleteResponse } from "~/provider/dto/responses/trigger-message-delete.response";
-import { TriggerFollowEventResponse} from "~/provider/dto/responses/trigger-channel-follow.response";
+import { TriggerFollowEventResponse } from "~/provider/dto/responses/trigger-channel-follow.response";
 import { TriggerRaidEventResponse } from "~/provider/dto/responses/trigger-channel-raid.response";
-import { TriggerSubscriptionEventResponse} from "~/provider/dto/responses/trigger-channel-subscribe.response";
-import { TriggerTermsChangeEventResponse} from "~/provider/dto/responses/trigger-terms-update.response";
-import { TriggerAutomodFlagEventResponse} from "~/provider/dto/responses/trigger-message-hold.response";
-import { TriggerSubscriptionEndEventResponse} from "~/provider/dto/responses/trigger-channel-subscribe-end.response";
+import { TriggerSubscriptionEndEventResponse } from "~/provider/dto/responses/trigger-channel-subscribe-end.response";
+import { TriggerSubscriptionEventResponse } from "~/provider/dto/responses/trigger-channel-subscribe.response";
+import { TriggerMessageDeleteResponse } from "~/provider/dto/responses/trigger-message-delete.response";
+import { TriggerAutomodFlagEventResponse } from "~/provider/dto/responses/trigger-message-hold.response";
+import { TriggerMessageResponse } from "~/provider/dto/responses/trigger-message.response";
+import { TriggerTermsChangeEventResponse } from "~/provider/dto/responses/trigger-terms-update.response";
 
 export enum EventsEnum {
   Channel_Chat_Message = "channel.chat.message",
@@ -20,7 +20,9 @@ export enum EventsEnum {
 
 export interface IEvents {
   [EventsEnum.Channel_Chat_Message]: [message: TriggerMessageResponse];
-  [EventsEnum.Channel_Chat_Message_Delete]: [message: TriggerMessageDeleteResponse];
+  [EventsEnum.Channel_Chat_Message_Delete]: [
+    message: TriggerMessageDeleteResponse,
+  ];
   [EventsEnum.Channel_follow]: [message: TriggerFollowEventResponse];
   [EventsEnum.Channel_raid]: [message: TriggerRaidEventResponse];
   [EventsEnum.Channel_Sub]: [message: TriggerSubscriptionEventResponse];

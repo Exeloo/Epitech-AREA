@@ -37,7 +37,7 @@ async function bootstrap() {
       contentSecurityPolicy: {
         directives: {
           scriptSrc: [`'self'`, `https: 'unsafe-inline'`, `'unsafe-eval'`],
-           frameAncestors: process.env.WEBAPP_DOMAINS?.split(",") ?? ["'none'"],
+          frameAncestors: process.env.WEBAPP_DOMAINS?.split(",") ?? ["'none'"],
         },
       },
     }),

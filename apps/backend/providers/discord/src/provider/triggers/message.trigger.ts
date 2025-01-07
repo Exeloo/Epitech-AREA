@@ -9,9 +9,12 @@ import { TriggerMessageCreateInput } from "~/provider/dto/inputs/message/trigger
 import { TriggerMessageDeleteInput } from "~/provider/dto/inputs/message/trigger-message-delete.input";
 import { TriggerMessageUpdateInput } from "~/provider/dto/inputs/message/trigger-message-update.input";
 import { MessageNode } from "~/provider/dto/nodes/message.node";
-import { EmptyResponse } from "~/provider/dto/response/empty.response";
+import { DeleteMessageResponse } from "~/provider/dto/response/delete-message.response";
 import { TriggerService } from "~/provider/services/trigger.service";
 import { EventsEnum } from "~/provider/shared/event/event.enum";
+import { TriggerAddReactionMessageInput } from "~/provider/dto/inputs/message/trigger-add-reaction-message.input";
+import { AddReactionMessageResponse } from "~/provider/dto/response/add-reaction-message.response";
+import { DeleteReactionMessageResponse } from "~/provider/dto/response/delete-reaction-message.response";
 
 @Injectable()
 export class MessageTrigger {
@@ -78,21 +81,59 @@ export class MessageTrigger {
     img: "",
     color: "#ffffff",
     input: TriggerMessageDeleteInput,
-    output: EmptyResponse,
+    output: DeleteMessageResponse,
   })
-  @OnEvent(EventsEnum.MESSAGE_UPDATE)
-  async messageDeleteTrigger(message: MessageNode) {
-    if (
-      message.author.id === this.configService.getOrThrow("DISCORD_CLIENT_ID")
-    )
-      return;
-    const triggers = await this.triggerService.getTriggers("message-update", {
-      channel_id: message.channel_id,
+  @OnEvent(EventsEnum.MESSAGE_DELETE)
+  async messageDeleteTrigger(delete_out: DeleteMessageResponse) {
+    const triggers = await this.triggerService.getTriggers("message-delete", {
+      channel_id: delete_out.channel_id,
     });
     this.appGateway.emit(
       "message-delete",
       triggers.map((trigger) => trigger.baseId),
-      message,
+      delete_out,
+    );
+  }
+
+  @ManifestTrigger({
+    id: "message-reaction-add",
+    name: "On Message Reaction Add",
+    description: "Triggered when a reaction is add on a message",
+    img: "",
+    color: "#ffffff",
+    input: TriggerAddReactionMessageInput,
+    output: AddReactionMessageResponse,
+  })
+  @OnEvent(EventsEnum.MESSAGE_REACTION_ADD)
+  async messageReactionAddTrigger(reaction: AddReactionMessageResponse) {
+    const triggers = await this.triggerService.getTriggers("message-reaction-add", {
+      reaction_id: reaction.emoji.id,
+    });
+    this.appGateway.emit(
+        "message-reaction-add",
+        triggers.map((trigger) => trigger.baseId),
+        reaction,
+    );
+  }
+
+  @ManifestTrigger({
+    id: "message-reaction-delete",
+    name: "On Message Reaction Delete",
+    description: "Triggered when a reaction is delete on a message",
+    img: "",
+    color: "#ffffff",
+    input: TriggerAddReactionMessageInput,
+    output: DeleteReactionMessageResponse,
+  })
+  @OnEvent(EventsEnum.MESSAGE_REACTION_DELETE)
+  async messageReactionDeleteTrigger(reaction: DeleteReactionMessageResponse) {
+    const triggers = await this.triggerService.getTriggers("message-reaction-delete", {
+      reaction_id: reaction.emoji.id,
+    });
+    this.appGateway.emit(
+        "message-reaction-delete",
+        triggers.map((trigger) => trigger.baseId),
+        reaction,
     );
   }
 }

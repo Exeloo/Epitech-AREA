@@ -31,12 +31,6 @@
             >
                 ✕
             </button>
-
-            <!-- Provider Image -->
-            <div class="flex items-center justify-center mb-6">
-                <img src={provider.img} class="h-24 w-24 rounded-full shadow-lg" />
-            </div>
-
             <!-- Provider Name -->
             <h3 class="text-2xl font-bold text-center text-gray-800 mb-4">{provider.name}</h3>
 

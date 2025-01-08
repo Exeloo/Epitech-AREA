@@ -4,6 +4,8 @@ APPS="aether-api aether-provider-discord aether-provider-twitch aether-webapp ae
 
 for APP in $APPS; do
   kubectl rollout restart deployment $APP -n deployment
+  argocd app sync $APP --prune
 done
 
-argocd app sync --all
+sleep 30
+kubectl get rs -n deployment --no-headers | awk '$2 == 0 {print $1}' | xargs kubectl delete rs -n deployment

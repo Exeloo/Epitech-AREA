@@ -15,14 +15,17 @@ import { ProviderVisibility } from "@domain/provider/enums/provider-visibility.e
 import { ManifestService } from "@domain/provider/manifest/manifest.service";
 import { IExposedManifest } from "@domain/provider/manifest/types/manifest.type";
 import { ProviderService } from "@domain/provider/provider.service";
+import { IProviderOAuthState } from "@domain/provider/types/provider-oauth-state.type";
 import { IProviderCreateInput } from "@domain/provider/types/provider.input.type";
 import { IExposedProvider } from "@domain/provider/types/provider.type";
+import { IUser } from "@domain/user/types/user.type";
 
-import { GqlAuthGuard } from "~/application/http/graphql/common/guards/gql-auth.guard";
-import { ProviderManifest } from "~/application/http/graphql/dto/nodes/provider/provider-manifest.node";
-
+import { GqlCurrentUser } from "../common/decorators/graphql-current-user.decorator";
+import { GqlAuthGuard } from "../common/guards/gql-auth.guard";
 import { ProviderCreateInput } from "../dto/input/provider/provider-create.input";
+import { ProviderManifest } from "../dto/nodes/provider/provider-manifest.node";
 import { Provider } from "../dto/nodes/provider/provider.node";
+import { ProviderOAuthStateResponse } from "../dto/response/provider/provider-oauth-state.response";
 
 registerEnumType(ProviderVisibility, {
   name: "ProviderVisibility",
@@ -66,6 +69,16 @@ export class ProviderResolver {
     @Args("id", { type: () => Int }) id: ID,
   ): Promise<IExposedProvider> {
     return this.providerService.getById(id);
+  }
+
+  @Query(() => ProviderOAuthStateResponse, {
+    description: "Get provider oauth state for the current user",
+  })
+  async getProviderOAuthState(
+    @GqlCurrentUser() user: IUser,
+    @Args("id", { type: () => Int }) id: ID,
+  ): Promise<IProviderOAuthState> {
+    return this.providerService.getProviderOAuthState(id, user);
   }
 
   @Mutation(() => Provider, {

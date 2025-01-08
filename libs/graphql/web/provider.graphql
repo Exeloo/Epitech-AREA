@@ -45,6 +45,13 @@ query getAllProviders {
     }
 }
 
+query getProviderOAuthState($id: Int!) {
+    getProviderOAuthState(id: $id) {
+        authenticated
+        redirectUri
+    }
+}
+
 query getProviderById($id: Int!) {
     getProviderById(id: $id) {
         ...ProviderWithManifest

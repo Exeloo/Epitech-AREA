@@ -34,10 +34,9 @@ export class AuthService {
     return `Bearer ${token}`;
   }
 
-  async getOAuthUrl(body: { userId: number }): Promise<{ baseUrl: string }> {
-    const state = Buffer.from(JSON.stringify(body)).toString("base64");
+  async getOAuthUrl(body: { state: string }): Promise<{ baseUrl: string }> {
     return {
-      baseUrl: `https://id.twitch.tv/oauth2/authorize?client_id=${this.clientId}&redirect_uri=${this.redirectUri}&state=${state}&response_type=code&scope=user:write:chat+user:read:chat`,
+      baseUrl: `https://id.twitch.tv/oauth2/authorize?client_id=${this.clientId}&redirect_uri=${this.redirectUri}&state=${body.state}&response_type=code&scope=user:write:chat+user:read:chat`,
     };
   }
 
@@ -70,5 +69,14 @@ export class AuthService {
       providerId: providerId,
       token: token,
     });
+  }
+
+  async getOAuthState(userId: number): Promise<{ authenticated: boolean }> {
+    const accounts = await this.repository.findBy({
+      userId: userId,
+    });
+    return {
+      authenticated: accounts.length > 0,
+    };
   }
 }

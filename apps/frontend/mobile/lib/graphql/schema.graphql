@@ -168,7 +168,7 @@ type Provider {
   visibility: ProviderVisibility!
 }
 
-"""Input type to create providers"""
+"""Input type to create provider"""
 input ProviderCreateInput {
   """Host of the provider to create"""
   host: String!
@@ -237,16 +237,16 @@ type ProviderManifestTrigger {
   output: JSON!
 }
 
-"""Visibility of the providers"""
+"""Visibility of the provider"""
 enum ProviderVisibility {
-  """Private providers, visible only to the owner"""
+  """Private provider, visible only to the owner"""
   PRIVATE
 
-  """Public providers, visible to everyone"""
+  """Public provider, visible to everyone"""
   PUBLIC
 
   """
-  Unlisted providers, visible only to the owner but can be used by everyone
+  Unlisted provider, visible only to the owner but can be used by everyone
   """
   UNLISTED
 }

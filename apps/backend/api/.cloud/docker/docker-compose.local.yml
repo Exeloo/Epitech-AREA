@@ -7,9 +7,9 @@ services:
       - "8080:3000"
     depends_on:
       - mariadb
-    working_dir: /explore
+    working_dir: /app
     volumes:
-      - ../../:/explore
+      - ../../:/app
     networks:
       - area-api
     command: yarn serve-nest

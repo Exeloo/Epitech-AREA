@@ -5,9 +5,9 @@ services:
       context: ../..
     ports:
       - "3001:3001"
-    working_dir: /explore
+    working_dir: /app
     volumes:
-      - ../../:/explore
+      - ../../:/app
     networks:
       - area-api
     command: yarn serve-nest

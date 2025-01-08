@@ -21,7 +21,7 @@ const bootstrap = async () => {
     bodyParser: false,
     bufferLogs: true,
   });
-  // explore.useLogger(explore.get(WINSTON_MODULE_NEST_PROVIDER));
+  // app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
 
   const configService = app.get(ConfigService);
   const env = configService.getOrThrow("APP_ENV");

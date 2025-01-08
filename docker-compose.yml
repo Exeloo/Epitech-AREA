@@ -48,7 +48,7 @@ services:
     depends_on:
       - client_mobile
     volumes:
-      - apk:/app/apk/
+      - apk:/app/.svelte-kit/output/client
     ports:
       - "8081:8081"
 

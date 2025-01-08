@@ -14,4 +14,6 @@ RUN flutter pub get
 RUN flutter build apk --release
 RUN mkdir /home/builder/app/apk
 
+USER root
+
 CMD ["cp", "/home/builder/app/build/app/outputs/flutter-apk/app-release.apk", "/home/builder/app/apk/client.apk"]

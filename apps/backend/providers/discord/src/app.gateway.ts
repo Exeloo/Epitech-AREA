@@ -1,6 +1,6 @@
-import { Injectable, Logger } from "@nestjs/common";
-import { ConfigService } from "@nestjs/config";
-import { Socket, io } from "socket.io-client";
+import {Injectable, Logger} from "@nestjs/common";
+import {ConfigService} from "@nestjs/config";
+import {io, Socket} from "socket.io-client";
 
 @Injectable()
 export class AppGateway {
@@ -8,6 +8,7 @@ export class AppGateway {
   private readonly logger: Logger;
 
   constructor(private readonly configService: ConfigService) {
+    console.log(configService.getOrThrow("BASE_API_WS_URL"))
     this.socket = io(configService.getOrThrow("BASE_API_WS_URL"), {
       autoConnect: false,
       transports: ["websocket"],
@@ -18,6 +19,7 @@ export class AppGateway {
 
   connect() {
     if (this.socket.connected) this.socket.disconnect();
+
     this.socket.connect();
     this.socket.on("connect", () => {
       this.logger.log("Connected to the server");

@@ -15,5 +15,11 @@
 </script>
 
 {#if $info}
-	<Element title={$info.name} description={$info.description} inputs={$info.input} bind:element />
+	<Element
+		id={$info.id}
+		title={$info.name}
+		description={$info.description}
+		inputs={$info.input}
+		bind:element
+	/>
 {/if}

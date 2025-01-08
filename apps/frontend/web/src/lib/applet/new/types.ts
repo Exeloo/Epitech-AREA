@@ -6,6 +6,7 @@ export enum BlockType {
 }
 
 export interface ElementValues {
+	providerId: number;
 	provider: ProviderWithManifest$data;
 	actionId: string | undefined;
 	inputs: Record<string, string>;

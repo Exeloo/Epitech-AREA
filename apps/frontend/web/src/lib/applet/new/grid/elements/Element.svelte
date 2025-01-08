@@ -1,36 +1,50 @@
 <script lang="ts">
 	import type { ElementValues } from '$lib/applet/new/types';
 
-	interface EntryParams {
-		type: string;
-	}
-
 	interface Props {
+		id: string;
 		title?: string;
 		description?: string;
 		inputs: string;
 		element: ElementValues | null;
 	}
 	let {
+		id,
 		title = 'Title',
 		description = 'Description',
 		inputs,
 		element = $bindable()
 	}: Props = $props();
 
+	interface EntryParams {
+		type: string;
+	}
+
 	let open = $state(false);
 
 	const parsedInputs = JSON.parse(inputs) as Record<string, EntryParams>;
 
+	let elementInputs: Record<string, string> = $state({});
+
 	const inputsArray = parsedInputs
 		? Object.entries(parsedInputs).map(([key, value]) => {
-				console.log(key + ': ' + value);
 				return { title: key, type: value.type };
 			})
 		: [];
+
+	function addInputs() {
+		if (element) {
+			element.inputs = elementInputs;
+			element.actionId = id;
+		}
+	}
 </script>
 
-<div class="rounded-xl border bg-neutral-50 p-3 text-sm">
+<div
+	class="rounded-xl border p-3 text-sm {element && element.actionId === id
+		? 'border-2 border-purple-500 bg-purple-100'
+		: 'bg-neutral-50'}"
+>
 	<button onclick={() => (open = !open)} class="flex w-full items-center justify-between">
 		<span class="flex flex-col items-start gap-1">
 			<span class="font-bold">{title}</span>
@@ -44,12 +58,15 @@
 			{#each inputsArray as input}
 				<div class="flex justify-between gap-2">
 					<span class="font-bold">{input.title}</span>
-					<input bind:value={element.inputs[input.title]} class="rounded-lg border px-2" />
+					<input bind:value={elementInputs[input.title]} class="rounded-lg border px-2" />
 				</div>
 			{/each}
 			<div class="flex justify-center">
-				<button class="w-fit rounded-full bg-primary px-2 py-1 text-lg font-bold text-white shadow">
-					Add
+				<button
+					onclick={addInputs}
+					class="w-fit rounded-full bg-primary px-2 py-1 text-lg font-bold text-white shadow"
+				>
+					{element && element.actionId === id ? 'Edit' : 'Add'}
 				</button>
 			</div>
 		</div>

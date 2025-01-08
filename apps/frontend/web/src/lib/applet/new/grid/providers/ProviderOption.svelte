@@ -28,7 +28,7 @@
 
 		providerWithManifestStore.get(data.getProviderById).subscribe((provider) => {
 			if (provider) {
-				element = { provider: provider, inputs: {}, actionId: undefined };
+				element = { providerId: $info.id, provider: provider, inputs: {}, actionId: undefined };
 			}
 		});
 	}

@@ -13,13 +13,32 @@
 
 		console.log(trigger);
 		console.log(action);
-		await appletStore.mutate({
-			data: {
-				name: 'Applet',
-				description: 'new Applet',
-				triggerNodes: []
-			}
-		});
+		const triggerNode = {
+			providerId: trigger.providerId,
+			actionId: trigger.actionId || '',
+			input: trigger.inputs,
+			next: [
+				{
+					providerId: action.providerId,
+					actionId: action.actionId || '',
+					input: action.inputs,
+					next: []
+				}
+			]
+		};
+
+		try {
+			await appletStore.mutate({
+				data: {
+					name: 'Test',
+					description: 'Test description',
+					triggerNodes: [triggerNode]
+				}
+			});
+			console.log('Applet created successfully!');
+		} catch (error) {
+			console.error('Failed to create applet:', error);
+		}
 	}
 </script>
 

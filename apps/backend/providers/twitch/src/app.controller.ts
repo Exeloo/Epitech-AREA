@@ -43,9 +43,14 @@ export class AppController {
     };
   }
 
-  @Get("oauth/:id")
-  getOAuth(@Param("id") id: string): Promise<{ baseUrl: string }> {
-    return this.appService.getOAuthUrl({ userId: +id });
+  @Post("oauth/redirect")
+  getOAuth(@Body() state: string): Promise<{ baseUrl: string }> {
+    return this.appService.getOAuthUrl({ state: state });
+  }
+
+  @Get("oauth/state/:id")
+  getOAuthState(@Param("id") id: string): Promise<{ authenticated: boolean }> {
+    return this.appService.getOAuthState(+id);
   }
 
   @Post("oauth") async runOAuth(

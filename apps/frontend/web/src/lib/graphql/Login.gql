@@ -1,7 +1,0 @@
-query Login($data: AuthPasswordInput!) {
-	login(data: $data) {
-		token
-		refreshToken
-		tokenExpiresAt
-	}
-}

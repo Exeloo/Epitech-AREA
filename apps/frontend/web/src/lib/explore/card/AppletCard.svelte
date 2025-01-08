@@ -1,5 +1,5 @@
 <script>
-	import Slider from '$lib/card/Slider.svelte';
+	import Slider from '$lib/explore/card/Slider.svelte';
 	import Card from './Card.svelte';
 </script>
 

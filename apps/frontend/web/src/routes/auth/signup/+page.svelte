@@ -1,8 +1,7 @@
 <script lang="ts">
-	import Input from '$lib/auth/Input.svelte';
+	import Input from '$lib/Inputs/Input.svelte';
 	import Submit from '$lib/auth/Submit.svelte';
 	import Validation from '$lib/auth/Validation.svelte';
-	import { load_Login } from '$houdini';
 
 	let username = $state('');
 	let email = $state('');
@@ -15,20 +14,7 @@
 		event.preventDefault();
 
 		try {
-			const loginQuery = await load_Login({});
-			const { data, errors } = await loginQuery.Login.fetch({
-				variables: { data: { email: email, password: password } }
-			});
-
-			if (!data) {
-				console.log(errors);
-				return {};
-			}
-
-			localStorage.setItem('token', data.login.token);
-			localStorage.setItem('refreshToken', data.login.refreshToken);
-
-			window.location.href = '/';
+			console.log('register');
 		} catch (error) {
 			console.error('Unexpected error:', error);
 		}

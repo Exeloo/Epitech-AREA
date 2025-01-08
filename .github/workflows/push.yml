@@ -75,7 +75,7 @@ jobs:
           ssh-private-key: ${{ secrets.KUBE_SSH_PRIVATE_KEY }}
 
       - name: Update apps
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+#        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@51.91.98.75 'bash -s' < ./all_sync.sh
 

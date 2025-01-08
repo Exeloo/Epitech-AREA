@@ -231,17 +231,6 @@ type ProviderManifestTrigger {
   output: JSON!
 }
 
-"""Response type for provider oauth state"""
-type ProviderOAuthStateResponse {
-  """
-  Field to know if the user is authenticated to the provider (true if no authentication is require)
-  """
-  authenticated: Boolean!
-
-  """Redirect uri for the user to authenticate if needed"""
-  redirectUri: String!
-}
-
 """Visibility of the provider"""
 enum ProviderVisibility {
   """Private provider, visible only to the owner"""
@@ -274,9 +263,6 @@ type Query {
 
   """Get provider by id"""
   getProviderById(id: Int!): Provider!
-
-  """Get provider oauth state for the current user"""
-  getProviderOAuthState(id: Int!): ProviderOAuthStateResponse!
 
   """Query used to auth with password strategy"""
   login(data: AuthPasswordInput!): AuthTokenResponse!

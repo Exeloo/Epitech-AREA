@@ -2,7 +2,7 @@
 	import Input from '$lib/Inputs/Input.svelte';
 	import Checkbox from '$lib/auth/Checkbox.svelte';
 	import Submit from '$lib/auth/Submit.svelte';
-	import { fragment, graphql, load_login } from '$houdini';
+	import { load_login, TokenFieldsStore } from '$houdini';
 
 	let email = $state('');
 	let password = $state('');
@@ -12,40 +12,29 @@
 		event.preventDefault();
 
 		try {
-			const query = await load_login({});
-			const { data, errors } = await query.login.fetch({
+			const query = await load_login({
 				variables: { data: { email: email, password: password } }
 			});
+
+			const { data, errors } = await query.login.fetch();
 
 			if (!data || !data.login) {
 				console.log(errors);
 				return errors;
 			}
 
-			let queryResult = $state(
-				fragment(
-					data.login,
-					graphql(`
-						fragment TokenFields on AuthTokenResponse {
-							token
-							refreshToken
-							tokenExpiresAt
-						}
-					`)
-				)
-			);
+			let queryResult = $state(new TokenFieldsStore().get(data.login));
 
 			queryResult.subscribe((data) => {
-				console.log('Login successful:', query);
-				alert('Login successful!');
-
-				if (rememberMe) {
-					localStorage.setItem('token', data.token);
-					localStorage.setItem('refreshToken', data.refreshToken);
-				} else {
-					sessionStorage.setItem('token', data.token);
-					sessionStorage.setItem('refreshToken', data.refreshToken);
+				if (!data) {
+					console.log('Login error');
+					return;
 				}
+
+				const maxAge = rememberMe ? 60 * 60 * 24 * 7 : undefined;
+				document.cookie = `token=${data.token}; path=/; ${rememberMe ? `Max-Age=${maxAge}` : ''}; Secure; SameSite=Strict`;
+				document.cookie = `refreshToken=${data.refreshToken}; path=/; ${rememberMe ? `Max-Age=${maxAge}` : ''}; Secure; SameSite=Strict`;
+
 				window.location.href = '/';
 			});
 		} catch (error) {

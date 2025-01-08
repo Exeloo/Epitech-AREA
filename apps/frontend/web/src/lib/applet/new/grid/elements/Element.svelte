@@ -62,10 +62,10 @@
 					<div class="flex items-center gap-1">
 						<span class="font-bold">{input.title}</span>
 						{#if isSelected && elementInputs[input.title] !== element.inputs[input.title]}
-						<i class="fi fi-rr-medical-star flex justify-center text-xs text-red-600"></i>
+							<i class="fi fi-rr-medical-star flex justify-center text-xs text-red-600"></i>
 						{/if}
 					</div>
-					<input bind:value={elementInputs[input.title]} class="rounded-lg px-2 border" />
+					<input bind:value={elementInputs[input.title]} class="rounded-lg border px-2" />
 				</div>
 			{/each}
 			<div class="flex justify-center">

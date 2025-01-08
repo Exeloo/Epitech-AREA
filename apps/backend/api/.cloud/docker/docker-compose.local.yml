@@ -1,5 +1,5 @@
 services:
-  api:
+  server:
     image: node:22-alpine
     build:
       context: ../..

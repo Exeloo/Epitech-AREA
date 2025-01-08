@@ -68,6 +68,16 @@ jobs:
               docker push "${{ env.REGISTRY_URL }}/$image_name:latest"
             fi
           done
+      - name: Set up SSH
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.KUBE_SSH_PRIVATE_KEY }}
+
+      - name: Update apps
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          ssh -o StrictHostKeyChecking=no ubuntu@51.91.98.75 'bash -s' < ./all_sync.sh
 
   push_to_mirror:
     name: "Pushing To The Mirror Repository"

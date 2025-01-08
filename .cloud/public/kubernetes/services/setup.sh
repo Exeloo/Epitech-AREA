@@ -20,7 +20,4 @@ kubectl taint nodes $NODE_NAME node-role.kubernetes.io/control-plane:NoSchedule-
 /tmp/kubernetes/services/phpmyadmin/install.sh
 /tmp/kubernetes/services/argocd/install.sh
 /tmp/kubernetes/services/ingress/install.sh
-#/tmp/kubernetes/services/dashboard/install.sh
-#/tmp/kubernetes/services/grafana/install.sh
-#/tmp/kubernetes/services/traefik/install.sh
-#/tmp/kubernetes/services/wireguard/install.sh
+/tmp/kubernetes/services/argocd/install_argocd_cli.sh

@@ -32,6 +32,15 @@ services:
     ports:
       - "3001:3001"
 
+  twitch:
+    build:
+      context: apps/backend/providers/twitch
+      dockerfile: .cloud/docker/Dockerfile
+    depends_on:
+      - server
+    ports:
+      - "3002:3002"
+
   client_mobile:
     build:
       context: apps/frontend/mobile/

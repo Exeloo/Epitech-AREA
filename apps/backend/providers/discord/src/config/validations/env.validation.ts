@@ -1,5 +1,14 @@
-import {plainToInstance} from "class-transformer";
-import {IsEnum, IsInt, IsNotEmpty, IsNumberString, IsPositive, IsString, IsUrl, validateSync,} from "class-validator";
+import { plainToInstance } from "class-transformer";
+import {
+  IsEnum,
+  IsInt,
+  IsNotEmpty,
+  IsNumberString,
+  IsPositive,
+  IsString,
+  IsUrl,
+  validateSync,
+} from "class-validator";
 
 export enum AppEnvEnum {
   LOCAL = "local",

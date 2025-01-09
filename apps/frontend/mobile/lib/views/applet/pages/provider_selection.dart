@@ -27,7 +27,7 @@ class _ProviderSelectionState extends State<ProviderSelection> {
 
   void _getAllProviders(BuildContext context) async {
     final providerRepository =
-    Provider.of<ProviderRepository>(context, listen: false);
+        Provider.of<ProviderRepository>(context, listen: false);
 
     try {
       final response = await providerRepository.getAllProviders();
@@ -61,25 +61,25 @@ class _ProviderSelectionState extends State<ProviderSelection> {
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : GridView.builder(
-        padding:
-        const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 16.0,
-          mainAxisSpacing: 16.0,
-          childAspectRatio: 3 / 2,
-        ),
-        itemCount: _providers?.length ?? 0,
-        itemBuilder: (context, index) {
-          final provider = _providers![index];
-          return AppletProviderCard(
-            logoUrl: provider.img,
-            providerName: provider.name,
-            id: provider.id,
-            color: provider.color,
-          );
-        },
-      ),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 16.0,
+                mainAxisSpacing: 16.0,
+                childAspectRatio: 3 / 2,
+              ),
+              itemCount: _providers?.length ?? 0,
+              itemBuilder: (context, index) {
+                final provider = _providers![index];
+                return AppletProviderCard(
+                  logoUrl: provider.img,
+                  providerName: provider.name,
+                  id: provider.id,
+                  color: provider.color,
+                );
+              },
+            ),
     );
   }
 }

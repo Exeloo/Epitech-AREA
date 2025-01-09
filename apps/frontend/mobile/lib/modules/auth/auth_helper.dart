@@ -28,4 +28,16 @@ class AuthHelper {
       throw Exception("No token found in the response.");
     }
   }
+
+  Future<void> handleOAuth(String? response) async {
+    if (response != null) {
+      try {
+        await storage.write(key: "auth_token", value: response);
+      } on Exception catch (e) {
+        throw Exception("Failed to store token: ${e.toString()}");
+      }
+    } else {
+      throw Exception("No token found in the response.");
+    }
+  }
 }

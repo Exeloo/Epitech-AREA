@@ -187,8 +187,6 @@ class _AppletCreationState extends State<AppletCreation> {
     }
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

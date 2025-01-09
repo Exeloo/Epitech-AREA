@@ -1,23 +1,23 @@
-import { HttpModule } from "@nestjs/axios";
-import { Module } from "@nestjs/common";
-import { ConfigModule, ConfigService } from "@nestjs/config";
-import { ScheduleModule } from "@nestjs/schedule";
-import { ThrottlerModule } from "@nestjs/throttler";
-import { TypeOrmModule } from "@nestjs/typeorm";
-import { validate } from "class-validator";
+import {HttpModule} from "@nestjs/axios";
+import {Module} from "@nestjs/common";
+import {ConfigModule, ConfigService} from "@nestjs/config";
+import {ScheduleModule} from "@nestjs/schedule";
+import {ThrottlerModule} from "@nestjs/throttler";
+import {TypeOrmModule} from "@nestjs/typeorm";
 
-import { AuthGuard } from "@lib/auth";
+import {AuthGuard} from "@lib/auth";
 
-import { AppGateway } from "~/app.gateway";
-import { databaseConfig } from "~/config/database.config";
-import { GmailAction } from "~/provider/actions/gmail.action";
-import { ActionService } from "~/provider/services/action.service";
-import { AccountEntity } from "~/provider/shared/auth/account.entity";
-import { AuthService } from "~/provider/shared/auth/auth.service";
+import {AppGateway} from "~/app.gateway";
+import {databaseConfig} from "~/config/database.config";
+import {GmailAction} from "~/provider/actions/gmail.action";
+import {ActionService} from "~/provider/services/action.service";
+import {AccountEntity} from "~/provider/shared/auth/account.entity";
+import {AuthService} from "~/provider/shared/auth/auth.service";
 
-import { AppController } from "./app.controller";
-import { AppService } from "./app.service";
-import { throttlerConfig } from "./config/throttler.config";
+import {AppController} from "./app.controller";
+import {AppService} from "./app.service";
+import {throttlerConfig} from "./config/throttler.config";
+import {validate} from "./config/validations/env.validation";
 
 @Module({
   imports: [

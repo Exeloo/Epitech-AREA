@@ -1,6 +1,10 @@
 import { Injectable } from "@nestjs/common";
 
-import { generateManifest, IBaseManifest, ManifestOAuthEnum } from "@lib/manifest";
+import {
+  IBaseManifest,
+  ManifestOAuthEnum,
+  generateManifest,
+} from "@lib/manifest";
 
 import { AuthService } from "~/provider/shared/auth/auth.service";
 

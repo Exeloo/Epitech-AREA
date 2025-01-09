@@ -1,5 +1,5 @@
-import { plainToInstance } from "class-transformer";
-import { IsEnum, IsInt, IsNotEmpty, IsPositive, IsString, IsUrl, validateSync } from "class-validator";
+import {plainToInstance} from "class-transformer";
+import {IsEnum, IsInt, IsNotEmpty, IsNumberString, IsPositive, IsString, IsUrl, validateSync,} from "class-validator";
 
 export enum AppEnvEnum {
   LOCAL = "local",
@@ -14,8 +14,7 @@ export class EnvironmentVariables {
   APP_ENV: AppEnvEnum;
 
   @IsNotEmpty()
-  @IsInt()
-  @IsPositive()
+  @IsNumberString()
   APP_PORT: string;
 
   @IsNotEmpty()
@@ -45,19 +44,15 @@ export class EnvironmentVariables {
 
   @IsNotEmpty()
   @IsUrl({ require_tld: false })
+  PUBLIC_API_URL: string;
+
+  @IsNotEmpty()
+  @IsUrl({ require_tld: false, protocols: ["ws", "wss"] })
   BASE_API_WS_URL: string;
 
   @IsNotEmpty()
   @IsString()
   API_KEY: string;
-
-  @IsNotEmpty()
-  @IsUrl({ require_tld: false })
-  PROVIDER_BASE_API_URL: string;
-
-  @IsNotEmpty()
-  @IsUrl({ require_tld: false })
-  PROVIDER_GATEWAY_URL: string;
 
   @IsNotEmpty()
   @IsString()

@@ -7,5 +7,5 @@ for APP in $APPS; do
   argocd app sync $APP --prune
 done
 
-sleep 30
+sleep 100
 kubectl get rs -n deployment --no-headers | awk '$2 == 0 {print $1}' | xargs kubectl delete rs -n deployment

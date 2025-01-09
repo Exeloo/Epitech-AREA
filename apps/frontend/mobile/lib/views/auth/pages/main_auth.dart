@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/views/auth/pages/googleAuth.dart';
+import 'package:mobile/views/auth/pages/google_auth.dart';
 import 'package:mobile/views/auth/pages/login.dart';
 import 'package:mobile/views/auth/pages/signup.dart';
 
@@ -70,7 +70,7 @@ class MainAuthPageState extends State<MainAuthPage> {
                     Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
-                        builder: (BuildContext context) => googleAuth(),
+                        builder: (BuildContext context) => const GoogleAuth(),
                       ),
                       (Route<dynamic> route) => false,
                     );

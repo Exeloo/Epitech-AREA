@@ -17,7 +17,8 @@ class AppletRepository {
     required List<Map<String, dynamic>> triggerNodesData,
   }) async {
     try {
-      final triggerNodes = triggerNodesData.map((nodeData) => _createNode(nodeData)).toList();
+      final triggerNodes =
+          triggerNodesData.map((nodeData) => _createNode(nodeData)).toList();
 
       final createAppletReq = GcreateAppletReq((b) => b
         ..vars.data.name = name
@@ -48,8 +49,8 @@ class AppletRepository {
       ..actionId = nodeData['actionId']
       ..input.replace(_mapInput(nodeData['input']))
       ..next.replace((nodeData['next'] as List<dynamic>?)
-          ?.map((nextNode) => _createNode(nextNode as Map<String, dynamic>))
-          .toList() ??
+              ?.map((nextNode) => _createNode(nextNode as Map<String, dynamic>))
+              .toList() ??
           []));
   }
 
@@ -105,7 +106,8 @@ class AppletRepository {
     }
   }
 
-  Future<GgetAppletNodeByIdData_getAppletNodeById?> getAppletNodeById(int id) async {
+  Future<GgetAppletNodeByIdData_getAppletNodeById?> getAppletNodeById(
+      int id) async {
     final getAppletNodeByIdReq = GgetAppletNodeByIdReq((b) => b..vars.id = id);
     try {
       final response = await client.request(getAppletNodeByIdReq).first;

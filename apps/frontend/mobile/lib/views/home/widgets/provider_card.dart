@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:mobile/graphql/__generated__/provider.data.gql.dart';
-import 'package:mobile/views/auth/pages/discord_auth.dart';
 import 'package:mobile/views/home/widgets/trigger_action_card.dart';
 import 'package:provider/provider.dart';
 
@@ -174,25 +173,6 @@ class ProviderDescriptionState extends State<ProviderDescription> {
                         fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 16),
-                  SizedBox(
-                    width: 150,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xff8E44AD)),
-                      onPressed: () {
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                const DiscordAuth(),
-                          ),
-                          (Route<dynamic> route) => false,
-                        );
-                      },
-                      child: const Text('Login',
-                          style: TextStyle(color: Colors.white)),
-                    ),
-                  ),
                 ],
               ),
             ),

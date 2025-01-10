@@ -1,0 +1,16 @@
+name: area-ingress
+namespace: deployment
+
+rules:
+  hostApi: api.aether-area.fr
+  hostWeb: aether-area.fr
+  pathType: Prefix
+  serviceNameApi: aether-api
+  serviceNameWeb: aether-webapp
+  number: 443
+
+tls:
+  hosts:
+    - api.aether-area.fr
+    - aether-area.fr
+  secretName: area-tech-tls

@@ -1,7 +1,10 @@
 import { ObjectLiteral } from "@type/object.type";
 
+import { ID } from "@d-type/id.type";
+
 import { IAppletNode } from "@domain/applet/node/types/applet-node.type";
 import { IManifest } from "@domain/provider/manifest/types/manifest.type";
+import { IProviderOAuthState } from "@domain/provider/types/provider-oauth-state.type";
 import { IProvider } from "@domain/provider/types/provider.type";
 import { IUser } from "@domain/user/types/user.type";
 
@@ -24,8 +27,10 @@ export interface IProviderService {
 
   getOAuthRedirect(
     provider: IProvider,
-    userId: number,
+    state: string,
   ): Promise<{ baseUrl: string }>;
 
   runOAuth(provider: IProvider, body: ObjectLiteral): Promise<void>;
+
+  getOAuthState(provider: IProvider, userId: ID): Promise<IProviderOAuthState>;
 }

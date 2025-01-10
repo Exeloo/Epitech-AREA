@@ -1,12 +1,16 @@
 {
-    "$schema": "./node_modules/nx/schemas/nx-schema.json",
-    "npmScope": "area",
-    "namedInputs": {
-        "default": ["{projectRoot}/**/*", "sharedGlobals"],
-        "production": ["default"],
-        "sharedGlobals": []
-    },
-    "workspaceLayout": {
-        "appsDir": "apps"
-    }
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "namedInputs": {
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
+    "production": [
+      "default"
+    ],
+    "sharedGlobals": []
+  },
+  "workspaceLayout": {
+    "appsDir": "apps"
+  }
 }

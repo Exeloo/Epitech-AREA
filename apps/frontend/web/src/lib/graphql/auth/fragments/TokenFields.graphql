@@ -1,0 +1,5 @@
+fragment TokenFields on AuthTokenResponse {
+    token
+    refreshToken
+    tokenExpiresAt
+}

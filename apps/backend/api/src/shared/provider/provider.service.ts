@@ -1,9 +1,12 @@
 import { Injectable } from "@nestjs/common";
 import { ObjectLiteral } from "typeorm";
 
+import { ID } from "@d-type/id.type";
+
 import { IAppletNode } from "@domain/applet/node/types/applet-node.type";
 import { IManifest } from "@domain/provider/manifest/types/manifest.type";
 import { IProviderService } from "@domain/provider/provider.service.type";
+import { IProviderOAuthState } from "@domain/provider/types/provider-oauth-state.type";
 import { IProvider } from "@domain/provider/types/provider.type";
 import { IUser } from "@domain/user/types/user.type";
 
@@ -47,13 +50,13 @@ export class ProviderService implements IProviderService {
 
   getOAuthRedirect(
     provider: IProvider,
-    userId: number,
+    state: string,
   ): Promise<{ baseUrl: string }> {
     return this.providerRepository.getOAuthRedirect(
       provider.host,
       provider.apiKey,
       {
-        userId: userId,
+        state: state,
       },
     );
   }
@@ -63,6 +66,14 @@ export class ProviderService implements IProviderService {
       provider.host,
       provider.apiKey,
       body,
+    );
+  }
+
+  getOAuthState(provider: IProvider, userId: ID): Promise<IProviderOAuthState> {
+    return this.providerRepository.getOAuthState(
+      provider.host,
+      provider.apiKey,
+      userId,
     );
   }
 }

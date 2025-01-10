@@ -32,6 +32,24 @@ services:
     ports:
       - "3001:3001"
 
+  twitch:
+    build:
+      context: apps/backend/providers/twitch
+      dockerfile: .cloud/docker/Dockerfile
+    depends_on:
+      - server
+    ports:
+      - "3002:3002"
+
+  google:
+    build:
+      context: apps/backend/providers/google
+      dockerfile: .cloud/docker/Dockerfile
+    depends_on:
+      - server
+    ports:
+      - "3003:3003"
+
   client_mobile:
     build:
       context: apps/frontend/mobile/
@@ -48,7 +66,7 @@ services:
     depends_on:
       - client_mobile
     volumes:
-      - apk:/app/apk/
+      - apk:/app/.svelte-kit/output/client
     ports:
       - "8081:8081"
 

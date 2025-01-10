@@ -1,3 +1,5 @@
+import { ManifestOAuthEnum } from "@domain/provider/manifest/enums/manifest-oauth.enum";
+
 import { ManifestPropertyEnum } from "../enums/manifest-property.enum";
 
 interface IBaseManifestProperty {
@@ -68,12 +70,17 @@ export type IExposedManifestAction = Pick<
   output: string;
 };
 
+export interface IManifestOAuth {
+  type: ManifestOAuthEnum;
+}
+
 export interface IManifest {
   id: string;
   name: string;
   description: string;
   img: string;
   color: string;
+  oauth: IManifestOAuth;
   triggers: IManifestTrigger[];
   actions: IManifestAction[];
 }

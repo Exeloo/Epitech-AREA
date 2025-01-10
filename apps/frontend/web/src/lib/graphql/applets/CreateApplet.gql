@@ -1,0 +1,5 @@
+mutation createApplet($data: AppletCreateInput!) {
+    createApplet(data: $data) {
+        ...BaseApplet
+    }
+}

@@ -1,0 +1,5 @@
+fragment BaseApplet on Applet {
+    id
+    name
+    description
+}

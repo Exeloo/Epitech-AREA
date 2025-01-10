@@ -58,7 +58,6 @@ class SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       backgroundColor: const Color(0xff1B1B1B),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -68,7 +67,10 @@ class SignUpPageState extends State<SignUpPage> {
           children: [
             const Text(
               'Create an account',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+              style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
@@ -168,7 +170,8 @@ class SignUpPageState extends State<SignUpPage> {
                 textStyle: const TextStyle(fontSize: 16),
                 backgroundColor: const Color(0xff8E44AD),
               ),
-              child: const Text('Get started', style: TextStyle(color: Colors.white)),
+              child: const Text('Get started',
+                  style: TextStyle(color: Colors.white)),
             ),
             const SizedBox(height: 16),
             TextButton(
@@ -179,7 +182,8 @@ class SignUpPageState extends State<SignUpPage> {
                         builder: (BuildContext context) => const LoginPage()),
                     (Route<dynamic> route) => false);
               },
-              child: const Text('Already have an account? Log in', style: TextStyle(color: Colors.white)),
+              child: const Text('Already have an account? Log in',
+                  style: TextStyle(color: Colors.white)),
             ),
           ],
         ),

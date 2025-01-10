@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Input from '$lib/auth/Input.svelte';
+	import Input from '$lib/Inputs/Input.svelte';
 	import Checkbox from '$lib/auth/Checkbox.svelte';
 	import Submit from '$lib/auth/Submit.svelte';
-	import { load_Login } from '$houdini';
+	import { load_login, TokenFieldsStore } from '$houdini';
 
 	let email = $state('');
 	let password = $state('');
@@ -12,29 +12,31 @@
 		event.preventDefault();
 
 		try {
-			console.log(email);
-			const query = await load_Login({});
-			const { data, errors } = await query.Login.fetch({
+			const query = await load_login({
 				variables: { data: { email: email, password: password } }
 			});
 
-			if (!data) {
+			const { data, errors } = await query.login.fetch();
+
+			if (!data || !data.login) {
 				console.log(errors);
 				return errors;
 			}
 
-			console.log('Login successful:', query);
-			alert('Login successful!');
+			let queryResult = $state(new TokenFieldsStore().get(data.login));
 
-			if (rememberMe) {
-				localStorage.setItem('token', data.login.token);
-				localStorage.setItem('refreshToken', data.login.refreshToken);
-			} else {
-				sessionStorage.setItem('token', data.login.token);
-				sessionStorage.setItem('refreshToken', data.login.refreshToken);
-			}
+			queryResult.subscribe((data) => {
+				if (!data) {
+					console.log('Login error');
+					return;
+				}
 
-			window.location.href = '/';
+				const maxAge = rememberMe ? 60 * 60 * 24 * 7 : undefined;
+				document.cookie = `token=${data.token}; path=/; ${rememberMe ? `Max-Age=${maxAge}` : ''}; Secure; SameSite=Strict`;
+				document.cookie = `refreshToken=${data.refreshToken}; path=/; ${rememberMe ? `Max-Age=${maxAge}` : ''}; Secure; SameSite=Strict`;
+
+				window.location.href = '/';
+			});
 		} catch (error) {
 			console.error('Unexpected error:', error);
 		}

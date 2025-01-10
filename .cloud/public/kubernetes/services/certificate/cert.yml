@@ -9,6 +9,8 @@ spec:
     name: letsencrypt-prod
     kind: ClusterIssuer
   dnsNames:
-    - registry.area.tech.showmyteam.fr
-    - argocd.area.tech.showmyteam.fr
-    - phpmyadmin.area.tech.showmyteam.fr
+    - registry.tech.aether-area.fr
+    - argocd.tech.aether-area.fr
+    - phpmyadmin.tech.aether-area.fr
+    - api.aether-area.fr
+    - aether-area.fr

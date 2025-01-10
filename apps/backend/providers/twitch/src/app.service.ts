@@ -27,11 +27,15 @@ export class AppService {
     return generateManifest(APP_BASE_MANIFEST);
   }
 
-  getOAuthUrl(body: { userId: number }): Promise<{ baseUrl: string }> {
+  getOAuthUrl(body: { state: string }): Promise<{ baseUrl: string }> {
     return this.authService.getOAuthUrl(body);
   }
 
   runOAuth(input: { code: string; state: string }): Promise<void> {
     return this.authService.runOAuth(input);
+  }
+
+  getOAuthState(userId: number): Promise<{ authenticated: boolean }> {
+    return this.authService.getOAuthState(userId);
   }
 }

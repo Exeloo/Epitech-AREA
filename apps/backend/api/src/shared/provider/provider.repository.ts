@@ -10,6 +10,7 @@ import { InternalException } from "@exception";
 
 import { HttpRepository } from "@domain/common/repositories/http.repository";
 import { IManifest } from "@domain/provider/manifest/types/manifest.type";
+import { IProviderOAuthState } from "@domain/provider/types/provider-oauth-state.type";
 
 @Injectable()
 export class ProviderRepository extends HttpRepository("PROVIDER") {
@@ -67,11 +68,11 @@ export class ProviderRepository extends HttpRepository("PROVIDER") {
   async getOAuthRedirect(
     host: string,
     apiKey: string,
-    body: { userId: number },
+    body: { state: string },
   ): Promise<{ baseUrl: string }> {
     let res: any;
     try {
-      res = await this.get(`${host}/oauth/${body.userId}`, {
+      res = await this.post(`${host}/oauth/redirect`, body, {
         headers: {
           "api-key": apiKey,
         },
@@ -102,5 +103,17 @@ export class ProviderRepository extends HttpRepository("PROVIDER") {
       });
     }
     return res;
+  }
+
+  getOAuthState(
+    host: string,
+    apiKey: string,
+    userId: ID,
+  ): Promise<IProviderOAuthState> {
+    return this.get(`${host}/oauth/state/${userId}`, {
+      headers: {
+        "api-key": apiKey,
+      },
+    });
   }
 }

@@ -7,20 +7,12 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 
 import { AuthGuard } from "@lib/auth";
 
-import { AppCron } from "~/app.cron";
 import { AppGateway } from "~/app.gateway";
 import { databaseConfig } from "~/config/database.config";
-import { MessageAction } from "~/provider/actions/message.action";
+import { GmailAction } from "~/provider/actions/gmail.action";
 import { ActionService } from "~/provider/services/action.service";
-import { TriggerEntity } from "~/provider/services/trigger.entity";
-import { TriggerService } from "~/provider/services/trigger.service";
 import { AccountEntity } from "~/provider/shared/auth/account.entity";
 import { AuthService } from "~/provider/shared/auth/auth.service";
-import { EventModule } from "~/provider/shared/event/event.module";
-import { GatewayRepository } from "~/provider/shared/gateway/gateway.repository";
-import { AutomodTrigger } from "~/provider/triggers/automod.trigger";
-import { ChannelTrigger } from "~/provider/triggers/channel.trigger";
-import { MessageTrigger } from "~/provider/triggers/message.trigger";
 
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
@@ -42,29 +34,21 @@ import { validate } from "./config/validations/env.validation";
       imports: [ConfigModule],
       useFactory: () => databaseConfig,
     }),
-    TypeOrmModule.forFeature([AccountEntity, TriggerEntity]),
-    EventModule,
+    TypeOrmModule.forFeature([AccountEntity]),
     HttpModule,
   ],
   controllers: [AppController],
   providers: [
     AppService,
     AppGateway,
-    AppCron,
 
     AuthGuard,
-    GatewayRepository,
 
     AuthService,
 
     ActionService,
-    TriggerService,
 
-    MessageAction,
-
-    MessageTrigger,
-    AutomodTrigger,
-    ChannelTrigger,
+    GmailAction,
   ],
 })
 export class AppModule {}

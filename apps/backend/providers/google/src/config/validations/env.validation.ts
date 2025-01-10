@@ -64,14 +64,6 @@ export class EnvironmentVariables {
   API_KEY: string;
 
   @IsNotEmpty()
-  @IsUrl({ require_tld: false })
-  PROVIDER_BASE_API_URL: string;
-
-  @IsNotEmpty()
-  @IsUrl({ require_tld: false, protocols: ["ws", "wss"] })
-  PROVIDER_GATEWAY_URL: string;
-
-  @IsNotEmpty()
   @IsString()
   APP_DOMAINS: string;
 
@@ -85,11 +77,11 @@ export class EnvironmentVariables {
 
   @IsNotEmpty()
   @IsString()
-  DISCORD_CLIENT_ID: string;
+  GOOGLE_CLIENT_ID: string;
 
   @IsNotEmpty()
   @IsString()
-  DISCORD_TOKEN: string;
+  GOOGLE_CLIENT_SECRET: string;
 }
 
 // Learn more: https://docs.nestjs.com/techniques/configuration#custom-validate-function

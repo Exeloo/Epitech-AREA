@@ -41,6 +41,15 @@ services:
     ports:
       - "3002:3002"
 
+  google:
+    build:
+      context: apps/backend/providers/google
+      dockerfile: .cloud/docker/Dockerfile
+    depends_on:
+      - server
+    ports:
+      - "3003:3003"
+
   client_mobile:
     build:
       context: apps/frontend/mobile/

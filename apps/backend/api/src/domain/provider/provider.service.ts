@@ -107,7 +107,7 @@ export class ProviderService {
     );
     return {
       authenticated: oauthState.authenticated,
-      redirectUri: `${this.apiUrl}/area/oauth/${provider.providerId}`,
+      redirectUri: `${this.apiUrl}/area/oauth/${provider.providerId}?state=${Buffer.from(JSON.stringify(user.id)).toString("base64")}`,
     };
   }
 

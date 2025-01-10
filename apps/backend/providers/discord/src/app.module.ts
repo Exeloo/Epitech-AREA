@@ -4,7 +4,6 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { ScheduleModule } from "@nestjs/schedule";
 import { ThrottlerModule } from "@nestjs/throttler";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { validate } from "class-validator";
 
 import { AuthGuard } from "@lib/auth";
 
@@ -22,6 +21,7 @@ import { MessageTrigger } from "~/provider/triggers/message.trigger";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { throttlerConfig } from "./config/throttler.config";
+import { validate } from "./config/validations/env.validation";
 
 @Module({
   imports: [

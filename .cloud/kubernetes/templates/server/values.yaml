@@ -1,0 +1,77 @@
+name: aether-api
+namespace: deployment
+
+deployment:
+  replicas: 1
+  resources:
+    limits:
+      memory: "512Mi"
+      cpu: "1000m"
+    requests:
+      memory: "256Mi"
+      cpu: "500m"
+  ports:
+    - containerPort: 3000
+  env:
+    - name: APP_ENV
+      value: production
+    - name: DATABASE_HOST
+      value: mariadb.default.svc.cluster.local
+    - name: DATABASE_PORT
+      value: "\"3306\""
+    - name: DATABASE_USERNAME
+      value: api
+    - name: DATABASE_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: db-password
+          key: database_password
+    - name: DATABASE_DB
+      value: area-api-db
+    - name: TEST_DATABASE_USERNAME
+      value: api
+    - name: TEST_DATABASE_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: db-password
+          key: database_password
+    - name: TEST_DATABASE_DB
+      value: area-api-db
+    - name: ACCESS_TOKEN_SECRET
+      value: azertyuiopqsdfgjklhmwxcvbnazertyuiopqsdfghjklmwxcvbn
+    - name: ACCESS_TOKEN_EXPIRATION
+      value: 24h
+    - name: REFRESH_TOKEN_SECRET
+      value: azertyuiopqsdfgjklhmwxcvbnazertyuiopqsdfghjklmwxcvbnazerty
+    - name: REFRESH_TOKEN_EXPIRATION
+      value: 720h
+    - name: WEBAPP_DOMAINS
+      value: https://aether-area.fr
+    - name: APP_BASE_URL
+      value: https://aether-area.fr
+    - name: API_BASE_URL
+      value: https://api.aether-area.fr
+    - name: THROTTLE_TTL
+      value: "\"60\""
+    - name: THROTTLE_LIMIT
+      value: "\"60\""
+    - name: DISCORD_WEBHOOK
+      value: https://discord.com/api/webhooks/1326362219797155910/dTQ1GhGH2gATCk9q3fMAl19BVKmyUnZMrAHwfbNAgmOcpOWF3gBtETFhvsaOX8lQt6Dc
+    - name: GOOGLE_CLIENT_ID
+      value: 456488822381-3jsavfuicv056045fmv3f3ms4upfrgvu.apps.googleusercontent.com
+    - name: GOOGLE_CLIENT_SECRET
+      value: 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
+
+service:
+  type: ClusterIP
+  port: 443
+  portLocal: 80
+  targetPort: 3000
+  restartPolicy: Always
+
+image:
+  repository: registry.tech.aether-area.fr/b-dev-500_area_server
+  tag: latest
+  pullPolicy: Always
+  pullSecrets:
+    name: regcred

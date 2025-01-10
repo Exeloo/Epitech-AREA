@@ -1,0 +1,31 @@
+name: aether-webapp
+namespace: deployment
+
+deployment:
+  replicas: 1
+  resources:
+    limits:
+      memory: "512Mi"
+      cpu: "1000m"
+    requests:
+      memory: "256Mi"
+      cpu: "500m"
+  ports:
+    - containerPort: 8081
+  env:
+    - name: PUBLIC_API_URL
+      value: https://api.aether-area.fr/graphql
+
+service:
+  type: ClusterIP
+  port: 443
+  portLocal: 80
+  targetPort: 8081
+  restartPolicy: Always
+
+image:
+  repository: registry.tech.aether-area.fr/b-dev-500_area_client_web
+  tag: latest
+  pullPolicy: Always
+  pullSecrets:
+    name: regcred

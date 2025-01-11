@@ -1,13 +1,11 @@
-import {Injectable} from "@nestjs/common";
-import {ConfigService} from "@nestjs/config";
+import { Injectable } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
 
 @Injectable()
 export class AuthService {
   private readonly apiKey: string;
 
-  constructor(
-    configService: ConfigService,
-  ) {
+  constructor(configService: ConfigService) {
     this.apiKey = configService.getOrThrow("TRACKERGG_API_KEY");
   }
 

@@ -1,14 +1,14 @@
-import {HttpService} from "@nestjs/axios";
-import {Injectable} from "@nestjs/common";
-import {ConfigService} from "@nestjs/config";
+import { HttpService } from "@nestjs/axios";
+import { Injectable } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
 
-import {ManifestAction} from "@lib/manifest";
+import { ManifestAction } from "@lib/manifest";
 
-import {BaseHttpRepository} from "~/provider/common/base-http.repository";
-import {ActionCsgoGetProfileInput} from "~/provider/dto/inputs/csgo/action-csgo-get-profile.input";
-import {ActionCsgoGetProfileResponse} from "~/provider/dto/responses/csgo/action-csgo-get-profile.response";
-import {IActionResponse} from "~/provider/services/action.service";
-import {AuthService} from "~/provider/shared/auth/auth.service";
+import { BaseHttpRepository } from "~/provider/common/base-http.repository";
+import { ActionCsgoGetProfileInput } from "~/provider/dto/inputs/csgo/action-csgo-get-profile.input";
+import { ActionCsgoGetProfileResponse } from "~/provider/dto/responses/csgo/action-csgo-get-profile.response";
+import { IActionResponse } from "~/provider/services/action.service";
+import { AuthService } from "~/provider/shared/auth/auth.service";
 
 @Injectable()
 export class CsgoAction extends BaseHttpRepository {
@@ -29,7 +29,7 @@ export class CsgoAction extends BaseHttpRepository {
     input: ActionCsgoGetProfileInput,
     output: ActionCsgoGetProfileResponse,
   })
-  userGetProfile(
+  csgoGetProfile(
     input: ActionCsgoGetProfileInput,
   ): IActionResponse<ActionCsgoGetProfileResponse> {
     return this.get(`/csgo/standard/profile/steam/${input.user_id}`, {

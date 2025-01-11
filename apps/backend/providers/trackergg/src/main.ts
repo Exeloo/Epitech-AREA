@@ -1,14 +1,14 @@
-import {ValidationPipe} from "@nestjs/common";
-import {ConfigService} from "@nestjs/config";
-import {NestFactory} from "@nestjs/core";
-import {DocumentBuilder, SwaggerModule} from "@nestjs/swagger";
+import { ValidationPipe } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
+import { NestFactory } from "@nestjs/core";
+import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import * as bodyParser from "body-parser";
-import {useContainer} from "class-validator";
+import { useContainer } from "class-validator";
 import "dotenv/config";
 import helmet from "helmet";
 
-import {AppModule} from "./app.module";
-import {AppEnvEnum} from "./config/validations/env.validation";
+import { AppModule } from "./app.module";
+import { AppEnvEnum } from "./config/validations/env.validation";
 
 const rawBodyBuffer = (req, _, buffer, encoding) => {
   if (buffer && buffer.length) {

@@ -47,10 +47,10 @@
 			Log in
 		</a>
 	</div>
-	<div class="flex flex-col gap-2">
+	<div class="flex w-full flex-col gap-2">
 		{#each errors as error}
-			<div class="rounded-xl border border-red-800 bg-red-400">
-				{error}
+			<div class="w-full rounded-xl border border-red-800 bg-red-400 p-2 text-center">
+				<span>{error}</span>
 			</div>
 		{/each}
 	</div>

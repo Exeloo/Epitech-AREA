@@ -81,11 +81,11 @@ export class EnvironmentVariables {
 
   @IsNotEmpty()
   @IsString()
-  GITHUB_CLIENT_ID: string;
+  MICROSOFT_CLIENT_ID: string;
 
   @IsNotEmpty()
   @IsString()
-  GITHUB_CLIENT_SECRET: string;
+  MICROSOFT_CLIENT_SECRET: string;
 }
 
 // Learn more: https://docs.nestjs.com/techniques/configuration#custom-validate-function

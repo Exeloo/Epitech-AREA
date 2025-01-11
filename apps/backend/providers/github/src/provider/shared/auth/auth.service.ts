@@ -70,7 +70,13 @@ export class AuthService {
         },
       }),
     );
+
+    const account = await this.repository.findOneBy({
+      userId: userId,
+      providerId: data.id.toString(),
+    });
     await this.repository.save({
+      id: account?.id,
       userId: userId,
       providerId: data.id.toString(),
       token: token,

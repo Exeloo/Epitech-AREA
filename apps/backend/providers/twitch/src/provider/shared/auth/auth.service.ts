@@ -64,7 +64,13 @@ export class AuthService {
         },
       }),
     );
+
+    const account = await this.repository.findOneBy({
+      userId: userId,
+      providerId: providerId,
+    });
     await this.repository.save({
+      id: account?.id,
       userId: userId,
       providerId: providerId,
       token: token,

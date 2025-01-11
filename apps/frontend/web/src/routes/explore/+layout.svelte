@@ -1,5 +1,5 @@
 <script>
-	import ExploreNav from '$lib/explore/ExploreNav.svelte';
+	import ExploreNav from '$lib/components/explore/ExploreNav.svelte';
 </script>
 
 <div class="p-10">

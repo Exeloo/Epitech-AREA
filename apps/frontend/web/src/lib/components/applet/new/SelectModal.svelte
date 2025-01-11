@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { type BaseProvider$data, BaseProviderStore } from '$houdini';
-	import ProvidersGrid from '$lib/applet/new/grid/providers/ProvidersGrid.svelte';
-	import ElementsGrid from '$lib/applet/new/grid/elements/ElementsGrid.svelte';
-	import { BlockType, type ElementValues } from '$lib/applet/new/types';
+	import ProvidersGrid from '$lib/components/applet/new/grid/providers/ProvidersGrid.svelte';
+	import ElementsGrid from '$lib/components/applet/new/grid/elements/ElementsGrid.svelte';
+	import { BlockType, type ElementValues } from '$lib/components/applet/new/types';
 
 	interface Props {
 		type: BlockType;

@@ -1,4 +1,4 @@
-import { HoudiniClient } from '$houdini';
+import {HoudiniClient} from '$houdini';
 import { PUBLIC_API_URL } from '$env/static/public';
 
 export default new HoudiniClient({
@@ -15,5 +15,5 @@ export default new HoudiniClient({
 				Authorization: `${token}`
 			}
 		};
-	}
+	},
 });

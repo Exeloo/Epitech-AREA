@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Input from '$lib/Inputs/Input.svelte';
-	import Submit from '$lib/auth/Submit.svelte';
-	import Validation from '$lib/auth/Validation.svelte';
+	import Input from '$lib/components/Inputs/Input.svelte';
+	import Submit from '$lib/components/auth/Submit.svelte';
+	import Validation from '$lib/components/auth/Validation.svelte';
 
 	let username = $state('');
 	let email = $state('');

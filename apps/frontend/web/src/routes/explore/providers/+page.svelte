@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ProviderCard from '$lib/explore/card/ProviderCard.svelte';
+	import ProviderCard from '$lib/components/explore/card/ProviderCard.svelte';
 	import { onMount } from 'svelte';
 	import { load_getAllProviders } from '$houdini';
 

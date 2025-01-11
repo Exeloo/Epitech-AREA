@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { BlockType, type ElementValues } from '$lib/applet/new/types';
-	import ActionElement from '$lib/applet/new/grid/elements/ActionElement.svelte';
-	import TriggerElement from '$lib/applet/new/grid/elements/TriggerElement.svelte';
+	import { BlockType, type ElementValues } from '$lib/components/applet/new/types';
+	import ActionElement from '$lib/components/applet/new/grid/elements/ActionElement.svelte';
+	import TriggerElement from '$lib/components/applet/new/grid/elements/TriggerElement.svelte';
 
 	interface Props {
 		type: BlockType;

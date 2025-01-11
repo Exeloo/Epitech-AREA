@@ -1,25 +1,33 @@
 <script lang="ts">
-	import Input from '$lib/Inputs/Input.svelte';
-	import Checkbox from '$lib/auth/Checkbox.svelte';
-	import Submit from '$lib/auth/Submit.svelte';
+	import Input from '$lib/components/Inputs/Input.svelte';
+	import Checkbox from '$lib/components/auth/Checkbox.svelte';
+	import Submit from '$lib/components/auth/Submit.svelte';
 	import { load_login, TokenFieldsStore } from '$houdini';
+	import { errorsStore } from "$lib/components/auth/stores";
 
 	let email = $state('');
 	let password = $state('');
 	let rememberMe = $state(false);
 
+	type ApiError = {
+		status:string;
+		statusCode: number;
+		error: any;
+	};
+
 	async function handleSubmit(event: any): Promise<any> {
 		event.preventDefault();
 
 		try {
-			const query = await load_login({
+			const query = await load_login({});
+
+			const { data, errors } = await query.login.fetch({
 				variables: { data: { email: email, password: password } }
 			});
 
-			const { data, errors } = await query.login.fetch();
-
-			if (!data || !data.login) {
-				console.log(errors);
+			if (!data || !data.login || errors) {
+				errorsStore.set(["Internal server error"]);
+				console.error("Internal server error");
 				return errors;
 			}
 
@@ -38,7 +46,13 @@
 				window.location.href = '/';
 			});
 		} catch (error) {
-			console.error('Unexpected error:', error);
+			if ((error as ApiError).statusCode === 400) {
+				//const apiErrors = (error as ApiError);
+				errorsStore.set(["oui"]);
+			} else {
+				errorsStore.set(["Unexpected error occurred"]);
+			}
+			console.error(error);
 		}
 	}
 </script>

@@ -5,7 +5,7 @@
 		load_getProviderById,
 		ProviderWithManifestStore
 	} from '$houdini';
-	import type { ElementValues } from '$lib/applet/new/types';
+	import type { ElementValues } from '$lib/components/applet/new/types';
 
 	interface Props {
 		provider: BaseProvider;

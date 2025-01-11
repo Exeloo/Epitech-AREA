@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Card from '$lib/explore/card/Card.svelte';
+	import Card from '$lib/components/explore/card/Card.svelte';
 	import { BaseProviderStore, type BaseProvider } from '$houdini';
 
 	interface Props {

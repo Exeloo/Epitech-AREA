@@ -68,6 +68,15 @@ services:
     ports:
       - "3005:3005"
 
+  linkedin:
+    build:
+      context: apps/backend/providers/linkedin
+      dockerfile: .cloud/docker/Dockerfile
+    depends_on:
+      - server
+    ports:
+      - "3006:3006"
+
   client_mobile:
     build:
       context: apps/frontend/mobile/

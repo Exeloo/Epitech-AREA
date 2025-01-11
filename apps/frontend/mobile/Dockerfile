@@ -16,4 +16,4 @@ RUN mkdir /home/builder/app/apk
 
 USER root
 
-CMD ["cp", "/home/builder/app/build/app/outputs/flutter-apk/app-release.apk", "/home/builder/app/apk/client.apk"]
+CMD ["sh", "-c", "cp /home/builder/app/build/app/outputs/flutter-apk/app-release.apk /home/builder/app/apk/client.apk && while true; do sleep 1000; done"]

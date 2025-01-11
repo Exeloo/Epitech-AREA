@@ -21,22 +21,13 @@ spec:
         - name: {{ .Values.name }}
           image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          ports:
-            {{- range .Values.deployment.ports }}
-            - containerPort: {{ .containerPort }}
-            {{- end }}
-          env:
-            {{- range .Values.deployment.env }}
-            - name: {{ .name }}
-              value: {{ .value }}
-            {{- end }}
           resources:
             {{- toYaml .Values.deployment.resources | nindent 12 }}
           volumeMounts:
-            - name: { { .Values.volume.pvName } }
-              mountPath: { { .Values.volume.mountPath } }
+            - name: {{ .Values.volume.pvName }}
+              mountPath: {{ .Values.volume.mountPath }}
       volumes:
-        - name: { { .Values.volume.pvName } }
+        - name: {{ .Values.volume.pvName }}
           persistentVolumeClaim:
-            claimName: { { .Values.volume.pvcName } }
+            claimName: {{ .Values.volume.pvcName }}
       restartPolicy: {{ .Values.service.restartPolicy }}

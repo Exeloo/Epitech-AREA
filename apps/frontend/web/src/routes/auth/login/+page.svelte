@@ -9,25 +9,19 @@
 	let password = $state('');
 	let rememberMe = $state(false);
 
-	type ApiError = {
-		status: string;
-		statusCode: number;
-		error: any;
-	};
-
 	async function handleSubmit(event: any): Promise<any> {
 		event.preventDefault();
 
 		try {
-			const query = await load_login({});
-
-			const { data, errors } = await query.login.fetch({
+			const query = await load_login({
 				variables: { data: { email: email, password: password } }
 			});
+			console.log(query);
+
+			const { data, errors } = await query.login.fetch();
 
 			if (!data || !data.login || errors) {
-				errorsStore.set(['Internal server error']);
-				console.error('Internal server error');
+				new Error('Internal Server Error');
 				return errors;
 			}
 
@@ -45,14 +39,9 @@
 
 				window.location.href = '/';
 			});
-		} catch (error) {
-			if ((error as ApiError).statusCode === 400) {
-				//const apiErrors = (error as ApiError);
-				errorsStore.set(['oui']);
-			} else {
-				errorsStore.set(['Unexpected error occurred']);
-			}
-			console.error(error);
+		} catch (e) {
+			errorsStore.set(['Invalid Credentials']);
+			console.error(e);
 		}
 	}
 </script>

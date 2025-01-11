@@ -6,7 +6,6 @@ export default new HoudiniClient({
 	fetchParams({ session }) {
 		const token = session?.user?.token;
 		if (!token) {
-			console.error('Token is missing in session');
 			return {};
 		}
 

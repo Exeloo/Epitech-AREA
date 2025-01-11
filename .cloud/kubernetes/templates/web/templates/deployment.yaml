@@ -32,4 +32,11 @@ spec:
             {{- end }}
           resources:
             {{- toYaml .Values.deployment.resources | nindent 12 }}
+          volumeMounts:
+            - name: { { .Values.volume.pvName } }
+              mountPath: { { .Values.volume.mountPath } }
+      volumes:
+        - name: { { .Values.volume.pvName } }
+          persistentVolumeClaim:
+            claimName: { { .Values.volume.pvcName } }
       restartPolicy: {{ .Values.service.restartPolicy }}

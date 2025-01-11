@@ -23,6 +23,11 @@ service:
   targetPort: 8081
   restartPolicy: Always
 
+volume:
+  pvName: apk-volume
+  pvcName: apk-pvc
+  mountPath: /app/.svelte-kit/output/client
+
 image:
   repository: registry.tech.aether-area.fr/b-dev-500_area_client_web
   tag: latest

@@ -1,8 +1,8 @@
+import 'package:aether/graphql/__generated__/applet.data.gql.dart';
+import 'package:aether/graphql/graphql_client.dart';
+import 'package:aether/modules/graphql/repository/applet_repository.dart';
+import 'package:aether/views/home/widgets/applet_card.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile/graphql/__generated__/applet.data.gql.dart';
-import 'package:mobile/graphql/graphql_client.dart';
-import 'package:mobile/modules/graphql/repository/applet_repository.dart';
-import 'package:mobile/views/home/widgets/applet_card.dart';
 
 import 'applet_detail_page.dart';
 

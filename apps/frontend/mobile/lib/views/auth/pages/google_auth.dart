@@ -24,7 +24,7 @@ class GoogleAuthState extends State<GoogleAuth> {
       ..setNavigationDelegate(
         NavigationDelegate(
           onPageStarted: (String url) {
-            if (url.startsWith('mobile://oauth-callback')) {
+            if (url.startsWith('aether://oauth-callback')) {
               _handleRedirect(url);
             }
           },

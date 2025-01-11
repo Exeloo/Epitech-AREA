@@ -1,7 +1,7 @@
+import 'package:aether/graphql/__generated__/applet.data.gql.dart';
+import 'package:aether/graphql/graphql_client.dart';
+import 'package:aether/modules/graphql/repository/applet_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile/graphql/__generated__/applet.data.gql.dart';
-import 'package:mobile/graphql/graphql_client.dart';
-import 'package:mobile/modules/graphql/repository/applet_repository.dart';
 
 class AppletDetailPage extends StatefulWidget {
   final GgetAllAppletsData_getAllApplets applet;

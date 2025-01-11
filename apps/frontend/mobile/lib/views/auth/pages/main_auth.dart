@@ -1,7 +1,7 @@
+import 'package:aether/views/auth/pages/google_auth.dart';
+import 'package:aether/views/auth/pages/login.dart';
+import 'package:aether/views/auth/pages/signup.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile/views/auth/pages/google_auth.dart';
-import 'package:mobile/views/auth/pages/login.dart';
-import 'package:mobile/views/auth/pages/signup.dart';
 
 class MainAuthPage extends StatefulWidget {
   const MainAuthPage({super.key});

@@ -1,8 +1,8 @@
 import 'dart:developer';
 
+import 'package:aether/graphql/__generated__/provider.data.gql.dart';
+import 'package:aether/graphql/__generated__/provider.req.gql.dart';
 import 'package:ferry/ferry.dart';
-import 'package:mobile/graphql/__generated__/provider.data.gql.dart';
-import 'package:mobile/graphql/__generated__/provider.req.gql.dart';
 
 class ProviderRepository {
   final Client client;

@@ -1,12 +1,11 @@
 import 'dart:developer';
 
+import 'package:aether/modules/auth/auth_helper.dart';
 import 'package:gql_error_link/gql_error_link.dart';
 import 'package:gql_exec/gql_exec.dart';
 import 'package:gql_http_link/gql_http_link.dart';
 import 'package:gql_link/gql_link.dart';
 import 'package:gql_transform_link/gql_transform_link.dart';
-
-import 'package:mobile/modules/auth/auth_helper.dart';
 
 class HttpAuthLink extends Link {
   late final Link _innerLink;

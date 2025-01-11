@@ -1,6 +1,6 @@
-import {Injectable, Logger} from "@nestjs/common";
-import {ConfigService} from "@nestjs/config";
-import {io, Socket} from "socket.io-client";
+import { Injectable, Logger } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
+import { Socket, io } from "socket.io-client";
 
 @Injectable()
 export class AppGateway {
@@ -18,7 +18,6 @@ export class AppGateway {
 
   connect() {
     if (this.socket.connected) this.socket.disconnect();
-
     this.socket.connect();
     this.socket.on("connect", () => {
       this.logger.log("Connected to the server");

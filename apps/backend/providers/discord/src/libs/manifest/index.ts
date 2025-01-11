@@ -1,7 +1,7 @@
 export { ManifestAction } from "./decorators/action.decorator";
 export { ManifestProperty } from "./decorators/property.decorator";
 export { ManifestTrigger } from "./decorators/trigger.decorator";
-export { ManifestType } from "@lib/manifest/decorators/type.decorator";
+export { ManifestType } from "./decorators/type.decorator";
 export { ManifestPropertyEnum } from "./enums/manifest.enum";
 export { ManifestOAuthEnum } from "./enums/manifest-oauth.enum";
 export { generateManifest } from "./functions/generate/manifest.generate";

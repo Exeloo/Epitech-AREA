@@ -1,8 +1,8 @@
 import 'dart:developer';
 
+import 'package:aether/graphql/__generated__/user.data.gql.dart';
+import 'package:aether/modules/graphql/repository/user_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile/graphql/__generated__/user.data.gql.dart';
-import 'package:mobile/modules/graphql/repository/user_repository.dart';
 import 'package:provider/provider.dart';
 
 class Profile extends StatefulWidget {

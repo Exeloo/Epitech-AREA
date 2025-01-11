@@ -106,7 +106,7 @@ export class AuthService {
   }
 
   getRedirect(options?: IOAuthOptions) {
-    if (options?.device === "mobile") return "mobile://oauth-callback";
+    if (options?.device === "mobile") return "aether://oauth-callback";
     return `${this.configService.getOrThrow("APP_BASE_URL")}/login`;
   }
 

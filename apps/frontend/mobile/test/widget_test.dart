@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mobile/main.dart';
+import 'package:aether/main.dart';
 
 void main() {
   testWidgets('Sign in button is present', (WidgetTester tester) async {

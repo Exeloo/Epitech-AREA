@@ -1,5 +1,6 @@
+import 'package:aether/modules/auth/auth_helper.dart';
 import 'package:ferry/ferry.dart';
-import 'package:mobile/modules/auth/auth_helper.dart';
+
 import 'httpauthlink.dart';
 
 class GraphQlClient {

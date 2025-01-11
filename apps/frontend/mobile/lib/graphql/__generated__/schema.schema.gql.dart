@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
 
+import 'package:aether/graphql/__generated__/serializers.gql.dart' as _i1;
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:gql_code_builder/src/serializers/default_scalar_serializer.dart'
     as _i2;
-import 'package:mobile/graphql/__generated__/serializers.gql.dart' as _i1;
 
 part 'schema.schema.gql.g.dart';
 

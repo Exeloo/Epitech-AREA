@@ -1,7 +1,7 @@
+import 'package:aether/modules/auth/auth_helper.dart';
+import 'package:aether/modules/graphql/repository/auth_repository.dart';
+import 'package:aether/views/auth/pages/signup.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile/modules/auth/auth_helper.dart';
-import 'package:mobile/modules/graphql/repository/auth_repository.dart';
-import 'package:mobile/views/auth/pages/signup.dart';
 import 'package:provider/provider.dart';
 
 import '../../mainPage/pages/main_navigation.dart';

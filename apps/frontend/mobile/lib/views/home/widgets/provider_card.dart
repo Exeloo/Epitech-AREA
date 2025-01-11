@@ -1,8 +1,8 @@
 import 'dart:developer';
 
+import 'package:aether/graphql/__generated__/provider.data.gql.dart';
+import 'package:aether/views/home/widgets/trigger_action_card.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile/graphql/__generated__/provider.data.gql.dart';
-import 'package:mobile/views/home/widgets/trigger_action_card.dart';
 import 'package:provider/provider.dart';
 
 import '../../../modules/graphql/repository/provider_repository.dart';

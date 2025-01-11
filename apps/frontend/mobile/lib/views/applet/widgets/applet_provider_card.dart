@@ -1,5 +1,5 @@
+import 'package:aether/views/applet/pages/applet_creation.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile/views/applet/pages/applet_creation.dart';
 
 class AppletProviderCard extends StatelessWidget {
   final String logoUrl;

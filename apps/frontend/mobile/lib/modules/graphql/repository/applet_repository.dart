@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:aether/graphql/__generated__/applet.data.gql.dart';
+import 'package:aether/graphql/__generated__/applet.req.gql.dart';
+import 'package:aether/graphql/__generated__/schema.schema.gql.dart';
 import 'package:ferry/ferry.dart';
-import 'package:mobile/graphql/__generated__/applet.data.gql.dart';
-import 'package:mobile/graphql/__generated__/applet.req.gql.dart';
-import 'package:mobile/graphql/__generated__/schema.schema.gql.dart';
 
 class AppletRepository {
   final Client client;

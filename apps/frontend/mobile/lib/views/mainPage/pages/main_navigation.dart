@@ -1,8 +1,8 @@
+import 'package:aether/views/applet/pages/my_applets_page.dart';
+import 'package:aether/views/home/pages/home.dart';
+import 'package:aether/views/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:mobile/views/applet/pages/my_applets_page.dart';
-import 'package:mobile/views/home/pages/home.dart';
-import 'package:mobile/views/profile/profile.dart';
 
 import '../../applet/pages/provider_selection.dart';
 

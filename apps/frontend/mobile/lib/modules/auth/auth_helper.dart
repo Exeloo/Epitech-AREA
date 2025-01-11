@@ -1,7 +1,7 @@
 import 'dart:developer';
 
+import 'package:aether/graphql/__generated__/auth.data.gql.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:mobile/graphql/__generated__/auth.data.gql.dart';
 
 class AuthHelper {
   final storage = const FlutterSecureStorage();

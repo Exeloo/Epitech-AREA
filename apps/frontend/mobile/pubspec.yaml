@@ -1,8 +1,7 @@
-name: mobile
-description: "A new Flutter project."
-publish_to: 'none'
+name: aether
+description: "Aether AREA project"
 
-version: 1.0.0+1
+version: 1.0.0
 
 environment:
   sdk: ">=3.5.3 <4.0.0"

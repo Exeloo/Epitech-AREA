@@ -6,7 +6,7 @@ deployment:
   resources:
     limits:
       memory: "512Mi"
-      cpu: "1000m"
+      cpu: "550m"
     requests:
       memory: "256Mi"
       cpu: "500m"

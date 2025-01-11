@@ -1,0 +1,33 @@
+name: aether-mobile
+namespace: deployment
+
+deployment:
+  replicas: 1
+  resources:
+    limits:
+      memory: "512Mi"
+      cpu: "100m"
+    requests:
+      memory: "256Mi"
+      cpu: "100m"
+
+service:
+  restartPolicy: Always
+
+volume:
+  pvName: apk-volume
+  pvcName: apk-pvc
+  storage: 10Gi
+  accessMode: ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage
+  localPath: /mnt/data/apk-storage
+  nodeName: vps-d7439b29
+  mountPath: /home/builder/app/apk/
+
+image:
+  repository: registry.tech.aether-area.fr/b-dev-500_area_client_mobile
+  tag: latest
+  pullPolicy: Always
+  pullSecrets:
+    name: regcred

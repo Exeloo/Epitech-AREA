@@ -1,9 +1,9 @@
-import {Injectable} from "@nestjs/common";
-import {ConfigService} from "@nestjs/config";
+import { Injectable } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
 
-import {UserAction} from "~/provider/actions/user.action";
-import {ActionUserGetProfileInput} from "~/provider/dto/inputs/user/action-user-get-profile.input";
-import {ActionUserGetProfileResponse} from "~/provider/dto/responses/user/action-user-get-profile.response";
+import { UserAction } from "~/provider/actions/user.action";
+import { ActionUserGetProfileInput } from "~/provider/dto/inputs/user/action-user-get-profile.input";
+import { ActionUserGetProfileResponse } from "~/provider/dto/responses/user/action-user-get-profile.response";
 
 interface IActions {
   ["user-get-profile"]: {
@@ -37,8 +37,6 @@ export class ActionService {
     userId: number,
     input: any,
   ): Promise<any> {
-    const res = await this.actions[name](userId, input);
-    console.log(res);
-    return res;
+    return await this.actions[name](userId, input);
   }
 }

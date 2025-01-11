@@ -6,8 +6,6 @@ import {
   generateManifest,
 } from "@lib/manifest";
 
-import { AuthService } from "~/provider/shared/auth/auth.service";
-
 const APP_BASE_MANIFEST: IBaseManifest = {
   id: "trackergg",
   name: "Tracker.gg",
@@ -15,14 +13,12 @@ const APP_BASE_MANIFEST: IBaseManifest = {
   img: "",
   color: "#ffffff",
   oauth: {
-    type: ManifestOAuthEnum.TOKEN,
+    type: ManifestOAuthEnum.NONE,
   },
 };
 
 @Injectable()
 export class AppService {
-  constructor(private readonly authService: AuthService) {}
-
   async getManifest(): Promise<any> {
     return generateManifest(APP_BASE_MANIFEST);
   }

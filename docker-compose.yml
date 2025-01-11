@@ -86,6 +86,15 @@ services:
     ports:
       - "3007:3007"
 
+  trackergg:
+    build:
+      context: apps/backend/providers/trackergg
+      dockerfile: .cloud/docker/Dockerfile
+    depends_on:
+      - server
+    ports:
+      - "3008:3008"
+
   client_mobile:
     build:
       context: apps/frontend/mobile/

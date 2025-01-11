@@ -68,10 +68,6 @@ export class EnvironmentVariables {
   PROVIDER_BASE_API_URL: string;
 
   @IsNotEmpty()
-  @IsUrl({ require_tld: false, protocols: ["ws", "wss"] })
-  PROVIDER_GATEWAY_URL: string;
-
-  @IsNotEmpty()
   @IsString()
   APP_DOMAINS: string;
 

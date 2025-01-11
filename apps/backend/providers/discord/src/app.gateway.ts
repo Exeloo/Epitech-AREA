@@ -8,7 +8,6 @@ export class AppGateway {
   private readonly logger: Logger;
 
   constructor(private readonly configService: ConfigService) {
-    console.log(configService.getOrThrow("BASE_API_WS_URL"))
     this.socket = io(configService.getOrThrow("BASE_API_WS_URL"), {
       autoConnect: false,
       transports: ["websocket"],

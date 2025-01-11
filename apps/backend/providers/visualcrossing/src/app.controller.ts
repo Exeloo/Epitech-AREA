@@ -29,11 +29,7 @@ export class AppController {
 
   @Post("actions")
   async runAction(@Body() body: any) {
-    const res = await this.actionService.onAction(
-      body.name,
-      body.userId,
-      body.data,
-    );
+    const res = await this.actionService.onAction(body.name, body.data);
     return {
       message: "success",
       data: res,

@@ -15,7 +15,6 @@ export type IActionResponse<R> = Promise<R>;
 
 type IActionCallbacks = {
   [K in keyof IActions]: (
-    userId: number,
     input: IActions[K]["params"],
   ) => IActionResponse<IActions[K]["response"]>;
 };
@@ -26,16 +25,11 @@ export class ActionService {
 
   constructor(weatherAction: WeatherAction) {
     this.actions = {
-      "weather-get-at-city": (userId, input) =>
-        weatherAction.weatherGetAtCity(input),
+      "weather-get-at-city": (input) => weatherAction.weatherGetAtCity(input),
     };
   }
 
-  async onAction<K extends keyof IActions>(
-    name: K,
-    userId: number,
-    input: any,
-  ): Promise<any> {
-    return await this.actions[name](userId, input);
+  async onAction<K extends keyof IActions>(name: K, input: any): Promise<any> {
+    return await this.actions[name](input);
   }
 }

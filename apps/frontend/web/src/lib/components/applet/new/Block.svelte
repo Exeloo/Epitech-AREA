@@ -1,6 +1,6 @@
 <script lang="ts">
-	import SelectModal from '$lib/applet/new/SelectModal.svelte';
-	import type { BlockType, ElementValues } from '$lib/applet/new/types';
+	import SelectModal from '$lib/components/applet/new/SelectModal.svelte';
+	import type { BlockType, ElementValues } from '$lib/components/applet/new/types';
 
 	interface Props {
 		title: string;

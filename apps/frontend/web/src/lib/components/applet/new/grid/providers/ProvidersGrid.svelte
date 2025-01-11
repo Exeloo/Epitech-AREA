@@ -1,8 +1,8 @@
 <script lang="ts">
-	import ProviderOption from '$lib/applet/new/grid/providers/ProviderOption.svelte';
+	import ProviderOption from '$lib/components/applet/new/grid/providers/ProviderOption.svelte';
 	import { load_getAllProviders } from '$houdini';
 	import { onMount } from 'svelte';
-	import type { ElementValues } from '$lib/applet/new/types';
+	import type { ElementValues } from '$lib/components/applet/new/types';
 
 	interface Props {
 		element: ElementValues | null;

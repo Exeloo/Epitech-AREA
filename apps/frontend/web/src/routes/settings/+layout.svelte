@@ -1,5 +1,5 @@
 <script lang="ts">
-	import SettingsNav from '$lib/settings/SettingsNav.svelte';
+	import SettingsNav from '$lib/components/settings/SettingsNav.svelte';
 
 	let { children } = $props();
 </script>

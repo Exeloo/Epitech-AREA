@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { ElementValues } from '$lib/applet/new/types';
+	import type { ElementValues } from '$lib/components/applet/new/types';
 
 	interface Props {
 		id: string;

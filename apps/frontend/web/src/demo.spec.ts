@@ -1,9 +1,9 @@
 import { describe, it, expect } from 'vitest';
 import { render } from '@testing-library/svelte';
-import Submit from './lib/auth/Submit.svelte';
-import Checkbox from './lib/auth/Checkbox.svelte';
-import Validation from './lib/auth/Validation.svelte';
-import Input from '$lib/Inputs/Input.svelte';
+import Submit from '$lib/components/auth/Submit.svelte';
+import Checkbox from '$lib/components/auth/Checkbox.svelte';
+import Validation from '$lib/components/auth/Validation.svelte';
+import Input from '$lib/components/Inputs/Input.svelte';
 import Layout from './routes/+layout.svelte';
 
 describe('sum test', () => {

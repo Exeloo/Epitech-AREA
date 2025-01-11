@@ -3,6 +3,7 @@ import { ManifestOAuthEnum } from "@domain/provider/manifest/enums/manifest-oaut
 import { ManifestPropertyEnum } from "../enums/manifest-property.enum";
 
 interface IBaseManifestProperty {
+  name?: string;
   description?: string;
   optional?: boolean;
 }

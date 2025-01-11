@@ -3,6 +3,7 @@ import { ManifestPropertyEnum } from "@lib/manifest";
 import { IManifestType } from "./manifest-type.type";
 
 interface IBaseManifestProperty {
+  name?: string;
   description?: string;
   optional?: boolean;
 }

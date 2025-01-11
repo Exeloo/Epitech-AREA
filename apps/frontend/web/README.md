@@ -11,6 +11,7 @@ yarn dev
 ```
 
 If you get a `ENOSPC` error, add this line to the sysctl config (`/etc/sysctl.conf`):
+
 ```text
 fs.inotify.max_user_watches=524288
 ```
@@ -32,4 +33,3 @@ This project use prettier linter. For fix your code, use:
 ```bash
 yarn fix
 ```
-

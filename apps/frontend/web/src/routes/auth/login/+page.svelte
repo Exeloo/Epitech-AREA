@@ -3,14 +3,14 @@
 	import Checkbox from '$lib/components/auth/Checkbox.svelte';
 	import Submit from '$lib/components/auth/Submit.svelte';
 	import { load_login, TokenFieldsStore } from '$houdini';
-	import { errorsStore } from "$lib/components/auth/stores";
+	import { errorsStore } from '$lib/components/auth/stores';
 
 	let email = $state('');
 	let password = $state('');
 	let rememberMe = $state(false);
 
 	type ApiError = {
-		status:string;
+		status: string;
 		statusCode: number;
 		error: any;
 	};
@@ -26,8 +26,8 @@
 			});
 
 			if (!data || !data.login || errors) {
-				errorsStore.set(["Internal server error"]);
-				console.error("Internal server error");
+				errorsStore.set(['Internal server error']);
+				console.error('Internal server error');
 				return errors;
 			}
 
@@ -48,9 +48,9 @@
 		} catch (error) {
 			if ((error as ApiError).statusCode === 400) {
 				//const apiErrors = (error as ApiError);
-				errorsStore.set(["oui"]);
+				errorsStore.set(['oui']);
 			} else {
-				errorsStore.set(["Unexpected error occurred"]);
+				errorsStore.set(['Unexpected error occurred']);
 			}
 			console.error(error);
 		}

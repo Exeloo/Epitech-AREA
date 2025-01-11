@@ -8,6 +8,7 @@ import {
 export class ActionUserGetProfileInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
+    optional: true,
   })
-  user_id: string;
+  user_id?: string;
 }

@@ -1,19 +1,19 @@
-import {HttpModule} from "@nestjs/axios";
-import {Module} from "@nestjs/common";
-import {ConfigModule, ConfigService} from "@nestjs/config";
-import {ThrottlerModule} from "@nestjs/throttler";
+import { HttpModule } from "@nestjs/axios";
+import { Module } from "@nestjs/common";
+import { ConfigModule, ConfigService } from "@nestjs/config";
+import { ThrottlerModule } from "@nestjs/throttler";
 
-import {AuthGuard} from "@lib/auth";
+import { AuthGuard } from "@lib/auth";
 
-import {AppGateway} from "~/app.gateway";
-import {CsgoAction} from "~/provider/actions/csgo.action";
-import {ActionService} from "~/provider/services/action.service";
-import {AuthService} from "~/provider/shared/auth/auth.service";
+import { AppGateway } from "~/app.gateway";
+import { CsgoAction } from "~/provider/actions/csgo.action";
+import { ActionService } from "~/provider/services/action.service";
+import { AuthService } from "~/provider/shared/auth/auth.service";
 
-import {AppController} from "./app.controller";
-import {AppService} from "./app.service";
-import {throttlerConfig} from "./config/throttler.config";
-import {validate} from "./config/validations/env.validation";
+import { AppController } from "./app.controller";
+import { AppService } from "./app.service";
+import { throttlerConfig } from "./config/throttler.config";
+import { validate } from "./config/validations/env.validation";
 
 @Module({
   imports: [

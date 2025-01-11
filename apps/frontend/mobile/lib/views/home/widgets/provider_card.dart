@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import '../../../modules/graphql/repository/provider_repository.dart';
 
 class ProviderCard extends StatelessWidget {
-  final String logoUrl;
+  final String? logoUrl;
   final String providerName;
   final int id;
   final String color;
@@ -45,11 +45,23 @@ class ProviderCard extends StatelessWidget {
             width: 80,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(16.0),
-              child: Image.network(
-                logoUrl,
-                fit: BoxFit.contain,
-                color: Colors.white,
-              ),
+              child: logoUrl != null && logoUrl!.isNotEmpty
+                  ? Image.network(
+                      logoUrl!,
+                      fit: BoxFit.contain,
+                      errorBuilder: (context, error, stackTrace) {
+                        return const Icon(
+                          Icons.image_not_supported,
+                          color: Colors.grey,
+                          size: 48,
+                        );
+                      },
+                    )
+                  : const Icon(
+                      Icons.image_not_supported,
+                      color: Colors.grey,
+                      size: 48,
+                    ),
             ),
           ),
         ),
@@ -129,10 +141,10 @@ class ProviderDescriptionState extends State<ProviderDescription> {
                 Text(
                   _provider.name,
                   style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold,
-                  ),
+                      color: Colors.white,
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
+                      ),
                   textAlign: TextAlign.center,
                 ),
                 const Spacer(),
@@ -148,61 +160,86 @@ class ProviderDescriptionState extends State<ProviderDescription> {
               padding: const EdgeInsets.all(16.0),
               width: double.infinity,
               decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
+                color:
                     Color(int.parse(_provider.color.replaceFirst('#', '0xff'))),
-                    const Color(0xff1B1B1B)
-                  ],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Color(int.parse(_provider.color.replaceFirst('#', '0xff'))),
+                    blurRadius: 5.0,
+                    spreadRadius: 1.0,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image.network(
-                    _provider.img,
-                    fit: BoxFit.fitWidth,
-                    color: Colors.white,
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(16.0),
+                    child: _provider.img.isNotEmpty
+                        ? Image.network(
+                            _provider.img,
+                            fit: BoxFit.fitWidth,
+                            errorBuilder: (context, error, stackTrace) {
+                              return const Icon(
+                                Icons.image_not_supported,
+                                color: Colors.grey,
+                                size: 100,
+                              );
+                            },
+                          )
+                        : const Icon(
+                            Icons.image_not_supported,
+                            color: Colors.grey,
+                            size: 100,
+                          ),
                   ),
+                  const SizedBox(height: 16),
                   Text(
                     _provider.description,
                     style: const TextStyle(
-                        fontSize: 24,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
+                      fontSize: 24,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 16),
                 ],
               ),
             ),
-            const SizedBox(height: 16),
-            _buildSectionTitle('Triggers'),
-            const SizedBox(height: 8),
+            const SizedBox(height: 50),
             Column(
-              children: _provider.manifest.triggers.map((trigger) {
-                const SizedBox(height: 16);
-                return TriggerActionCard(
-                  logoUrl: _provider.img,
-                  name: trigger.name,
-                  description: trigger.description,
-                  color: trigger.color,
-                );
-              }).toList(),
+              children: [
+                _buildSectionTitle('Triggers'),
+                const SizedBox(height: 20),
+                Column(
+                  children: _provider.manifest.triggers.map((trigger) {
+                    return TriggerActionCard(
+                      logoUrl: _provider.img,
+                      name: trigger.name,
+                      description: trigger.description,
+                      color: trigger.color,
+                    );
+                  }).toList(),
+                ),
+              ],
             ),
             const SizedBox(height: 16),
-            _buildSectionTitle('Actions'),
-            const SizedBox(height: 8),
             Column(
-              children: _provider.manifest.actions.map((actions) {
-                const SizedBox(height: 16);
-                return TriggerActionCard(
-                  logoUrl: _provider.img,
-                  name: actions.name,
-                  description: actions.description,
-                  color: actions.color,
-                );
-              }).toList(),
+              children: [
+                _buildSectionTitle('Actions'),
+                const SizedBox(height: 20),
+                Column(
+                  children: _provider.manifest.actions.map((actions) {
+                    return TriggerActionCard(
+                      logoUrl: _provider.img,
+                      name: actions.name,
+                      description: actions.description,
+                      color: actions.color,
+                    );
+                  }).toList(),
+                ),
+              ],
             ),
           ],
         ),
@@ -211,13 +248,17 @@ class ProviderDescriptionState extends State<ProviderDescription> {
   }
 
   Widget _buildSectionTitle(String title) {
-    return Center(
-      child: Text(
-        title,
-        style: const TextStyle(
-          fontSize: 30,
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Text(
+          title,
+          style: const TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
         ),
       ),
     );

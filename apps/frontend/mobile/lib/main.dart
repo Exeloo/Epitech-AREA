@@ -19,8 +19,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: MainAuthPage(),
+    return MaterialApp(
+      theme: ThemeData(
+        fontFamily: 'Kanit',
+      ),
+      home: const MainAuthPage(),
     );
   }
 }

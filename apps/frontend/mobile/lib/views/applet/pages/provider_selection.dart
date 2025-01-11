@@ -1,12 +1,12 @@
 import 'dart:developer';
 
+import 'package:aether/views/home/widgets/provider_card.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../graphql/__generated__/provider.data.gql.dart';
 import '../../../modules/graphql/repository/provider_repository.dart';
-import '../widgets/applet_provider_card.dart';
 
 class ProviderSelection extends StatefulWidget {
   const ProviderSelection({super.key});
@@ -72,7 +72,7 @@ class _ProviderSelectionState extends State<ProviderSelection> {
               itemCount: _providers?.length ?? 0,
               itemBuilder: (context, index) {
                 final provider = _providers![index];
-                return AppletProviderCard(
+                return ProviderCard(
                   logoUrl: provider.img,
                   providerName: provider.name,
                   id: provider.id,

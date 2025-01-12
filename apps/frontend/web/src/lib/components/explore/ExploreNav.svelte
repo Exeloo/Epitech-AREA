@@ -25,7 +25,7 @@
 		Providers
 	</a>
 	<div
-		class="absolute bottom-[-4px] h-1 w-20 rounded bg-neutral-700 transition-transform duration-300"
+		class="absolute bottom-[-4px] h-1 w-20 rounded bg-neutral-700 transition-transform duration-300 dark:bg-gray-400"
 		style={`transform: translateX(${selectedButton * 160}%);`}
 	></div>
 </div>

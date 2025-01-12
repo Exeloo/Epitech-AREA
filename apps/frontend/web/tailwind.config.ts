@@ -11,5 +11,7 @@ export default {
 		}
 	},
 
-	plugins: []
+	plugins: [],
+
+	darkMode: 'selector'
 } satisfies Config;

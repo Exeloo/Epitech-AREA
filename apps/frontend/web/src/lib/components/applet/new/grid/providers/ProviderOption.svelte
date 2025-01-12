@@ -22,9 +22,13 @@
 		if (!$info) return;
 
 		const query = await load_getProviderById({ variables: { id: $info.id } });
-		const { data } = await query.getProviderById.fetch();
+		const { data, errors } = await query.getProviderById.fetch();
+
+		console.log(errors);
 
 		if (!data || !data.getProviderById) return;
+
+		console.log(data);
 
 		providerWithManifestStore.get(data.getProviderById).subscribe((provider) => {
 			if (provider) {

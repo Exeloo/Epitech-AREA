@@ -3,9 +3,9 @@
 	let { children } = $props();
 </script>
 
-<div class="w-full bg-neutral-100">
+<div class="w-full bg-neutral-100 text-white dark:bg-gray-700">
 	<header
-		class="sticky top-0 z-50 flex w-full items-center justify-between bg-white p-5 shadow-md shadow-neutral-200"
+		class="sticky top-0 z-50 flex w-full items-center justify-between bg-white p-5 shadow-md shadow-neutral-200 dark:bg-gray-800 dark:shadow-gray-800"
 	>
 		<a href="/"><h1 class="text-3xl font-bold">AREA</h1></a>
 		<form class="mx-auto w-1/4">
@@ -15,7 +15,7 @@
 			<div class="relative">
 				<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
 					<svg
-						class="h-4 w-4 text-neutral-700"
+						class="h-4 w-4 text-neutral-700 dark:text-gray-300"
 						aria-hidden="true"
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
@@ -33,14 +33,14 @@
 				<input
 					type="search"
 					id="default-search"
-					class="h-10 w-full rounded-xl bg-neutral-100 pl-10 text-sm placeholder-neutral-500 shadow-inner outline outline-1 outline-neutral-500"
+					class="h-10 w-full rounded-xl bg-neutral-100 pl-10 text-sm placeholder-neutral-500 shadow-inner outline outline-1 outline-neutral-500 dark:bg-gray-700 dark:placeholder-neutral-200 dark:outline-gray-600"
 					placeholder="Search providers"
 					required
 				/>
 			</div>
 		</form>
 		<div class="text-md flex items-center justify-center gap-4 font-semibold">
-			<a href="/auth/login" class="text-neutral-800">Log in</a>
+			<a href="/auth/login" class="text-neutral-800 dark:text-white">Log in</a>
 			<a href="/auth/signup" class="rounded-xl bg-primary px-3 py-2 text-white">Sign up</a>
 		</div>
 	</header>

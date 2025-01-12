@@ -21,7 +21,9 @@
 	});
 </script>
 
-<div class="grid grid-cols-3 grid-rows-3 overflow-hidden rounded-xl bg-neutral-100">
+<div
+	class="grid grid-cols-3 grid-rows-3 overflow-hidden rounded-xl bg-neutral-100 dark:bg-gray-500"
+>
 	{#each providers as provider}
 		<ProviderOption {provider} bind:element />
 	{/each}

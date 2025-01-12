@@ -34,7 +34,7 @@
 		: 'hidden'} fixed inset-0 z-50 flex max-h-full w-full items-center justify-center overflow-y-auto overflow-x-hidden"
 >
 	<div class="absolute inset-0 bg-black opacity-50"></div>
-	<div class="relative flex h-1/2 w-96 flex-col rounded-lg bg-white shadow">
+	<div class="relative flex h-1/2 w-96 flex-col rounded-lg bg-white shadow dark:bg-gray-800">
 		<div class="flex items-center justify-between rounded-t p-4">
 			<h3 class="text-base font-semibold">{type === BlockType.Actions ? 'Action' : 'Trigger'}</h3>
 			<div class="flex justify-end">
@@ -42,7 +42,7 @@
 					<button
 						onclick={() => (element = null)}
 						type="button"
-						class="ms-auto inline-flex h-8 w-8 items-center justify-center rounded-full bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900"
+						class="ms-auto inline-flex h-8 w-8 items-center justify-center rounded-full bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600"
 						data-modal-hide="default-modal"
 					>
 						<i class="fi fi-br-undo flex justify-center"></i>
@@ -52,7 +52,7 @@
 				<button
 					onclick={() => (open = false)}
 					type="button"
-					class="ms-auto inline-flex h-8 w-8 items-center justify-center rounded-full bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900"
+					class="ms-auto inline-flex h-8 w-8 items-center justify-center rounded-full bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600"
 					data-modal-hide="default-modal"
 				>
 					<i class="fi fi-br-cross flex justify-center"></i>
@@ -62,7 +62,9 @@
 		</div>
 		<div
 			class="relative flex h-20 w-full items-center justify-center text-lg font-bold"
-			style="background-color: {currentProviderInfo ? currentProviderInfo.color : '#e6e6e6'}"
+			style="background-color: {currentProviderInfo
+				? currentProviderInfo.color
+				: 'var(--default-background-light)'}"
 		>
 			{#if currentProviderInfo}
 				<img class="h-16 w-16" alt={currentProviderInfo.name} src={currentProviderInfo.img} />

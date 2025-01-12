@@ -66,7 +66,10 @@
 	<div class="flex w-full justify-between">
 		<div class="mb-4 flex items-center">
 			<Checkbox bind:value={rememberMe} />
-			<label for="remember-checkbox" class="text-md ms-2 font-medium text-neutral-600">
+			<label
+				for="remember-checkbox"
+				class="text-md ms-2 font-medium text-neutral-600 dark:text-neutral-200"
+			>
 				Remember me
 			</label>
 		</div>

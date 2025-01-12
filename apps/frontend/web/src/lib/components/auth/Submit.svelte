@@ -11,7 +11,7 @@
 <button
 	type="submit"
 	onclick={onsubmit}
-	class="w-full rounded-xl bg-primary py-2 text-xl font-bold text-white shadow-md shadow-gray-500"
+	class="w-full rounded-xl bg-primary py-2 text-xl font-bold text-white shadow-md shadow-gray-500 dark:shadow-gray-800"
 >
 	{text}
 </button>

@@ -59,14 +59,50 @@ services:
     ports:
       - "3004:3004"
 
-  microsoft:
-    build:
-      context: apps/backend/providers/microsoft
-      dockerfile: .cloud/docker/Dockerfile
-    depends_on:
-      - server
-    ports:
-      - "3005:3005"
+#  microsoft:
+#    build:
+#      context: apps/backend/providers/microsoft
+#      dockerfile: .cloud/docker/Dockerfile
+#    depends_on:
+#      - server
+#    ports:
+#      - "3005:3005"
+#
+#  linkedin:
+#    build:
+#      context: apps/backend/providers/linkedin
+#      dockerfile: .cloud/docker/Dockerfile
+#    depends_on:
+#      - server
+#    ports:
+#      - "3006:3006"
+#
+#  visualcrossing:
+#    build:
+#      context: apps/backend/providers/visualcrossing
+#      dockerfile: .cloud/docker/Dockerfile
+#    depends_on:
+#      - server
+#    ports:
+#      - "3007:3007"
+#
+#  trackergg:
+#    build:
+#      context: apps/backend/providers/trackergg
+#      dockerfile: .cloud/docker/Dockerfile
+#    depends_on:
+#      - server
+#    ports:
+#      - "3008:3008"
+#
+#  riot:
+#    build:
+#      context: apps/backend/providers/riot
+#      dockerfile: .cloud/docker/Dockerfile
+#    depends_on:
+#      - server
+#    ports:
+#      - "3009:3009"
 
   client_mobile:
     build:

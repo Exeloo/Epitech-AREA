@@ -26,7 +26,7 @@ export class AuthService {
     this.clientSecret = configService.getOrThrow("MICROSOFT_CLIENT_SECRET");
   }
 
-  async getToken(userId: number, ownerId: string): Promise<string> {
+  async getToken(userId: number, ownerId?: string): Promise<string> {
     const { token } = await this.repository.findOneByOrFail({
       userId: userId,
       providerId: ownerId,
@@ -72,7 +72,13 @@ export class AuthService {
         },
       }),
     );
+
+    const account = await this.repository.findOneBy({
+      userId: userId,
+      providerId: data.id,
+    });
     await this.repository.save({
+      id: account?.id,
       userId: userId,
       providerId: data.id,
       token: token,

@@ -8,7 +8,7 @@ RUN yarn install
 
 COPY . .
 
-EXPOSE 3009
+EXPOSE 3010
 
 RUN yarn build
 

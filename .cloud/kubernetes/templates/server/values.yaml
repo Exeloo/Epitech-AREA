@@ -6,10 +6,10 @@ deployment:
   resources:
     limits:
       memory: "512Mi"
-      cpu: "550m"
+      cpu: "256m"
     requests:
       memory: "256Mi"
-      cpu: "500m"
+      cpu: "250m"
   ports:
     - containerPort: 3000
   env: []

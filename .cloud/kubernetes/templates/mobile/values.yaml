@@ -6,10 +6,10 @@ deployment:
   resources:
     limits:
       memory: "512Mi"
-      cpu: "100m"
+      cpu: "42m"
     requests:
       memory: "256Mi"
-      cpu: "100m"
+      cpu: "42m"
 
 service:
   restartPolicy: Always
@@ -17,7 +17,7 @@ service:
 volume:
   pvName: apk-volume
   pvcName: apk-pvc
-  storage: 10Gi
+  storage: 1Gi
   accessMode: ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   storageClassName: local-storage

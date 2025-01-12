@@ -12,23 +12,31 @@ class ProviderCard extends StatelessWidget {
   final String providerName;
   final int id;
   final String color;
+  final bool canClick;
+  final String? inputType;
 
   const ProviderCard({
     required this.logoUrl,
     required this.providerName,
     required this.id,
     required this.color,
+    required this.canClick,
     super.key,
+    this.inputType,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
+      onTap: () async {
+        await Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ProviderDescription(id: id),
+            builder: (context) => ProviderDescription(
+              id: id,
+              canClick: canClick,
+              inputType: inputType,
+            ),
           ),
         );
       },
@@ -47,21 +55,21 @@ class ProviderCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(16.0),
               child: logoUrl != null && logoUrl!.isNotEmpty
                   ? Image.network(
-                      logoUrl!,
-                      fit: BoxFit.contain,
-                      errorBuilder: (context, error, stackTrace) {
-                        return const Icon(
-                          Icons.image_not_supported,
-                          color: Colors.grey,
-                          size: 48,
-                        );
-                      },
-                    )
+                logoUrl!,
+                fit: BoxFit.contain,
+                errorBuilder: (context, error, stackTrace) {
+                  return const Icon(
+                    Icons.image_not_supported,
+                    color: Colors.grey,
+                    size: 48,
+                  );
+                },
+              )
                   : const Icon(
-                      Icons.image_not_supported,
-                      color: Colors.grey,
-                      size: 48,
-                    ),
+                Icons.image_not_supported,
+                color: Colors.grey,
+                size: 48,
+              ),
             ),
           ),
         ),
@@ -72,14 +80,22 @@ class ProviderCard extends StatelessWidget {
 
 class ProviderDescription extends StatefulWidget {
   final int id;
+  final bool canClick;
+  final String? inputType;
 
-  const ProviderDescription({required this.id, super.key});
+  const ProviderDescription({
+    required this.id,
+    super.key,
+    required this.canClick,
+    this.inputType,
+  });
 
   @override
   ProviderDescriptionState createState() => ProviderDescriptionState();
 }
 
 class ProviderDescriptionState extends State<ProviderDescription> {
+
   late GgetProviderByIdData_getProviderById _provider;
   bool _isLoading = true;
 
@@ -91,12 +107,21 @@ class ProviderDescriptionState extends State<ProviderDescription> {
 
   void _getProvidersById(BuildContext context) async {
     final providerRepository =
-        Provider.of<ProviderRepository>(context, listen: false);
+    Provider.of<ProviderRepository>(context, listen: false);
 
     try {
       final response = await providerRepository.getProviderById(id: widget.id);
+      log(widget.id as String);
+      if (response == null || response.getProviderById == null) {
+        log('Response or provider is null');
+        setState(() {
+          _isLoading = false;
+        });
+        return;
+      }
       setState(() {
-        _provider = response!.getProviderById;
+        _provider = response.getProviderById;
+        print('Provider by id ${_provider.manifest.triggers}');
         _isLoading = false;
       });
     } catch (e) {
@@ -120,11 +145,23 @@ class ProviderDescriptionState extends State<ProviderDescription> {
       );
     }
 
+    if (_provider == null) {
+      return const Scaffold(
+        backgroundColor: Color(0xff1B1B1B),
+        body: Center(
+          child: Text(
+            'Erreur : données non chargées.',
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: const Color(0xff1B1B1B),
       appBar: AppBar(
         backgroundColor:
-            Color(int.parse(_provider.color.replaceFirst('#', '0xff'))),
+        Color(int.parse(_provider.color.replaceFirst('#', '0xff'))),
         automaticallyImplyLeading: false,
         flexibleSpace: Padding(
           padding: const EdgeInsets.only(bottom: 10.0),
@@ -141,10 +178,10 @@ class ProviderDescriptionState extends State<ProviderDescription> {
                 Text(
                   _provider.name,
                   style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                      ),
+                    color: Colors.white,
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                  ),
                   textAlign: TextAlign.center,
                 ),
                 const Spacer(),
@@ -161,10 +198,11 @@ class ProviderDescriptionState extends State<ProviderDescription> {
               width: double.infinity,
               decoration: BoxDecoration(
                 color:
-                    Color(int.parse(_provider.color.replaceFirst('#', '0xff'))),
+                Color(int.parse(_provider.color.replaceFirst('#', '0xff'))),
                 boxShadow: [
                   BoxShadow(
-                    color: Color(int.parse(_provider.color.replaceFirst('#', '0xff'))),
+                    color: Color(
+                        int.parse(_provider.color.replaceFirst('#', '0xff'))),
                     blurRadius: 5.0,
                     spreadRadius: 1.0,
                     offset: const Offset(0, 4),
@@ -178,21 +216,21 @@ class ProviderDescriptionState extends State<ProviderDescription> {
                     borderRadius: BorderRadius.circular(16.0),
                     child: _provider.img.isNotEmpty
                         ? Image.network(
-                            _provider.img,
-                            fit: BoxFit.fitWidth,
-                            errorBuilder: (context, error, stackTrace) {
-                              return const Icon(
-                                Icons.image_not_supported,
-                                color: Colors.grey,
-                                size: 100,
-                              );
-                            },
-                          )
+                      _provider.img,
+                      fit: BoxFit.fitWidth,
+                      errorBuilder: (context, error, stackTrace) {
+                        return const Icon(
+                          Icons.image_not_supported,
+                          color: Colors.grey,
+                          size: 100,
+                        );
+                      },
+                    )
                         : const Icon(
-                            Icons.image_not_supported,
-                            color: Colors.grey,
-                            size: 100,
-                          ),
+                      Icons.image_not_supported,
+                      color: Colors.grey,
+                      size: 100,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   Text(
@@ -208,39 +246,44 @@ class ProviderDescriptionState extends State<ProviderDescription> {
               ),
             ),
             const SizedBox(height: 50),
-            Column(
-              children: [
-                _buildSectionTitle('Triggers'),
-                const SizedBox(height: 20),
-                Column(
-                  children: _provider.manifest.triggers.map((trigger) {
-                    return TriggerActionCard(
-                      logoUrl: _provider.img,
-                      name: trigger.name,
-                      description: trigger.description,
-                      color: trigger.color,
-                    );
-                  }).toList(),
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            Column(
-              children: [
-                _buildSectionTitle('Actions'),
-                const SizedBox(height: 20),
-                Column(
-                  children: _provider.manifest.actions.map((actions) {
-                    return TriggerActionCard(
-                      logoUrl: _provider.img,
-                      name: actions.name,
-                      description: actions.description,
-                      color: actions.color,
-                    );
-                  }).toList(),
-                ),
-              ],
-            ),
+            if (widget.inputType == null || widget.inputType!.isEmpty || widget.inputType == 'trigger')
+              Column(
+                children: [
+                  _buildSectionTitle('Triggers'),
+                  const SizedBox(height: 20),
+                  Column(
+                    children: _provider.manifest.triggers.map((trigger) {
+                      return TriggerActionCard(
+                        logoUrl: _provider.img,
+                        name: trigger.name,
+                        description: trigger.description,
+                        color: trigger.color,
+                        canClick: widget.canClick,
+                        providerId: _provider.id,
+                      );
+                    }).toList(),
+                  ),
+                ],
+              ),
+            if (widget.inputType == null || widget.inputType!.isEmpty || widget.inputType == 'action')
+              Column(
+                children: [
+                  _buildSectionTitle('Actions'),
+                  const SizedBox(height: 20),
+                  Column(
+                    children: _provider.manifest.actions.map((actions) {
+                      return TriggerActionCard(
+                        logoUrl: _provider.img,
+                        name: actions.name,
+                        description: actions.description,
+                        color: actions.color,
+                        canClick: widget.canClick,
+                        providerId: _provider.id,
+                      );
+                    }).toList(),
+                  ),
+                ],
+              ),
           ],
         ),
       ),

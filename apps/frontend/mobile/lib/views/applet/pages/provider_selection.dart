@@ -9,7 +9,8 @@ import '../../../graphql/__generated__/provider.data.gql.dart';
 import '../../../modules/graphql/repository/provider_repository.dart';
 
 class ProviderSelection extends StatefulWidget {
-  const ProviderSelection({super.key});
+  final String? inputType;
+  const ProviderSelection({super.key, this.inputType});
 
   @override
   State<ProviderSelection> createState() => _ProviderSelectionState();
@@ -77,6 +78,8 @@ class _ProviderSelectionState extends State<ProviderSelection> {
                   providerName: provider.name,
                   id: provider.id,
                   color: provider.color,
+                  canClick: true,
+                  inputType: widget.inputType,
                 );
               },
             ),

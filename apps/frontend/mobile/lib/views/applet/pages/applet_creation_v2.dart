@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:aether/views/applet/pages/provider_selection.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -29,8 +30,6 @@ class _AppletCreationState extends State<AppletCreation> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
 
-  final List<TextEditingController> _inputControllers = [];
-
   @override
   void initState() {
     super.initState();
@@ -39,10 +38,10 @@ class _AppletCreationState extends State<AppletCreation> {
 
   Future<void> _loadProviderData() async {
     final providerRepo =
-    Provider.of<ProviderRepository>(context, listen: false);
+        Provider.of<ProviderRepository>(context, listen: false);
     try {
       final response =
-      await providerRepo.getProviderById(id: widget.providerId);
+          await providerRepo.getProviderById(id: widget.providerId);
       setState(() {
         _provider = response!.getProviderById;
         _triggers = _provider.manifest.triggers.map((t) => t.name).toList();
@@ -59,7 +58,7 @@ class _AppletCreationState extends State<AppletCreation> {
     setState(() {
       _selectedTrigger = triggerName;
       final trigger =
-      _provider.manifest.triggers.firstWhere((t) => t.name == triggerName);
+          _provider.manifest.triggers.firstWhere((t) => t.name == triggerName);
       _triggerInputs = _formatInputs(trigger.input.value);
     });
   }
@@ -72,7 +71,7 @@ class _AppletCreationState extends State<AppletCreation> {
       } else {
         _selectedActions.add(actionName);
         final action = _provider.manifest.actions.firstWhere(
-              (a) => a.name == actionName,
+          (a) => a.name == actionName,
           orElse: () {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
@@ -82,7 +81,8 @@ class _AppletCreationState extends State<AppletCreation> {
             return _provider.manifest.actions.first;
           },
         );
-        _actionsInputs.add({'name': actionName, ..._formatInputs(action.input.value)});
+        _actionsInputs
+            .add({'name': actionName, ..._formatInputs(action.input.value)});
       }
     });
   }
@@ -94,12 +94,6 @@ class _AppletCreationState extends State<AppletCreation> {
       formattedInputs[key] = value;
     });
     return formattedInputs;
-  }
-
-  void _updateInputValue(Map<String, dynamic> inputs, String key, String value) {
-    setState(() {
-      inputs[key] = value;
-    });
   }
 
   void _createApplet() async {
@@ -115,7 +109,7 @@ class _AppletCreationState extends State<AppletCreation> {
     }
 
     final selectedTrigger = _provider.manifest.triggers.firstWhere(
-          (t) => t.name == _selectedTrigger,
+      (t) => t.name == _selectedTrigger,
       orElse: () {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -134,10 +128,9 @@ class _AppletCreationState extends State<AppletCreation> {
           'providerId': widget.providerId,
           'actionId': selectedTrigger.id,
           'input': _triggerInputs,
-          'next': _selectedActions
-              .map((actionName) {
+          'next': _selectedActions.map((actionName) {
             final action = _provider.manifest.actions.firstWhere(
-                  (a) => a.name == actionName,
+              (a) => a.name == actionName,
             );
             return {
               'providerId': widget.providerId,
@@ -146,8 +139,7 @@ class _AppletCreationState extends State<AppletCreation> {
                   .firstWhere((input) => input['name'] == actionName),
               'next': [],
             };
-          })
-              .toList(),
+          }).toList(),
         }
       ],
     };
@@ -165,7 +157,7 @@ class _AppletCreationState extends State<AppletCreation> {
       if (response != null) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content:
-          Text('Applet "${_nameController.text}" created successfully!'),
+              Text('Applet "${_nameController.text}" created successfully!'),
         ));
       } else {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -197,170 +189,80 @@ class _AppletCreationState extends State<AppletCreation> {
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
-            _buildButton('If This', _selectedTrigger, _triggers,
-                _onTriggerSelected),
-            //const SizedBox(height: 20),
-            CustomPaint(
-              size: const Size(double.infinity, 50),
-              painter: LinePainter(),
-            ),
-            _buildButton('Then That', _selectedActions, _actions,
-                _onActionSelected),
-            const SizedBox(height: 40),
-            if (_triggerInputs != null)
-              ..._buildInputFields(_triggerInputs!),
-            if (_selectedActions.isNotEmpty)
-              ..._selectedActions.asMap().entries.map((entry) {
-                final index = entry.key;
-                final actionName = entry.value;
-
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Action: $actionName',
-                        style: const TextStyle(
-                            color: Colors.white, fontSize: 18)),
-                    ..._buildInputFields(_actionsInputs[index]),
-                    const Divider(color: Colors.grey),
-                  ],
-                );
-              }),
-            TextField(
-              controller: _nameController,
-              decoration: const InputDecoration(
-                labelText: 'Applet Name',
-                labelStyle: TextStyle(color: Colors.white),
-                enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blueGrey)),
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue)),
-              ),
-              style: const TextStyle(color: Colors.white),
-            ),
-            const SizedBox(height: 20),
-            TextField(
-              controller: _descriptionController,
-              decoration: const InputDecoration(
-                labelText: 'Applet Description',
-                labelStyle: TextStyle(color: Colors.white),
-                enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blueGrey)),
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue)),
-              ),
-              style: const TextStyle(color: Colors.white),
-            ),
-            const SizedBox(height: 40),
-            ElevatedButton(
-              onPressed: _createApplet,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white,
-                minimumSize: const Size(double.infinity, 60),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30)),
-              ),
-              child: const Text(
-                'Create Applet',
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black),
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: [
+                  const SizedBox(height: 20),
+                  _buildButton('If This', _selectedTrigger, _triggers,
+                      _onTriggerSelected, 'trigger'),
+                  CustomPaint(
+                    size: const Size(double.infinity, 50),
+                    painter: LinePainter(),
+                  ),
+                  _buildButton('Then That', _selectedActions, _actions,
+                      _onActionSelected, 'action'),
+                  const SizedBox(height: 40),
+                  TextField(
+                    controller: _nameController,
+                    decoration: const InputDecoration(
+                      labelText: 'Applet Name',
+                      labelStyle: TextStyle(color: Colors.white),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blueGrey)),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue)),
+                    ),
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                  const SizedBox(height: 20),
+                  TextField(
+                    controller: _descriptionController,
+                    decoration: const InputDecoration(
+                      labelText: 'Applet Description',
+                      labelStyle: TextStyle(color: Colors.white),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blueGrey)),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue)),
+                    ),
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                  const SizedBox(height: 40),
+                  ElevatedButton(
+                    onPressed: _createApplet,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      minimumSize: const Size(double.infinity, 60),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30)),
+                    ),
+                    child: const Text(
+                      'Create Applet',
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                ],
               ),
             ),
-            const SizedBox(height: 20),
-          ],
-        ),
-      ),
-    );
-  }
-
-  List<Widget> _buildInputFields(Map<String, dynamic> inputs) {
-    _inputControllers.clear();
-
-    return inputs.entries.map((entry) {
-      final key = entry.key;
-      final value = entry.value;
-
-      final controller = TextEditingController(text: value.toString());
-      _inputControllers.add(controller);
-
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(key, style: const TextStyle(color: Colors.white)),
-          TextField(
-            controller: controller,
-            style: const TextStyle(color: Colors.white),
-            decoration: const InputDecoration(
-              labelStyle: TextStyle(color: Colors.white),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.blueGrey),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.blue),
-              ),
-            ),
-          ),
-          const SizedBox(height: 10),
-          ElevatedButton(
-            onPressed: () {
-              _updateInputValue(inputs, key, controller.text);
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Field "$key" updated!')),
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue.shade400,
-              minimumSize: const Size(double.infinity, 40),
-            ),
-            child: const Text(
-              'Valider',
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-          const SizedBox(height: 20),
-        ],
-      );
-    }).toList();
-  }
-
-  Future<String?> _showSelectionDialog(
-      String title, List<String> options) async {
-    return showDialog<String>(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text(title),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: options
-                .map((e) => ListTile(
-              title: Text(e),
-              onTap: () {
-                Navigator.pop(context, e);
-              },
-            ))
-                .toList(),
-          ),
-        );
-      },
     );
   }
 
   Widget _buildButton(String text, dynamic selected, List<String> options,
-      Function(String) onSelect) {
+      Function(String) onSelect, String inputType) {
     final isSelectedList = selected is List<String>;
 
     return GestureDetector(
       onTap: () async {
-        final selectedOption = await _showSelectionDialog(text, options);
-        if (selectedOption != null) {
-          onSelect(selectedOption);
-        }
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProviderSelection(inputType: inputType),
+          ),
+        );
       },
       child: Container(
         height: 80,
@@ -382,11 +284,9 @@ class _AppletCreationState extends State<AppletCreation> {
             Text(
               isSelectedList
                   ? (selected.isEmpty
-                  ? text
-                  : selected.map((e) => "Then $e").join(', ')) // Pour les actions
-                  : (selected == null
-                  ? text
-                  : "If $selected"), // Pour le trigger
+                      ? text
+                      : selected.map((e) => "Then $e").join(', '))
+                  : (selected == null ? text : "If $selected"),
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,

@@ -162,6 +162,7 @@ class _ProvidersContentState extends State<ProvidersContent> {
                   providerName: provider.name,
                   id: provider.id,
                   color: provider.color,
+                  canClick: false,
                 );
               },
             ),

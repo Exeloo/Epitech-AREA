@@ -111,8 +111,16 @@ services:
 #    depends_on:
 #      - server
 #    ports:
-#      - "3010:30010"
 #      - "3010:3010"
+#
+#  bluesky:
+#    build:
+#      context: apps/backend/providers/bluesky
+#      dockerfile: .cloud/docker/Dockerfile
+#    depends_on:
+#      - server
+#    ports:
+#      - "3011:3011"
 
   client_mobile:
     build:

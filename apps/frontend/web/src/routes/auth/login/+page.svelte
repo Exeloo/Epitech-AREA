@@ -3,7 +3,8 @@
 	import Checkbox from '$lib/components/auth/Checkbox.svelte';
 	import Submit from '$lib/components/auth/Submit.svelte';
 	import { load_login, TokenFieldsStore } from '$houdini';
-	import { errorsStore } from '$lib/components/auth/stores';
+	import { errorsStore, successStore } from '$lib/components/auth/stores';
+	import { onMount } from 'svelte';
 
 	let email = $state('');
 	let password = $state('');
@@ -44,6 +45,14 @@
 			console.error(e);
 		}
 	}
+
+	onMount(() => {
+		const url = new URL(window.location.href);
+		const successMessage = url.searchParams.get('success');
+		if (successMessage) {
+			successStore.set([successMessage]);
+		}
+	});
 </script>
 
 <form onsubmit={handleSubmit} class="flex w-full flex-col gap-2">

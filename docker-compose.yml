@@ -103,6 +103,15 @@ services:
 #      - server
 #    ports:
 #      - "3009:3009"
+#
+#  christmas:
+#    build:
+#      context: apps/backend/providers/christmas
+#      dockerfile: .cloud/docker/Dockerfile
+#    depends_on:
+#      - server
+#    ports:
+#      - "3010:30010"
 
   client_mobile:
     build:

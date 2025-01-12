@@ -1,16 +1,23 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { errorsStore } from '$lib/components/auth/stores';
+	import { errorsStore, successStore } from '$lib/components/auth/stores';
 	import { onDestroy } from 'svelte';
+	import Alert from '$lib/components/auth/Alert.svelte';
 
 	let errors: string[] = [];
+	let success: string[] = [];
 
-	const unsubscribe = errorsStore.subscribe((value) => {
+	const unsubscribeErrors = errorsStore.subscribe((value) => {
 		errors = value;
 	});
 
+	const unsubscribeSuccess = successStore.subscribe((value) => {
+		success = value;
+	});
+
 	onDestroy(() => {
-		unsubscribe();
+		unsubscribeErrors();
+		unsubscribeSuccess();
 	});
 </script>
 
@@ -48,10 +55,11 @@
 		</a>
 	</div>
 	<div class="flex w-full flex-col gap-2">
-		{#each errors as error}
-			<div class="w-full rounded-xl border border-red-800 bg-red-400 p-2 text-center">
-				<span>{error}</span>
-			</div>
+		{#each errors as err}
+			<Alert message={err} error={true} />
+		{/each}
+		{#each success as suc}
+			<Alert message={suc} />
 		{/each}
 	</div>
 	<slot />

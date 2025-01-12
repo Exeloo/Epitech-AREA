@@ -112,7 +112,7 @@ class ProviderDescriptionState extends State<ProviderDescription> {
     try {
       final response = await providerRepository.getProviderById(id: widget.id);
       log(widget.id as String);
-      if (response == null || response.getProviderById == null) {
+      if (response == null) {
         log('Response or provider is null');
         setState(() {
           _isLoading = false;
@@ -121,7 +121,6 @@ class ProviderDescriptionState extends State<ProviderDescription> {
       }
       setState(() {
         _provider = response.getProviderById;
-        print('Provider by id ${_provider.manifest.triggers}');
         _isLoading = false;
       });
     } catch (e) {
@@ -140,18 +139,6 @@ class ProviderDescriptionState extends State<ProviderDescription> {
         body: Center(
           child: CircularProgressIndicator(
             valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-          ),
-        ),
-      );
-    }
-
-    if (_provider == null) {
-      return const Scaffold(
-        backgroundColor: Color(0xff1B1B1B),
-        body: Center(
-          child: Text(
-            'Erreur : données non chargées.',
-            style: TextStyle(color: Colors.white),
           ),
         ),
       );

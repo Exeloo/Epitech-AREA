@@ -90,7 +90,6 @@ class TriggerActionPageState extends State<TriggerActionPage> {
   }
 
   Map<String, dynamic> _formatInputs(String inputJson) {
-    print('inputtttssss ${_provider.manifest.triggers} ${_provider.manifest.actions}');
     try {
       return jsonDecode(inputJson);
     } catch (e) {

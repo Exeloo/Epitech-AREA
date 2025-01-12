@@ -1,8 +1,9 @@
 <script lang="ts">
-	import Input from '$lib/Inputs/Input.svelte';
-	import Checkbox from '$lib/auth/Checkbox.svelte';
-	import Submit from '$lib/auth/Submit.svelte';
+	import Input from '$lib/components/Inputs/Input.svelte';
+	import Checkbox from '$lib/components/auth/Checkbox.svelte';
+	import Submit from '$lib/components/auth/Submit.svelte';
 	import { load_login, TokenFieldsStore } from '$houdini';
+	import { errorsStore } from '$lib/components/auth/stores';
 
 	let email = $state('');
 	let password = $state('');
@@ -15,11 +16,12 @@
 			const query = await load_login({
 				variables: { data: { email: email, password: password } }
 			});
+			console.log(query);
 
 			const { data, errors } = await query.login.fetch();
 
-			if (!data || !data.login) {
-				console.log(errors);
+			if (!data || !data.login || errors) {
+				new Error('Internal Server Error');
 				return errors;
 			}
 
@@ -37,8 +39,9 @@
 
 				window.location.href = '/';
 			});
-		} catch (error) {
-			console.error('Unexpected error:', error);
+		} catch (e) {
+			errorsStore.set(['Invalid Credentials']);
+			console.error(e);
 		}
 	}
 </script>

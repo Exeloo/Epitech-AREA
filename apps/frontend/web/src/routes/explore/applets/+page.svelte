@@ -1,5 +1,5 @@
 <script lang="ts">
-	import AppletCard from '$lib/explore/card/AppletCard.svelte';
+	import AppletCard from '$lib/components/explore/card/AppletCard.svelte';
 	import { onMount } from 'svelte';
 
 	onMount(async () => {

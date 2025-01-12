@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Block from '$lib/applet/new/Block.svelte';
-	import { BlockType, type ElementValues } from '$lib/applet/new/types';
+	import Block from '$lib/components/applet/new/Block.svelte';
+	import { BlockType, type ElementValues } from '$lib/components/applet/new/types';
 	import { createAppletStore } from '$houdini';
 
 	const appletStore = new createAppletStore();

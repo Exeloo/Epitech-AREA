@@ -1,5 +1,17 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { errorsStore } from '$lib/components/auth/stores';
+	import { onDestroy } from 'svelte';
+
+	let errors: string[] = [];
+
+	const unsubscribe = errorsStore.subscribe((value) => {
+		errors = value;
+	});
+
+	onDestroy(() => {
+		unsubscribe();
+	});
 </script>
 
 <div class="flex h-full w-96 flex-col items-center justify-center gap-5">
@@ -34,6 +46,13 @@
 		>
 			Log in
 		</a>
+	</div>
+	<div class="flex w-full flex-col gap-2">
+		{#each errors as error}
+			<div class="w-full rounded-xl border border-red-800 bg-red-400 p-2 text-center">
+				<span>{error}</span>
+			</div>
+		{/each}
 	</div>
 	<slot />
 </div>

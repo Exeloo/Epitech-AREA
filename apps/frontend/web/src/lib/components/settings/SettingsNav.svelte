@@ -1,5 +1,5 @@
 <script>
-	import SettingsNavButton from '$lib/settings/SettingsNavButton.svelte';
+	import SettingsNavButton from '$lib/components/settings/SettingsNavButton.svelte';
 </script>
 
 <div class="flex flex-col">

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { type ProviderManifestTrigger, ProviderManifestTriggerStore } from '$houdini';
-	import Element from '$lib/applet/new/grid/elements/Element.svelte';
-	import type { ElementValues } from '$lib/applet/new/types';
+	import Element from '$lib/components/applet/new/grid/elements/Element.svelte';
+	import type { ElementValues } from '$lib/components/applet/new/types';
 
 	interface Props {
 		trigger: ProviderManifestTrigger;

@@ -50,10 +50,10 @@ export class ActionCreateEventResponse {
       type: ManifestPropertyEnum.OBJECT,
       properties: {
         emailAddress: {
-          address: string;
-          name: string;
+          address: { type: ManifestPropertyEnum.STRING },
+          name: { type: ManifestPropertyEnum.STRING },
         },
-        type: string;
+        type: { type: ManifestPropertyEnum.STRING },
       },
     },
   })

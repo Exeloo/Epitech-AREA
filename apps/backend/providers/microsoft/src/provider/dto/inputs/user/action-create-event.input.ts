@@ -53,10 +53,10 @@ export class ActionCreateEventInput {
       type: ManifestPropertyEnum.OBJECT,
       properties: {
         emailAddress: {
-          address: string;
-          name: string;
+          address: string,
+          name: string,
         },
-        type: string;
+        type: ManifestPropertyEnum.STRING,
       },
     },
   })

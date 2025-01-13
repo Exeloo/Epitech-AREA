@@ -12,7 +12,7 @@ const APP_BASE_MANIFEST: IBaseManifest = {
   id: "twitch",
   name: "Twitch",
   description: "Provider to use the Twitch API",
-  img: "",
+  img: "gs://area-444018.firebasestorage.app/Twitch_Glitch_Logo_White.svg",
   color: "#6441a5",
   oauth: {
     type: ManifestOAuthEnum.TOKEN,

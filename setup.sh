@@ -14,6 +14,12 @@ cp apps/backend/providers/google/.env.example apps/backend/providers/google/.env
 cp apps/backend/providers/github/.env.example apps/backend/providers/github/.env
 cp apps/backend/providers/microsoft/.env.example apps/backend/providers/microsoft/.env
 cp apps/backend/providers/linkedin/.env.example apps/backend/providers/linkedin/.env
+cp apps/backend/providers/visualcrossing/.env.example apps/backend/providers/visualcrossing/.env
+cp apps/backend/providers/trackergg/.env.example apps/backend/providers/trackergg/.env
+cp apps/backend/providers/riot/.env.example apps/backend/providers/riot/.env
+cp apps/backend/providers/christmas/.env.example apps/backend/providers/christmas/.env
+cp apps/backend/providers/bluesky/.env.example apps/backend/providers/bluesky/.env
+cp apps/backend/providers/patreon/.env.example apps/backend/providers/patreon/.env
 
 yarn serve
 
@@ -25,6 +31,7 @@ docker exec area-mariadb-1 sh -c "echo 'CREATE DATABASE IF NOT EXISTS \`area-pro
 docker exec area-mariadb-1 sh -c "echo 'CREATE DATABASE IF NOT EXISTS \`area-provider-github-db\`;CREATE USER IF NOT EXISTS \`provider-github\` IDENTIFIED BY \"provider-github\";GRANT ALL PRIVILEGES ON \`area-provider-github-db\`.* TO \`provider-github\` IDENTIFIED BY \"provider-github\";' | mariadb --user=root --password=root"
 docker exec area-mariadb-1 sh -c "echo 'CREATE DATABASE IF NOT EXISTS \`area-provider-microsoft-db\`;CREATE USER IF NOT EXISTS \`provider-microsoft\` IDENTIFIED BY \"provider-microsoft\";GRANT ALL PRIVILEGES ON \`area-provider-microsoft-db\`.* TO \`provider-microsoft\` IDENTIFIED BY \"provider-microsoft\";' | mariadb --user=root --password=root"
 docker exec area-mariadb-1 sh -c "echo 'CREATE DATABASE IF NOT EXISTS \`area-provider-linkedin-db\`;CREATE USER IF NOT EXISTS \`provider-linkedin\` IDENTIFIED BY \"provider-linkedin\";GRANT ALL PRIVILEGES ON \`area-provider-linkedin-db\`.* TO \`provider-linkedin\` IDENTIFIED BY \"provider-linkedin\";' | mariadb --user=root --password=root"
+docker exec area-mariadb-1 sh -c "echo 'CREATE DATABASE IF NOT EXISTS \`area-provider-patreon-db\`;CREATE USER IF NOT EXISTS \`provider-patreon\` IDENTIFIED BY \"provider-patreon\";GRANT ALL PRIVILEGES ON \`area-provider-patreon-db\`.* TO \`provider-patreon\` IDENTIFIED BY \"provider-patreon\";' | mariadb --user=root --password=root"
 
 
 
@@ -35,3 +42,4 @@ docker exec area-provider-google-1 sh -c "yarn migration:up"
 docker exec area-provider-github-1 sh -c "yarn migration:up"
 docker exec area-provider-microsoft-1 sh -c "yarn migration:up"
 docker exec area-provider-linkedin-1 sh -c "yarn migration:up"
+docker exec area-provider-patreon-1 sh -c "yarn migration:up"

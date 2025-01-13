@@ -121,6 +121,15 @@ services:
 #      - server
 #    ports:
 #      - "3011:3011"
+#
+#  patreon:
+#    build:
+#      context: apps/backend/providers/patreon
+#      dockerfile: .cloud/docker/Dockerfile
+#    depends_on:
+#      - server
+#    ports:
+#      - "3012:3012"
 
   client_mobile:
     build:

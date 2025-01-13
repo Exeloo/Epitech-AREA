@@ -8,7 +8,7 @@
 	} from '$houdini';
 	import { actionsStore } from '$lib/components/applet/new/stores';
 
-	let actions: ElementValues[] = [];
+	let actions: ElementValues[] = $state([]);
 
 	actionsStore.subscribe((act) => {
 		actions = act;

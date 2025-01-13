@@ -12,4 +12,4 @@ EXPOSE 3007
 
 RUN yarn build
 
-CMD ["sh", "-c", "yarn migration:up;node dist/main.js"]
+CMD ["sh", "-c", "node dist/main.js"]

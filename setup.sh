@@ -14,6 +14,11 @@ cp apps/backend/providers/google/.env.example apps/backend/providers/google/.env
 cp apps/backend/providers/github/.env.example apps/backend/providers/github/.env
 cp apps/backend/providers/microsoft/.env.example apps/backend/providers/microsoft/.env
 cp apps/backend/providers/linkedin/.env.example apps/backend/providers/linkedin/.env
+cp apps/backend/providers/visualcrossing/.env.example apps/backend/providers/visualcrossing/.env
+cp apps/backend/providers/trackergg/.env.example apps/backend/providers/trackergg/.env
+cp apps/backend/providers/riot/.env.example apps/backend/providers/riot/.env
+cp apps/backend/providers/christmas/.env.example apps/backend/providers/christmas/.env
+cp apps/backend/providers/bluesky/.env.example apps/backend/providers/bluesky/.env
 
 yarn serve
 

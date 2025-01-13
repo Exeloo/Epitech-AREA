@@ -12,8 +12,8 @@ const APP_BASE_MANIFEST: IBaseManifest = {
   id: "google",
   name: "Google",
   description: "Provider to use the Google API",
-  img: "",
-  color: "#6441a5",
+  img: "gs://area-444018.firebasestorage.app/google-icon-logo-svgrepo-com.svg",
+  color: "#ffffff",
   oauth: {
     type: ManifestOAuthEnum.TOKEN,
   },

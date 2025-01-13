@@ -1,0 +1,6 @@
+query getProviderOAuthState($id: Int!) {
+    getProviderOAuthState(id: $id) {
+        authenticated
+        redirectUri
+    }
+}

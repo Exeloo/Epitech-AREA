@@ -5,18 +5,18 @@ import { ConfigService } from "@nestjs/config";
 import { ManifestAction } from "@lib/manifest";
 
 import { BaseHttpRepository } from "~/provider/common/base-http.repository";
-import { ActionUserGetProfileInput } from "~/provider/dto/inputs/user/action-user-get-profile.input";
-import { ActionUserGetProfileResponse } from "~/provider/dto/responses/user/action-user-get-profile.response";
-import { ActionListUsersInput } from "~/provider/dto/inputs/user/action-list-users.input";
-import { ActionListUsersResponse } from "~/provider/dto/responses/user/action-list-users.response";
-import { ActionListTeamReposInput } from "~/provider/dto/inputs/user/action-list-team-repos.input";
-import { ActionListTeamReposResponse } from "~/provider/dto/responses/user/action-list-team-repos.response";
 import { ActionGetProjectInput } from "~/provider/dto/inputs/user/action-get-project.input";
-import { ActionGetProjectResponse } from "~/provider/dto/responses/user/action-get-project.response";
 import { ActionListPRReviewsInput } from "~/provider/dto/inputs/user/action-list-pr-reviews.input";
-import { ActionListPRReviewsResponse } from "~/provider/dto/responses/user/action-list-pr-reviews.response";
+import { ActionListTeamReposInput } from "~/provider/dto/inputs/user/action-list-team-repos.input";
+import { ActionListUsersInput } from "~/provider/dto/inputs/user/action-list-users.input";
 import { ActionRenderMarkdownInput } from "~/provider/dto/inputs/user/action-render-markdown.input";
+import { ActionUserGetProfileInput } from "~/provider/dto/inputs/user/action-user-get-profile.input";
+import { ActionGetProjectResponse } from "~/provider/dto/responses/user/action-get-project.response";
+import { ActionListPRReviewsResponse } from "~/provider/dto/responses/user/action-list-pr-reviews.response";
+import { ActionListTeamReposResponse } from "~/provider/dto/responses/user/action-list-team-repos.response";
+import { ActionListUsersResponse } from "~/provider/dto/responses/user/action-list-users.response";
 import { ActionRenderMarkdownResponse } from "~/provider/dto/responses/user/action-render-markdown.response";
+import { ActionUserGetProfileResponse } from "~/provider/dto/responses/user/action-user-get-profile.response";
 import { IActionResponse } from "~/provider/services/action.service";
 import { AuthService } from "~/provider/shared/auth/auth.service";
 
@@ -123,11 +123,14 @@ export class UserAction extends BaseHttpRepository {
     userId: number,
     input: ActionListPRReviewsInput,
   ): IActionResponse<ActionListPRReviewsResponse> {
-    return this.get(`/repos/${input.owner}/${input.repo}/pulls/${input.pull_number}/reviews`, {
-      headers: {
-        Authorization: await this.authService.getToken(userId, input.user_id),
+    return this.get(
+      `/repos/${input.owner}/${input.repo}/pulls/${input.pull_number}/reviews`,
+      {
+        headers: {
+          Authorization: await this.authService.getToken(userId, input.user_id),
+        },
       },
-    });
+    );
   }
 
   @ManifestAction({

@@ -13,7 +13,7 @@
 	});
 </script>
 
-<div class="relative mb-10 flex gap-6">
+<div class="relative mb-10 flex w-full justify-start gap-6">
 	<a href="/explore" onclick={() => (selectedButton = 0)} class="text-center text-2xl font-bold">
 		Applets
 	</a>

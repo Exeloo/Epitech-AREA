@@ -130,6 +130,15 @@ services:
 #      - server
 #    ports:
 #      - "3012:3012"
+#
+#  cron:
+#    build:
+#      context: apps/backend/providers/cron
+#      dockerfile: .cloud/docker/Dockerfile
+#    depends_on:
+#      - server
+#    ports:
+#      - "3013:3013"
 
   client_mobile:
     build:

@@ -35,8 +35,6 @@
 	async function createApplet() {
 		if (!trigger || !action) return;
 
-		console.log(trigger);
-		console.log(action);
 		const triggerNode = {
 			providerId: trigger.providerId,
 			actionId: trigger.actionId || '',
@@ -54,12 +52,13 @@
 		try {
 			await appletStore.mutate({
 				data: {
-					name: 'Test',
-					description: 'Test description',
+					name: name,
+					description: desc,
 					triggerNodes: [triggerNode]
 				}
 			});
 			console.log('Applet created successfully!');
+			window.location.href = '/explore/applets/';
 		} catch (error) {
 			console.error('Failed to create applet:', error);
 		}

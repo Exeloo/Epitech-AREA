@@ -81,8 +81,14 @@
 
 <div class="mt-20 flex w-1/5 flex-col items-center gap-20">
 	{#if detail}
-		<input bind:value={name} class="h-10 w-full rounded dark:bg-gray-500" />
-		<textarea bind:value={desc} class="h-24 w-full rounded dark:bg-gray-500"></textarea>
+		<div class="w-full">
+			<label for="name">Name</label>
+			<input id="name" bind:value={name} class="h-10 w-full rounded dark:bg-gray-500" />
+		</div>
+		<div class="w-full">
+			<label for="desc">Description</label>
+			<textarea id="desc" bind:value={desc} class="h-24 w-full rounded dark:bg-gray-500"></textarea>
+		</div>
 		<CreateButton name="create" onclick={createApplet} actif={!!(name && desc)} />
 	{:else}
 		<Block title="If this" type={BlockType.Triggers} focus={true} bind:element={trigger} />

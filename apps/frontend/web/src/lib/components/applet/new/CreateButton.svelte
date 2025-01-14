@@ -10,7 +10,7 @@
 </script>
 
 <button
-	onclick={() => (actif ? onclick : null)}
+	{onclick}
 	disabled={!actif}
 	class="flex w-fit justify-center gap-2 rounded-full {actif
 		? 'bg-purple-700'

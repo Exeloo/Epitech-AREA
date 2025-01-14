@@ -1,6 +1,7 @@
 <script lang="ts">
 	import SelectModal from '$lib/components/applet/new/SelectModal.svelte';
 	import type { BlockType, ElementValues } from '$lib/components/applet/new/types';
+	import { BaseProviderStore } from '$houdini';
 
 	interface Props {
 		title: string;
@@ -10,7 +11,11 @@
 	}
 	let { title, type, focus = false, element = $bindable() }: Props = $props();
 
+	let baseProviderStore = new BaseProviderStore();
+
 	let open = $state(false);
+
+	let provider = $derived(element ? baseProviderStore.get(element.provider) : null);
 </script>
 
 <div
@@ -19,11 +24,21 @@
 		: 'bg-neutral-400'} px-8 py-4"
 >
 	{title}
-	<button
-		onclick={() => (open = true)}
-		class="flex items-center rounded-full bg-white px-4 py-2 text-lg text-black"
-	>
-		add
-	</button>
+	{#if $provider}
+		<button
+			onclick={() => (open = true)}
+			style="background-color: {$provider.color}"
+			class="rounded-3xl p-3 text-base text-black"
+		>
+			<img src={$provider.img} alt={$provider.name} />
+		</button>
+	{:else}
+		<button
+			onclick={() => (open = true)}
+			class="flex items-center rounded-full bg-white px-4 py-2 text-lg text-black"
+		>
+			add
+		</button>
+	{/if}
 </div>
 <SelectModal bind:open {type} bind:element />

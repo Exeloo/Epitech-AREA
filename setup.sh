@@ -21,6 +21,7 @@ cp apps/backend/providers/christmas/.env.example apps/backend/providers/christma
 cp apps/backend/providers/bluesky/.env.example apps/backend/providers/bluesky/.env
 cp apps/backend/providers/patreon/.env.example apps/backend/providers/patreon/.env
 cp apps/backend/providers/cron/.env.example apps/backend/providers/cron/.env
+cp apps/backend/providers/impactco2/.env.example apps/backend/providers/impactco2/.env
 
 yarn serve
 

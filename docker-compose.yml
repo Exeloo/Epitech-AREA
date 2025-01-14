@@ -139,6 +139,15 @@ services:
 #      - server
 #    ports:
 #      - "3013:3013"
+#
+#  impactco2:
+#    build:
+#      context: apps/backend/providers/impactco2
+#      dockerfile: .cloud/docker/Dockerfile
+#    depends_on:
+#      - server
+#    ports:
+#      - "3014:3014"
 
   client_mobile:
     build:

@@ -67,7 +67,6 @@ export class Attendee {
 
 @ManifestType()
 export class ActionCreateEventInput {
-
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
   })

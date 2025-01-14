@@ -6,7 +6,6 @@ import {
 
 @ManifestType()
 export class ActionListUsersInput {
-
   @ManifestProperty({
     type: ManifestPropertyEnum.NUMBER,
   })

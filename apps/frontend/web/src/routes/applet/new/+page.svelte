@@ -1,18 +1,10 @@
 <script lang="ts">
 	import Block from '$lib/components/applet/new/Block.svelte';
 	import { BlockType, type ElementValues } from '$lib/components/applet/new/types';
-	import {
-		type AppletNodeCreateInput,
-		createAppletStore,
+	/*	import {
 		load_getProviderOAuthState
-	} from '$houdini';
-	import { actionsStore } from '$lib/components/applet/new/stores';
+	} from '$houdini';*/
 
-	let actions: ElementValues[] = $state([]);
-
-	actionsStore.subscribe((act) => {
-		actions = act;
-	});
 	import { createAppletStore } from '$houdini';
 	import CreateButton from '$lib/components/applet/new/CreateButton.svelte';
 
@@ -64,7 +56,7 @@
 		}
 	}
 
-	const testNode = async (providerId: number): Promise<boolean> => {
+	/*const testNode = async (providerId: number): Promise<boolean> => {
 		const query = await load_getProviderOAuthState({
 			variables: { id: providerId },
 			policy: 'NetworkOnly'
@@ -75,7 +67,7 @@
 			return true;
 		window.open(data.getProviderOAuthState.redirectUri, 'Aether OAuth', 'width=1000,height=1000');
 		return false;
-	};
+	};*/
 </script>
 
 <div class="mt-20 flex w-1/5 flex-col items-center gap-20">

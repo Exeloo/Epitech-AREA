@@ -5,6 +5,29 @@ import {
 } from "@lib/manifest";
 
 @ManifestType()
+export class OneNoteLink {
+  @ManifestProperty({
+    type: ManifestPropertyEnum.STRING,
+  })
+  href: string;
+}
+
+@ManifestType()
+export class Links {
+  @ManifestProperty({
+    type: ManifestPropertyEnum.OBJECT,
+    properties: OneNoteLink,
+  })
+  oneNoteClientUrl: OneNoteLink;
+
+  @ManifestProperty({
+    type: ManifestPropertyEnum.OBJECT,
+    properties: OneNoteLink,
+  })
+  oneNoteWebUrl: OneNoteLink;
+}
+
+@ManifestType()
 export class ActionCreateNotebookResponse {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
@@ -43,13 +66,7 @@ export class ActionCreateNotebookResponse {
 
   @ManifestProperty({
     type: ManifestPropertyEnum.OBJECT,
+    properties: Links,
   })
-  links: {
-    oneNoteClientUrl: {
-      href: string;
-    };
-    oneNoteWebUrl: {
-      href: string;
-    };
-  };
+  links: Links;
 }

@@ -9,11 +9,6 @@ export class ActionListPRReviewsInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
   })
-  accept: string = "application/vnd.github+json";
-
-  @ManifestProperty({
-    type: ManifestPropertyEnum.STRING,
-  })
   owner: string;
 
   @ManifestProperty({
@@ -29,10 +24,10 @@ export class ActionListPRReviewsInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.NUMBER,
   })
-  per_page?: number = 30;
+  per_page?: number;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.NUMBER,
   })
-  page?: number = 1;
+  page?: number;
 }

@@ -5,6 +5,54 @@ import {
 } from "@lib/manifest";
 
 @ManifestType()
+export class EventDateTime {
+  @ManifestProperty({
+    type: ManifestPropertyEnum.STRING,
+  })
+  dateTime: string;
+
+  @ManifestProperty({
+    type: ManifestPropertyEnum.STRING,
+  })
+  timeZone: string;
+}
+
+@ManifestType()
+export class EventLocation {
+  @ManifestProperty({
+    type: ManifestPropertyEnum.STRING,
+  })
+  displayName: string;
+}
+
+@ManifestType()
+export class EmailAddress {
+  @ManifestProperty({
+    type: ManifestPropertyEnum.STRING,
+  })
+  address: string;
+
+  @ManifestProperty({
+    type: ManifestPropertyEnum.STRING,
+  })
+  name: string;
+}
+
+@ManifestType()
+export class Attendee {
+  @ManifestProperty({
+    type: ManifestPropertyEnum.OBJECT,
+    properties: EmailAddress,
+  })
+  emailAddress: EmailAddress;
+
+  @ManifestProperty({
+    type: ManifestPropertyEnum.STRING,
+  })
+  type: string;
+}
+
+@ManifestType()
 export class ActionCreateEventResponse {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
@@ -22,48 +70,31 @@ export class ActionCreateEventResponse {
   bodyPreview: string;
 
   @ManifestProperty({
-    type: ManifestPropertyEnum.STRING,
+    type: ManifestPropertyEnum.OBJECT,
+    properties: EventDateTime,
   })
-  start: {
-    dateTime: string;
-    timeZone: string;
-  };
+  start: EventDateTime;
 
   @ManifestProperty({
-    type: ManifestPropertyEnum.STRING,
+    type: ManifestPropertyEnum.OBJECT,
+    properties: EventDateTime,
   })
-  end: {
-    dateTime: string;
-    timeZone: string;
-  };
+  end: EventDateTime;
 
   @ManifestProperty({
-    type: ManifestPropertyEnum.STRING,
+    type: ManifestPropertyEnum.OBJECT,
+    properties: EventLocation,
   })
-  location: {
-    displayName: string;
-  };
+  location: EventLocation;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.ARRAY,
     items: {
       type: ManifestPropertyEnum.OBJECT,
-      properties: {
-        emailAddress: {
-          address: { type: ManifestPropertyEnum.STRING },
-          name: { type: ManifestPropertyEnum.STRING },
-        },
-        type: { type: ManifestPropertyEnum.STRING },
-      },
+      properties: Attendee,
     },
   })
-  attendees: Array<{
-    emailAddress: {
-      address: string;
-      name: string;
-    };
-    type: string;
-  }>;
+  attendees: Array<Attendee>;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,

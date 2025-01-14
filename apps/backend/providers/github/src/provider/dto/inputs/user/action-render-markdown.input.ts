@@ -9,17 +9,12 @@ export class ActionRenderMarkdownInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
   })
-  accept: string = "application/vnd.github+json";
-
-  @ManifestProperty({
-    type: ManifestPropertyEnum.STRING,
-  })
   text: string;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
   })
-  mode?: string = "markdown";
+  mode?: string;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,

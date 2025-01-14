@@ -6,10 +6,6 @@ import {
 
 @ManifestType()
 export class ActionListUsersInput {
-  @ManifestProperty({
-    type: ManifestPropertyEnum.STRING,
-  })
-  accept: string = "application/vnd.github+json";
 
   @ManifestProperty({
     type: ManifestPropertyEnum.NUMBER,
@@ -19,5 +15,5 @@ export class ActionListUsersInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.NUMBER,
   })
-  per_page?: number = 30;
+  per_page?: number;
 }

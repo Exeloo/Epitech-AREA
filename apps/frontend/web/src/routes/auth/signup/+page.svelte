@@ -4,6 +4,7 @@
 	import Validation from '$lib/components/auth/Validation.svelte';
 	import { RegisterStore } from '$houdini';
 	import { errorsStore } from '$lib/components/auth/stores';
+	import OAuthLogin from '$lib/components/auth/oauth/OAuthLogin.svelte';
 
 	let username = $state('');
 	let email = $state('');
@@ -65,4 +66,6 @@
 	<p>
 		Already have an account?<a href="/auth/login/" class="pl-2 font-semibold">Log in</a>
 	</p>
+	<hr class="my-5" />
+	<OAuthLogin />
 </form>

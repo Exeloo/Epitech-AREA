@@ -44,8 +44,8 @@ export class AppController {
   }
 
   @Post("oauth/redirect")
-  getOAuth(@Body() state: string): Promise<{ baseUrl: string }> {
-    return this.appService.getOAuthUrl({ state: state });
+  getOAuth(@Body() body: { state: string }): Promise<{ baseUrl: string }> {
+    return this.appService.getOAuthUrl(body);
   }
 
   @Get("oauth/state/:id")

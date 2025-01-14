@@ -41,9 +41,7 @@ export class AuthService {
   }
 
   async runOAuth(input: { code: string; state: string }): Promise<void> {
-    const { userId } = JSON.parse(
-      Buffer.from(input.state, "base64").toString(),
-    );
+    const userId = JSON.parse(Buffer.from(input.state, "base64").toString());
     const {
       data: { access_token: token },
     } = await firstValueFrom(

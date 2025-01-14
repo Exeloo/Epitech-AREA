@@ -14,7 +14,7 @@ export class ProviderAuthController {
   }
 
   @Get("callback")
-  @Render("auth.hbs")
+  @Render("provider-oauth.hbs")
   callback(@Param("id") id: string, @Request() req: Express.Request) {
     return this.providerService.oAuthCallback(id, req);
   }

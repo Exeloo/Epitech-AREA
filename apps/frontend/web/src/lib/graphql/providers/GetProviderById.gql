@@ -1,5 +1,30 @@
 query getProviderById($id: Int!) {
     getProviderById(id: $id) {
-        ...ProviderWithManifest
+        id
+        name
+        description
+        img
+        color
+        visibility
+        manifest {
+            actions {
+                id
+                name
+                description
+                img
+                color
+                input
+                output
+            }
+            triggers {
+                id
+                name
+                description
+                img
+                color
+                input
+                output
+            }
+        }
     }
 }

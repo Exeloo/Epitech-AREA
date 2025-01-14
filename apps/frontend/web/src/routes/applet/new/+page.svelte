@@ -14,11 +14,23 @@
 		actions = act;
 	});
 	import { createAppletStore } from '$houdini';
+	import CreateButton from '$lib/components/applet/new/CreateButton.svelte';
 
 	const appletStore = new createAppletStore();
 
+	let detail = $state(false);
+
+	let name = $state('');
+	let desc = $state('');
+
 	let trigger: ElementValues | null = $state(null);
 	let action: ElementValues | null = $state(null);
+
+	function goToDetail() {
+		if (trigger && action) {
+			detail = true;
+		}
+	}
 
 	async function createApplet() {
 		if (!trigger || !action) return;
@@ -67,14 +79,14 @@
 	};
 </script>
 
-<div class="mt-20 flex flex-col items-center gap-20">
-	<Block title="If this" type={BlockType.Triggers} focus={true} bind:element={trigger} />
-	<Block title="Then" type={BlockType.Actions} bind:element={action} />
-	<button
-		onclick={createApplet}
-		class="flex w-fit justify-center gap-2 rounded-full bg-primary px-4 py-2 text-xl font-bold text-white"
-	>
-		Continue
-		<i class="fi fi-rr-angle-right flex items-center justify-center"></i>
-	</button>
+<div class="mt-20 flex w-1/5 flex-col items-center gap-20">
+	{#if detail}
+		<input bind:value={name} class="h-10 w-full rounded dark:bg-gray-500" />
+		<textarea bind:value={desc} class="h-24 w-full rounded dark:bg-gray-500"></textarea>
+		<CreateButton name="create" onclick={createApplet} actif={!!(name && desc)} />
+	{:else}
+		<Block title="If this" type={BlockType.Triggers} focus={true} bind:element={trigger} />
+		<Block title="Then" type={BlockType.Actions} bind:element={action} />
+		<CreateButton name="continue" onclick={goToDetail} actif={!!(action && trigger)} />
+	{/if}
 </div>

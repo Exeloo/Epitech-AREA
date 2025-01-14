@@ -22,6 +22,10 @@ import { ChannelChatClearInput } from "~/provider/dto/inputs/channel/trigger-cha
 import { ChannelChatClearResponse } from "~/provider/dto/responses/trigger-channel-chat-clear.response";
 import { ChannelUpdateConditionInput } from "~/provider/dto/inputs/channel/trigger-channel-update.input";
 import { ChannelUpdateEventResponse } from "~/provider/dto/responses/trigger-channel-update.response";
+import { ChannelBanConditionInput } from "~/provider/dto/inputs/channel/trigger-channel-ban.input";
+import { ChannelBanEventResponse } from "~/provider/dto/responses/trigger-channel-ban.response";
+import { ChannelPointsCustomRewardAddConditionInput } from "~/provider/dto/inputs/channel/trigger-channel-points-custom-reward-add.input";
+import { ChannelPointsCustomRewardAddEventResponse } from "~/provider/dto/responses/trigger-channel-points-custom-reward-add.response";
 import { TriggerService } from "~/provider/services/trigger.service";
 import { EventsEnum } from "~/provider/shared/event/event.enum";
 
@@ -234,4 +238,52 @@ export class ChannelTrigger {
       message,
     );
   }
+
+    @ManifestTrigger({
+        id: "channel-ban",
+        name: "On channel ban",
+        description: "Triggered when someone ban from a channel",
+        img: "",
+        color: "#ffffff",
+        input: ChannelBanConditionInput,
+        output: ChannelBanEventResponse,
+    })
+    @OnEvent(EventsEnum.Channel_ban)
+    async channelBanTrigger(message: ChannelBanEventResponse) {
+        const triggers = await this.triggerService.getTriggers("channel-ban", {
+            broadcaster_user_id: message.broadcaster_user_id,
+            user_id: message.user_id,
+        });
+        this.appGateway.emit(
+            "channel-ban",
+            triggers.map((trigger) => trigger.baseId),
+            message,
+        );
+    }
+
+    @ManifestTrigger({
+        id: "channel.channel_points_custom_reward.add",
+        name: "On channel points custom reward add",
+        description: "Triggered when someone add a custom reward to a channel",
+        img: "",
+        color: "#ffffff",
+        input: ChannelPointsCustomRewardAddConditionInput,
+        output: ChannelPointsCustomRewardAddEventResponse,
+    })
+    @OnEvent(EventsEnum.Channel_Points_Custom_Reward_Add)
+    async channelPointsCustomRewardAddTrigger(
+        message: ChannelPointsCustomRewardAddEventResponse,
+    ) {
+        const triggers = await this.triggerService.getTriggers(
+            "channel.channel_points_custom_reward.add",
+            {
+                broadcaster_user_id: message.broadcaster_user_id,
+            },
+        );
+        this.appGateway.emit(
+            "channel.channel_points_custom_reward.add",
+            triggers.map((trigger) => trigger.baseId),
+            message,
+        );
+    }
 }

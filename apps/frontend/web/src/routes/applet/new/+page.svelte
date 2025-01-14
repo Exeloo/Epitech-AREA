@@ -13,29 +13,31 @@
 	actionsStore.subscribe((act) => {
 		actions = act;
 	});
+	import { createAppletStore } from '$houdini';
 
 	const appletStore = new createAppletStore();
 
-	function getActionsNode(elem: ElementValues[]): AppletNodeCreateInput | undefined {
-		let action = elem.shift();
-		if (action) {
-			const nextNode = getActionsNode(elem);
-			return {
-				providerId: action.providerId,
-				actionId: action.actionId || '',
-				input: action.inputs,
-				next: nextNode ? [nextNode] : []
-			};
-		}
-	}
+	let trigger: ElementValues | null = $state(null);
+	let action: ElementValues | null = $state(null);
 
 	async function createApplet() {
-		if (!(await testNode(2))) return;
-		if (actions.length < 2) return;
+		if (!trigger || !action) return;
 
-		const triggerNode = getActionsNode(actions);
-
-		if (!triggerNode) return;
+		console.log(trigger);
+		console.log(action);
+		const triggerNode = {
+			providerId: trigger.providerId,
+			actionId: trigger.actionId || '',
+			input: trigger.inputs,
+			next: [
+				{
+					providerId: action.providerId,
+					actionId: action.actionId || '',
+					input: action.inputs,
+					next: []
+				}
+			]
+		};
 
 		try {
 			await appletStore.mutate({
@@ -66,8 +68,8 @@
 </script>
 
 <div class="mt-20 flex flex-col items-center gap-20">
-	<Block title="If this" type={BlockType.Triggers} focus={true} bind:element={actions[0]} />
-	<Block title="Then" type={BlockType.Actions} bind:element={actions[1]} />
+	<Block title="If this" type={BlockType.Triggers} focus={true} bind:element={trigger} />
+	<Block title="Then" type={BlockType.Actions} bind:element={action} />
 	<button
 		onclick={createApplet}
 		class="flex w-fit justify-center gap-2 rounded-full bg-primary px-4 py-2 text-xl font-bold text-white"

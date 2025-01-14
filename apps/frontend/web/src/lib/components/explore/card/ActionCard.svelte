@@ -13,7 +13,6 @@
 		};
 	}
 	let { action }: Props = $props();
-
 </script>
 
 {#if action}

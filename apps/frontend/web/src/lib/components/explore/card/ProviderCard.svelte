@@ -18,6 +18,5 @@
 				<h3 class="text-3xl font-bold text-black">{$info.name}</h3>
 			</div>
 		</a>
-
 	</Card>
 {/if}

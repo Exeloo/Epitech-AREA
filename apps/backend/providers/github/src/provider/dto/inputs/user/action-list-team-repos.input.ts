@@ -10,7 +10,7 @@ export class ActionListTeamReposInput {
     type: ManifestPropertyEnum.STRING,
   })
   user_id: string;
-  
+
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
   })

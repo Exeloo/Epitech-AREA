@@ -10,7 +10,7 @@ export class ActionListPRReviewsInput {
     type: ManifestPropertyEnum.STRING,
   })
   user_id: string;
-  
+
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
   })

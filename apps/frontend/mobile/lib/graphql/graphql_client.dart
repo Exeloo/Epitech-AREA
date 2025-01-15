@@ -31,8 +31,8 @@ class GraphQlClient {
 }
 
 String _resolveBaseUrl() {
-  const String localhost = 'http://10.0.2.2:8080/graphql';
-  const String defaultUrl = 'http://localhost:8080/graphql';
+  const String localhost = 'https://api.aether-area.fr/graphql';
+  const String defaultUrl = 'https://api.aether-area.fr/graphql';
 
   if (_isAndroidEmulator()) {
     return localhost;

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../config/colors.dart';
+
 class MyCard extends StatelessWidget {
   final Color backgroundColor;
   final String text;
@@ -34,7 +36,7 @@ class MyCard extends StatelessWidget {
               child: Text(
                 text,
                 style: const TextStyle(
-                  color: Colors.white,
+                  color: AppColors.textPrimary,
                   fontSize: 40,
                   fontWeight: FontWeight.bold,
                 ),
@@ -44,7 +46,7 @@ class MyCard extends StatelessWidget {
               top: 8,
               right: 50,
               child: SvgPicture.asset('assets/icon/utilisateur.svg',
-                  width: 24, height: 24, color: Colors.white),
+                  width: 24, height: 24, color: AppColors.textPrimary),
             ),
             const Positioned(
               top: 8,
@@ -52,7 +54,7 @@ class MyCard extends StatelessWidget {
               child: Text(
                 "2.5M",
                 style: TextStyle(
-                  color: Colors.white,
+                  color: AppColors.textPrimary,
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),

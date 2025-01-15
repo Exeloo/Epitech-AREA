@@ -34,7 +34,7 @@
 		: 'hidden'} fixed inset-0 z-50 flex max-h-full w-full items-center justify-center overflow-y-auto overflow-x-hidden"
 >
 	<div class="absolute inset-0 bg-black opacity-50"></div>
-	<div class="relative flex h-1/2 w-96 flex-col rounded-lg bg-white shadow dark:bg-gray-800">
+	<div class="relative flex h-2/3 w-1/4 flex-col rounded-lg bg-white shadow dark:bg-gray-800">
 		<div class="flex items-center justify-between rounded-t p-4">
 			<h3 class="text-base font-semibold">{type === BlockType.Actions ? 'Action' : 'Trigger'}</h3>
 			<div class="flex justify-end">
@@ -61,18 +61,22 @@
 			</div>
 		</div>
 		<div
-			class="relative flex h-20 w-full items-center justify-center text-lg font-bold"
+			class="relative flex h-1/5 w-full items-center justify-center text-lg font-bold"
 			style="background-color: {currentProviderInfo
 				? currentProviderInfo.color
 				: 'var(--default-background-light)'}"
 		>
 			{#if currentProviderInfo}
-				<img class="h-16 w-16" alt={currentProviderInfo.name} src={currentProviderInfo.img} />
+				<img
+					class="flex h-16 w-16 items-center justify-center"
+					alt={currentProviderInfo.name}
+					src={currentProviderInfo.img}
+				/>
 			{:else}
 				Choose a provider
 			{/if}
 		</div>
-		<div class="p-8">
+		<div class="flex h-full flex-col overflow-y-auto p-8">
 			{#if element}
 				<ElementsGrid {type} bind:element />
 			{:else}

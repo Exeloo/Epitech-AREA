@@ -41,9 +41,9 @@
 {#if $info}
 	<button
 		onclick={selectProvider}
-		class="flex h-full flex-col items-center justify-center"
+		class="flex h-full flex-col items-center justify-center dark:text-black"
 		style="background-color: {$info.color};"
 	>
-		<img src={$info.img} alt="instagram" class="h-20 w-20" />
+		<img src={$info.img} alt={$info.name} class="h-20 w-20" />
 	</button>
 {/if}

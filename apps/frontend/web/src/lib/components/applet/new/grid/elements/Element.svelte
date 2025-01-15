@@ -44,8 +44,8 @@
 
 <div
 	class="rounded-xl border p-3 text-sm {isSelected
-		? 'border-2 border-purple-500 bg-purple-100'
-		: 'bg-neutral-50'}"
+		? 'border-2 border-purple-500 bg-purple-100 dark:border-purple-800 dark:bg-purple-500'
+		: 'bg-neutral-50 dark:bg-gray-600'}"
 >
 	<button onclick={() => (open = !open)} class="flex w-full items-center justify-between">
 		<span class="flex flex-col items-start gap-1">
@@ -65,10 +65,13 @@
 							<i class="fi fi-rr-medical-star flex justify-center text-xs text-red-600"></i>
 						{/if}
 					</div>
-					<input bind:value={elementInputs[input.title]} class="rounded-lg border px-2" />
+					<input
+						bind:value={elementInputs[input.title]}
+						class="rounded-lg border px-2 text-black"
+					/>
 				</div>
 			{/each}
-			<div class="flex justify-center">
+			<div class="mt-4 flex justify-center">
 				<button
 					onclick={addInputs}
 					class="w-fit rounded-full bg-primary px-2 py-1 text-lg font-bold text-white shadow"

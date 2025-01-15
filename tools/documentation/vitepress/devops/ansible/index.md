@@ -62,4 +62,4 @@ The **master** role is intended for machines that will be master nodes in the Ku
 - **Scripts configuration and deployment** :
   Launch of the various scripts used to configure and install the tools used to deploy our website.
 
-For more details about the kubernetes tools used, I recommend you look at this : [Kubernetes Documentation](./../docs/kubernetes.md)
+For more details about the kubernetes tools used, I recommend you look at this : [Kubernetes Documentation](./../kubernetes/index.md)

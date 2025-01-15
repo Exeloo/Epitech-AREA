@@ -40,4 +40,4 @@ The Kubernetes architecture consists of the following components :
 
 This part is managed in the `ArgoCD GUI` and enables automatic deployment of different kubernetes technologies.
 
-For further explanations, please refer to this section: [Templates Documentation](./../docs/templates.md)
+For further explanations, please refer to this section: [Templates Documentation](./../templates/index.md)

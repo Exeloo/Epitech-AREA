@@ -6,7 +6,8 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'API', link: '/api' }
+      { text: 'API', link: '/api' },
+      { text: 'DevOps', link: '/devops' }
     ],
 
     sidebar: [
@@ -27,6 +28,15 @@ export default defineConfig({
               { text: 'Field', link: '/api/providers/manifest/field' },
             ]
           },
+        ]
+      },
+      {
+        text: 'DevOps',
+        items: [
+            { text: 'Introduction', link: '/devops' },
+            { text: 'Ansible', link: '/devops/ansible' },
+            { text: 'Kubernetes', link: '/devops/kubernetes' },
+            { text: 'Templates', link: '/devops/templates' }
         ]
       }
     ],

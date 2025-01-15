@@ -46,16 +46,16 @@ API need a description of the provider. This passed through 4 fields :
 
 The provider must handle a type of authorization for a user to use their product.
 
-For more on oauth go [here](/api/providers/oauth) 
+For more on oauth go [here](./../../../api/providers/oauth/index.md) 
 
 ## Triggers
 
 This is an array of the handled triggers that can be used by a user.
 
-For more on triggers go [here](/api/providers/triggers) 
+For more on triggers go [here](./../../../api/providers/triggers/index.md) 
 
 ## Actions
 
 This is an array of the handled actions that can be called by a user.
 
-For more on triggers go [here](/api/providers/actions)
+For more on triggers go [here](./../../../api/providers/actions/index.md)

@@ -17,9 +17,10 @@ class AppletCreation extends StatefulWidget {
 
 class _AppletCreationState extends State<AppletCreation> {
   final List<String> _triggers = [], _actions = [];
-  final String? _selectedTrigger = TriggerNodeManager.triggerName?.isNotEmpty ?? false
-      ? TriggerNodeManager.triggerName
-      : '';
+  final String? _selectedTrigger =
+      TriggerNodeManager.triggerName?.isNotEmpty ?? false
+          ? TriggerNodeManager.triggerName
+          : '';
   final List<String> _selectedActions = TriggerNodeManager.actionNames;
 
   final TextEditingController _nameController = TextEditingController();
@@ -31,8 +32,7 @@ class _AppletCreationState extends State<AppletCreation> {
   }
 
   void _createApplet() async {
-    if (_nameController.text.isEmpty ||
-        _descriptionController.text.isEmpty) {
+    if (_nameController.text.isEmpty || _descriptionController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text(
             'Please provide all fields: name, description, trigger, and action'),
@@ -75,7 +75,9 @@ class _AppletCreationState extends State<AppletCreation> {
         title: const Text(
           'Applet Creation',
           style: TextStyle(
-              color: AppColors.textPrimary, fontSize: 30, fontWeight: FontWeight.bold),
+              color: AppColors.textPrimary,
+              fontSize: 30,
+              fontWeight: FontWeight.bold),
         ),
         backgroundColor: const Color(0xff1B1B1B),
         centerTitle: true,
@@ -83,67 +85,68 @@ class _AppletCreationState extends State<AppletCreation> {
       ),
       backgroundColor: const Color(0xff1B1B1B),
       body: SingleChildScrollView(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                children: [
-                  const SizedBox(height: 20),
-                  _buildButton('If This', _selectedTrigger, _triggers, 'trigger'),
-                  CustomPaint(
-                    size: const Size(double.infinity, 50),
-                    painter: LinePainter(),
-                  ),
-                  _buildButton('Then That', _selectedActions, _actions, 'action'),
-                  const SizedBox(height: 40),
-                  TextField(
-                    controller: _nameController,
-                    decoration: const InputDecoration(
-                      labelText: 'Applet Name',
-                      labelStyle: TextStyle(color: AppColors.textPrimary),
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blueGrey)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue)),
-                    ),
-                    style: const TextStyle(color: AppColors.textPrimary),
-                  ),
-                  const SizedBox(height: 20),
-                  TextField(
-                    controller: _descriptionController,
-                    decoration: const InputDecoration(
-                      labelText: 'Applet Description',
-                      labelStyle: TextStyle(color: AppColors.textPrimary),
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blueGrey)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue)),
-                    ),
-                    style: const TextStyle(color: AppColors.textPrimary),
-                  ),
-                  const SizedBox(height: 40),
-                  ElevatedButton(
-                    onPressed: _createApplet,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      minimumSize: const Size(double.infinity, 60),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30)),
-                    ),
-                    child: const Text(
-                      'Create Applet',
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                ],
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            const SizedBox(height: 20),
+            _buildButton('If This', _selectedTrigger, _triggers, 'trigger'),
+            CustomPaint(
+              size: const Size(double.infinity, 50),
+              painter: LinePainter(),
+            ),
+            _buildButton('Then That', _selectedActions, _actions, 'action'),
+            const SizedBox(height: 40),
+            TextField(
+              controller: _nameController,
+              decoration: const InputDecoration(
+                labelText: 'Applet Name',
+                labelStyle: TextStyle(color: AppColors.textPrimary),
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blueGrey)),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue)),
+              ),
+              style: const TextStyle(color: AppColors.textPrimary),
+            ),
+            const SizedBox(height: 20),
+            TextField(
+              controller: _descriptionController,
+              decoration: const InputDecoration(
+                labelText: 'Applet Description',
+                labelStyle: TextStyle(color: AppColors.textPrimary),
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blueGrey)),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue)),
+              ),
+              style: const TextStyle(color: AppColors.textPrimary),
+            ),
+            const SizedBox(height: 40),
+            ElevatedButton(
+              onPressed: _createApplet,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                minimumSize: const Size(double.infinity, 60),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30)),
+              ),
+              child: const Text(
+                'Create Applet',
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black),
               ),
             ),
+            const SizedBox(height: 20),
+          ],
+        ),
+      ),
     );
   }
 
-  Widget _buildButton(String text, dynamic selected, List<String> options, String inputType) {
+  Widget _buildButton(
+      String text, dynamic selected, List<String> options, String inputType) {
     final isSelectedList = selected is List<String>;
 
     return GestureDetector(

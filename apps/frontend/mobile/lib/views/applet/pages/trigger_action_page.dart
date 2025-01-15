@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import '../../../config/colors.dart';
 import '../../../graphql/__generated__/provider.data.gql.dart';
 import '../../../modules/graphql/repository/provider_repository.dart';
+import 'applet_oauth_webview.dart';
 
 class TriggerActionPage extends StatefulWidget {
   final int id;
@@ -161,7 +162,7 @@ class TriggerActionPageState extends State<TriggerActionPage> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: ElevatedButton(
-        onPressed: () {
+        onPressed: () async {
           final providerId = widget.id;
 
           final trigger = _provider.manifest.triggers
@@ -179,6 +180,28 @@ class TriggerActionPageState extends State<TriggerActionPage> {
           _controllers.forEach((key, controller) {
             input[key] = controller.text;
           });
+
+          final providerRepo =
+              Provider.of<ProviderRepository>(context, listen: false);
+
+          final res = await providerRepo.getProviderOAuthState(id: providerId);
+
+          if (res != null && !res.getProviderOAuthState.authenticated) {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => AppletOauthWebView(
+                    baseUrl: res.getProviderOAuthState.redirectUri),
+              ),
+              (Route<dynamic> route) => false,
+            );
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                  content: Text(
+                      'Unauthorized: Please, auth first and then try again')),
+            );
+            return;
+          }
 
           final newNode = TriggerNode(
             providerId: providerId,

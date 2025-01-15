@@ -1,11 +1,11 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
 
+// ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:aether/graphql/__generated__/provider.ast.gql.dart' as _i5;
 import 'package:aether/graphql/__generated__/provider.data.gql.dart' as _i2;
 import 'package:aether/graphql/__generated__/provider.var.gql.dart' as _i3;
 import 'package:aether/graphql/__generated__/serializers.gql.dart' as _i6;
-// ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:ferry_exec/ferry_exec.dart' as _i1;
@@ -91,6 +91,88 @@ abstract class GgetAllProvidersReq
   static GgetAllProvidersReq? fromJson(Map<String, dynamic> json) =>
       _i6.serializers.deserializeWith(
         GgetAllProvidersReq.serializer,
+        json,
+      );
+}
+
+abstract class GgetProviderOAuthStateReq
+    implements
+        Built<GgetProviderOAuthStateReq, GgetProviderOAuthStateReqBuilder>,
+        _i1.OperationRequest<_i2.GgetProviderOAuthStateData,
+            _i3.GgetProviderOAuthStateVars> {
+  GgetProviderOAuthStateReq._();
+
+  factory GgetProviderOAuthStateReq(
+          [void Function(GgetProviderOAuthStateReqBuilder b) updates]) =
+      _$GgetProviderOAuthStateReq;
+
+  static void _initializeBuilder(GgetProviderOAuthStateReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'getProviderOAuthState',
+    )
+    ..executeOnListen = true;
+
+  @override
+  _i3.GgetProviderOAuthStateVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+        context: context ?? const _i4.Context(),
+      );
+
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.GgetProviderOAuthStateData? Function(
+    _i2.GgetProviderOAuthStateData?,
+    _i2.GgetProviderOAuthStateData?,
+  )? get updateResult;
+  @override
+  _i2.GgetProviderOAuthStateData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  @BuiltValueField(serialize: false)
+  _i4.Context? get context;
+  @override
+  _i2.GgetProviderOAuthStateData? parseData(Map<String, dynamic> json) =>
+      _i2.GgetProviderOAuthStateData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(_i2.GgetProviderOAuthStateData data) =>
+      data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.GgetProviderOAuthStateData,
+      _i3.GgetProviderOAuthStateVars> transformOperation(
+          _i4.Operation Function(_i4.Operation) transform) =>
+      this.rebuild((b) => b..operation = transform(operation));
+
+  static Serializer<GgetProviderOAuthStateReq> get serializer =>
+      _$ggetProviderOAuthStateReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GgetProviderOAuthStateReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetProviderOAuthStateReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GgetProviderOAuthStateReq.serializer,
         json,
       );
 }

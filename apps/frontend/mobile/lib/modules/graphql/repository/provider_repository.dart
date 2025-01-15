@@ -57,4 +57,32 @@ class ProviderRepository {
       rethrow;
     }
   }
+
+  Future<GgetProviderOAuthStateData?> getProviderOAuthState({
+    required int id,
+    FetchPolicy fetchPolicy = FetchPolicy.CacheAndNetwork,
+  }) async {
+    final getProviderById = GgetProviderOAuthStateReq(
+      (b) => b
+        ..vars.id = id
+        ..fetchPolicy = fetchPolicy,
+    );
+
+    try {
+      final response = await client.request(getProviderById).first;
+
+      if (response.loading) {
+        log('Loading...');
+      } else if (response.hasErrors) {
+        log('Errors: ${response.graphqlErrors}');
+      } else {
+        log('Response: ${response.data}');
+      }
+
+      return response.data;
+    } catch (e) {
+      log('Error in getProviderById: $e');
+      rethrow;
+    }
+  }
 }

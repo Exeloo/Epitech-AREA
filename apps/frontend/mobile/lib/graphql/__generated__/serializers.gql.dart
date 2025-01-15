@@ -78,7 +78,9 @@ import 'package:aether/graphql/__generated__/provider.data.gql.dart'
         GgetProviderByIdData_getProviderById,
         GgetProviderByIdData_getProviderById_manifest,
         GgetProviderByIdData_getProviderById_manifest_actions,
-        GgetProviderByIdData_getProviderById_manifest_triggers;
+        GgetProviderByIdData_getProviderById_manifest_triggers,
+        GgetProviderOAuthStateData,
+        GgetProviderOAuthStateData_getProviderOAuthState;
 import 'package:aether/graphql/__generated__/provider.req.gql.dart'
     show
         GBaseProviderReq,
@@ -86,7 +88,8 @@ import 'package:aether/graphql/__generated__/provider.req.gql.dart'
         GProviderManifestTriggerReq,
         GProviderWithManifestReq,
         GgetAllProvidersReq,
-        GgetProviderByIdReq;
+        GgetProviderByIdReq,
+        GgetProviderOAuthStateReq;
 import 'package:aether/graphql/__generated__/provider.var.gql.dart'
     show
         GBaseProviderVars,
@@ -94,7 +97,8 @@ import 'package:aether/graphql/__generated__/provider.var.gql.dart'
         GProviderManifestTriggerVars,
         GProviderWithManifestVars,
         GgetAllProvidersVars,
-        GgetProviderByIdVars;
+        GgetProviderByIdVars,
+        GgetProviderOAuthStateVars;
 import 'package:aether/graphql/__generated__/schema.schema.gql.dart'
     show
         GAppletCreateInput,
@@ -228,6 +232,10 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GgetProviderByIdData_getProviderById_manifest_triggers,
   GgetProviderByIdReq,
   GgetProviderByIdVars,
+  GgetProviderOAuthStateData,
+  GgetProviderOAuthStateData_getProviderOAuthState,
+  GgetProviderOAuthStateReq,
+  GgetProviderOAuthStateVars,
   GloginData,
   GloginData_login,
   GloginReq,

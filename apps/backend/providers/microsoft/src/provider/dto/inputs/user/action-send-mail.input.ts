@@ -71,8 +71,9 @@ export class Message {
 export class ActionSendMailInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
+    optional: true,
   })
-  user_id: string;
+  user_id?: string;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.OBJECT,
@@ -82,6 +83,7 @@ export class ActionSendMailInput {
 
   @ManifestProperty({
     type: ManifestPropertyEnum.BOOLEAN,
+    optional: true,
   })
   saveToSentItems?: boolean;
 }

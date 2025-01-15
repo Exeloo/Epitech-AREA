@@ -8,8 +8,10 @@ import {
 export class ActionRenderMarkdownInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
+    optional: true,
   })
-  user_id: string;
+  user_id?: string;
+
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
   })
@@ -17,11 +19,13 @@ export class ActionRenderMarkdownInput {
 
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
+    optional: true,
   })
   mode?: string;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
+    optional: true,
   })
   context?: string;
 }

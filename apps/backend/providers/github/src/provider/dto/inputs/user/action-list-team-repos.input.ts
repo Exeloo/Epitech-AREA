@@ -8,8 +8,9 @@ import {
 export class ActionListTeamReposInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
+    optional: true,
   })
-  user_id: string;
+  user_id?: string;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
@@ -23,11 +24,13 @@ export class ActionListTeamReposInput {
 
   @ManifestProperty({
     type: ManifestPropertyEnum.NUMBER,
+    optional: true,
   })
   per_page?: number;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.NUMBER,
+    optional: true,
   })
   page?: number;
 }

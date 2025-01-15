@@ -10,9 +10,4 @@ export class ChannelChatClearInput {
     type: ManifestPropertyEnum.STRING,
   })
   broadcaster_user_id: string;
-
-  @ManifestProperty({
-    type: ManifestPropertyEnum.STRING,
-  })
-  user_id: string;
 }

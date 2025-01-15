@@ -98,26 +98,26 @@ export class User {
 }
 
 @ManifestType()
+export class Href {
+  @ManifestProperty({
+    type: ManifestPropertyEnum.STRING,
+  })
+  href: string;
+}
+
+@ManifestType()
 export class Links {
   @ManifestProperty({
     type: ManifestPropertyEnum.OBJECT,
-    properties: {
-      href: { type: ManifestPropertyEnum.STRING },
-    },
+    properties: Href,
   })
-  html: {
-    href: string;
-  };
+  html: Href;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.OBJECT,
-    properties: {
-      href: { type: ManifestPropertyEnum.STRING },
-    },
+    properties: Href,
   })
-  pull_request: {
-    href: string;
-  };
+  pull_request: Href;
 }
 
 @ManifestType()

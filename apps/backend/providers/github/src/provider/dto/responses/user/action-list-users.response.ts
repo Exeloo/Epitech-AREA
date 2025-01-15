@@ -98,11 +98,13 @@ export class ActionListUsersResponse {
 
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
+    optional: true,
   })
   name: string | null;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
+    optional: true,
   })
   email: string | null;
 

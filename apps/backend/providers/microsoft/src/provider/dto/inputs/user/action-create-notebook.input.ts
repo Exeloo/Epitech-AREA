@@ -8,8 +8,9 @@ import {
 export class ActionCreateNotebookInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
+    optional: true,
   })
-  user_id: string;
+  user_id?: string;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,

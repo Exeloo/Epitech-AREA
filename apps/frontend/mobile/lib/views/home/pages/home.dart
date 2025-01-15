@@ -1,13 +1,14 @@
 import 'dart:developer';
 
+import 'package:aether/graphql/__generated__/provider.data.gql.dart';
+import 'package:aether/modules/graphql/repository/provider_repository.dart';
+import 'package:aether/views/home/widgets/home_app_bar.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mobile/graphql/__generated__/provider.data.gql.dart';
-import 'package:mobile/modules/graphql/repository/provider_repository.dart';
-import 'package:mobile/views/home/widgets/home_app_bar.dart';
 import 'package:provider/provider.dart';
 
+import '../../../config/colors.dart';
 import '../widgets/applet_card.dart';
 import '../widgets/provider_card.dart';
 
@@ -47,7 +48,7 @@ class AllContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff1B1B1B),
+      backgroundColor: AppColors.background,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -55,7 +56,7 @@ class AllContent extends StatelessWidget {
           const Text(
             "Get Started !",
             style: TextStyle(
-              color: Colors.white,
+              color: AppColors.textPrimary,
               fontSize: 32,
               fontWeight: FontWeight.bold,
             ),
@@ -162,6 +163,7 @@ class _ProvidersContentState extends State<ProvidersContent> {
                   providerName: provider.name,
                   id: provider.id,
                   color: provider.color,
+                  canClick: false,
                 );
               },
             ),

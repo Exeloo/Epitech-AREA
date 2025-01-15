@@ -700,6 +700,31 @@ const ProviderManifestTrigger = _i1.ObjectTypeDefinitionNode(
     ),
   ],
 );
+const ProviderOAuthStateResponse = _i1.ObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'ProviderOAuthStateResponse'),
+  directives: [],
+  interfaces: [],
+  fields: [
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'authenticated'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Boolean'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'redirectUri'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+    ),
+  ],
+);
 const ProviderVisibility = _i1.EnumTypeDefinitionNode(
   name: _i1.NameNode(value: 'ProviderVisibility'),
   directives: [],
@@ -810,6 +835,25 @@ const Query = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'Provider'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'getProviderOAuthState'),
+      directives: [],
+      args: [
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'id'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'Int'),
+            isNonNull: true,
+          ),
+          defaultValue: null,
+        )
+      ],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'ProviderOAuthStateResponse'),
         isNonNull: true,
       ),
     ),
@@ -1131,6 +1175,7 @@ const document = _i1.DocumentNode(definitions: [
   ProviderManifest,
   ProviderManifestAction,
   ProviderManifestTrigger,
+  ProviderOAuthStateResponse,
   ProviderVisibility,
   Query,
   User,

@@ -6,10 +6,10 @@ deployment:
   resources:
     limits:
       memory: "512Mi"
-      cpu: "1000m"
+      cpu: "256m"
     requests:
       memory: "256Mi"
-      cpu: "500m"
+      cpu: "250m"
   ports:
     - containerPort: 8081
   env:
@@ -22,6 +22,11 @@ service:
   portLocal: 80
   targetPort: 8081
   restartPolicy: Always
+
+volume:
+  pvName: apk-volume
+  pvcName: apk-pvc
+  mountPath: /shared/apk/
 
 image:
   repository: registry.tech.aether-area.fr/b-dev-500_area_client_web

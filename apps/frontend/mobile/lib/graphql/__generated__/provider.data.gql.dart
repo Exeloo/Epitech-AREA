@@ -2,11 +2,11 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:aether/graphql/__generated__/schema.schema.gql.dart' as _i2;
+import 'package:aether/graphql/__generated__/serializers.gql.dart' as _i1;
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:mobile/graphql/__generated__/schema.schema.gql.dart' as _i2;
-import 'package:mobile/graphql/__generated__/serializers.gql.dart' as _i1;
 
 part 'provider.data.gql.g.dart';
 
@@ -82,6 +82,71 @@ abstract class GgetAllProvidersData_getAllProviders
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GgetAllProvidersData_getAllProviders.serializer,
+        json,
+      );
+}
+
+abstract class GgetProviderOAuthStateData
+    implements
+        Built<GgetProviderOAuthStateData, GgetProviderOAuthStateDataBuilder> {
+  GgetProviderOAuthStateData._();
+
+  factory GgetProviderOAuthStateData(
+          [void Function(GgetProviderOAuthStateDataBuilder b) updates]) =
+      _$GgetProviderOAuthStateData;
+
+  static void _initializeBuilder(GgetProviderOAuthStateDataBuilder b) =>
+      b..G__typename = 'Query';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  GgetProviderOAuthStateData_getProviderOAuthState get getProviderOAuthState;
+  static Serializer<GgetProviderOAuthStateData> get serializer =>
+      _$ggetProviderOAuthStateDataSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetProviderOAuthStateData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetProviderOAuthStateData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetProviderOAuthStateData.serializer,
+        json,
+      );
+}
+
+abstract class GgetProviderOAuthStateData_getProviderOAuthState
+    implements
+        Built<GgetProviderOAuthStateData_getProviderOAuthState,
+            GgetProviderOAuthStateData_getProviderOAuthStateBuilder> {
+  GgetProviderOAuthStateData_getProviderOAuthState._();
+
+  factory GgetProviderOAuthStateData_getProviderOAuthState(
+      [void Function(GgetProviderOAuthStateData_getProviderOAuthStateBuilder b)
+          updates]) = _$GgetProviderOAuthStateData_getProviderOAuthState;
+
+  static void _initializeBuilder(
+          GgetProviderOAuthStateData_getProviderOAuthStateBuilder b) =>
+      b..G__typename = 'ProviderOAuthStateResponse';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  bool get authenticated;
+  String get redirectUri;
+  static Serializer<GgetProviderOAuthStateData_getProviderOAuthState>
+      get serializer =>
+          _$ggetProviderOAuthStateDataGetProviderOAuthStateSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetProviderOAuthStateData_getProviderOAuthState.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetProviderOAuthStateData_getProviderOAuthState? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetProviderOAuthStateData_getProviderOAuthState.serializer,
         json,
       );
 }

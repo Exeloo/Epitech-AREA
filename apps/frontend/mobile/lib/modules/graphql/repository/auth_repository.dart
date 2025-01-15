@@ -1,8 +1,8 @@
 import 'dart:developer';
 
+import 'package:aether/graphql/__generated__/auth.data.gql.dart';
+import 'package:aether/graphql/__generated__/auth.req.gql.dart';
 import 'package:ferry/ferry.dart';
-import 'package:mobile/graphql/__generated__/auth.data.gql.dart';
-import 'package:mobile/graphql/__generated__/auth.req.gql.dart';
 
 class AuthRepository {
   final Client client;

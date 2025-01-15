@@ -402,9 +402,10 @@ class GloginDataBuilder implements Builder<GloginData, GloginDataBuilder> {
     try {
       _$result = _$v ??
           new _$GloginData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GloginData', 'G__typename'),
-              login: login.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GloginData', 'G__typename'),
+            login: login.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -547,13 +548,14 @@ class GloginData_loginBuilder
     try {
       _$result = _$v ??
           new _$GloginData_login._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GloginData_login', 'G__typename'),
-              token: BuiltValueNullFieldError.checkNotNull(
-                  token, r'GloginData_login', 'token'),
-              refreshToken: BuiltValueNullFieldError.checkNotNull(
-                  refreshToken, r'GloginData_login', 'refreshToken'),
-              tokenExpiresAt: tokenExpiresAt.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GloginData_login', 'G__typename'),
+            token: BuiltValueNullFieldError.checkNotNull(
+                token, r'GloginData_login', 'token'),
+            refreshToken: BuiltValueNullFieldError.checkNotNull(
+                refreshToken, r'GloginData_login', 'refreshToken'),
+            tokenExpiresAt: tokenExpiresAt.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -669,9 +671,10 @@ class GrefreshTokenDataBuilder
     try {
       _$result = _$v ??
           new _$GrefreshTokenData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GrefreshTokenData', 'G__typename'),
-              refreshToken: refreshToken.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GrefreshTokenData', 'G__typename'),
+            refreshToken: refreshToken.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -818,13 +821,14 @@ class GrefreshTokenData_refreshTokenBuilder
     try {
       _$result = _$v ??
           new _$GrefreshTokenData_refreshToken._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                  r'GrefreshTokenData_refreshToken', 'G__typename'),
-              token: BuiltValueNullFieldError.checkNotNull(
-                  token, r'GrefreshTokenData_refreshToken', 'token'),
-              refreshToken: BuiltValueNullFieldError.checkNotNull(refreshToken,
-                  r'GrefreshTokenData_refreshToken', 'refreshToken'),
-              tokenExpiresAt: tokenExpiresAt.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GrefreshTokenData_refreshToken', 'G__typename'),
+            token: BuiltValueNullFieldError.checkNotNull(
+                token, r'GrefreshTokenData_refreshToken', 'token'),
+            refreshToken: BuiltValueNullFieldError.checkNotNull(refreshToken,
+                r'GrefreshTokenData_refreshToken', 'refreshToken'),
+            tokenExpiresAt: tokenExpiresAt.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -967,13 +971,14 @@ class GTokenFieldsDataBuilder
     try {
       _$result = _$v ??
           new _$GTokenFieldsData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GTokenFieldsData', 'G__typename'),
-              token: BuiltValueNullFieldError.checkNotNull(
-                  token, r'GTokenFieldsData', 'token'),
-              refreshToken: BuiltValueNullFieldError.checkNotNull(
-                  refreshToken, r'GTokenFieldsData', 'refreshToken'),
-              tokenExpiresAt: tokenExpiresAt.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GTokenFieldsData', 'G__typename'),
+            token: BuiltValueNullFieldError.checkNotNull(
+                token, r'GTokenFieldsData', 'token'),
+            refreshToken: BuiltValueNullFieldError.checkNotNull(
+                refreshToken, r'GTokenFieldsData', 'refreshToken'),
+            tokenExpiresAt: tokenExpiresAt.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {

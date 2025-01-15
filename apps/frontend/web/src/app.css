@@ -3,3 +3,13 @@
 @import 'tailwindcss/utilities';
 
 @import '@flaticon/flaticon-uicons/css/all/all';
+
+:root {
+	--default-background-light: #e6e6e6;
+	--default-background-dark: #505050;
+}
+
+.dark {
+	--default-background-light: #505050;
+	--default-background-dark: #e6e6e6;
+}

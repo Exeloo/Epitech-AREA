@@ -192,7 +192,10 @@ class GloginVarsBuilder implements Builder<GloginVars, GloginVarsBuilder> {
   _$GloginVars _build() {
     _$GloginVars _$result;
     try {
-      _$result = _$v ?? new _$GloginVars._(data: data.build());
+      _$result = _$v ??
+          new _$GloginVars._(
+            data: data.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -288,7 +291,10 @@ class GrefreshTokenVarsBuilder
   _$GrefreshTokenVars _build() {
     _$GrefreshTokenVars _$result;
     try {
-      _$result = _$v ?? new _$GrefreshTokenVars._(data: data.build());
+      _$result = _$v ??
+          new _$GrefreshTokenVars._(
+            data: data.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {

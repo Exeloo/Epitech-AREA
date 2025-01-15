@@ -2,9 +2,9 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:aether/graphql/__generated__/serializers.gql.dart' as _i1;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:mobile/graphql/__generated__/serializers.gql.dart' as _i1;
 
 part 'provider.var.gql.g.dart';
 
@@ -27,6 +27,31 @@ abstract class GgetAllProvidersVars
   static GgetAllProvidersVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GgetAllProvidersVars.serializer,
+        json,
+      );
+}
+
+abstract class GgetProviderOAuthStateVars
+    implements
+        Built<GgetProviderOAuthStateVars, GgetProviderOAuthStateVarsBuilder> {
+  GgetProviderOAuthStateVars._();
+
+  factory GgetProviderOAuthStateVars(
+          [void Function(GgetProviderOAuthStateVarsBuilder b) updates]) =
+      _$GgetProviderOAuthStateVars;
+
+  int get id;
+  static Serializer<GgetProviderOAuthStateVars> get serializer =>
+      _$ggetProviderOAuthStateVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetProviderOAuthStateVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetProviderOAuthStateVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetProviderOAuthStateVars.serializer,
         json,
       );
 }

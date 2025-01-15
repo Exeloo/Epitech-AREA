@@ -1,7 +1,9 @@
+import 'package:aether/graphql/__generated__/applet.data.gql.dart';
+import 'package:aether/graphql/graphql_client.dart';
+import 'package:aether/modules/graphql/repository/applet_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile/graphql/__generated__/applet.data.gql.dart';
-import 'package:mobile/graphql/graphql_client.dart';
-import 'package:mobile/modules/graphql/repository/applet_repository.dart';
+
+import '../../../config/colors.dart';
 
 class AppletDetailPage extends StatefulWidget {
   final GgetAllAppletsData_getAllApplets applet;
@@ -87,7 +89,7 @@ class AppletDetailPageState extends State<AppletDetailPage> {
                                     children: [
                                       CircleAvatar(
                                         radius: 40,
-                                        backgroundColor: Colors.white,
+                                        backgroundColor: AppColors.primaryLight,
                                         child: Icon(Icons.bolt,
                                             size: 50,
                                             color: themeColor ??
@@ -99,7 +101,7 @@ class AppletDetailPageState extends State<AppletDetailPage> {
                                         style: const TextStyle(
                                           fontSize: 24,
                                           fontWeight: FontWeight.bold,
-                                          color: Colors.white,
+                                          color: AppColors.textPrimary,
                                         ),
                                       ),
                                       const SizedBox(height: 8),
@@ -144,14 +146,14 @@ class AppletDetailPageState extends State<AppletDetailPage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(icon, color: Colors.white),
+        Icon(icon, color: AppColors.textPrimary),
         const SizedBox(width: 8),
         Text(
           title,
           style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: AppColors.textPrimary,
           ),
         ),
       ],
@@ -169,13 +171,13 @@ class AppletDetailPageState extends State<AppletDetailPage> {
       child: ListTile(
         title: Text(
           '${node.actionType} - ${node.actionId}',
-          style: const TextStyle(color: Colors.white),
+          style: const TextStyle(color: AppColors.textPrimary),
         ),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('Provider: ${provider.name}',
-                style: const TextStyle(color: Colors.white)),
+                style: const TextStyle(color: AppColors.textPrimary)),
             Text('Description: ${provider.description}',
                 style: const TextStyle(color: Colors.white70)),
           ],
@@ -196,13 +198,13 @@ class AppletDetailPageState extends State<AppletDetailPage> {
       child: ListTile(
         title: Text(
           '${actionNode.actionType} - ${actionNode.actionId}',
-          style: const TextStyle(color: Colors.white),
+          style: const TextStyle(color: AppColors.textPrimary),
         ),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('Provider: ${provider.name}',
-                style: const TextStyle(color: Colors.white)),
+                style: const TextStyle(color: AppColors.textPrimary)),
             Text('Description: ${provider.description}',
                 style: const TextStyle(color: Colors.white70)),
           ],

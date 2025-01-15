@@ -1,8 +1,7 @@
-name: mobile
-description: "A new Flutter project."
-publish_to: 'none'
+name: aether
+description: "Aether AREA project"
 
-version: 1.0.0+1
+version: 1.0.0
 
 environment:
   sdk: ">=3.5.3 <4.0.0"
@@ -40,3 +39,11 @@ flutter:
   uses-material-design: true
   assets:
     - assets/icon/
+  fonts:
+    - family: Kanit
+      fonts:
+        - asset: assets/fonts/Kanit-Regular.ttf
+        - asset: assets/fonts/Kanit-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Kanit-Italic.ttf
+          style: italic

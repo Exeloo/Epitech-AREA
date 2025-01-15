@@ -11,6 +11,11 @@ Serializer<GgetAllProvidersData> _$ggetAllProvidersDataSerializer =
 Serializer<GgetAllProvidersData_getAllProviders>
     _$ggetAllProvidersDataGetAllProvidersSerializer =
     new _$GgetAllProvidersData_getAllProvidersSerializer();
+Serializer<GgetProviderOAuthStateData> _$ggetProviderOAuthStateDataSerializer =
+    new _$GgetProviderOAuthStateDataSerializer();
+Serializer<GgetProviderOAuthStateData_getProviderOAuthState>
+    _$ggetProviderOAuthStateDataGetProviderOAuthStateSerializer =
+    new _$GgetProviderOAuthStateData_getProviderOAuthStateSerializer();
 Serializer<GgetProviderByIdData> _$ggetProviderByIdDataSerializer =
     new _$GgetProviderByIdDataSerializer();
 Serializer<GgetProviderByIdData_getProviderById>
@@ -179,6 +184,124 @@ class _$GgetAllProvidersData_getAllProvidersSerializer
           result.visibility = serializers.deserialize(value,
                   specifiedType: const FullType(_i2.GProviderVisibility))!
               as _i2.GProviderVisibility;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GgetProviderOAuthStateDataSerializer
+    implements StructuredSerializer<GgetProviderOAuthStateData> {
+  @override
+  final Iterable<Type> types = const [
+    GgetProviderOAuthStateData,
+    _$GgetProviderOAuthStateData
+  ];
+  @override
+  final String wireName = 'GgetProviderOAuthStateData';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GgetProviderOAuthStateData object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'getProviderOAuthState',
+      serializers.serialize(object.getProviderOAuthState,
+          specifiedType:
+              const FullType(GgetProviderOAuthStateData_getProviderOAuthState)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GgetProviderOAuthStateData deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GgetProviderOAuthStateDataBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'getProviderOAuthState':
+          result.getProviderOAuthState.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GgetProviderOAuthStateData_getProviderOAuthState))!
+              as GgetProviderOAuthStateData_getProviderOAuthState);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GgetProviderOAuthStateData_getProviderOAuthStateSerializer
+    implements
+        StructuredSerializer<GgetProviderOAuthStateData_getProviderOAuthState> {
+  @override
+  final Iterable<Type> types = const [
+    GgetProviderOAuthStateData_getProviderOAuthState,
+    _$GgetProviderOAuthStateData_getProviderOAuthState
+  ];
+  @override
+  final String wireName = 'GgetProviderOAuthStateData_getProviderOAuthState';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GgetProviderOAuthStateData_getProviderOAuthState object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'authenticated',
+      serializers.serialize(object.authenticated,
+          specifiedType: const FullType(bool)),
+      'redirectUri',
+      serializers.serialize(object.redirectUri,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GgetProviderOAuthStateData_getProviderOAuthState deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result =
+        new GgetProviderOAuthStateData_getProviderOAuthStateBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'authenticated':
+          result.authenticated = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'redirectUri':
+          result.redirectUri = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
       }
     }
@@ -1321,9 +1444,10 @@ class GgetAllProvidersDataBuilder
     try {
       _$result = _$v ??
           new _$GgetAllProvidersData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GgetAllProvidersData', 'G__typename'),
-              getAllProviders: getAllProviders.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GgetAllProvidersData', 'G__typename'),
+            getAllProviders: getAllProviders.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -1510,20 +1634,289 @@ class GgetAllProvidersData_getAllProvidersBuilder
   _$GgetAllProvidersData_getAllProviders _build() {
     final _$result = _$v ??
         new _$GgetAllProvidersData_getAllProviders._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                r'GgetAllProvidersData_getAllProviders', 'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GgetAllProvidersData_getAllProviders', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GgetAllProvidersData_getAllProviders', 'name'),
-            description: BuiltValueNullFieldError.checkNotNull(description,
-                r'GgetAllProvidersData_getAllProviders', 'description'),
-            img: BuiltValueNullFieldError.checkNotNull(
-                img, r'GgetAllProvidersData_getAllProviders', 'img'),
-            color: BuiltValueNullFieldError.checkNotNull(
-                color, r'GgetAllProvidersData_getAllProviders', 'color'),
-            visibility: BuiltValueNullFieldError.checkNotNull(
-                visibility, r'GgetAllProvidersData_getAllProviders', 'visibility'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+              r'GgetAllProvidersData_getAllProviders', 'G__typename'),
+          id: BuiltValueNullFieldError.checkNotNull(
+              id, r'GgetAllProvidersData_getAllProviders', 'id'),
+          name: BuiltValueNullFieldError.checkNotNull(
+              name, r'GgetAllProvidersData_getAllProviders', 'name'),
+          description: BuiltValueNullFieldError.checkNotNull(description,
+              r'GgetAllProvidersData_getAllProviders', 'description'),
+          img: BuiltValueNullFieldError.checkNotNull(
+              img, r'GgetAllProvidersData_getAllProviders', 'img'),
+          color: BuiltValueNullFieldError.checkNotNull(
+              color, r'GgetAllProvidersData_getAllProviders', 'color'),
+          visibility: BuiltValueNullFieldError.checkNotNull(visibility,
+              r'GgetAllProvidersData_getAllProviders', 'visibility'),
+        );
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GgetProviderOAuthStateData extends GgetProviderOAuthStateData {
+  @override
+  final String G__typename;
+  @override
+  final GgetProviderOAuthStateData_getProviderOAuthState getProviderOAuthState;
+
+  factory _$GgetProviderOAuthStateData(
+          [void Function(GgetProviderOAuthStateDataBuilder)? updates]) =>
+      (new GgetProviderOAuthStateDataBuilder()..update(updates))._build();
+
+  _$GgetProviderOAuthStateData._(
+      {required this.G__typename, required this.getProviderOAuthState})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GgetProviderOAuthStateData', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(getProviderOAuthState,
+        r'GgetProviderOAuthStateData', 'getProviderOAuthState');
+  }
+
+  @override
+  GgetProviderOAuthStateData rebuild(
+          void Function(GgetProviderOAuthStateDataBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GgetProviderOAuthStateDataBuilder toBuilder() =>
+      new GgetProviderOAuthStateDataBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GgetProviderOAuthStateData &&
+        G__typename == other.G__typename &&
+        getProviderOAuthState == other.getProviderOAuthState;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, getProviderOAuthState.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GgetProviderOAuthStateData')
+          ..add('G__typename', G__typename)
+          ..add('getProviderOAuthState', getProviderOAuthState))
+        .toString();
+  }
+}
+
+class GgetProviderOAuthStateDataBuilder
+    implements
+        Builder<GgetProviderOAuthStateData, GgetProviderOAuthStateDataBuilder> {
+  _$GgetProviderOAuthStateData? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GgetProviderOAuthStateData_getProviderOAuthStateBuilder?
+      _getProviderOAuthState;
+  GgetProviderOAuthStateData_getProviderOAuthStateBuilder
+      get getProviderOAuthState => _$this._getProviderOAuthState ??=
+          new GgetProviderOAuthStateData_getProviderOAuthStateBuilder();
+  set getProviderOAuthState(
+          GgetProviderOAuthStateData_getProviderOAuthStateBuilder?
+              getProviderOAuthState) =>
+      _$this._getProviderOAuthState = getProviderOAuthState;
+
+  GgetProviderOAuthStateDataBuilder() {
+    GgetProviderOAuthStateData._initializeBuilder(this);
+  }
+
+  GgetProviderOAuthStateDataBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _getProviderOAuthState = $v.getProviderOAuthState.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GgetProviderOAuthStateData other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GgetProviderOAuthStateData;
+  }
+
+  @override
+  void update(void Function(GgetProviderOAuthStateDataBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GgetProviderOAuthStateData build() => _build();
+
+  _$GgetProviderOAuthStateData _build() {
+    _$GgetProviderOAuthStateData _$result;
+    try {
+      _$result = _$v ??
+          new _$GgetProviderOAuthStateData._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GgetProviderOAuthStateData', 'G__typename'),
+            getProviderOAuthState: getProviderOAuthState.build(),
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'getProviderOAuthState';
+        getProviderOAuthState.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GgetProviderOAuthStateData', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GgetProviderOAuthStateData_getProviderOAuthState
+    extends GgetProviderOAuthStateData_getProviderOAuthState {
+  @override
+  final String G__typename;
+  @override
+  final bool authenticated;
+  @override
+  final String redirectUri;
+
+  factory _$GgetProviderOAuthStateData_getProviderOAuthState(
+          [void Function(
+                  GgetProviderOAuthStateData_getProviderOAuthStateBuilder)?
+              updates]) =>
+      (new GgetProviderOAuthStateData_getProviderOAuthStateBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GgetProviderOAuthStateData_getProviderOAuthState._(
+      {required this.G__typename,
+      required this.authenticated,
+      required this.redirectUri})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GgetProviderOAuthStateData_getProviderOAuthState', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(authenticated,
+        r'GgetProviderOAuthStateData_getProviderOAuthState', 'authenticated');
+    BuiltValueNullFieldError.checkNotNull(redirectUri,
+        r'GgetProviderOAuthStateData_getProviderOAuthState', 'redirectUri');
+  }
+
+  @override
+  GgetProviderOAuthStateData_getProviderOAuthState rebuild(
+          void Function(GgetProviderOAuthStateData_getProviderOAuthStateBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GgetProviderOAuthStateData_getProviderOAuthStateBuilder toBuilder() =>
+      new GgetProviderOAuthStateData_getProviderOAuthStateBuilder()
+        ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GgetProviderOAuthStateData_getProviderOAuthState &&
+        G__typename == other.G__typename &&
+        authenticated == other.authenticated &&
+        redirectUri == other.redirectUri;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, authenticated.hashCode);
+    _$hash = $jc(_$hash, redirectUri.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GgetProviderOAuthStateData_getProviderOAuthState')
+          ..add('G__typename', G__typename)
+          ..add('authenticated', authenticated)
+          ..add('redirectUri', redirectUri))
+        .toString();
+  }
+}
+
+class GgetProviderOAuthStateData_getProviderOAuthStateBuilder
+    implements
+        Builder<GgetProviderOAuthStateData_getProviderOAuthState,
+            GgetProviderOAuthStateData_getProviderOAuthStateBuilder> {
+  _$GgetProviderOAuthStateData_getProviderOAuthState? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  bool? _authenticated;
+  bool? get authenticated => _$this._authenticated;
+  set authenticated(bool? authenticated) =>
+      _$this._authenticated = authenticated;
+
+  String? _redirectUri;
+  String? get redirectUri => _$this._redirectUri;
+  set redirectUri(String? redirectUri) => _$this._redirectUri = redirectUri;
+
+  GgetProviderOAuthStateData_getProviderOAuthStateBuilder() {
+    GgetProviderOAuthStateData_getProviderOAuthState._initializeBuilder(this);
+  }
+
+  GgetProviderOAuthStateData_getProviderOAuthStateBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _authenticated = $v.authenticated;
+      _redirectUri = $v.redirectUri;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GgetProviderOAuthStateData_getProviderOAuthState other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GgetProviderOAuthStateData_getProviderOAuthState;
+  }
+
+  @override
+  void update(
+      void Function(GgetProviderOAuthStateData_getProviderOAuthStateBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GgetProviderOAuthStateData_getProviderOAuthState build() => _build();
+
+  _$GgetProviderOAuthStateData_getProviderOAuthState _build() {
+    final _$result = _$v ??
+        new _$GgetProviderOAuthStateData_getProviderOAuthState._(
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename,
+              r'GgetProviderOAuthStateData_getProviderOAuthState',
+              'G__typename'),
+          authenticated: BuiltValueNullFieldError.checkNotNull(
+              authenticated,
+              r'GgetProviderOAuthStateData_getProviderOAuthState',
+              'authenticated'),
+          redirectUri: BuiltValueNullFieldError.checkNotNull(
+              redirectUri,
+              r'GgetProviderOAuthStateData_getProviderOAuthState',
+              'redirectUri'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -1632,9 +2025,10 @@ class GgetProviderByIdDataBuilder
     try {
       _$result = _$v ??
           new _$GgetProviderByIdData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GgetProviderByIdData', 'G__typename'),
-              getProviderById: getProviderById.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GgetProviderByIdData', 'G__typename'),
+            getProviderById: getProviderById.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -1840,21 +2234,22 @@ class GgetProviderByIdData_getProviderByIdBuilder
     try {
       _$result = _$v ??
           new _$GgetProviderByIdData_getProviderById._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GgetProviderByIdData_getProviderById', 'G__typename'),
-              manifest: manifest.build(),
-              id: BuiltValueNullFieldError.checkNotNull(
-                  id, r'GgetProviderByIdData_getProviderById', 'id'),
-              name: BuiltValueNullFieldError.checkNotNull(
-                  name, r'GgetProviderByIdData_getProviderById', 'name'),
-              description: BuiltValueNullFieldError.checkNotNull(description,
-                  r'GgetProviderByIdData_getProviderById', 'description'),
-              img: BuiltValueNullFieldError.checkNotNull(
-                  img, r'GgetProviderByIdData_getProviderById', 'img'),
-              color: BuiltValueNullFieldError.checkNotNull(
-                  color, r'GgetProviderByIdData_getProviderById', 'color'),
-              visibility: BuiltValueNullFieldError.checkNotNull(
-                  visibility, r'GgetProviderByIdData_getProviderById', 'visibility'));
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GgetProviderByIdData_getProviderById', 'G__typename'),
+            manifest: manifest.build(),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GgetProviderByIdData_getProviderById', 'id'),
+            name: BuiltValueNullFieldError.checkNotNull(
+                name, r'GgetProviderByIdData_getProviderById', 'name'),
+            description: BuiltValueNullFieldError.checkNotNull(description,
+                r'GgetProviderByIdData_getProviderById', 'description'),
+            img: BuiltValueNullFieldError.checkNotNull(
+                img, r'GgetProviderByIdData_getProviderById', 'img'),
+            color: BuiltValueNullFieldError.checkNotNull(
+                color, r'GgetProviderByIdData_getProviderById', 'color'),
+            visibility: BuiltValueNullFieldError.checkNotNull(visibility,
+                r'GgetProviderByIdData_getProviderById', 'visibility'),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -2009,12 +2404,13 @@ class GgetProviderByIdData_getProviderById_manifestBuilder
     try {
       _$result = _$v ??
           new _$GgetProviderByIdData_getProviderById_manifest._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename,
-                  r'GgetProviderByIdData_getProviderById_manifest',
-                  'G__typename'),
-              actions: actions.build(),
-              triggers: triggers.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GgetProviderByIdData_getProviderById_manifest',
+                'G__typename'),
+            actions: actions.build(),
+            triggers: triggers.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -2232,24 +2628,31 @@ class GgetProviderByIdData_getProviderById_manifest_actionsBuilder
     try {
       _$result = _$v ??
           new _$GgetProviderByIdData_getProviderById_manifest_actions._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename,
-                  r'GgetProviderByIdData_getProviderById_manifest_actions',
-                  'G__typename'),
-              id: BuiltValueNullFieldError.checkNotNull(
-                  id, r'GgetProviderByIdData_getProviderById_manifest_actions', 'id'),
-              name: BuiltValueNullFieldError.checkNotNull(
-                  name, r'GgetProviderByIdData_getProviderById_manifest_actions', 'name'),
-              description: BuiltValueNullFieldError.checkNotNull(
-                  description,
-                  r'GgetProviderByIdData_getProviderById_manifest_actions',
-                  'description'),
-              img: BuiltValueNullFieldError.checkNotNull(
-                  img, r'GgetProviderByIdData_getProviderById_manifest_actions', 'img'),
-              color: BuiltValueNullFieldError.checkNotNull(
-                  color, r'GgetProviderByIdData_getProviderById_manifest_actions', 'color'),
-              input: input.build(),
-              output: output.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GgetProviderByIdData_getProviderById_manifest_actions',
+                'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(id,
+                r'GgetProviderByIdData_getProviderById_manifest_actions', 'id'),
+            name: BuiltValueNullFieldError.checkNotNull(
+                name,
+                r'GgetProviderByIdData_getProviderById_manifest_actions',
+                'name'),
+            description: BuiltValueNullFieldError.checkNotNull(
+                description,
+                r'GgetProviderByIdData_getProviderById_manifest_actions',
+                'description'),
+            img: BuiltValueNullFieldError.checkNotNull(
+                img,
+                r'GgetProviderByIdData_getProviderById_manifest_actions',
+                'img'),
+            color: BuiltValueNullFieldError.checkNotNull(
+                color,
+                r'GgetProviderByIdData_getProviderById_manifest_actions',
+                'color'),
+            input: input.build(),
+            output: output.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -2467,24 +2870,33 @@ class GgetProviderByIdData_getProviderById_manifest_triggersBuilder
     try {
       _$result = _$v ??
           new _$GgetProviderByIdData_getProviderById_manifest_triggers._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename,
-                  r'GgetProviderByIdData_getProviderById_manifest_triggers',
-                  'G__typename'),
-              id: BuiltValueNullFieldError.checkNotNull(
-                  id, r'GgetProviderByIdData_getProviderById_manifest_triggers', 'id'),
-              name: BuiltValueNullFieldError.checkNotNull(
-                  name, r'GgetProviderByIdData_getProviderById_manifest_triggers', 'name'),
-              description: BuiltValueNullFieldError.checkNotNull(
-                  description,
-                  r'GgetProviderByIdData_getProviderById_manifest_triggers',
-                  'description'),
-              img: BuiltValueNullFieldError.checkNotNull(
-                  img, r'GgetProviderByIdData_getProviderById_manifest_triggers', 'img'),
-              color: BuiltValueNullFieldError.checkNotNull(
-                  color, r'GgetProviderByIdData_getProviderById_manifest_triggers', 'color'),
-              input: input.build(),
-              output: output.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GgetProviderByIdData_getProviderById_manifest_triggers',
+                'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id,
+                r'GgetProviderByIdData_getProviderById_manifest_triggers',
+                'id'),
+            name: BuiltValueNullFieldError.checkNotNull(
+                name,
+                r'GgetProviderByIdData_getProviderById_manifest_triggers',
+                'name'),
+            description: BuiltValueNullFieldError.checkNotNull(
+                description,
+                r'GgetProviderByIdData_getProviderById_manifest_triggers',
+                'description'),
+            img: BuiltValueNullFieldError.checkNotNull(
+                img,
+                r'GgetProviderByIdData_getProviderById_manifest_triggers',
+                'img'),
+            color: BuiltValueNullFieldError.checkNotNull(
+                color,
+                r'GgetProviderByIdData_getProviderById_manifest_triggers',
+                'color'),
+            input: input.build(),
+            output: output.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -2685,20 +3097,21 @@ class GProviderManifestActionDataBuilder
     try {
       _$result = _$v ??
           new _$GProviderManifestActionData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GProviderManifestActionData', 'G__typename'),
-              id: BuiltValueNullFieldError.checkNotNull(
-                  id, r'GProviderManifestActionData', 'id'),
-              name: BuiltValueNullFieldError.checkNotNull(
-                  name, r'GProviderManifestActionData', 'name'),
-              description: BuiltValueNullFieldError.checkNotNull(
-                  description, r'GProviderManifestActionData', 'description'),
-              img: BuiltValueNullFieldError.checkNotNull(
-                  img, r'GProviderManifestActionData', 'img'),
-              color: BuiltValueNullFieldError.checkNotNull(
-                  color, r'GProviderManifestActionData', 'color'),
-              input: input.build(),
-              output: output.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GProviderManifestActionData', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GProviderManifestActionData', 'id'),
+            name: BuiltValueNullFieldError.checkNotNull(
+                name, r'GProviderManifestActionData', 'name'),
+            description: BuiltValueNullFieldError.checkNotNull(
+                description, r'GProviderManifestActionData', 'description'),
+            img: BuiltValueNullFieldError.checkNotNull(
+                img, r'GProviderManifestActionData', 'img'),
+            color: BuiltValueNullFieldError.checkNotNull(
+                color, r'GProviderManifestActionData', 'color'),
+            input: input.build(),
+            output: output.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -2897,20 +3310,21 @@ class GProviderManifestTriggerDataBuilder
     try {
       _$result = _$v ??
           new _$GProviderManifestTriggerData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GProviderManifestTriggerData', 'G__typename'),
-              id: BuiltValueNullFieldError.checkNotNull(
-                  id, r'GProviderManifestTriggerData', 'id'),
-              name: BuiltValueNullFieldError.checkNotNull(
-                  name, r'GProviderManifestTriggerData', 'name'),
-              description: BuiltValueNullFieldError.checkNotNull(
-                  description, r'GProviderManifestTriggerData', 'description'),
-              img: BuiltValueNullFieldError.checkNotNull(
-                  img, r'GProviderManifestTriggerData', 'img'),
-              color: BuiltValueNullFieldError.checkNotNull(
-                  color, r'GProviderManifestTriggerData', 'color'),
-              input: input.build(),
-              output: output.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GProviderManifestTriggerData', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GProviderManifestTriggerData', 'id'),
+            name: BuiltValueNullFieldError.checkNotNull(
+                name, r'GProviderManifestTriggerData', 'name'),
+            description: BuiltValueNullFieldError.checkNotNull(
+                description, r'GProviderManifestTriggerData', 'description'),
+            img: BuiltValueNullFieldError.checkNotNull(
+                img, r'GProviderManifestTriggerData', 'img'),
+            color: BuiltValueNullFieldError.checkNotNull(
+                color, r'GProviderManifestTriggerData', 'color'),
+            input: input.build(),
+            output: output.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -3088,20 +3502,21 @@ class GBaseProviderDataBuilder
   _$GBaseProviderData _build() {
     final _$result = _$v ??
         new _$GBaseProviderData._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GBaseProviderData', 'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GBaseProviderData', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GBaseProviderData', 'name'),
-            description: BuiltValueNullFieldError.checkNotNull(
-                description, r'GBaseProviderData', 'description'),
-            img: BuiltValueNullFieldError.checkNotNull(
-                img, r'GBaseProviderData', 'img'),
-            color: BuiltValueNullFieldError.checkNotNull(
-                color, r'GBaseProviderData', 'color'),
-            visibility: BuiltValueNullFieldError.checkNotNull(
-                visibility, r'GBaseProviderData', 'visibility'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename, r'GBaseProviderData', 'G__typename'),
+          id: BuiltValueNullFieldError.checkNotNull(
+              id, r'GBaseProviderData', 'id'),
+          name: BuiltValueNullFieldError.checkNotNull(
+              name, r'GBaseProviderData', 'name'),
+          description: BuiltValueNullFieldError.checkNotNull(
+              description, r'GBaseProviderData', 'description'),
+          img: BuiltValueNullFieldError.checkNotNull(
+              img, r'GBaseProviderData', 'img'),
+          color: BuiltValueNullFieldError.checkNotNull(
+              color, r'GBaseProviderData', 'color'),
+          visibility: BuiltValueNullFieldError.checkNotNull(
+              visibility, r'GBaseProviderData', 'visibility'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -3289,21 +3704,22 @@ class GProviderWithManifestDataBuilder
     try {
       _$result = _$v ??
           new _$GProviderWithManifestData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GProviderWithManifestData', 'G__typename'),
-              id: BuiltValueNullFieldError.checkNotNull(
-                  id, r'GProviderWithManifestData', 'id'),
-              name: BuiltValueNullFieldError.checkNotNull(
-                  name, r'GProviderWithManifestData', 'name'),
-              description: BuiltValueNullFieldError.checkNotNull(
-                  description, r'GProviderWithManifestData', 'description'),
-              img: BuiltValueNullFieldError.checkNotNull(
-                  img, r'GProviderWithManifestData', 'img'),
-              color: BuiltValueNullFieldError.checkNotNull(
-                  color, r'GProviderWithManifestData', 'color'),
-              visibility: BuiltValueNullFieldError.checkNotNull(
-                  visibility, r'GProviderWithManifestData', 'visibility'),
-              manifest: manifest.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GProviderWithManifestData', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GProviderWithManifestData', 'id'),
+            name: BuiltValueNullFieldError.checkNotNull(
+                name, r'GProviderWithManifestData', 'name'),
+            description: BuiltValueNullFieldError.checkNotNull(
+                description, r'GProviderWithManifestData', 'description'),
+            img: BuiltValueNullFieldError.checkNotNull(
+                img, r'GProviderWithManifestData', 'img'),
+            color: BuiltValueNullFieldError.checkNotNull(
+                color, r'GProviderWithManifestData', 'color'),
+            visibility: BuiltValueNullFieldError.checkNotNull(
+                visibility, r'GProviderWithManifestData', 'visibility'),
+            manifest: manifest.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -3447,10 +3863,11 @@ class GProviderWithManifestData_manifestBuilder
     try {
       _$result = _$v ??
           new _$GProviderWithManifestData_manifest._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                  r'GProviderWithManifestData_manifest', 'G__typename'),
-              actions: actions.build(),
-              triggers: triggers.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GProviderWithManifestData_manifest', 'G__typename'),
+            actions: actions.build(),
+            triggers: triggers.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -3656,20 +4073,21 @@ class GProviderWithManifestData_manifest_actionsBuilder
     try {
       _$result = _$v ??
           new _$GProviderWithManifestData_manifest_actions._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                  r'GProviderWithManifestData_manifest_actions', 'G__typename'),
-              id: BuiltValueNullFieldError.checkNotNull(
-                  id, r'GProviderWithManifestData_manifest_actions', 'id'),
-              name: BuiltValueNullFieldError.checkNotNull(
-                  name, r'GProviderWithManifestData_manifest_actions', 'name'),
-              description: BuiltValueNullFieldError.checkNotNull(description,
-                  r'GProviderWithManifestData_manifest_actions', 'description'),
-              img: BuiltValueNullFieldError.checkNotNull(
-                  img, r'GProviderWithManifestData_manifest_actions', 'img'),
-              color: BuiltValueNullFieldError.checkNotNull(
-                  color, r'GProviderWithManifestData_manifest_actions', 'color'),
-              input: input.build(),
-              output: output.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GProviderWithManifestData_manifest_actions', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GProviderWithManifestData_manifest_actions', 'id'),
+            name: BuiltValueNullFieldError.checkNotNull(
+                name, r'GProviderWithManifestData_manifest_actions', 'name'),
+            description: BuiltValueNullFieldError.checkNotNull(description,
+                r'GProviderWithManifestData_manifest_actions', 'description'),
+            img: BuiltValueNullFieldError.checkNotNull(
+                img, r'GProviderWithManifestData_manifest_actions', 'img'),
+            color: BuiltValueNullFieldError.checkNotNull(
+                color, r'GProviderWithManifestData_manifest_actions', 'color'),
+            input: input.build(),
+            output: output.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -3878,24 +4296,21 @@ class GProviderWithManifestData_manifest_triggersBuilder
     try {
       _$result = _$v ??
           new _$GProviderWithManifestData_manifest_triggers._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename,
-                  r'GProviderWithManifestData_manifest_triggers',
-                  'G__typename'),
-              id: BuiltValueNullFieldError.checkNotNull(
-                  id, r'GProviderWithManifestData_manifest_triggers', 'id'),
-              name: BuiltValueNullFieldError.checkNotNull(
-                  name, r'GProviderWithManifestData_manifest_triggers', 'name'),
-              description: BuiltValueNullFieldError.checkNotNull(
-                  description,
-                  r'GProviderWithManifestData_manifest_triggers',
-                  'description'),
-              img: BuiltValueNullFieldError.checkNotNull(
-                  img, r'GProviderWithManifestData_manifest_triggers', 'img'),
-              color: BuiltValueNullFieldError.checkNotNull(
-                  color, r'GProviderWithManifestData_manifest_triggers', 'color'),
-              input: input.build(),
-              output: output.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GProviderWithManifestData_manifest_triggers', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GProviderWithManifestData_manifest_triggers', 'id'),
+            name: BuiltValueNullFieldError.checkNotNull(
+                name, r'GProviderWithManifestData_manifest_triggers', 'name'),
+            description: BuiltValueNullFieldError.checkNotNull(description,
+                r'GProviderWithManifestData_manifest_triggers', 'description'),
+            img: BuiltValueNullFieldError.checkNotNull(
+                img, r'GProviderWithManifestData_manifest_triggers', 'img'),
+            color: BuiltValueNullFieldError.checkNotNull(
+                color, r'GProviderWithManifestData_manifest_triggers', 'color'),
+            input: input.build(),
+            output: output.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {

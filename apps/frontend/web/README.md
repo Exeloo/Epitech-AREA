@@ -1,38 +1,35 @@
-# sv
+# Area webapp
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
-
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-explore
-npx sv create my-explore
-```
+This webapp is an interface of the Aether app
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+For start the app on watch mode:
 
 ```bash
-npm run dev
+yarn dev
+```
 
-# or start the server and open the explore in a new browser tab
-npm run dev -- --open
+If you get a `ENOSPC` error, add this line to the sysctl config (`/etc/sysctl.conf`):
+
+```text
+fs.inotify.max_user_watches=524288
 ```
 
 ## Building
 
-To create a production version of your app:
+To create a production version:
 
 ```bash
-npm run build
+yarn build
 ```
 
-You can preview the production build with `npm run preview`.
+You can preview the production build with `yarn preview`.
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+## Fix linter
+
+This project use prettier linter. For fix your code, use:
+
+```bash
+yarn fix
+```

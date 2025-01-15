@@ -1,13 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
 
-import 'package:built_collection/built_collection.dart';
-import 'package:built_value/serializer.dart';
-import 'package:built_value/standard_json_plugin.dart' show StandardJsonPlugin;
-import 'package:ferry_exec/ferry_exec.dart';
-import 'package:gql_code_builder/src/serializers/operation_serializer.dart'
-    show OperationSerializer;
-import 'package:mobile/graphql/__generated__/applet.data.gql.dart'
+import 'package:aether/graphql/__generated__/applet.data.gql.dart'
     show
         GAppletWithNodesData,
         GAppletWithNodesData_triggerNodes,
@@ -36,7 +30,7 @@ import 'package:mobile/graphql/__generated__/applet.data.gql.dart'
         GgetAppletNodeByIdData_getAppletNodeById_next,
         GgetAppletNodeByIdData_getAppletNodeById_previous,
         GgetAppletNodeByIdData_getAppletNodeById_provider;
-import 'package:mobile/graphql/__generated__/applet.req.gql.dart'
+import 'package:aether/graphql/__generated__/applet.req.gql.dart'
     show
         GAppletWithNodesReq,
         GBaseAppletNodeReq,
@@ -47,7 +41,7 @@ import 'package:mobile/graphql/__generated__/applet.req.gql.dart'
         GgetAllAppletsReq,
         GgetAppletByIdReq,
         GgetAppletNodeByIdReq;
-import 'package:mobile/graphql/__generated__/applet.var.gql.dart'
+import 'package:aether/graphql/__generated__/applet.var.gql.dart'
     show
         GAppletWithNodesVars,
         GBaseAppletNodeVars,
@@ -58,18 +52,18 @@ import 'package:mobile/graphql/__generated__/applet.var.gql.dart'
         GgetAllAppletsVars,
         GgetAppletByIdVars,
         GgetAppletNodeByIdVars;
-import 'package:mobile/graphql/__generated__/auth.data.gql.dart'
+import 'package:aether/graphql/__generated__/auth.data.gql.dart'
     show
         GTokenFieldsData,
         GloginData,
         GloginData_login,
         GrefreshTokenData,
         GrefreshTokenData_refreshToken;
-import 'package:mobile/graphql/__generated__/auth.req.gql.dart'
+import 'package:aether/graphql/__generated__/auth.req.gql.dart'
     show GTokenFieldsReq, GloginReq, GrefreshTokenReq;
-import 'package:mobile/graphql/__generated__/auth.var.gql.dart'
+import 'package:aether/graphql/__generated__/auth.var.gql.dart'
     show GTokenFieldsVars, GloginVars, GrefreshTokenVars;
-import 'package:mobile/graphql/__generated__/provider.data.gql.dart'
+import 'package:aether/graphql/__generated__/provider.data.gql.dart'
     show
         GBaseProviderData,
         GProviderManifestActionData,
@@ -84,24 +78,28 @@ import 'package:mobile/graphql/__generated__/provider.data.gql.dart'
         GgetProviderByIdData_getProviderById,
         GgetProviderByIdData_getProviderById_manifest,
         GgetProviderByIdData_getProviderById_manifest_actions,
-        GgetProviderByIdData_getProviderById_manifest_triggers;
-import 'package:mobile/graphql/__generated__/provider.req.gql.dart'
+        GgetProviderByIdData_getProviderById_manifest_triggers,
+        GgetProviderOAuthStateData,
+        GgetProviderOAuthStateData_getProviderOAuthState;
+import 'package:aether/graphql/__generated__/provider.req.gql.dart'
     show
         GBaseProviderReq,
         GProviderManifestActionReq,
         GProviderManifestTriggerReq,
         GProviderWithManifestReq,
         GgetAllProvidersReq,
-        GgetProviderByIdReq;
-import 'package:mobile/graphql/__generated__/provider.var.gql.dart'
+        GgetProviderByIdReq,
+        GgetProviderOAuthStateReq;
+import 'package:aether/graphql/__generated__/provider.var.gql.dart'
     show
         GBaseProviderVars,
         GProviderManifestActionVars,
         GProviderManifestTriggerVars,
         GProviderWithManifestVars,
         GgetAllProvidersVars,
-        GgetProviderByIdVars;
-import 'package:mobile/graphql/__generated__/schema.schema.gql.dart'
+        GgetProviderByIdVars,
+        GgetProviderOAuthStateVars;
+import 'package:aether/graphql/__generated__/schema.schema.gql.dart'
     show
         GAppletCreateInput,
         GAppletNodeCreateInput,
@@ -115,7 +113,7 @@ import 'package:mobile/graphql/__generated__/schema.schema.gql.dart'
         GUserCreateInput,
         GUserRegisterInput,
         GUserUpdateInput;
-import 'package:mobile/graphql/__generated__/user.data.gql.dart'
+import 'package:aether/graphql/__generated__/user.data.gql.dart'
     show
         GUserData,
         GgetMeData,
@@ -124,10 +122,16 @@ import 'package:mobile/graphql/__generated__/user.data.gql.dart'
         GregisterData_register,
         GupdateMeData,
         GupdateMeData_updateMe;
-import 'package:mobile/graphql/__generated__/user.req.gql.dart'
+import 'package:aether/graphql/__generated__/user.req.gql.dart'
     show GUserReq, GgetMeReq, GregisterReq, GupdateMeReq;
-import 'package:mobile/graphql/__generated__/user.var.gql.dart'
+import 'package:aether/graphql/__generated__/user.var.gql.dart'
     show GUserVars, GgetMeVars, GregisterVars, GupdateMeVars;
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/serializer.dart';
+import 'package:built_value/standard_json_plugin.dart' show StandardJsonPlugin;
+import 'package:ferry_exec/ferry_exec.dart';
+import 'package:gql_code_builder/src/serializers/operation_serializer.dart'
+    show OperationSerializer;
 
 part 'serializers.gql.g.dart';
 
@@ -228,6 +232,10 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GgetProviderByIdData_getProviderById_manifest_triggers,
   GgetProviderByIdReq,
   GgetProviderByIdVars,
+  GgetProviderOAuthStateData,
+  GgetProviderOAuthStateData_getProviderOAuthState,
+  GgetProviderOAuthStateReq,
+  GgetProviderOAuthStateVars,
   GloginData,
   GloginData_login,
   GloginReq,

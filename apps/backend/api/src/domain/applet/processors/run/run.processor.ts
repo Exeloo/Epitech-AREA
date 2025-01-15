@@ -1,6 +1,6 @@
 import { Inject, Injectable, Logger } from "@nestjs/common";
 
-import { AuthorizationException } from "@exception";
+import { AuthorizationException, BadInputException } from "@exception";
 
 import {
   APPLET_NODE_PERSISTENCE_REPOSITORY,
@@ -33,6 +33,51 @@ export class AppletRunProcessor {
     this.logger = new Logger(`DOMAIN (Applet ${this.constructor.name})`);
   }
 
+  handleInputField(value: string, outputs: object[]): string {
+    return value.replaceAll(
+      /\$\[([0-9]+)]\{([a-zA-Z0-9_-]+(?:\.[a-zA-Z0-9_-]+)*)}/gm,
+      (_, rawIndex, rawValue) => {
+        const index = +rawIndex;
+        const values = rawValue.split(".");
+        if (index >= outputs.length) {
+          throw new BadInputException(
+            "BAD_INPUT_FIELD",
+            "invalid index in input field",
+          );
+        }
+        let res: any = outputs[index];
+        for (const value of values) {
+          try {
+            res = res[value];
+          } catch {
+            throw new BadInputException(
+              "BAD_INPUT_FIELD",
+              "Invalid name not in output field",
+            );
+          }
+          if (!res)
+            throw new BadInputException(
+              "BAD_INPUT_FIELD",
+              "Invalid name not in output field",
+            );
+        }
+        return res.toString();
+      },
+    );
+  }
+
+  handleInput(input: object, outputs: object[]): object {
+    const res = {};
+    for (const [key, value] of Object.entries(input)) {
+      if (typeof value !== "string") {
+        res[key] = value;
+        continue;
+      }
+      res[key] = this.handleInputField(value, outputs);
+    }
+    return res;
+  }
+
   async process(provider: IProvider, data: ITriggerInput): Promise<void> {
     this.logger.debug(`Processing trigger ${provider.providerId}.${data.name}`);
     for (const id of data.triggered) {
@@ -47,21 +92,29 @@ export class AppletRunProcessor {
             "UNAUTHORIZED_BAD_PROVIDER",
             "You cannot call a trigger of an other provider",
           );
-        await this.processApplet(trigger);
+        await this.processApplet(trigger, [data.data]);
       } catch (e) {
         this.logger.error(e);
       }
     }
   }
 
-  private async processApplet(prevNode: IAppletNode) {
+  private async processApplet(prevNode: IAppletNode, outputs: object[]) {
     const actions = await this.appletNodePRepository.getNextById(prevNode.id);
     for (const action of actions) {
-      const provider = await this.providerPRepository.getByAppletNodeId(
-        action.id,
-      );
-      await this.providerService.runAction(provider, action, action.input);
-      await this.processApplet(action);
+      try {
+        const provider = await this.providerPRepository.getByAppletNodeId(
+          action.id,
+        );
+        const res = await this.providerService.runAction(
+          provider,
+          action,
+          this.handleInput(action.input, outputs),
+        );
+        await this.processApplet(action, [...outputs, res]);
+      } catch (e) {
+        this.logger.error(e);
+      }
     }
   }
 }

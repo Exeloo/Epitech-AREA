@@ -1,0 +1,18 @@
+services:
+  visualcrossing:
+    image: node:22-alpine
+    build:
+      context: ../..
+    ports:
+      - "3007:3007"
+    working_dir: /app
+    volumes:
+      - ../../:/app
+    networks:
+      - area-api
+    command: yarn serve-nest
+
+networks:
+  area-api:
+    name: area_api
+    external: true

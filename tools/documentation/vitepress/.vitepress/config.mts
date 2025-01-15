@@ -1,22 +1,42 @@
-import { defineConfig } from 'vitepress'
+import {defineConfig} from 'vitepress'
 
-// https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "AREA Documentation",
-  description: "A VitePress Site",
+  title: "Aether Documentation",
+  description: "The AREA project",
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: 'API', link: '/api' },
+      { text: 'DevOps', link: '/devops' }
     ],
 
     sidebar: [
       {
-        text: 'Examples',
+        text: 'API',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: 'Introduction', link: '/api' },
+          { text: 'Architecture', link: '/api/architecture' },
+          {
+            text: 'Providers',
+            link: '/api/providers',
+            collapsed: true,
+            items: [
+              { text: 'Manifest', link: '/api/providers/manifest' },
+              { text: 'OAuth', link: '/api/providers/oauth' },
+              { text: 'Actions', link: '/api/providers/actions' },
+              { text: 'Triggers', link: '/api/providers/triggers' },
+              { text: 'Field', link: '/api/providers/manifest/fields' },
+            ]
+          },
+        ]
+      },
+      {
+        text: 'DevOps',
+        items: [
+            { text: 'Introduction', link: '/devops' },
+            { text: 'Ansible', link: '/devops/ansible' },
+            { text: 'Kubernetes', link: '/devops/kubernetes' },
+            { text: 'Templates', link: '/devops/templates' }
         ]
       }
     ],

@@ -1,6 +1,6 @@
+import 'package:aether/modules/graphql/providers.dart';
+import 'package:aether/views/auth/pages/main_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile/modules/graphql/providers.dart';
-import 'package:mobile/views/auth/pages/main_auth.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -19,8 +19,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: MainAuthPage(),
+    return MaterialApp(
+      theme: ThemeData(
+        fontFamily: 'Kanit',
+      ),
+      home: const MainAuthPage(),
     );
   }
 }

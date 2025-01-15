@@ -1,22 +1,45 @@
 <script lang="ts">
-	import Input from '$lib/Inputs/Input.svelte';
-	import Submit from '$lib/auth/Submit.svelte';
-	import Validation from '$lib/auth/Validation.svelte';
+	import Input from '$lib/components/Inputs/Input.svelte';
+	import Submit from '$lib/components/auth/Submit.svelte';
+	import Validation from '$lib/components/auth/Validation.svelte';
+	import { RegisterStore } from '$houdini';
+	import { errorsStore } from '$lib/components/auth/stores';
+	import OAuthLogin from '$lib/components/auth/oauth/OAuthLogin.svelte';
 
 	let username = $state('');
 	let email = $state('');
-	//let firstname = $state('First');
-	//let lastName = $state('Last');
+	let firstname = $state('');
+	let lastname = $state('');
 	let password = $state('');
-	// let rememberMe = $state(false);
+
+	const registerStore = new RegisterStore();
 
 	async function handleSubmit(event: any): Promise<any> {
 		event.preventDefault();
 
 		try {
-			console.log('register');
-		} catch (error) {
-			console.error('Unexpected error:', error);
+			const query = await registerStore.mutate({
+				data: {
+					firstName: firstname,
+					lastName: lastname,
+					username: username,
+					email: email,
+					password: password
+				}
+			});
+
+			console.log(query);
+
+			if (!query.data) {
+				new Error('Internal Server Error');
+				return query.errors;
+			}
+
+			window.location.href =
+				'/auth/login/?success=Account%20created%20successfully.%20You%20can%20login%20now!';
+		} catch (e) {
+			errorsStore.set(['Invalid Credentials']);
+			console.error(e);
 		}
 	}
 </script>
@@ -24,6 +47,13 @@
 <form onsubmit={handleSubmit} class="flex w-full flex-col gap-2">
 	<Input bind:value={username} title="Username" placeholder="Enter your username" dataType="text" />
 	<Input bind:value={email} title="Email" placeholder="Enter your email" dataType="email" />
+	<Input
+		bind:value={firstname}
+		title="Firstname"
+		placeholder="Enter your firstname"
+		dataType="text"
+	/>
+	<Input bind:value={lastname} title="Lastname" placeholder="Enter your lastname" />
 	<Input
 		bind:value={password}
 		title="Password"
@@ -36,4 +66,6 @@
 	<p>
 		Already have an account?<a href="/auth/login/" class="pl-2 font-semibold">Log in</a>
 	</p>
+	<hr class="my-5" />
+	<OAuthLogin />
 </form>

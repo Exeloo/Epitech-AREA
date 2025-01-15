@@ -1,8 +1,8 @@
-import 'package:mobile/graphql/graphql_client.dart';
-import 'package:mobile/modules/graphql/repository/applet_repository.dart';
-import 'package:mobile/modules/graphql/repository/auth_repository.dart';
-import 'package:mobile/modules/graphql/repository/provider_repository.dart';
-import 'package:mobile/modules/graphql/repository/user_repository.dart';
+import 'package:aether/graphql/graphql_client.dart';
+import 'package:aether/modules/graphql/repository/applet_repository.dart';
+import 'package:aether/modules/graphql/repository/auth_repository.dart';
+import 'package:aether/modules/graphql/repository/provider_repository.dart';
+import 'package:aether/modules/graphql/repository/user_repository.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 

@@ -1,9 +1,10 @@
+import 'package:aether/modules/auth/auth_helper.dart';
+import 'package:aether/modules/graphql/repository/auth_repository.dart';
+import 'package:aether/views/auth/pages/signup.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile/modules/auth/auth_helper.dart';
-import 'package:mobile/modules/graphql/repository/auth_repository.dart';
-import 'package:mobile/views/auth/pages/signup.dart';
 import 'package:provider/provider.dart';
 
+import '../../../config/colors.dart';
 import '../../mainPage/pages/main_navigation.dart';
 
 class LoginPage extends StatefulWidget {
@@ -42,7 +43,7 @@ class LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff1B1B1B),
+      backgroundColor: AppColors.background,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -54,7 +55,7 @@ class LoginPageState extends State<LoginPage> {
               style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white),
+                  color: AppColors.textPrimary),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
@@ -68,16 +69,16 @@ class LoginPageState extends State<LoginPage> {
               controller: _emailController,
               decoration: const InputDecoration(
                 labelText: 'Email',
-                labelStyle: TextStyle(color: Colors.white),
+                labelStyle: TextStyle(color: AppColors.textPrimary),
                 border: OutlineInputBorder(),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
+                  borderSide: BorderSide(color: AppColors.textPrimary),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
+                  borderSide: BorderSide(color: AppColors.textPrimary),
                 ),
               ),
-              style: const TextStyle(color: Colors.white),
+              style: const TextStyle(color: AppColors.textPrimary),
             ),
             const SizedBox(height: 16),
             TextFormField(
@@ -85,16 +86,16 @@ class LoginPageState extends State<LoginPage> {
               obscureText: true,
               decoration: const InputDecoration(
                 labelText: 'Password',
-                labelStyle: TextStyle(color: Colors.white),
+                labelStyle: TextStyle(color: AppColors.textPrimary),
                 border: OutlineInputBorder(),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
+                  borderSide: BorderSide(color: AppColors.textPrimary),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
+                  borderSide: BorderSide(color: AppColors.textPrimary),
                 ),
               ),
-              style: const TextStyle(color: Colors.white),
+              style: const TextStyle(color: AppColors.textPrimary),
             ),
             const SizedBox(height: 8),
             Row(
@@ -111,13 +112,13 @@ class LoginPageState extends State<LoginPage> {
                       },
                     ),
                     const Text('Remember me',
-                        style: TextStyle(color: Colors.white)),
+                        style: TextStyle(color: AppColors.textPrimary)),
                   ],
                 ),
                 TextButton(
                   onPressed: () {},
                   child: const Text('Forgot password?',
-                      style: TextStyle(color: Colors.white)),
+                      style: TextStyle(color: AppColors.textPrimary)),
                 ),
               ],
             ),
@@ -127,11 +128,11 @@ class LoginPageState extends State<LoginPage> {
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 textStyle: const TextStyle(fontSize: 16),
-                backgroundColor: const Color(0xff8E44AD),
+                backgroundColor: AppColors.secondary,
               ),
               child: const Text(
                 'Sign in',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
             const SizedBox(height: 16),
@@ -144,7 +145,7 @@ class LoginPageState extends State<LoginPage> {
                     (Route<dynamic> route) => false);
               },
               child: const Text('Don\'t have an account? Sign up',
-                  style: TextStyle(color: Colors.white)),
+                  style: TextStyle(color: AppColors.textPrimary)),
             ),
           ],
         ),

@@ -25,7 +25,7 @@ export default defineConfig({
               { text: 'OAuth', link: '/api/providers/oauth' },
               { text: 'Actions', link: '/api/providers/actions' },
               { text: 'Triggers', link: '/api/providers/triggers' },
-              { text: 'Field', link: '/api/providers/manifest/field' },
+              { text: 'Field', link: '/api/providers/manifest/fields' },
             ]
           },
         ]

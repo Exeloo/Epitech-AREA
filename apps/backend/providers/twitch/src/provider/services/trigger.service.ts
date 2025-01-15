@@ -19,6 +19,16 @@ const EVENTS: [string[], EventsEnum][] = [
   [["channel-subscribe-end"], EventsEnum.Channel_sub_end],
   [["automod-message-hold"], EventsEnum.Automod_hold],
   [["automod-terms-update"], EventsEnum.Automod_terms_update],
+  [["channel-unban"], EventsEnum.Channel_unban],
+  [["channel-sub-gift"], EventsEnum.Channel_sub_gift],
+  [["channel-moderator-add"], EventsEnum.Channel_mod_add],
+  [["channel-chat-clear"], EventsEnum.Channel_chat_clear],
+  [["channel-update"], EventsEnum.Channel_update],
+  [["channel-ban"], EventsEnum.Channel_ban],
+  [
+    ["channel-points-custom-reward-add"],
+    EventsEnum.Channel_Points_Custom_Reward_Add,
+  ],
 ];
 
 const VERSIONS = {
@@ -30,6 +40,13 @@ const VERSIONS = {
   [EventsEnum.Channel_sub_end]: 1,
   [EventsEnum.Automod_hold]: 2,
   [EventsEnum.Automod_terms_update]: 1,
+  [EventsEnum.Channel_unban]: 1,
+  [EventsEnum.Channel_sub_gift]: 1,
+  [EventsEnum.Channel_mod_add]: 1,
+  [EventsEnum.Channel_chat_clear]: 1,
+  [EventsEnum.Channel_update]: 1,
+  [EventsEnum.Channel_ban]: 1,
+  [EventsEnum.Channel_Points_Custom_Reward_Add]: 1,
 };
 
 const OWNERS_FIELD = {
@@ -41,6 +58,13 @@ const OWNERS_FIELD = {
   [EventsEnum.Channel_sub_end]: "broadcaster_user_id",
   [EventsEnum.Automod_hold]: "moderator_user_id",
   [EventsEnum.Automod_terms_update]: "moderator_user_id",
+  [EventsEnum.Channel_unban]: "moderator_user_id",
+  [EventsEnum.Channel_sub_gift]: "broadcaster_user_id",
+  [EventsEnum.Channel_mod_add]: "broadcaster_user_id",
+  [EventsEnum.Channel_chat_clear]: "broadcaster_user_id",
+  [EventsEnum.Channel_update]: "broadcaster_user_id",
+  [EventsEnum.Channel_ban]: "moderator_user_id",
+  [EventsEnum.Channel_Points_Custom_Reward_Add]: "broadcaster_user_id",
 };
 
 @Injectable()

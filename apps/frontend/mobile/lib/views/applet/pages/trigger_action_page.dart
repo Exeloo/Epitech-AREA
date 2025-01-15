@@ -153,10 +153,10 @@ class TriggerActionPageState extends State<TriggerActionPage> {
   Widget _buildValidateButton() {
     final color = Color(int.parse(_provider.color.replaceFirst('#', '0xff')));
     final darkenedColor = Color.fromRGBO(
-      (color.r * 0.82).toInt(),
-      (color.g * 0.82).toInt(),
-      (color.b * 0.82).toInt(),
-      0,
+      (color.red * 0.82).toInt(),
+      (color.green * 0.82).toInt(),
+      (color.blue * 0.82).toInt(),
+      1.0,
     );
 
     return Padding(

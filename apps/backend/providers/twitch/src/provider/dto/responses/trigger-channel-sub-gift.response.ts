@@ -5,22 +5,7 @@ import {
 } from "@lib/manifest";
 
 @ManifestType()
-export class TriggerFollowEventResponse {
-  @ManifestProperty({
-    type: ManifestPropertyEnum.STRING,
-  })
-  broadcaster_user_id: string;
-
-  @ManifestProperty({
-    type: ManifestPropertyEnum.STRING,
-  })
-  broadcaster_user_login: string;
-
-  @ManifestProperty({
-    type: ManifestPropertyEnum.STRING,
-  })
-  broadcaster_user_name: string;
-
+export class ChannelSubscriptionGiftEventResponse {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
   })
@@ -39,5 +24,35 @@ export class TriggerFollowEventResponse {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
   })
-  followed_at: string;
+  broadcaster_user_id: string;
+
+  @ManifestProperty({
+    type: ManifestPropertyEnum.STRING,
+  })
+  broadcaster_user_login: string;
+
+  @ManifestProperty({
+    type: ManifestPropertyEnum.STRING,
+  })
+  broadcaster_user_name: string;
+
+  @ManifestProperty({
+    type: ManifestPropertyEnum.NUMBER,
+  })
+  total: number;
+
+  @ManifestProperty({
+    type: ManifestPropertyEnum.STRING,
+  })
+  tier: string;
+
+  @ManifestProperty({
+    type: ManifestPropertyEnum.NUMBER,
+  })
+  cumulative_total: number | null;
+
+  @ManifestProperty({
+    type: ManifestPropertyEnum.BOOLEAN,
+  })
+  is_anonymous: boolean;
 }

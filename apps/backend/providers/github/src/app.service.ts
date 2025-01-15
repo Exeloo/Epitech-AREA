@@ -12,8 +12,8 @@ const APP_BASE_MANIFEST: IBaseManifest = {
   id: "github",
   name: "Github",
   description: "Provider to use the Github API",
-  img: "",
-  color: "#6441a5",
+  img: "https://firebasestorage.googleapis.com/v0/b/area-444018.firebasestorage.app/o/github-mark-white.png?alt=media&token=10460f52-6bc6-4edb-bbc2-f7e6fbfe8946",
+  color: "#2b3137",
   oauth: {
     type: ManifestOAuthEnum.TOKEN,
   },

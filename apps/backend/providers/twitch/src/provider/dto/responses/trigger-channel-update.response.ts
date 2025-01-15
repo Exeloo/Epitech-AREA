@@ -5,7 +5,7 @@ import {
 } from "@lib/manifest";
 
 @ManifestType()
-export class TriggerFollowEventResponse {
+export class ChannelUpdateEventResponse {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
   })
@@ -24,20 +24,20 @@ export class TriggerFollowEventResponse {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
   })
-  user_id: string;
+  title: string;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
   })
-  user_login: string;
+  language: string;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
   })
-  user_name: string;
+  category_id: string;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
   })
-  followed_at: string;
+  category_name: string;
 }

@@ -1,5 +1,13 @@
 ---
 outline: deep
+
+prev:
+  text: Manifest
+  link: '/api/providers/manifest'
+
+next:
+  text: Actions
+  link: '/api/providers/actions'
 ---
 
 # Provider OAuth

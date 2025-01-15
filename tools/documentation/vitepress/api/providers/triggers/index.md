@@ -1,5 +1,13 @@
 ---
 outline: deep
+
+prev:
+  text: Actions
+  link: '/api/providers/actions'
+
+next:
+  text: Fields
+  link: '/api/providers/manifest/fields'
 ---
 
 # Provider Triggers
@@ -36,23 +44,56 @@ The provider must implements one routes to handle triggers :
 
 #### Description :
 
-This route is used to register a trigger to 
+This route is used to register a trigger to your provider
 
 #### Body :
 ```json
 {
-  "name": string, // The unique id of the trigger
-  "userId": number, // UserId of the user that call the trigger
-  "data": object // Input of the trigger as describe in the manifest
+  "baseId": number, // Unique id of the applet node for the API (id to return on trigger)
+  "userId": number, // Id of the user that create the node
+  "actionId": string, // Id of the trigger to register
+  "input": object // Input to register to the trigger
 }
 ```
 
 #### Response :
 ```json
 {
-  "message": "success",
-  "data": object // Output of the trigger as describe in the manifest
+  "message": "success"
 }
 ```
 
 As `userId` is passed through this call, is the purpose of your provider to verify if the user is allowed to use this trigger.
+
+## WebSocket
+
+To send the trigger to the API, we use a websocket connection between providers and the API.
+
+We use `socket.io` protocol to our communications.
+
+### Identify
+
+After connected to the server, your provider need to use the `identify` route to identify itself to the API :
+
+```ts
+socket.emit("identify", {
+    apiKey: "<API_KEY>",
+});
+```
+
+If everything is ok the API will respond with a call on the route `ok`
+
+### Triggers
+
+On trigger your provider must send a message on a route that has the name of `actionId` with this params :
+
+1. An array of the `baseId` triggered
+2. The output data of the trigger describe by the manifest
+
+```ts
+socket.emit(
+    "<actionId>",
+    [1, 2, 4],
+    { "author": "example_author_id" },
+);
+```

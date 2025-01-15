@@ -1,49 +1,37 @@
 ---
 outline: deep
+
+next:
+  text: Architecture
+  link: '/api/architecture'
 ---
 
 # API Introduction
 
-This page demonstrates usage of some of the runtime APIs provided by VitePress.
+## Installation
 
-The main `useData()` API can be used to access site, theme, and page data for the current page. It works in both `.md` and `.vue` files:
-
-```md
-<script setup>
-import { useData } from 'vitepress'
-
-const { theme, page, frontmatter } = useData()
-</script>
-
-## Results
-
-### Theme Data
-<pre>{{ theme }}</pre>
-
-### Page Data
-<pre>{{ page }}</pre>
-
-### Page Frontmatter
-<pre>{{ frontmatter }}</pre>
+To set up the API, you must first set your terminal node version :
+```shell
+nvm use
 ```
 
-<script setup>
-import { useData } from 'vitepress'
+Then you must install all packages
+```shell
+yarn
+```
 
-const { site, theme, page, frontmatter } = useData()
-</script>
+You can now set up your project :
 
-## Results
+```shell
+./setup.sh
+```
 
-### Theme Data
-<pre>{{ theme }}</pre>
+If you just want to run all apps :
+```shell
+yarn serve
+```
 
-### Page Data
-<pre>{{ page }}</pre>
-
-### Page Frontmatter
-<pre>{{ frontmatter }}</pre>
-
-## More
-
-Check out the documentation for the [full list of runtime APIs](https://vitepress.dev/reference/runtime-api#usedata).
+Then you can log api to see if everything is ok :
+```shell
+docker logs -f area-server-1
+```

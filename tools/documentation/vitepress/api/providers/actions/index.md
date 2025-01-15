@@ -1,5 +1,13 @@
 ---
 outline: deep
+
+prev:
+  text: OAuth
+  link: '/api/providers/oauth'
+
+next:
+  text: Triggers
+  link: '/api/providers/triggers'
 ---
 
 # Provider Actions

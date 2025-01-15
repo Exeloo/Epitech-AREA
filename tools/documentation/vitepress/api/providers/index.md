@@ -1,49 +1,28 @@
 ---
 outline: deep
+
+prev:
+  text: Architecture
+  link: '/api/architecture'
+
+next:
+  text: Manifest
+  link: '/api/providers/manifest'
 ---
 
-# API Introduction
+# API Provider
 
-This page demonstrates usage of some of the runtime APIs provided by VitePress.
+A provider is a system that interface an external API like Google or Microsoft, to our API.
 
-The main `useData()` API can be used to access site, theme, and page data for the current page. It works in both `.md` and `.vue` files:
+There are some rules to a provider to allows API to be more generic.
 
-```md
-<script setup>
-import { useData } from 'vitepress'
+The main rule is that the provider must provide a manifest, that describe each triggers and actions and many specifications about it. Learn more about manifest [here](/api/providers/manifest).
 
-const { theme, page, frontmatter } = useData()
-</script>
+## Authorization
 
-## Results
+At the creation, API will provider you an API key that must be used in any call to the API to identify and authorize the provider.
 
-### Theme Data
-<pre>{{ theme }}</pre>
-
-### Page Data
-<pre>{{ page }}</pre>
-
-### Page Frontmatter
-<pre>{{ frontmatter }}</pre>
+To each call the provider do to API, it must have this field in headers :
 ```
-
-<script setup>
-import { useData } from 'vitepress'
-
-const { site, theme, page, frontmatter } = useData()
-</script>
-
-## Results
-
-### Theme Data
-<pre>{{ theme }}</pre>
-
-### Page Data
-<pre>{{ page }}</pre>
-
-### Page Frontmatter
-<pre>{{ frontmatter }}</pre>
-
-## More
-
-Check out the documentation for the [full list of runtime APIs](https://vitepress.dev/reference/runtime-api#usedata).
+api-key: <API_KEY>
+```

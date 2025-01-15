@@ -10,10 +10,10 @@ class AppletData {
   }) : triggerNodes = triggerNodes ?? [];
 
   Map<String, dynamic> toJson() => {
-    'name': name,
-    'description': description,
-    'triggerNodes': triggerNodes.map((node) => node.toJson()).toList(),
-  };
+        'name': name,
+        'description': description,
+        'triggerNodes': triggerNodes.map((node) => node.toJson()).toList(),
+      };
 
   static AppletData currentApplet = AppletData();
 
@@ -87,11 +87,11 @@ class TriggerNode {
   }) : next = next ?? [];
 
   Map<String, dynamic> toJson() => {
-    'providerId': providerId,
-    'actionId': actionId,
-    'input': input,
-    'next': next.map((node) => node.toJson()).toList(),
-  };
+        'providerId': providerId,
+        'actionId': actionId,
+        'input': input,
+        'next': next.map((node) => node.toJson()).toList(),
+      };
 
   static TriggerNode? currentTriggerNode;
 

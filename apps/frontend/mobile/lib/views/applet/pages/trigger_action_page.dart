@@ -35,7 +35,7 @@ class TriggerActionPageState extends State<TriggerActionPage> {
 
   void _getProvidersById(BuildContext context) async {
     final providerRepository =
-    Provider.of<ProviderRepository>(context, listen: false);
+        Provider.of<ProviderRepository>(context, listen: false);
 
     try {
       final response = await providerRepository.getProviderById(id: widget.id);
@@ -79,9 +79,8 @@ class TriggerActionPageState extends State<TriggerActionPage> {
         .where((t) => t.name == widget.name)
         .toList();
 
-    final action = _provider.manifest.actions
-        .where((a) => a.name == widget.name)
-        .toList();
+    final action =
+        _provider.manifest.actions.where((a) => a.name == widget.name).toList();
 
     if (trigger.isNotEmpty) {
       return _formatInputs(trigger.first.input.value);
@@ -122,7 +121,9 @@ class TriggerActionPageState extends State<TriggerActionPage> {
               style: const TextStyle(color: AppColors.textPrimary),
               decoration: InputDecoration(
                 hintText: 'Enter $label',
-                hintStyle: const TextStyle(color: AppColors.textPrimary60, fontWeight: FontWeight.bold),
+                hintStyle: const TextStyle(
+                    color: AppColors.textPrimary60,
+                    fontWeight: FontWeight.bold),
                 filled: true,
                 fillColor: const Color(0xff1B1B1B),
                 enabledBorder: OutlineInputBorder(
@@ -172,7 +173,7 @@ class TriggerActionPageState extends State<TriggerActionPage> {
               .toList();
 
           final actionId =
-          trigger.isNotEmpty ? trigger.first.id : action.first.id;
+              trigger.isNotEmpty ? trigger.first.id : action.first.id;
 
           final input = <String, dynamic>{};
           _controllers.forEach((key, controller) {
@@ -187,12 +188,9 @@ class TriggerActionPageState extends State<TriggerActionPage> {
 
           if (TriggerNodeManager.rootTriggerNode == null) {
             TriggerNodeManager.setRootTriggerNode(newNode, widget.name);
-
-
           } else {
             try {
               TriggerNodeManager.addNextTriggerNode(newNode, widget.name);
-
             } catch (e) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text('Error: $e')),
@@ -239,14 +237,15 @@ class TriggerActionPageState extends State<TriggerActionPage> {
         .where((t) => t.name == widget.name)
         .toList();
 
-    final action = _provider.manifest.actions
-        .where((a) => a.name == widget.name)
-        .toList();
+    final action =
+        _provider.manifest.actions.where((a) => a.name == widget.name).toList();
 
     return Scaffold(
-      backgroundColor: Color(int.parse(_provider.color.replaceFirst('#', '0xff'))),
+      backgroundColor:
+          Color(int.parse(_provider.color.replaceFirst('#', '0xff'))),
       appBar: AppBar(
-        backgroundColor: Color(int.parse(_provider.color.replaceFirst('#', '0xff'))),
+        backgroundColor:
+            Color(int.parse(_provider.color.replaceFirst('#', '0xff'))),
         automaticallyImplyLeading: false,
         flexibleSpace: Padding(
           padding: const EdgeInsets.only(bottom: 10.0),
@@ -255,7 +254,8 @@ class TriggerActionPageState extends State<TriggerActionPage> {
             child: Row(
               children: [
                 IconButton(
-                  icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary, size: 40),
+                  icon: const Icon(Icons.arrow_back,
+                      color: AppColors.textPrimary, size: 40),
                   onPressed: () {
                     _controllers.forEach((key, controller) {
                       controller.dispose();
@@ -265,7 +265,9 @@ class TriggerActionPageState extends State<TriggerActionPage> {
                 ),
                 const SizedBox(width: 10),
                 Text(
-                  trigger.isNotEmpty ? 'Choose your Trigger' : 'Choose your Reaction',
+                  trigger.isNotEmpty
+                      ? 'Choose your Trigger'
+                      : 'Choose your Reaction',
                   style: const TextStyle(
                     color: AppColors.textPrimary,
                     fontSize: 30,
@@ -286,10 +288,12 @@ class TriggerActionPageState extends State<TriggerActionPage> {
               padding: const EdgeInsets.all(16.0),
               width: double.infinity,
               decoration: BoxDecoration(
-                color: Color(int.parse(_provider.color.replaceFirst('#', '0xff'))),
+                color:
+                    Color(int.parse(_provider.color.replaceFirst('#', '0xff'))),
                 boxShadow: [
                   BoxShadow(
-                    color: Color(int.parse(_provider.color.replaceFirst('#', '0xff'))),
+                    color: Color(
+                        int.parse(_provider.color.replaceFirst('#', '0xff'))),
                     blurRadius: 5.0,
                     spreadRadius: 1.0,
                     offset: const Offset(0, 4),
@@ -303,44 +307,46 @@ class TriggerActionPageState extends State<TriggerActionPage> {
                     borderRadius: BorderRadius.circular(16.0),
                     child: _provider.img.isNotEmpty
                         ? Image.network(
-                      trigger.isNotEmpty ? trigger.first.img : action.first.img,
-                      fit: BoxFit.fitWidth,
-                      errorBuilder: (context, error, stackTrace) {
-                        return const Icon(
-                          Icons.image_not_supported,
-                          color: Colors.grey,
-                          size: 100,
-                        );
-                      },
-                    )
+                            trigger.isNotEmpty
+                                ? trigger.first.img
+                                : action.first.img,
+                            fit: BoxFit.fitWidth,
+                            errorBuilder: (context, error, stackTrace) {
+                              return const Icon(
+                                Icons.image_not_supported,
+                                color: Colors.grey,
+                                size: 100,
+                              );
+                            },
+                          )
                         : const Icon(
-                      Icons.image_not_supported,
-                      color: Colors.grey,
-                      size: 100,
-                    ),
+                            Icons.image_not_supported,
+                            color: Colors.grey,
+                            size: 100,
+                          ),
                   ),
                   const SizedBox(height: 16),
                   trigger.isNotEmpty
                       ? Text(
-                    trigger.first.description,
-                    style: const TextStyle(
-                      fontSize: 24,
-                      color: AppColors.textPrimary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: TextAlign.center,
-                    softWrap: true,
-                  )
+                          trigger.first.description,
+                          style: const TextStyle(
+                            fontSize: 24,
+                            color: AppColors.textPrimary,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
+                          softWrap: true,
+                        )
                       : Text(
-                    action.first.description,
-                    style: const TextStyle(
-                      fontSize: 24,
-                      color: AppColors.textPrimary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: TextAlign.center,
-                    softWrap: true,
-                  ),
+                          action.first.description,
+                          style: const TextStyle(
+                            fontSize: 24,
+                            color: AppColors.textPrimary,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
+                          softWrap: true,
+                        ),
                   const SizedBox(height: 16),
                 ],
               ),

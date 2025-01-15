@@ -29,7 +29,8 @@ class TriggerActionCard extends StatelessWidget {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => TriggerActionPage(id: providerId, name: name),
+              builder: (context) =>
+                  TriggerActionPage(id: providerId, name: name),
             ),
           );
         }
@@ -53,11 +54,10 @@ class TriggerActionCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8.0),
                   child: logoUrl != null && logoUrl!.isNotEmpty
                       ? Image.network(
-                    logoUrl!,
-                    fit: BoxFit.cover,
-                  )
-                      : const SizedBox
-                      .shrink(),
+                          logoUrl!,
+                          fit: BoxFit.cover,
+                        )
+                      : const SizedBox.shrink(),
                 ),
               ),
               const SizedBox(width: 12),

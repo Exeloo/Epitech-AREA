@@ -57,9 +57,9 @@ class ProviderCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(16.0),
               child: logoUrl != null && logoUrl!.isNotEmpty
                   ? Image.network(
-                logoUrl!,
-                fit: BoxFit.contain,
-              )
+                      logoUrl!,
+                      fit: BoxFit.contain,
+                    )
                   : const SizedBox.shrink(),
             ),
           ),
@@ -105,7 +105,7 @@ class ProviderDescriptionState extends State<ProviderDescription> {
 
   void _getProvidersById(BuildContext context) async {
     final providerRepository =
-    Provider.of<ProviderRepository>(context, listen: false);
+        Provider.of<ProviderRepository>(context, listen: false);
 
     try {
       final response = await providerRepository.getProviderById(
@@ -154,7 +154,7 @@ class ProviderDescriptionState extends State<ProviderDescription> {
       backgroundColor: const Color(0xff1B1B1B),
       appBar: AppBar(
         backgroundColor:
-        Color(int.parse(_provider!.color.replaceFirst('#', '0xff'))),
+            Color(int.parse(_provider!.color.replaceFirst('#', '0xff'))),
         automaticallyImplyLeading: false,
         flexibleSpace: Padding(
           padding: const EdgeInsets.only(bottom: 10.0),
@@ -190,8 +190,8 @@ class ProviderDescriptionState extends State<ProviderDescription> {
               padding: const EdgeInsets.all(16.0),
               width: double.infinity,
               decoration: BoxDecoration(
-                color:
-                Color(int.parse(_provider!.color.replaceFirst('#', '0xff'))),
+                color: Color(
+                    int.parse(_provider!.color.replaceFirst('#', '0xff'))),
                 boxShadow: [
                   BoxShadow(
                     color: Color(
@@ -209,9 +209,9 @@ class ProviderDescriptionState extends State<ProviderDescription> {
                     borderRadius: BorderRadius.circular(16.0),
                     child: _provider!.img.isNotEmpty
                         ? Image.network(
-                      _provider!.img,
-                      fit: BoxFit.fitWidth,
-                    )
+                            _provider!.img,
+                            fit: BoxFit.fitWidth,
+                          )
                         : const SizedBox.shrink(),
                   ),
                   const SizedBox(height: 16),

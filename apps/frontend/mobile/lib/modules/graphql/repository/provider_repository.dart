@@ -35,7 +35,7 @@ class ProviderRepository {
     FetchPolicy fetchPolicy = FetchPolicy.CacheAndNetwork,
   }) async {
     final getProviderById = GgetProviderByIdReq(
-          (b) => b
+      (b) => b
         ..vars.id = id
         ..fetchPolicy = fetchPolicy,
     );

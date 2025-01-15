@@ -2234,9 +2234,10 @@ class GgetAllAppletsDataBuilder
     try {
       _$result = _$v ??
           new _$GgetAllAppletsData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GgetAllAppletsData', 'G__typename'),
-              getAllApplets: getAllApplets.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GgetAllAppletsData', 'G__typename'),
+            getAllApplets: getAllApplets.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -2378,13 +2379,14 @@ class GgetAllAppletsData_getAllAppletsBuilder
   _$GgetAllAppletsData_getAllApplets _build() {
     final _$result = _$v ??
         new _$GgetAllAppletsData_getAllApplets._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                r'GgetAllAppletsData_getAllApplets', 'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GgetAllAppletsData_getAllApplets', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GgetAllAppletsData_getAllApplets', 'name'),
-            description: description);
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename, r'GgetAllAppletsData_getAllApplets', 'G__typename'),
+          id: BuiltValueNullFieldError.checkNotNull(
+              id, r'GgetAllAppletsData_getAllApplets', 'id'),
+          name: BuiltValueNullFieldError.checkNotNull(
+              name, r'GgetAllAppletsData_getAllApplets', 'name'),
+          description: description,
+        );
     replace(_$result);
     return _$result;
   }
@@ -2491,9 +2493,10 @@ class GgetAppletByIdDataBuilder
     try {
       _$result = _$v ??
           new _$GgetAppletByIdData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GgetAppletByIdData', 'G__typename'),
-              getAppletById: getAppletById.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GgetAppletByIdData', 'G__typename'),
+            getAppletById: getAppletById.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -2655,14 +2658,15 @@ class GgetAppletByIdData_getAppletByIdBuilder
     try {
       _$result = _$v ??
           new _$GgetAppletByIdData_getAppletById._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                  r'GgetAppletByIdData_getAppletById', 'G__typename'),
-              triggerNodes: triggerNodes.build(),
-              id: BuiltValueNullFieldError.checkNotNull(
-                  id, r'GgetAppletByIdData_getAppletById', 'id'),
-              name: BuiltValueNullFieldError.checkNotNull(
-                  name, r'GgetAppletByIdData_getAppletById', 'name'),
-              description: description);
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GgetAppletByIdData_getAppletById', 'G__typename'),
+            triggerNodes: triggerNodes.build(),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GgetAppletByIdData_getAppletById', 'id'),
+            name: BuiltValueNullFieldError.checkNotNull(
+                name, r'GgetAppletByIdData_getAppletById', 'name'),
+            description: description,
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -2885,22 +2889,21 @@ class GgetAppletByIdData_getAppletById_triggerNodesBuilder
     try {
       _$result = _$v ??
           new _$GgetAppletByIdData_getAppletById_triggerNodes._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename,
-                  r'GgetAppletByIdData_getAppletById_triggerNodes',
-                  'G__typename'),
-              input: input.build(),
-              provider: provider.build(),
-              previous: previous.build(),
-              next: next.build(),
-              id: BuiltValueNullFieldError.checkNotNull(
-                  id, r'GgetAppletByIdData_getAppletById_triggerNodes', 'id'),
-              actionId: BuiltValueNullFieldError.checkNotNull(actionId,
-                  r'GgetAppletByIdData_getAppletById_triggerNodes', 'actionId'),
-              actionType: BuiltValueNullFieldError.checkNotNull(
-                  actionType,
-                  r'GgetAppletByIdData_getAppletById_triggerNodes',
-                  'actionType'));
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GgetAppletByIdData_getAppletById_triggerNodes',
+                'G__typename'),
+            input: input.build(),
+            provider: provider.build(),
+            previous: previous.build(),
+            next: next.build(),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GgetAppletByIdData_getAppletById_triggerNodes', 'id'),
+            actionId: BuiltValueNullFieldError.checkNotNull(actionId,
+                r'GgetAppletByIdData_getAppletById_triggerNodes', 'actionId'),
+            actionType: BuiltValueNullFieldError.checkNotNull(actionType,
+                r'GgetAppletByIdData_getAppletById_triggerNodes', 'actionType'),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -3110,20 +3113,31 @@ class GgetAppletByIdData_getAppletById_triggerNodes_providerBuilder
   _$GgetAppletByIdData_getAppletById_triggerNodes_provider _build() {
     final _$result = _$v ??
         new _$GgetAppletByIdData_getAppletById_triggerNodes_provider._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GgetAppletByIdData_getAppletById_triggerNodes_provider', 'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GgetAppletByIdData_getAppletById_triggerNodes_provider', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GgetAppletByIdData_getAppletById_triggerNodes_provider', 'name'),
-            description: BuiltValueNullFieldError.checkNotNull(
-                description, r'GgetAppletByIdData_getAppletById_triggerNodes_provider', 'description'),
-            img: BuiltValueNullFieldError.checkNotNull(
-                img, r'GgetAppletByIdData_getAppletById_triggerNodes_provider', 'img'),
-            color: BuiltValueNullFieldError.checkNotNull(
-                color, r'GgetAppletByIdData_getAppletById_triggerNodes_provider', 'color'),
-            visibility: BuiltValueNullFieldError.checkNotNull(
-                visibility, r'GgetAppletByIdData_getAppletById_triggerNodes_provider', 'visibility'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename,
+              r'GgetAppletByIdData_getAppletById_triggerNodes_provider',
+              'G__typename'),
+          id: BuiltValueNullFieldError.checkNotNull(id,
+              r'GgetAppletByIdData_getAppletById_triggerNodes_provider', 'id'),
+          name: BuiltValueNullFieldError.checkNotNull(
+              name,
+              r'GgetAppletByIdData_getAppletById_triggerNodes_provider',
+              'name'),
+          description: BuiltValueNullFieldError.checkNotNull(
+              description,
+              r'GgetAppletByIdData_getAppletById_triggerNodes_provider',
+              'description'),
+          img: BuiltValueNullFieldError.checkNotNull(img,
+              r'GgetAppletByIdData_getAppletById_triggerNodes_provider', 'img'),
+          color: BuiltValueNullFieldError.checkNotNull(
+              color,
+              r'GgetAppletByIdData_getAppletById_triggerNodes_provider',
+              'color'),
+          visibility: BuiltValueNullFieldError.checkNotNull(
+              visibility,
+              r'GgetAppletByIdData_getAppletById_triggerNodes_provider',
+              'visibility'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -3273,22 +3287,21 @@ class GgetAppletByIdData_getAppletById_triggerNodes_previousBuilder
   _$GgetAppletByIdData_getAppletById_triggerNodes_previous _build() {
     final _$result = _$v ??
         new _$GgetAppletByIdData_getAppletById_triggerNodes_previous._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename,
-                r'GgetAppletByIdData_getAppletById_triggerNodes_previous',
-                'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id,
-                r'GgetAppletByIdData_getAppletById_triggerNodes_previous',
-                'id'),
-            actionId: BuiltValueNullFieldError.checkNotNull(
-                actionId,
-                r'GgetAppletByIdData_getAppletById_triggerNodes_previous',
-                'actionId'),
-            actionType: BuiltValueNullFieldError.checkNotNull(
-                actionType,
-                r'GgetAppletByIdData_getAppletById_triggerNodes_previous',
-                'actionType'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename,
+              r'GgetAppletByIdData_getAppletById_triggerNodes_previous',
+              'G__typename'),
+          id: BuiltValueNullFieldError.checkNotNull(id,
+              r'GgetAppletByIdData_getAppletById_triggerNodes_previous', 'id'),
+          actionId: BuiltValueNullFieldError.checkNotNull(
+              actionId,
+              r'GgetAppletByIdData_getAppletById_triggerNodes_previous',
+              'actionId'),
+          actionType: BuiltValueNullFieldError.checkNotNull(
+              actionType,
+              r'GgetAppletByIdData_getAppletById_triggerNodes_previous',
+              'actionType'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -3432,20 +3445,21 @@ class GgetAppletByIdData_getAppletById_triggerNodes_nextBuilder
   _$GgetAppletByIdData_getAppletById_triggerNodes_next _build() {
     final _$result = _$v ??
         new _$GgetAppletByIdData_getAppletById_triggerNodes_next._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename,
-                r'GgetAppletByIdData_getAppletById_triggerNodes_next',
-                'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(id,
-                r'GgetAppletByIdData_getAppletById_triggerNodes_next', 'id'),
-            actionId: BuiltValueNullFieldError.checkNotNull(
-                actionId,
-                r'GgetAppletByIdData_getAppletById_triggerNodes_next',
-                'actionId'),
-            actionType: BuiltValueNullFieldError.checkNotNull(
-                actionType,
-                r'GgetAppletByIdData_getAppletById_triggerNodes_next',
-                'actionType'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename,
+              r'GgetAppletByIdData_getAppletById_triggerNodes_next',
+              'G__typename'),
+          id: BuiltValueNullFieldError.checkNotNull(
+              id, r'GgetAppletByIdData_getAppletById_triggerNodes_next', 'id'),
+          actionId: BuiltValueNullFieldError.checkNotNull(
+              actionId,
+              r'GgetAppletByIdData_getAppletById_triggerNodes_next',
+              'actionId'),
+          actionType: BuiltValueNullFieldError.checkNotNull(
+              actionType,
+              r'GgetAppletByIdData_getAppletById_triggerNodes_next',
+              'actionType'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -3554,9 +3568,10 @@ class GgetAppletNodeByIdDataBuilder
     try {
       _$result = _$v ??
           new _$GgetAppletNodeByIdData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GgetAppletNodeByIdData', 'G__typename'),
-              getAppletNodeById: getAppletNodeById.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GgetAppletNodeByIdData', 'G__typename'),
+            getAppletNodeById: getAppletNodeById.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -3772,18 +3787,19 @@ class GgetAppletNodeByIdData_getAppletNodeByIdBuilder
     try {
       _$result = _$v ??
           new _$GgetAppletNodeByIdData_getAppletNodeById._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                  r'GgetAppletNodeByIdData_getAppletNodeById', 'G__typename'),
-              input: input.build(),
-              provider: provider.build(),
-              previous: previous.build(),
-              next: next.build(),
-              id: BuiltValueNullFieldError.checkNotNull(
-                  id, r'GgetAppletNodeByIdData_getAppletNodeById', 'id'),
-              actionId: BuiltValueNullFieldError.checkNotNull(actionId,
-                  r'GgetAppletNodeByIdData_getAppletNodeById', 'actionId'),
-              actionType: BuiltValueNullFieldError.checkNotNull(actionType,
-                  r'GgetAppletNodeByIdData_getAppletNodeById', 'actionType'));
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GgetAppletNodeByIdData_getAppletNodeById', 'G__typename'),
+            input: input.build(),
+            provider: provider.build(),
+            previous: previous.build(),
+            next: next.build(),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GgetAppletNodeByIdData_getAppletNodeById', 'id'),
+            actionId: BuiltValueNullFieldError.checkNotNull(actionId,
+                r'GgetAppletNodeByIdData_getAppletNodeById', 'actionId'),
+            actionType: BuiltValueNullFieldError.checkNotNull(actionType,
+                r'GgetAppletNodeByIdData_getAppletNodeById', 'actionType'),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -3985,20 +4001,27 @@ class GgetAppletNodeByIdData_getAppletNodeById_providerBuilder
   _$GgetAppletNodeByIdData_getAppletNodeById_provider _build() {
     final _$result = _$v ??
         new _$GgetAppletNodeByIdData_getAppletNodeById_provider._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GgetAppletNodeByIdData_getAppletNodeById_provider', 'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GgetAppletNodeByIdData_getAppletNodeById_provider', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GgetAppletNodeByIdData_getAppletNodeById_provider', 'name'),
-            description: BuiltValueNullFieldError.checkNotNull(
-                description, r'GgetAppletNodeByIdData_getAppletNodeById_provider', 'description'),
-            img: BuiltValueNullFieldError.checkNotNull(
-                img, r'GgetAppletNodeByIdData_getAppletNodeById_provider', 'img'),
-            color: BuiltValueNullFieldError.checkNotNull(
-                color, r'GgetAppletNodeByIdData_getAppletNodeById_provider', 'color'),
-            visibility: BuiltValueNullFieldError.checkNotNull(
-                visibility, r'GgetAppletNodeByIdData_getAppletNodeById_provider', 'visibility'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename,
+              r'GgetAppletNodeByIdData_getAppletNodeById_provider',
+              'G__typename'),
+          id: BuiltValueNullFieldError.checkNotNull(
+              id, r'GgetAppletNodeByIdData_getAppletNodeById_provider', 'id'),
+          name: BuiltValueNullFieldError.checkNotNull(name,
+              r'GgetAppletNodeByIdData_getAppletNodeById_provider', 'name'),
+          description: BuiltValueNullFieldError.checkNotNull(
+              description,
+              r'GgetAppletNodeByIdData_getAppletNodeById_provider',
+              'description'),
+          img: BuiltValueNullFieldError.checkNotNull(
+              img, r'GgetAppletNodeByIdData_getAppletNodeById_provider', 'img'),
+          color: BuiltValueNullFieldError.checkNotNull(color,
+              r'GgetAppletNodeByIdData_getAppletNodeById_provider', 'color'),
+          visibility: BuiltValueNullFieldError.checkNotNull(
+              visibility,
+              r'GgetAppletNodeByIdData_getAppletNodeById_provider',
+              'visibility'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -4142,20 +4165,19 @@ class GgetAppletNodeByIdData_getAppletNodeById_previousBuilder
   _$GgetAppletNodeByIdData_getAppletNodeById_previous _build() {
     final _$result = _$v ??
         new _$GgetAppletNodeByIdData_getAppletNodeById_previous._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename,
-                r'GgetAppletNodeByIdData_getAppletNodeById_previous',
-                'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GgetAppletNodeByIdData_getAppletNodeById_previous', 'id'),
-            actionId: BuiltValueNullFieldError.checkNotNull(
-                actionId,
-                r'GgetAppletNodeByIdData_getAppletNodeById_previous',
-                'actionId'),
-            actionType: BuiltValueNullFieldError.checkNotNull(
-                actionType,
-                r'GgetAppletNodeByIdData_getAppletNodeById_previous',
-                'actionType'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename,
+              r'GgetAppletNodeByIdData_getAppletNodeById_previous',
+              'G__typename'),
+          id: BuiltValueNullFieldError.checkNotNull(
+              id, r'GgetAppletNodeByIdData_getAppletNodeById_previous', 'id'),
+          actionId: BuiltValueNullFieldError.checkNotNull(actionId,
+              r'GgetAppletNodeByIdData_getAppletNodeById_previous', 'actionId'),
+          actionType: BuiltValueNullFieldError.checkNotNull(
+              actionType,
+              r'GgetAppletNodeByIdData_getAppletNodeById_previous',
+              'actionType'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -4296,18 +4318,15 @@ class GgetAppletNodeByIdData_getAppletNodeById_nextBuilder
   _$GgetAppletNodeByIdData_getAppletNodeById_next _build() {
     final _$result = _$v ??
         new _$GgetAppletNodeByIdData_getAppletNodeById_next._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename,
-                r'GgetAppletNodeByIdData_getAppletNodeById_next',
-                'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GgetAppletNodeByIdData_getAppletNodeById_next', 'id'),
-            actionId: BuiltValueNullFieldError.checkNotNull(actionId,
-                r'GgetAppletNodeByIdData_getAppletNodeById_next', 'actionId'),
-            actionType: BuiltValueNullFieldError.checkNotNull(
-                actionType,
-                r'GgetAppletNodeByIdData_getAppletNodeById_next',
-                'actionType'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+              r'GgetAppletNodeByIdData_getAppletNodeById_next', 'G__typename'),
+          id: BuiltValueNullFieldError.checkNotNull(
+              id, r'GgetAppletNodeByIdData_getAppletNodeById_next', 'id'),
+          actionId: BuiltValueNullFieldError.checkNotNull(actionId,
+              r'GgetAppletNodeByIdData_getAppletNodeById_next', 'actionId'),
+          actionType: BuiltValueNullFieldError.checkNotNull(actionType,
+              r'GgetAppletNodeByIdData_getAppletNodeById_next', 'actionType'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -4412,9 +4431,10 @@ class GcreateAppletDataBuilder
     try {
       _$result = _$v ??
           new _$GcreateAppletData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GcreateAppletData', 'G__typename'),
-              createApplet: createApplet.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GcreateAppletData', 'G__typename'),
+            createApplet: createApplet.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -4555,13 +4575,14 @@ class GcreateAppletData_createAppletBuilder
   _$GcreateAppletData_createApplet _build() {
     final _$result = _$v ??
         new _$GcreateAppletData_createApplet._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GcreateAppletData_createApplet', 'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GcreateAppletData_createApplet', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GcreateAppletData_createApplet', 'name'),
-            description: description);
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename, r'GcreateAppletData_createApplet', 'G__typename'),
+          id: BuiltValueNullFieldError.checkNotNull(
+              id, r'GcreateAppletData_createApplet', 'id'),
+          name: BuiltValueNullFieldError.checkNotNull(
+              name, r'GcreateAppletData_createApplet', 'name'),
+          description: description,
+        );
     replace(_$result);
     return _$result;
   }
@@ -4731,20 +4752,21 @@ class GBaseAppletProviderDataBuilder
   _$GBaseAppletProviderData _build() {
     final _$result = _$v ??
         new _$GBaseAppletProviderData._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GBaseAppletProviderData', 'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GBaseAppletProviderData', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GBaseAppletProviderData', 'name'),
-            description: BuiltValueNullFieldError.checkNotNull(
-                description, r'GBaseAppletProviderData', 'description'),
-            img: BuiltValueNullFieldError.checkNotNull(
-                img, r'GBaseAppletProviderData', 'img'),
-            color: BuiltValueNullFieldError.checkNotNull(
-                color, r'GBaseAppletProviderData', 'color'),
-            visibility: BuiltValueNullFieldError.checkNotNull(
-                visibility, r'GBaseAppletProviderData', 'visibility'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename, r'GBaseAppletProviderData', 'G__typename'),
+          id: BuiltValueNullFieldError.checkNotNull(
+              id, r'GBaseAppletProviderData', 'id'),
+          name: BuiltValueNullFieldError.checkNotNull(
+              name, r'GBaseAppletProviderData', 'name'),
+          description: BuiltValueNullFieldError.checkNotNull(
+              description, r'GBaseAppletProviderData', 'description'),
+          img: BuiltValueNullFieldError.checkNotNull(
+              img, r'GBaseAppletProviderData', 'img'),
+          color: BuiltValueNullFieldError.checkNotNull(
+              color, r'GBaseAppletProviderData', 'color'),
+          visibility: BuiltValueNullFieldError.checkNotNull(
+              visibility, r'GBaseAppletProviderData', 'visibility'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -4874,14 +4896,15 @@ class GBaseAppletNodeDataBuilder
   _$GBaseAppletNodeData _build() {
     final _$result = _$v ??
         new _$GBaseAppletNodeData._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GBaseAppletNodeData', 'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GBaseAppletNodeData', 'id'),
-            actionId: BuiltValueNullFieldError.checkNotNull(
-                actionId, r'GBaseAppletNodeData', 'actionId'),
-            actionType: BuiltValueNullFieldError.checkNotNull(
-                actionType, r'GBaseAppletNodeData', 'actionType'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename, r'GBaseAppletNodeData', 'G__typename'),
+          id: BuiltValueNullFieldError.checkNotNull(
+              id, r'GBaseAppletNodeData', 'id'),
+          actionId: BuiltValueNullFieldError.checkNotNull(
+              actionId, r'GBaseAppletNodeData', 'actionId'),
+          actionType: BuiltValueNullFieldError.checkNotNull(
+              actionType, r'GBaseAppletNodeData', 'actionType'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -5072,18 +5095,19 @@ class GExtendedAppletNodeDataBuilder
     try {
       _$result = _$v ??
           new _$GExtendedAppletNodeData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GExtendedAppletNodeData', 'G__typename'),
-              id: BuiltValueNullFieldError.checkNotNull(
-                  id, r'GExtendedAppletNodeData', 'id'),
-              actionId: BuiltValueNullFieldError.checkNotNull(
-                  actionId, r'GExtendedAppletNodeData', 'actionId'),
-              actionType: BuiltValueNullFieldError.checkNotNull(
-                  actionType, r'GExtendedAppletNodeData', 'actionType'),
-              input: input.build(),
-              provider: provider.build(),
-              previous: previous.build(),
-              next: next.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GExtendedAppletNodeData', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GExtendedAppletNodeData', 'id'),
+            actionId: BuiltValueNullFieldError.checkNotNull(
+                actionId, r'GExtendedAppletNodeData', 'actionId'),
+            actionType: BuiltValueNullFieldError.checkNotNull(
+                actionType, r'GExtendedAppletNodeData', 'actionType'),
+            input: input.build(),
+            provider: provider.build(),
+            previous: previous.build(),
+            next: next.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -5273,20 +5297,21 @@ class GExtendedAppletNodeData_providerBuilder
   _$GExtendedAppletNodeData_provider _build() {
     final _$result = _$v ??
         new _$GExtendedAppletNodeData_provider._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                r'GExtendedAppletNodeData_provider', 'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GExtendedAppletNodeData_provider', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GExtendedAppletNodeData_provider', 'name'),
-            description: BuiltValueNullFieldError.checkNotNull(description,
-                r'GExtendedAppletNodeData_provider', 'description'),
-            img: BuiltValueNullFieldError.checkNotNull(
-                img, r'GExtendedAppletNodeData_provider', 'img'),
-            color: BuiltValueNullFieldError.checkNotNull(
-                color, r'GExtendedAppletNodeData_provider', 'color'),
-            visibility: BuiltValueNullFieldError.checkNotNull(
-                visibility, r'GExtendedAppletNodeData_provider', 'visibility'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename, r'GExtendedAppletNodeData_provider', 'G__typename'),
+          id: BuiltValueNullFieldError.checkNotNull(
+              id, r'GExtendedAppletNodeData_provider', 'id'),
+          name: BuiltValueNullFieldError.checkNotNull(
+              name, r'GExtendedAppletNodeData_provider', 'name'),
+          description: BuiltValueNullFieldError.checkNotNull(
+              description, r'GExtendedAppletNodeData_provider', 'description'),
+          img: BuiltValueNullFieldError.checkNotNull(
+              img, r'GExtendedAppletNodeData_provider', 'img'),
+          color: BuiltValueNullFieldError.checkNotNull(
+              color, r'GExtendedAppletNodeData_provider', 'color'),
+          visibility: BuiltValueNullFieldError.checkNotNull(
+              visibility, r'GExtendedAppletNodeData_provider', 'visibility'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -5420,14 +5445,15 @@ class GExtendedAppletNodeData_previousBuilder
   _$GExtendedAppletNodeData_previous _build() {
     final _$result = _$v ??
         new _$GExtendedAppletNodeData_previous._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                r'GExtendedAppletNodeData_previous', 'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GExtendedAppletNodeData_previous', 'id'),
-            actionId: BuiltValueNullFieldError.checkNotNull(
-                actionId, r'GExtendedAppletNodeData_previous', 'actionId'),
-            actionType: BuiltValueNullFieldError.checkNotNull(
-                actionType, r'GExtendedAppletNodeData_previous', 'actionType'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename, r'GExtendedAppletNodeData_previous', 'G__typename'),
+          id: BuiltValueNullFieldError.checkNotNull(
+              id, r'GExtendedAppletNodeData_previous', 'id'),
+          actionId: BuiltValueNullFieldError.checkNotNull(
+              actionId, r'GExtendedAppletNodeData_previous', 'actionId'),
+          actionType: BuiltValueNullFieldError.checkNotNull(
+              actionType, r'GExtendedAppletNodeData_previous', 'actionType'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -5560,14 +5586,15 @@ class GExtendedAppletNodeData_nextBuilder
   _$GExtendedAppletNodeData_next _build() {
     final _$result = _$v ??
         new _$GExtendedAppletNodeData_next._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GExtendedAppletNodeData_next', 'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GExtendedAppletNodeData_next', 'id'),
-            actionId: BuiltValueNullFieldError.checkNotNull(
-                actionId, r'GExtendedAppletNodeData_next', 'actionId'),
-            actionType: BuiltValueNullFieldError.checkNotNull(
-                actionType, r'GExtendedAppletNodeData_next', 'actionType'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename, r'GExtendedAppletNodeData_next', 'G__typename'),
+          id: BuiltValueNullFieldError.checkNotNull(
+              id, r'GExtendedAppletNodeData_next', 'id'),
+          actionId: BuiltValueNullFieldError.checkNotNull(
+              actionId, r'GExtendedAppletNodeData_next', 'actionId'),
+          actionType: BuiltValueNullFieldError.checkNotNull(
+              actionType, r'GExtendedAppletNodeData_next', 'actionType'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -5691,13 +5718,14 @@ class GBaseAppletDataBuilder
   _$GBaseAppletData _build() {
     final _$result = _$v ??
         new _$GBaseAppletData._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GBaseAppletData', 'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GBaseAppletData', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GBaseAppletData', 'name'),
-            description: description);
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename, r'GBaseAppletData', 'G__typename'),
+          id: BuiltValueNullFieldError.checkNotNull(
+              id, r'GBaseAppletData', 'id'),
+          name: BuiltValueNullFieldError.checkNotNull(
+              name, r'GBaseAppletData', 'name'),
+          description: description,
+        );
     replace(_$result);
     return _$result;
   }
@@ -5843,14 +5871,15 @@ class GAppletWithNodesDataBuilder
     try {
       _$result = _$v ??
           new _$GAppletWithNodesData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GAppletWithNodesData', 'G__typename'),
-              id: BuiltValueNullFieldError.checkNotNull(
-                  id, r'GAppletWithNodesData', 'id'),
-              name: BuiltValueNullFieldError.checkNotNull(
-                  name, r'GAppletWithNodesData', 'name'),
-              description: description,
-              triggerNodes: triggerNodes.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GAppletWithNodesData', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GAppletWithNodesData', 'id'),
+            name: BuiltValueNullFieldError.checkNotNull(
+                name, r'GAppletWithNodesData', 'name'),
+            description: description,
+            triggerNodes: triggerNodes.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -6061,18 +6090,19 @@ class GAppletWithNodesData_triggerNodesBuilder
     try {
       _$result = _$v ??
           new _$GAppletWithNodesData_triggerNodes._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                  r'GAppletWithNodesData_triggerNodes', 'G__typename'),
-              input: input.build(),
-              provider: provider.build(),
-              previous: previous.build(),
-              next: next.build(),
-              id: BuiltValueNullFieldError.checkNotNull(
-                  id, r'GAppletWithNodesData_triggerNodes', 'id'),
-              actionId: BuiltValueNullFieldError.checkNotNull(
-                  actionId, r'GAppletWithNodesData_triggerNodes', 'actionId'),
-              actionType: BuiltValueNullFieldError.checkNotNull(actionType,
-                  r'GAppletWithNodesData_triggerNodes', 'actionType'));
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GAppletWithNodesData_triggerNodes', 'G__typename'),
+            input: input.build(),
+            provider: provider.build(),
+            previous: previous.build(),
+            next: next.build(),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GAppletWithNodesData_triggerNodes', 'id'),
+            actionId: BuiltValueNullFieldError.checkNotNull(
+                actionId, r'GAppletWithNodesData_triggerNodes', 'actionId'),
+            actionType: BuiltValueNullFieldError.checkNotNull(
+                actionType, r'GAppletWithNodesData_triggerNodes', 'actionType'),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -6268,20 +6298,21 @@ class GAppletWithNodesData_triggerNodes_providerBuilder
   _$GAppletWithNodesData_triggerNodes_provider _build() {
     final _$result = _$v ??
         new _$GAppletWithNodesData_triggerNodes_provider._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GAppletWithNodesData_triggerNodes_provider', 'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GAppletWithNodesData_triggerNodes_provider', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GAppletWithNodesData_triggerNodes_provider', 'name'),
-            description: BuiltValueNullFieldError.checkNotNull(
-                description, r'GAppletWithNodesData_triggerNodes_provider', 'description'),
-            img: BuiltValueNullFieldError.checkNotNull(
-                img, r'GAppletWithNodesData_triggerNodes_provider', 'img'),
-            color: BuiltValueNullFieldError.checkNotNull(
-                color, r'GAppletWithNodesData_triggerNodes_provider', 'color'),
-            visibility: BuiltValueNullFieldError.checkNotNull(
-                visibility, r'GAppletWithNodesData_triggerNodes_provider', 'visibility'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+              r'GAppletWithNodesData_triggerNodes_provider', 'G__typename'),
+          id: BuiltValueNullFieldError.checkNotNull(
+              id, r'GAppletWithNodesData_triggerNodes_provider', 'id'),
+          name: BuiltValueNullFieldError.checkNotNull(
+              name, r'GAppletWithNodesData_triggerNodes_provider', 'name'),
+          description: BuiltValueNullFieldError.checkNotNull(description,
+              r'GAppletWithNodesData_triggerNodes_provider', 'description'),
+          img: BuiltValueNullFieldError.checkNotNull(
+              img, r'GAppletWithNodesData_triggerNodes_provider', 'img'),
+          color: BuiltValueNullFieldError.checkNotNull(
+              color, r'GAppletWithNodesData_triggerNodes_provider', 'color'),
+          visibility: BuiltValueNullFieldError.checkNotNull(visibility,
+              r'GAppletWithNodesData_triggerNodes_provider', 'visibility'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -6421,14 +6452,15 @@ class GAppletWithNodesData_triggerNodes_previousBuilder
   _$GAppletWithNodesData_triggerNodes_previous _build() {
     final _$result = _$v ??
         new _$GAppletWithNodesData_triggerNodes_previous._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                r'GAppletWithNodesData_triggerNodes_previous', 'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GAppletWithNodesData_triggerNodes_previous', 'id'),
-            actionId: BuiltValueNullFieldError.checkNotNull(actionId,
-                r'GAppletWithNodesData_triggerNodes_previous', 'actionId'),
-            actionType: BuiltValueNullFieldError.checkNotNull(actionType,
-                r'GAppletWithNodesData_triggerNodes_previous', 'actionType'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+              r'GAppletWithNodesData_triggerNodes_previous', 'G__typename'),
+          id: BuiltValueNullFieldError.checkNotNull(
+              id, r'GAppletWithNodesData_triggerNodes_previous', 'id'),
+          actionId: BuiltValueNullFieldError.checkNotNull(actionId,
+              r'GAppletWithNodesData_triggerNodes_previous', 'actionId'),
+          actionType: BuiltValueNullFieldError.checkNotNull(actionType,
+              r'GAppletWithNodesData_triggerNodes_previous', 'actionType'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -6567,14 +6599,15 @@ class GAppletWithNodesData_triggerNodes_nextBuilder
   _$GAppletWithNodesData_triggerNodes_next _build() {
     final _$result = _$v ??
         new _$GAppletWithNodesData_triggerNodes_next._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                r'GAppletWithNodesData_triggerNodes_next', 'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GAppletWithNodesData_triggerNodes_next', 'id'),
-            actionId: BuiltValueNullFieldError.checkNotNull(actionId,
-                r'GAppletWithNodesData_triggerNodes_next', 'actionId'),
-            actionType: BuiltValueNullFieldError.checkNotNull(actionType,
-                r'GAppletWithNodesData_triggerNodes_next', 'actionType'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+              r'GAppletWithNodesData_triggerNodes_next', 'G__typename'),
+          id: BuiltValueNullFieldError.checkNotNull(
+              id, r'GAppletWithNodesData_triggerNodes_next', 'id'),
+          actionId: BuiltValueNullFieldError.checkNotNull(
+              actionId, r'GAppletWithNodesData_triggerNodes_next', 'actionId'),
+          actionType: BuiltValueNullFieldError.checkNotNull(actionType,
+              r'GAppletWithNodesData_triggerNodes_next', 'actionType'),
+        );
     replace(_$result);
     return _$result;
   }

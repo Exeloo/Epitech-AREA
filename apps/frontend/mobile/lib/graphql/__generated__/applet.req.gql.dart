@@ -1,11 +1,11 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
 
+// ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:aether/graphql/__generated__/applet.ast.gql.dart' as _i5;
 import 'package:aether/graphql/__generated__/applet.data.gql.dart' as _i2;
 import 'package:aether/graphql/__generated__/applet.var.gql.dart' as _i3;
 import 'package:aether/graphql/__generated__/serializers.gql.dart' as _i6;
-// ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:ferry_exec/ferry_exec.dart' as _i1;

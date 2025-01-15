@@ -8,6 +8,8 @@ part of 'provider.var.gql.dart';
 
 Serializer<GgetAllProvidersVars> _$ggetAllProvidersVarsSerializer =
     new _$GgetAllProvidersVarsSerializer();
+Serializer<GgetProviderOAuthStateVars> _$ggetProviderOAuthStateVarsSerializer =
+    new _$GgetProviderOAuthStateVarsSerializer();
 Serializer<GgetProviderByIdVars> _$ggetProviderByIdVarsSerializer =
     new _$GgetProviderByIdVarsSerializer();
 Serializer<GProviderManifestActionVars>
@@ -43,6 +45,51 @@ class _$GgetAllProvidersVarsSerializer
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     return new GgetAllProvidersVarsBuilder().build();
+  }
+}
+
+class _$GgetProviderOAuthStateVarsSerializer
+    implements StructuredSerializer<GgetProviderOAuthStateVars> {
+  @override
+  final Iterable<Type> types = const [
+    GgetProviderOAuthStateVars,
+    _$GgetProviderOAuthStateVars
+  ];
+  @override
+  final String wireName = 'GgetProviderOAuthStateVars';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GgetProviderOAuthStateVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(int)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GgetProviderOAuthStateVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GgetProviderOAuthStateVarsBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+      }
+    }
+
+    return result.build();
   }
 }
 
@@ -247,6 +294,95 @@ class GgetAllProvidersVarsBuilder
   }
 }
 
+class _$GgetProviderOAuthStateVars extends GgetProviderOAuthStateVars {
+  @override
+  final int id;
+
+  factory _$GgetProviderOAuthStateVars(
+          [void Function(GgetProviderOAuthStateVarsBuilder)? updates]) =>
+      (new GgetProviderOAuthStateVarsBuilder()..update(updates))._build();
+
+  _$GgetProviderOAuthStateVars._({required this.id}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GgetProviderOAuthStateVars', 'id');
+  }
+
+  @override
+  GgetProviderOAuthStateVars rebuild(
+          void Function(GgetProviderOAuthStateVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GgetProviderOAuthStateVarsBuilder toBuilder() =>
+      new GgetProviderOAuthStateVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GgetProviderOAuthStateVars && id == other.id;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GgetProviderOAuthStateVars')
+          ..add('id', id))
+        .toString();
+  }
+}
+
+class GgetProviderOAuthStateVarsBuilder
+    implements
+        Builder<GgetProviderOAuthStateVars, GgetProviderOAuthStateVarsBuilder> {
+  _$GgetProviderOAuthStateVars? _$v;
+
+  int? _id;
+  int? get id => _$this._id;
+  set id(int? id) => _$this._id = id;
+
+  GgetProviderOAuthStateVarsBuilder();
+
+  GgetProviderOAuthStateVarsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GgetProviderOAuthStateVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GgetProviderOAuthStateVars;
+  }
+
+  @override
+  void update(void Function(GgetProviderOAuthStateVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GgetProviderOAuthStateVars build() => _build();
+
+  _$GgetProviderOAuthStateVars _build() {
+    final _$result = _$v ??
+        new _$GgetProviderOAuthStateVars._(
+          id: BuiltValueNullFieldError.checkNotNull(
+              id, r'GgetProviderOAuthStateVars', 'id'),
+        );
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$GgetProviderByIdVars extends GgetProviderByIdVars {
   @override
   final int id;
@@ -325,8 +461,9 @@ class GgetProviderByIdVarsBuilder
   _$GgetProviderByIdVars _build() {
     final _$result = _$v ??
         new _$GgetProviderByIdVars._(
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GgetProviderByIdVars', 'id'));
+          id: BuiltValueNullFieldError.checkNotNull(
+              id, r'GgetProviderByIdVars', 'id'),
+        );
     replace(_$result);
     return _$result;
   }

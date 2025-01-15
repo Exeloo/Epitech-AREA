@@ -73,7 +73,7 @@ export class ChannelPointsCustomRewardAddEventResponse {
   title: string;
 
   @ManifestProperty({
-    type: ManifestPropertyEnum.INTEGER,
+    type: ManifestPropertyEnum.NUMBER,
   })
   cost: number;
 

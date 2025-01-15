@@ -62,12 +62,18 @@ export class Message {
       type: ManifestPropertyEnum.OBJECT,
       properties: Recipient,
     },
+    optional: true,
   })
   ccRecipients?: Array<Recipient>;
 }
 
 @ManifestType()
 export class ActionSendMailInput {
+  @ManifestProperty({
+    type: ManifestPropertyEnum.STRING,
+  })
+  user_id: string;
+
   @ManifestProperty({
     type: ManifestPropertyEnum.OBJECT,
     properties: Message,

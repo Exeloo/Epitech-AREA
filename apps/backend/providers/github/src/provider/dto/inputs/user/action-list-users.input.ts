@@ -7,6 +7,11 @@ import {
 @ManifestType()
 export class ActionListUsersInput {
   @ManifestProperty({
+    type: ManifestPropertyEnum.STRING,
+  })
+  user_id: string;
+
+  @ManifestProperty({
     type: ManifestPropertyEnum.NUMBER,
   })
   since?: number;

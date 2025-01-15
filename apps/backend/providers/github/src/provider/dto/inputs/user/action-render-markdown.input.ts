@@ -9,6 +9,10 @@ export class ActionRenderMarkdownInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
   })
+  user_id: string;
+  @ManifestProperty({
+    type: ManifestPropertyEnum.STRING,
+  })
   text: string;
 
   @ManifestProperty({

@@ -7,6 +7,11 @@ import {
 @ManifestType()
 export class ActionGetProjectInput {
   @ManifestProperty({
+    type: ManifestPropertyEnum.STRING,
+  })
+  user_id: string;
+
+  @ManifestProperty({
     type: ManifestPropertyEnum.NUMBER,
   })
   project_id: number;

@@ -1,9 +1,17 @@
+---
+outline: deep
+
+next:
+   text: Ansible
+   link: '/devops/ansible'
+---
+
 # Explanation Guide
 
 Checkout different documentations :
-- [Ansible](./docs/ansible.md)
-- [Templates](./docs/templates.md)
-- [Kubernetes](./docs/kubernetes.md)
+- [Ansible](./ansible/index.md)
+- [Templates](./templates/index.md)
+- [Kubernetes](./kubernetes/index.md)
 
 # Installation & Deployment
 
@@ -80,4 +88,4 @@ This guide is now complete, and you have successfully set up a kubernetes cluste
 Now you can click on **New apps** and enter the information needed to launch your apps.
 In our case, we're using Helm's templates to configure our apps.
 
-For more information about Helm templates, please refer to this page:  [Templates Documentation](./docs/templates.md)
+For more information about Helm templates, please refer to this page:  [Templates Documentation](./templates/index.md)

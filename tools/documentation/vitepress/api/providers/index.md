@@ -16,7 +16,7 @@ A provider is a system that interface an external API like Google or Microsoft, 
 
 There are some rules to a provider to allows API to be more generic.
 
-The main rule is that the provider must provide a manifest, that describe each triggers and actions and many specifications about it. Learn more about manifest [here](/api/providers/manifest).
+The main rule is that the provider must provide a manifest, that describe each triggers and actions and many specifications about it. Learn more about manifest [here](./../../api/providers/manifest/index.md).
 
 ## Authorization
 

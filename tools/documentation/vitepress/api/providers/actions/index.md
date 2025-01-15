@@ -34,7 +34,7 @@ Actions has to be implemented in the manifest with this example :
 }
 ```
 
-Fields `input` and `output` are describe [here](/api/providers/manifest/fields)
+Fields `input` and `output` are describe [here](./../../../api/providers/manifest/fields/index.md)
 
 ## Routes
 

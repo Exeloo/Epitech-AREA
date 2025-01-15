@@ -1,5 +1,4 @@
 import { Injectable } from "@nestjs/common";
-import { ConfigService } from "@nestjs/config";
 import { OnEvent } from "@nestjs/event-emitter";
 
 import { ManifestTrigger } from "@lib/manifest";
@@ -15,7 +14,6 @@ import { EventsEnum } from "~/provider/shared/event/event.enum";
 @Injectable()
 export class MessageTrigger {
   constructor(
-    private readonly configService: ConfigService,
     private readonly triggerService: TriggerService,
     private readonly appGateway: AppGateway,
   ) {}
@@ -43,7 +41,7 @@ export class MessageTrigger {
 
   @ManifestTrigger({
     id: "message-delete",
-    name: "On Message Create",
+    name: "On Message Delete",
     description: "Triggered when a message is deleted in a channel",
     img: "",
     color: "#ffffff",

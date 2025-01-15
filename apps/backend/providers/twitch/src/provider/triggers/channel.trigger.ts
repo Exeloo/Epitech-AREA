@@ -1,5 +1,4 @@
 import { Injectable } from "@nestjs/common";
-import { ConfigService } from "@nestjs/config";
 import { OnEvent } from "@nestjs/event-emitter";
 
 import { ManifestTrigger } from "@lib/manifest";
@@ -19,7 +18,6 @@ import { EventsEnum } from "~/provider/shared/event/event.enum";
 @Injectable()
 export class ChannelTrigger {
   constructor(
-    private readonly configService: ConfigService,
     private readonly triggerService: TriggerService,
     private readonly appGateway: AppGateway,
   ) {}

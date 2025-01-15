@@ -4,11 +4,11 @@
 	let { children } = $props();
 </script>
 
-<div class="flex h-screen w-full justify-center">
+<div class="flex h-screen w-full justify-center gap-5 py-10">
 	<div class="w-56">
 		<SettingsNav />
 	</div>
-	<div class="w-1/2">
+	<div class="w-1/3">
 		{@render children()}
 	</div>
 </div>

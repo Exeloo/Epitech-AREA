@@ -1,3 +1,11 @@
+---
+outline: deep
+
+prev:
+  text: Kubernetes
+  link: '/devops/kubernetes'
+---
+
 # Explanation Guide - Templates
 
 ## Explanation of Templates

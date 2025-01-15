@@ -1,3 +1,15 @@
+---
+outline: deep
+
+prev:
+  text: Ansible
+  link: '/devops/ansible'
+
+next:
+  text: Templates
+  link: '/devops/templates'
+---
+
 # Explanation Guide - Kubernetes
 
 ## Explanation of Kubernetes

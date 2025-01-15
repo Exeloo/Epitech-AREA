@@ -1,3 +1,15 @@
+---
+outline: deep
+
+prev:
+  text: Introduction
+  link: '/devops'
+
+next:
+  text: Kubernetes
+  link: '/devops/kubernetes'
+---
+
 # Explanation Guide - Ansible
 
 ## Explanation of Ansible

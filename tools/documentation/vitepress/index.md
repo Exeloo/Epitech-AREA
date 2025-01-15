@@ -1,25 +1,16 @@
 ---
-# https://vitepress.dev/reference/default-theme-home-page
 layout: home
 
 hero:
-  name: "AREA Documentation"
-  text: "A VitePress Site"
-  tagline: My great project tagline
+  name: "Aether Documentation"
+  text: "The AREA project"
+  tagline:  by Ilyes, Mattéo, Robin, Thomas and Timothé
   actions:
     - theme: brand
       text: Markdown Examples
       link: /markdown-examples
     - theme: alt
-      text: API Examples
-      link: /api-examples
-
-features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+      text: API Documentation
+      link: /api
 ---
 

@@ -4,6 +4,7 @@ import 'package:aether/views/auth/pages/login.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../config/colors.dart';
 import '../../../modules/auth/auth_helper.dart';
 import '../../mainPage/pages/main_navigation.dart';
 
@@ -58,7 +59,7 @@ class SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff1B1B1B),
+      backgroundColor: AppColors.background,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -70,7 +71,7 @@ class SignUpPageState extends State<SignUpPage> {
               style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white),
+                  color: AppColors.textPrimary),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
@@ -84,32 +85,32 @@ class SignUpPageState extends State<SignUpPage> {
               controller: _usernameController,
               decoration: const InputDecoration(
                 labelText: 'Username',
-                labelStyle: TextStyle(color: Colors.white),
+                labelStyle: TextStyle(color: AppColors.textPrimary),
                 border: OutlineInputBorder(),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
+                  borderSide: BorderSide(color: AppColors.textPrimary),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
+                  borderSide: BorderSide(color: AppColors.textPrimary),
                 ),
               ),
-              style: const TextStyle(color: Colors.white),
+              style: const TextStyle(color: AppColors.textPrimary),
             ),
             const SizedBox(height: 16),
             TextFormField(
               controller: _emailController,
               decoration: const InputDecoration(
                 labelText: 'Email',
-                labelStyle: TextStyle(color: Colors.white),
+                labelStyle: TextStyle(color: AppColors.textPrimary),
                 border: OutlineInputBorder(),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
+                  borderSide: BorderSide(color: AppColors.textPrimary),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
+                  borderSide: BorderSide(color: AppColors.textPrimary),
                 ),
               ),
-              style: const TextStyle(color: Colors.white),
+              style: const TextStyle(color: AppColors.textPrimary),
             ),
             const SizedBox(height: 16),
             TextFormField(
@@ -117,50 +118,50 @@ class SignUpPageState extends State<SignUpPage> {
               obscureText: true,
               decoration: const InputDecoration(
                 labelText: 'Password',
-                labelStyle: TextStyle(color: Colors.white),
+                labelStyle: TextStyle(color: AppColors.textPrimary),
                 border: OutlineInputBorder(),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
+                  borderSide: BorderSide(color: AppColors.textPrimary),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
+                  borderSide: BorderSide(color: AppColors.textPrimary),
                 ),
                 helperText: 'Must be at least 8 characters',
                 helperStyle: TextStyle(color: Colors.grey),
               ),
-              style: const TextStyle(color: Colors.white),
+              style: const TextStyle(color: AppColors.textPrimary),
             ),
             const SizedBox(height: 16),
             TextFormField(
               controller: _firstNameController,
               decoration: const InputDecoration(
                 labelText: 'First Name',
-                labelStyle: TextStyle(color: Colors.white),
+                labelStyle: TextStyle(color: AppColors.textPrimary),
                 border: OutlineInputBorder(),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
+                  borderSide: BorderSide(color: AppColors.textPrimary),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
+                  borderSide: BorderSide(color: AppColors.textPrimary),
                 ),
               ),
-              style: const TextStyle(color: Colors.white),
+              style: const TextStyle(color: AppColors.textPrimary),
             ),
             const SizedBox(height: 16),
             TextFormField(
               controller: _lastNameController,
               decoration: const InputDecoration(
                 labelText: 'Last Name',
-                labelStyle: TextStyle(color: Colors.white),
+                labelStyle: TextStyle(color: AppColors.textPrimary),
                 border: OutlineInputBorder(),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
+                  borderSide: BorderSide(color: AppColors.textPrimary),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
+                  borderSide: BorderSide(color: AppColors.textPrimary),
                 ),
               ),
-              style: const TextStyle(color: Colors.white),
+              style: const TextStyle(color: AppColors.textPrimary),
             ),
             const SizedBox(height: 16),
             ElevatedButton(
@@ -171,7 +172,7 @@ class SignUpPageState extends State<SignUpPage> {
                 backgroundColor: const Color(0xff8E44AD),
               ),
               child: const Text('Get started',
-                  style: TextStyle(color: Colors.white)),
+                  style: TextStyle(color: AppColors.textPrimary)),
             ),
             const SizedBox(height: 16),
             TextButton(
@@ -183,7 +184,7 @@ class SignUpPageState extends State<SignUpPage> {
                     (Route<dynamic> route) => false);
               },
               child: const Text('Already have an account? Log in',
-                  style: TextStyle(color: Colors.white)),
+                  style: TextStyle(color: AppColors.textPrimary)),
             ),
           ],
         ),

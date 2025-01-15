@@ -1,9 +1,12 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:aether/views/applet/models/applet_data.dart';
+import 'package:aether/views/applet/pages/applet_creation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../config/colors.dart';
 import '../../../graphql/__generated__/provider.data.gql.dart';
 import '../../../modules/graphql/repository/provider_repository.dart';
 
@@ -30,31 +33,6 @@ class TriggerActionPageState extends State<TriggerActionPage> {
     _getProvidersById(context);
   }
 
-  @override
-  void didUpdateWidget(TriggerActionPage oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldWidget.id != widget.id) {
-      setState(() {
-        _isLoading = true;
-      });
-      _disposeControllers();
-      _getProvidersById(context);
-    }
-  }
-
-  @override
-  void dispose() {
-    _disposeControllers();
-    super.dispose();
-  }
-
-  void _disposeControllers() {
-    for (var controller in _controllers.values) {
-      controller.dispose();
-    }
-    _controllers.clear();
-  }
-
   void _getProvidersById(BuildContext context) async {
     final providerRepository =
     Provider.of<ProviderRepository>(context, listen: false);
@@ -79,8 +57,6 @@ class TriggerActionPageState extends State<TriggerActionPage> {
   }
 
   void _initializeControllers(Map<String, dynamic> inputs) {
-    _disposeControllers();
-
     for (var key in inputs.keys) {
       _controllers[key] = TextEditingController(text: '');
     }
@@ -98,36 +74,24 @@ class TriggerActionPageState extends State<TriggerActionPage> {
     }
   }
 
-  void _updateInputValue(String key, String value) {
-    if (mounted && _controllers.containsKey(key)) {
-      setState(() {
-        _controllers[key]?.text = value;
-      });
-    }
-  }
-
   Map<String, dynamic> _getInputs() {
-    final trigger = (() {
-      try {
-        return _provider.manifest.triggers.firstWhere(
-              (t) => t.name == widget.name,
-        );
-      } catch (e) {
-        return null;
-      }
-    })();
+    final trigger = _provider.manifest.triggers
+        .where((t) => t.name == widget.name)
+        .toList();
 
-    final action = (() {
-      try {
-        return _provider.manifest.actions.firstWhere(
-              (a) => a.name == widget.name,
-        );
-      } catch (e) {
-        return null;
-      }
-    })();
+    final action = _provider.manifest.actions
+        .where((a) => a.name == widget.name)
+        .toList();
 
-    return _formatInputs(trigger != null ? trigger.input.value : action!.input.value);
+    if (trigger.isNotEmpty) {
+      return _formatInputs(trigger.first.input.value);
+    }
+
+    if (action.isNotEmpty) {
+      return _formatInputs(action.first.input.value);
+    }
+
+    return {};
   }
 
   List<Widget> _buildInputFields(Map<String, dynamic> inputs) {
@@ -147,7 +111,7 @@ class TriggerActionPageState extends State<TriggerActionPage> {
             Text(
               label,
               style: const TextStyle(
-                color: Colors.white,
+                color: AppColors.textPrimary,
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
               ),
@@ -155,18 +119,18 @@ class TriggerActionPageState extends State<TriggerActionPage> {
             const SizedBox(height: 8),
             TextField(
               controller: _controllers[key],
-              style: const TextStyle(color: Colors.white),
+              style: const TextStyle(color: AppColors.textPrimary),
               decoration: InputDecoration(
                 hintText: 'Enter $label',
-                hintStyle: const TextStyle(color: Colors.white60, fontWeight: FontWeight.bold),
+                hintStyle: const TextStyle(color: AppColors.textPrimary60, fontWeight: FontWeight.bold),
                 filled: true,
                 fillColor: const Color(0xff1B1B1B),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Color(0xff1B1B1B)),
+                  borderSide: const BorderSide(color: AppColors.primary),
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.white60),
+                  borderSide: const BorderSide(color: AppColors.textPrimary60),
                   borderRadius: BorderRadius.circular(8.0),
                 ),
               ),
@@ -186,7 +150,6 @@ class TriggerActionPageState extends State<TriggerActionPage> {
 
   Widget _buildValidateButton() {
     final color = Color(int.parse(_provider.color.replaceFirst('#', '0xff')));
-
     final darkenedColor = Color.fromRGBO(
       (color.r * 0.82).toInt(),
       (color.g * 0.82).toInt(),
@@ -198,13 +161,50 @@ class TriggerActionPageState extends State<TriggerActionPage> {
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: ElevatedButton(
         onPressed: () {
+          final providerId = widget.id;
+
+          final trigger = _provider.manifest.triggers
+              .where((t) => t.name == widget.name)
+              .toList();
+
+          final action = _provider.manifest.actions
+              .where((a) => a.name == widget.name)
+              .toList();
+
+          final actionId =
+          trigger.isNotEmpty ? trigger.first.id : action.first.id;
+
+          final input = <String, dynamic>{};
           _controllers.forEach((key, controller) {
-            final value = controller.text;
-            _updateInputValue(key, value);
+            input[key] = controller.text;
           });
 
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('All fields have been updated!')),
+          final newNode = TriggerNode(
+            providerId: providerId,
+            actionId: actionId,
+            input: input,
+          );
+
+          if (TriggerNodeManager.rootTriggerNode == null) {
+            TriggerNodeManager.setRootTriggerNode(newNode, widget.name);
+
+
+          } else {
+            try {
+              TriggerNodeManager.addNextTriggerNode(newNode, widget.name);
+
+            } catch (e) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Error: $e')),
+              );
+            }
+          }
+
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const AppletCreation(),
+            ),
           );
         },
         style: ElevatedButton.styleFrom(
@@ -214,7 +214,9 @@ class TriggerActionPageState extends State<TriggerActionPage> {
         child: const Text(
           'Create',
           style: TextStyle(
-              color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+              color: AppColors.textPrimary,
+              fontSize: 18,
+              fontWeight: FontWeight.bold),
         ),
       ),
     );
@@ -224,34 +226,22 @@ class TriggerActionPageState extends State<TriggerActionPage> {
   Widget build(BuildContext context) {
     if (_isLoading) {
       return const Scaffold(
-        backgroundColor: Color(0xff1B1B1B),
+        backgroundColor: AppColors.background,
         body: Center(
           child: CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+            valueColor: AlwaysStoppedAnimation<Color>(AppColors.primaryLight),
           ),
         ),
       );
     }
 
-    final trigger = (() {
-      try {
-        return _provider.manifest.triggers.firstWhere(
-              (t) => t.name == widget.name,
-        );
-      } catch (e) {
-        return null;
-      }
-    })();
+    final trigger = _provider.manifest.triggers
+        .where((t) => t.name == widget.name)
+        .toList();
 
-    final action = (() {
-      try {
-        return _provider.manifest.actions.firstWhere(
-              (a) => a.name == widget.name,
-        );
-      } catch (e) {
-        return null;
-      }
-    })();
+    final action = _provider.manifest.actions
+        .where((a) => a.name == widget.name)
+        .toList();
 
     return Scaffold(
       backgroundColor: Color(int.parse(_provider.color.replaceFirst('#', '0xff'))),
@@ -265,7 +255,7 @@ class TriggerActionPageState extends State<TriggerActionPage> {
             child: Row(
               children: [
                 IconButton(
-                  icon: const Icon(Icons.arrow_back, color: Colors.white, size: 40),
+                  icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary, size: 40),
                   onPressed: () {
                     _controllers.forEach((key, controller) {
                       controller.dispose();
@@ -275,9 +265,9 @@ class TriggerActionPageState extends State<TriggerActionPage> {
                 ),
                 const SizedBox(width: 10),
                 Text(
-                  trigger != null ? 'Choose your Trigger' : 'Choose your Reaction',
+                  trigger.isNotEmpty ? 'Choose your Trigger' : 'Choose your Reaction',
                   style: const TextStyle(
-                    color: Colors.white,
+                    color: AppColors.textPrimary,
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
                   ),
@@ -313,7 +303,7 @@ class TriggerActionPageState extends State<TriggerActionPage> {
                     borderRadius: BorderRadius.circular(16.0),
                     child: _provider.img.isNotEmpty
                         ? Image.network(
-                      trigger != null ? trigger.img : action!.img,
+                      trigger.isNotEmpty ? trigger.first.img : action.first.img,
                       fit: BoxFit.fitWidth,
                       errorBuilder: (context, error, stackTrace) {
                         return const Icon(
@@ -330,22 +320,22 @@ class TriggerActionPageState extends State<TriggerActionPage> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  trigger != null
+                  trigger.isNotEmpty
                       ? Text(
-                    trigger.description,
+                    trigger.first.description,
                     style: const TextStyle(
                       fontSize: 24,
-                      color: Colors.white,
+                      color: AppColors.textPrimary,
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,
                     softWrap: true,
                   )
                       : Text(
-                    action!.description,
+                    action.first.description,
                     style: const TextStyle(
                       fontSize: 24,
-                      color: Colors.white,
+                      color: AppColors.textPrimary,
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,

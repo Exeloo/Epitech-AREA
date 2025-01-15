@@ -5,6 +5,8 @@ import 'package:aether/modules/graphql/repository/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../config/colors.dart';
+
 class Profile extends StatefulWidget {
   const Profile({super.key});
 
@@ -136,96 +138,96 @@ class UserProfileForm extends StatelessWidget {
             controller: emailController,
             decoration: const InputDecoration(
               labelText: 'Email',
-              labelStyle: TextStyle(color: Colors.white),
+              labelStyle: TextStyle(color: AppColors.textPrimary),
               border: OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.white),
+                borderSide: BorderSide(color: AppColors.textPrimary),
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.white),
+                borderSide: BorderSide(color: AppColors.textPrimary),
               ),
             ),
-            style: const TextStyle(color: Colors.white),
+            style: const TextStyle(color: AppColors.textPrimary),
           ),
           const SizedBox(height: 16),
           TextFormField(
             controller: usernameController,
             decoration: const InputDecoration(
               labelText: 'Username',
-              labelStyle: TextStyle(color: Colors.white),
+              labelStyle: TextStyle(color: AppColors.textPrimary),
               border: OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.white),
+                borderSide: BorderSide(color: AppColors.textPrimary),
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.white),
+                borderSide: BorderSide(color: AppColors.textPrimary),
               ),
             ),
-            style: const TextStyle(color: Colors.white),
+            style: const TextStyle(color: AppColors.textPrimary),
           ),
           const SizedBox(height: 16),
           TextFormField(
             controller: firstNameController,
             decoration: const InputDecoration(
               labelText: 'First Name',
-              labelStyle: TextStyle(color: Colors.white),
+              labelStyle: TextStyle(color: AppColors.textPrimary),
               border: OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.white),
+                borderSide: BorderSide(color: AppColors.textPrimary),
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.white),
+                borderSide: BorderSide(color: AppColors.textPrimary),
               ),
             ),
-            style: const TextStyle(color: Colors.white),
+            style: const TextStyle(color: AppColors.textPrimary),
           ),
           const SizedBox(height: 16),
           TextFormField(
             controller: lastNameController,
             decoration: const InputDecoration(
               labelText: 'Last Name',
-              labelStyle: TextStyle(color: Colors.white),
+              labelStyle: TextStyle(color: AppColors.textPrimary),
               border: OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.white),
+                borderSide: BorderSide(color: AppColors.textPrimary),
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.white),
+                borderSide: BorderSide(color: AppColors.textPrimary),
               ),
             ),
-            style: const TextStyle(color: Colors.white),
+            style: const TextStyle(color: AppColors.textPrimary),
           ),
           const SizedBox(height: 16),
           TextFormField(
             controller: descriptionController,
             decoration: const InputDecoration(
               labelText: 'Description',
-              labelStyle: TextStyle(color: Colors.white),
+              labelStyle: TextStyle(color: AppColors.textPrimary),
               border: OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.white),
+                borderSide: BorderSide(color: AppColors.textPrimary),
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.white),
+                borderSide: BorderSide(color: AppColors.textPrimary),
               ),
             ),
-            style: const TextStyle(color: Colors.white),
+            style: const TextStyle(color: AppColors.textPrimary),
           ),
           const SizedBox(height: 16),
           TextFormField(
             controller: pronounController,
             decoration: const InputDecoration(
               labelText: 'Pronoun',
-              labelStyle: TextStyle(color: Colors.white),
+              labelStyle: TextStyle(color: AppColors.textPrimary),
               border: OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.white),
+                borderSide: BorderSide(color: AppColors.textPrimary),
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.white),
+                borderSide: BorderSide(color: AppColors.textPrimary),
               ),
             ),
-            style: const TextStyle(color: Colors.white),
+            style: const TextStyle(color: AppColors.textPrimary),
           ),
           const SizedBox(height: 16),
           ElevatedButton(
@@ -233,11 +235,11 @@ class UserProfileForm extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.symmetric(vertical: 16),
               textStyle: const TextStyle(fontSize: 16),
-              backgroundColor: const Color(0xff8E44AD),
+              backgroundColor: AppColors.secondary,
             ),
             child: const Text(
               'Update Profile',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: AppColors.textPrimary),
             ),
           ),
         ],

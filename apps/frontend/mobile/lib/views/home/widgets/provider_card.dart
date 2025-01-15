@@ -2,9 +2,11 @@ import 'dart:developer';
 
 import 'package:aether/graphql/__generated__/provider.data.gql.dart';
 import 'package:aether/views/home/widgets/trigger_action_card.dart';
+import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../config/colors.dart';
 import '../../../modules/graphql/repository/provider_repository.dart';
 
 class ProviderCard extends StatelessWidget {
@@ -57,19 +59,8 @@ class ProviderCard extends StatelessWidget {
                   ? Image.network(
                 logoUrl!,
                 fit: BoxFit.contain,
-                errorBuilder: (context, error, stackTrace) {
-                  return const Icon(
-                    Icons.image_not_supported,
-                    color: Colors.grey,
-                    size: 48,
-                  );
-                },
               )
-                  : const Icon(
-                Icons.image_not_supported,
-                color: Colors.grey,
-                size: 48,
-              ),
+                  : const SizedBox.shrink(),
             ),
           ),
         ),
@@ -95,14 +86,21 @@ class ProviderDescription extends StatefulWidget {
 }
 
 class ProviderDescriptionState extends State<ProviderDescription> {
-
-  late GgetProviderByIdData_getProviderById _provider;
+  GgetProviderByIdData_getProviderById? _provider;
   bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
+    _resetState();
     _getProvidersById(context);
+  }
+
+  void _resetState() {
+    setState(() {
+      _provider = null;
+      _isLoading = true;
+    });
   }
 
   void _getProvidersById(BuildContext context) async {
@@ -110,17 +108,13 @@ class ProviderDescriptionState extends State<ProviderDescription> {
     Provider.of<ProviderRepository>(context, listen: false);
 
     try {
-      final response = await providerRepository.getProviderById(id: widget.id);
-      log(widget.id as String);
-      if (response == null) {
-        log('Response or provider is null');
-        setState(() {
-          _isLoading = false;
-        });
-        return;
-      }
+      final response = await providerRepository.getProviderById(
+        id: widget.id,
+        fetchPolicy: FetchPolicy.NetworkOnly,
+      );
+
       setState(() {
-        _provider = response.getProviderById;
+        _provider = response?.getProviderById;
         _isLoading = false;
       });
     } catch (e) {
@@ -135,10 +129,22 @@ class ProviderDescriptionState extends State<ProviderDescription> {
   Widget build(BuildContext context) {
     if (_isLoading) {
       return const Scaffold(
-        backgroundColor: Color(0xff1B1B1B),
+        backgroundColor: AppColors.background,
         body: Center(
           child: CircularProgressIndicator(
             valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+          ),
+        ),
+      );
+    }
+
+    if (_provider == null) {
+      return const Scaffold(
+        backgroundColor: Color(0xff1B1B1B),
+        body: Center(
+          child: Text(
+            'Erreur : impossible de charger le fournisseur.',
+            style: TextStyle(color: AppColors.textPrimary, fontSize: 18),
           ),
         ),
       );
@@ -148,7 +154,7 @@ class ProviderDescriptionState extends State<ProviderDescription> {
       backgroundColor: const Color(0xff1B1B1B),
       appBar: AppBar(
         backgroundColor:
-        Color(int.parse(_provider.color.replaceFirst('#', '0xff'))),
+        Color(int.parse(_provider!.color.replaceFirst('#', '0xff'))),
         automaticallyImplyLeading: false,
         flexibleSpace: Padding(
           padding: const EdgeInsets.only(bottom: 10.0),
@@ -158,14 +164,14 @@ class ProviderDescriptionState extends State<ProviderDescription> {
               children: [
                 IconButton(
                   icon: const Icon(Icons.arrow_back,
-                      color: Colors.white, size: 40),
+                      color: AppColors.textPrimary, size: 40),
                   onPressed: () => Navigator.of(context).pop(),
                 ),
                 const SizedBox(width: 80),
                 Text(
-                  _provider.name,
+                  _provider!.name,
                   style: const TextStyle(
-                    color: Colors.white,
+                    color: AppColors.textPrimary,
                     fontSize: 40,
                     fontWeight: FontWeight.bold,
                   ),
@@ -185,11 +191,11 @@ class ProviderDescriptionState extends State<ProviderDescription> {
               width: double.infinity,
               decoration: BoxDecoration(
                 color:
-                Color(int.parse(_provider.color.replaceFirst('#', '0xff'))),
+                Color(int.parse(_provider!.color.replaceFirst('#', '0xff'))),
                 boxShadow: [
                   BoxShadow(
                     color: Color(
-                        int.parse(_provider.color.replaceFirst('#', '0xff'))),
+                        int.parse(_provider!.color.replaceFirst('#', '0xff'))),
                     blurRadius: 5.0,
                     spreadRadius: 1.0,
                     offset: const Offset(0, 4),
@@ -201,30 +207,19 @@ class ProviderDescriptionState extends State<ProviderDescription> {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
-                    child: _provider.img.isNotEmpty
+                    child: _provider!.img.isNotEmpty
                         ? Image.network(
-                      _provider.img,
+                      _provider!.img,
                       fit: BoxFit.fitWidth,
-                      errorBuilder: (context, error, stackTrace) {
-                        return const Icon(
-                          Icons.image_not_supported,
-                          color: Colors.grey,
-                          size: 100,
-                        );
-                      },
                     )
-                        : const Icon(
-                      Icons.image_not_supported,
-                      color: Colors.grey,
-                      size: 100,
-                    ),
+                        : const SizedBox.shrink(),
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    _provider.description,
+                    _provider!.description,
                     style: const TextStyle(
                       fontSize: 24,
-                      color: Colors.white,
+                      color: AppColors.textPrimary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -233,39 +228,43 @@ class ProviderDescriptionState extends State<ProviderDescription> {
               ),
             ),
             const SizedBox(height: 50),
-            if (widget.inputType == null || widget.inputType!.isEmpty || widget.inputType == 'trigger')
+            if (widget.inputType == null ||
+                widget.inputType!.isEmpty ||
+                widget.inputType == 'trigger')
               Column(
                 children: [
                   _buildSectionTitle('Triggers'),
                   const SizedBox(height: 20),
                   Column(
-                    children: _provider.manifest.triggers.map((trigger) {
+                    children: _provider!.manifest.triggers.map((trigger) {
                       return TriggerActionCard(
-                        logoUrl: _provider.img,
+                        logoUrl: _provider!.img,
                         name: trigger.name,
                         description: trigger.description,
                         color: trigger.color,
                         canClick: widget.canClick,
-                        providerId: _provider.id,
+                        providerId: _provider!.id,
                       );
                     }).toList(),
                   ),
                 ],
               ),
-            if (widget.inputType == null || widget.inputType!.isEmpty || widget.inputType == 'action')
+            if (widget.inputType == null ||
+                widget.inputType!.isEmpty ||
+                widget.inputType == 'action')
               Column(
                 children: [
                   _buildSectionTitle('Actions'),
                   const SizedBox(height: 20),
                   Column(
-                    children: _provider.manifest.actions.map((actions) {
+                    children: _provider!.manifest.actions.map((actions) {
                       return TriggerActionCard(
-                        logoUrl: _provider.img,
+                        logoUrl: _provider!.img,
                         name: actions.name,
                         description: actions.description,
                         color: actions.color,
                         canClick: widget.canClick,
-                        providerId: _provider.id,
+                        providerId: _provider!.id,
                       );
                     }).toList(),
                   ),
@@ -287,7 +286,7 @@ class ProviderDescriptionState extends State<ProviderDescription> {
           style: const TextStyle(
             fontSize: 30,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: AppColors.textPrimary,
           ),
         ),
       ),

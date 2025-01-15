@@ -1,8 +1,10 @@
 import 'package:aether/views/applet/pages/trigger_action_page.dart';
 import 'package:flutter/material.dart';
 
+import '../../../config/colors.dart';
+
 class TriggerActionCard extends StatelessWidget {
-  final String logoUrl;
+  final String? logoUrl;
   final String name;
   final String color;
   final String description;
@@ -15,7 +17,8 @@ class TriggerActionCard extends StatelessWidget {
     required this.color,
     required this.description,
     required this.canClick,
-    super.key, required this.providerId,
+    super.key,
+    required this.providerId,
   });
 
   @override
@@ -23,7 +26,7 @@ class TriggerActionCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if (canClick) {
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => TriggerActionPage(id: providerId, name: name),
@@ -48,10 +51,13 @@ class TriggerActionCard extends StatelessWidget {
                 width: 40,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
-                  child: Image.network(
-                    logoUrl,
+                  child: logoUrl != null && logoUrl!.isNotEmpty
+                      ? Image.network(
+                    logoUrl!,
                     fit: BoxFit.cover,
-                  ),
+                  )
+                      : const SizedBox
+                      .shrink(),
                 ),
               ),
               const SizedBox(width: 12),
@@ -64,7 +70,7 @@ class TriggerActionCard extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                        color: AppColors.textSecondary,
                       ),
                     ),
                     const SizedBox(height: 4),
@@ -72,7 +78,7 @@ class TriggerActionCard extends StatelessWidget {
                       description,
                       style: const TextStyle(
                         fontSize: 12,
-                        color: Colors.black54,
+                        color: AppColors.textSecondary,
                         fontWeight: FontWeight.bold,
                       ),
                       maxLines: 2,

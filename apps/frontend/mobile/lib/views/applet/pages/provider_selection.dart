@@ -5,6 +5,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../config/colors.dart';
 import '../../../graphql/__generated__/provider.data.gql.dart';
 import '../../../modules/graphql/repository/provider_repository.dart';
 
@@ -50,15 +51,15 @@ class _ProviderSelectionState extends State<ProviderSelection> {
       appBar: AppBar(
         title: const Text('Provider Selection'),
         titleTextStyle: const TextStyle(
-          color: Colors.white,
+          color: AppColors.textPrimary,
           fontSize: 30,
           fontWeight: FontWeight.bold,
         ),
-        backgroundColor: const Color(0xff1B1B1B),
+        backgroundColor: AppColors.background,
         centerTitle: true,
-        iconTheme: const IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: AppColors.textPrimary),
       ),
-      backgroundColor: const Color(0xff1B1B1B),
+      backgroundColor: AppColors.background,
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : GridView.builder(

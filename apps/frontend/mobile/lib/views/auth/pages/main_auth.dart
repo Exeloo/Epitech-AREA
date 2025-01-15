@@ -3,6 +3,8 @@ import 'package:aether/views/auth/pages/login.dart';
 import 'package:aether/views/auth/pages/signup.dart';
 import 'package:flutter/material.dart';
 
+import '../../../config/colors.dart';
+
 class MainAuthPage extends StatefulWidget {
   const MainAuthPage({super.key});
 
@@ -14,7 +16,7 @@ class MainAuthPageState extends State<MainAuthPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff1B1B1B),
+      backgroundColor: AppColors.background,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -26,7 +28,7 @@ class MainAuthPageState extends State<MainAuthPage> {
                 width: 150,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xff8E44AD)),
+                      backgroundColor: AppColors.secondary),
                   onPressed: () {
                     Navigator.pushAndRemoveUntil(
                       context,
@@ -37,7 +39,7 @@ class MainAuthPageState extends State<MainAuthPage> {
                     );
                   },
                   child: const Text('Sign Up',
-                      style: TextStyle(color: Colors.white)),
+                      style: TextStyle(color: AppColors.textPrimary)),
                 ),
               ),
               const SizedBox(height: 16),
@@ -57,7 +59,7 @@ class MainAuthPageState extends State<MainAuthPage> {
                   },
                   child: const Text(
                     'Log In',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: AppColors.textPrimary),
                   ),
                 ),
               ),
@@ -65,7 +67,7 @@ class MainAuthPageState extends State<MainAuthPage> {
                 width: 150,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xff8E44AD)),
+                      backgroundColor: AppColors.secondary),
                   onPressed: () {
                     Navigator.pushAndRemoveUntil(
                       context,
@@ -76,7 +78,7 @@ class MainAuthPageState extends State<MainAuthPage> {
                     );
                   },
                   child: const Text('Google',
-                      style: TextStyle(color: Colors.white)),
+                      style: TextStyle(color: AppColors.textPrimary)),
                 ),
               )
             ],

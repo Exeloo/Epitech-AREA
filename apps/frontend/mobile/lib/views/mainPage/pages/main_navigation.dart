@@ -1,9 +1,11 @@
-import 'package:aether/views/applet/pages/applet_creation_v2.dart';
+import 'package:aether/views/applet/pages/applet_creation.dart';
 import 'package:aether/views/applet/pages/my_applets_page.dart';
 import 'package:aether/views/home/pages/home.dart';
 import 'package:aether/views/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
+import '../../../config/colors.dart';
 
 class MainNavigationPage extends StatefulWidget {
   const MainNavigationPage({super.key});
@@ -39,7 +41,7 @@ class MainNavigationPageState extends State<MainNavigationPage> {
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.vertical(top: Radius.circular(10.0)),
         child: BottomAppBar(
-          color: Colors.black,
+          color: AppColors.textSecondary,
           child: Container(
             height: 70.0,
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -52,7 +54,7 @@ class MainNavigationPageState extends State<MainNavigationPage> {
                       width: 24,
                       height: 24,
                       color: _currentIndex == 0
-                          ? Colors.white
+                          ? AppColors.textPrimary
                           : const Color(0xff686868)),
                 ),
                 IconButton(
@@ -61,7 +63,7 @@ class MainNavigationPageState extends State<MainNavigationPage> {
                       width: 24,
                       height: 24,
                       color: _currentIndex == 1
-                          ? Colors.white
+                          ? AppColors.textPrimary
                           : const Color(0xff686868)),
                 ),
                 const SizedBox(width: 50),
@@ -71,7 +73,7 @@ class MainNavigationPageState extends State<MainNavigationPage> {
                       width: 24,
                       height: 24,
                       color: _currentIndex == 2
-                          ? Colors.white
+                          ? AppColors.textPrimary
                           : const Color(0xff686868)),
                 ),
                 IconButton(
@@ -80,7 +82,7 @@ class MainNavigationPageState extends State<MainNavigationPage> {
                       width: 24,
                       height: 24,
                       color: _currentIndex == 3
-                          ? Colors.white
+                          ? AppColors.textPrimary
                           : const Color(0xff686868)),
                 ),
               ],
@@ -96,15 +98,15 @@ class MainNavigationPageState extends State<MainNavigationPage> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (BuildContext context) => const AppletCreation(providerId: 1),
+                builder: (BuildContext context) => const AppletCreation(),
               ),
             );
           },
-          backgroundColor: const Color(0xff8E44AD),
+          backgroundColor: AppColors.secondary,
           shape: const CircleBorder(),
           child: const Icon(
             Icons.add,
-            color: Colors.white,
+            color: AppColors.textPrimary,
             size: 48,
           ),
         ),

@@ -21,7 +21,10 @@
 	async function selectProvider() {
 		if (!$info) return;
 
-		const query = await load_getProviderById({ variables: { id: $info.id } });
+		const query = await load_getProviderById({
+			variables: { id: $info.id },
+			policy: 'NetworkOnly'
+		});
 		const { data, errors } = await query.getProviderById.fetch();
 
 		console.log(errors);

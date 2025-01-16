@@ -12,6 +12,7 @@ export class ProviderOAuthStateResponse implements IProviderOAuthState {
 
   @Field(() => String, {
     description: "Redirect uri for the user to authenticate if needed",
+    nullable: true,
   })
   redirectUri: string | null;
 }

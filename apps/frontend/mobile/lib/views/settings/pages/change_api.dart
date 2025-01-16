@@ -1,4 +1,4 @@
-import 'package:aether/config/api_config.dart'; // Pour la gestion de l'API
+import 'package:aether/config/api_config.dart';
 import 'package:aether/graphql/graphql_client.dart';
 import 'package:flutter/material.dart';
 

@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:aether/views/home/widgets/provider_card.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -32,7 +33,9 @@ class _ProviderSelectionState extends State<ProviderSelection> {
         Provider.of<ProviderRepository>(context, listen: false);
 
     try {
-      final response = await providerRepository.getAllProviders();
+      final response = await providerRepository.getAllProviders(
+        fetchPolicy: FetchPolicy.NetworkOnly,
+      );
       setState(() {
         _providers = response?.getAllProviders;
         _isLoading = false;

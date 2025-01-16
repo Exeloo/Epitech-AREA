@@ -4,10 +4,11 @@
 	import type { ElementValues } from '$lib/components/applet/new/types';
 
 	interface Props {
+		providerId: number;
 		action: ProviderManifestAction;
 		element: ElementValues | null;
 	}
-	let { action, element = $bindable() }: Props = $props();
+	let { providerId, action, element = $bindable() }: Props = $props();
 
 	let providerManifestActionStore = new ProviderManifestActionStore();
 
@@ -20,6 +21,7 @@
 		title={$info.name}
 		description={$info.description}
 		inputs={$info.input}
+		{providerId}
 		bind:element
 	/>
 {/if}

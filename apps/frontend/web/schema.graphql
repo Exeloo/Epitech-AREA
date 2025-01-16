@@ -239,7 +239,7 @@ type ProviderOAuthStateResponse {
   authenticated: Boolean!
 
   """Redirect uri for the user to authenticate if needed"""
-  redirectUri: String!
+  redirectUri: String
 }
 
 """Visibility of the provider"""

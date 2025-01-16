@@ -86,7 +86,7 @@ export class ProviderService {
   ): Promise<{ baseUrl: string }> {
     const provider = await this.providerPRepository.getByProviderId(providerId);
     await this.providerService.runOAuth(provider, req.query);
-    return { baseUrl: this.authService.getRedirect() };
+    return { baseUrl: this.authService.getRedirect({ device: "mobile" }) };
   }
 
   async getProviderOAuthState(

@@ -41,7 +41,7 @@ class _ChangeApiPageState extends State<ChangeApiPage> {
                 ),
               ),
               style: const TextStyle(color: AppColors.textPrimary),
-              ),
+            ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
@@ -56,8 +56,9 @@ class _ChangeApiPageState extends State<ChangeApiPage> {
                 Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => const MainAuthPage()),
-                        (Route<dynamic> route) => false);
+                        builder: (BuildContext context) =>
+                            const MainAuthPage()),
+                    (Route<dynamic> route) => false);
               },
               child: const Text("Save API URL"),
             ),

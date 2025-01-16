@@ -15,9 +15,9 @@ class ProviderRepository {
 
   Future<GgetAllProvidersData?> getAllProviders({
     FetchPolicy fetchPolicy = FetchPolicy.CacheAndNetwork,
-}) async {
-    final getAllProvidersReq = GgetAllProvidersReq((b) => b
-      ..fetchPolicy = fetchPolicy);
+  }) async {
+    final getAllProvidersReq =
+        GgetAllProvidersReq((b) => b..fetchPolicy = fetchPolicy);
 
     try {
       final response = await client.request(getAllProvidersReq).first;

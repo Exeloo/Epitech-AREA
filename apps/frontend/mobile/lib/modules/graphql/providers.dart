@@ -27,12 +27,14 @@ class AppProvider {
     ];
   }
 
-  static void updateRepositories(BuildContext context, GraphQlClient newClient) {
+  static void updateRepositories(
+      BuildContext context, GraphQlClient newClient) {
     final client = newClient.client;
 
     Provider.of<AuthRepository>(context, listen: false).updateClient(client);
     Provider.of<UserRepository>(context, listen: false).updateClient(client);
-    Provider.of<ProviderRepository>(context, listen: false).updateClient(client);
+    Provider.of<ProviderRepository>(context, listen: false)
+        .updateClient(client);
     Provider.of<AppletRepository>(context, listen: false).updateClient(client);
   }
 }

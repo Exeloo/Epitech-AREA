@@ -6,19 +6,29 @@ import 'httpauthlink.dart';
 
 class GraphQlClient {
   factory GraphQlClient() {
-    _client ??= Client(link: _createLink());
+    _singleton._updateClient();
     return _singleton;
   }
 
   GraphQlClient._();
 
   static final GraphQlClient _singleton = GraphQlClient._();
-  static Client? _client;
+  Client? _client;
 
   Client get client => _client!;
 
   void dispose() {
     _client?.dispose();
+    _client = null;
+  }
+
+  void _updateClient() {
+    final newLink = _createLink();
+    if (_client == null) {
+      _client = Client(link: newLink);
+    } else {
+      _client = Client(link: newLink);
+    }
   }
 
   static Link _createLink() {
@@ -28,5 +38,9 @@ class GraphQlClient {
     );
 
     return authLink;
+  }
+
+  void refreshClient() {
+    _updateClient();
   }
 }

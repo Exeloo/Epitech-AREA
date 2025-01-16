@@ -7,7 +7,11 @@ import 'package:aether/graphql/__generated__/schema.schema.gql.dart';
 import 'package:ferry/ferry.dart';
 
 class AppletRepository {
-  final Client client;
+  late Client client;
+
+  void updateClient(Client newClient) {
+    client = newClient;
+  }
 
   AppletRepository({required this.client});
 

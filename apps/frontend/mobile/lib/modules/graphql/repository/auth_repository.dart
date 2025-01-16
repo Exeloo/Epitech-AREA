@@ -5,7 +5,7 @@ import 'package:aether/graphql/__generated__/auth.req.gql.dart';
 import 'package:ferry/ferry.dart';
 
 class AuthRepository {
-  final Client client;
+  late Client client;
 
   AuthRepository({required this.client});
 
@@ -33,5 +33,9 @@ class AuthRepository {
       log('Login error : $e');
       rethrow;
     }
+  }
+
+  void updateClient(Client newClient) {
+    client = newClient;
   }
 }

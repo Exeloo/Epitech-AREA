@@ -22,7 +22,7 @@
 				<img src={action.img} alt={`Image describe ${action.name} Action`} class="h-20 w-20" />
 			{/if}
 			<h3 class="text-3xl font-bold text-black">{action.name}</h3>
-			<div class="">{action.description}</div>
+			<p class="">{action.description}</p>
 		</div>
 	</Card>
 {/if}

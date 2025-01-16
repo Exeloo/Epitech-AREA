@@ -1,6 +1,15 @@
 <script lang="ts">
 	import '../app.css';
+	import { getSession } from '$houdini';
+	import { onMount } from 'svelte';
+
+	// eslint-disable-next-line no-undef
+	let session: App.Session | null = $state(null);
 	let { children } = $props();
+
+	onMount(async () => {
+		session = await getSession();
+	});
 </script>
 
 <div class="w-full bg-neutral-100 dark:bg-gray-700 dark:text-white">
@@ -40,8 +49,19 @@
 			</div>
 		</form>
 		<div class="text-md flex items-center justify-center gap-4 font-semibold">
-			<a href="/auth/login" class="text-neutral-800 dark:text-white">Log in</a>
-			<a href="/auth/signup" class="rounded-xl bg-primary px-3 py-2 text-white">Sign up</a>
+			{#if session?.user}
+				<a href="/auth/logout" class="text-neutral-800 dark:text-white">Log out</a>
+				<a
+					aria-label="settings"
+					href="/settings/"
+					class="flex h-10 w-10 items-center justify-center rounded-full bg-purple-700"
+				>
+					<i class="fi fi-rr-user flex justify-center text-xl"></i>
+				</a>
+			{:else}
+				<a href="/auth/login" class="text-neutral-800 dark:text-white">Log in</a>
+				<a href="/auth/signup" class="rounded-xl bg-primary px-3 py-2 text-white">Sign up</a>
+			{/if}
 		</div>
 	</header>
 	<main class="flex min-h-[calc(100vh-80px)] w-screen justify-center">

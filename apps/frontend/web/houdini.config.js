@@ -21,6 +21,9 @@ const config = {
 		JSON: {
 			type: 'json'
 		}
+	},
+	session: {
+		type: './src/types.d.ts#Session'
 	}
 };
 

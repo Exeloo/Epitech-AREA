@@ -1,10 +1,12 @@
 <script lang="ts">
 	import type { ElementValues } from '$lib/components/applet/new/types';
+	import { load_getProviderOAuthState } from '$houdini';
 
 	interface Props {
 		id: string;
 		title?: string;
 		description?: string;
+		providerId: number;
 		inputs: string;
 		element: ElementValues | null;
 	}
@@ -12,6 +14,7 @@
 		id,
 		title = 'Title',
 		description = 'Description',
+		providerId,
 		inputs,
 		element = $bindable()
 	}: Props = $props();
@@ -34,12 +37,33 @@
 			})
 		: [];
 
-	function addInputs() {
+	async function addInputs() {
+		const res = await testNode(providerId);
+		console.log(res);
+		if (!res) {
+			// @todo Ajouter ici une erreur en mode "unauthorized, authenticate yourself and try again"
+			return;
+		}
 		if (element) {
 			element.inputs = Object.assign({}, elementInputs);
 			element.actionId = id;
 		}
 	}
+
+	const testNode = async (providerId: number): Promise<boolean> => {
+		const query = await load_getProviderOAuthState({
+			variables: { id: providerId },
+			policy: 'NetworkOnly'
+		});
+		const r = await query.getProviderOAuthState.fetch();
+		const data = r.data;
+		console.log(r);
+		if (!data || !data.getProviderOAuthState) return false;
+		if (data.getProviderOAuthState.authenticated || !data.getProviderOAuthState.redirectUri)
+			return true;
+		window.open(data.getProviderOAuthState.redirectUri, 'Aether OAuth', 'width=1000,height=1000');
+		return false;
+	};
 </script>
 
 <div

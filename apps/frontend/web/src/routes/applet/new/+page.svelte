@@ -2,9 +2,8 @@
 	import Block from '$lib/components/applet/new/Block.svelte';
 	import { BlockType, type ElementValues } from '$lib/components/applet/new/types';
 	/*	import {
-		load_getProviderOAuthState
-	} from '$houdini';*/
-
+load_getProviderOAuthState
+} from '$houdini';*/
 	import { createAppletStore } from '$houdini';
 	import CreateButton from '$lib/components/applet/new/CreateButton.svelte';
 
@@ -30,12 +29,12 @@
 		const triggerNode = {
 			providerId: trigger.providerId,
 			actionId: trigger.actionId || '',
-			input: trigger.inputs,
+			input: JSON.stringify(trigger.inputs),
 			next: [
 				{
 					providerId: action.providerId,
 					actionId: action.actionId || '',
-					input: action.inputs,
+					input: JSON.stringify(action.inputs),
 					next: []
 				}
 			]
@@ -55,19 +54,6 @@
 			console.error('Failed to create applet:', error);
 		}
 	}
-
-	/*const testNode = async (providerId: number): Promise<boolean> => {
-		const query = await load_getProviderOAuthState({
-			variables: { id: providerId },
-			policy: 'NetworkOnly'
-		});
-		const { data } = await query.getProviderOAuthState.fetch();
-		if (!data || !data.getProviderOAuthState) return false;
-		if (data.getProviderOAuthState.authenticated || !data.getProviderOAuthState.redirectUri)
-			return true;
-		window.open(data.getProviderOAuthState.redirectUri, 'Aether OAuth', 'width=1000,height=1000');
-		return false;
-	};*/
 </script>
 
 <div class="mt-20 flex w-1/5 flex-col items-center gap-20">

@@ -4,10 +4,11 @@
 	import type { ElementValues } from '$lib/components/applet/new/types';
 
 	interface Props {
+		providerId: number;
 		trigger: ProviderManifestTrigger;
 		element: ElementValues | null;
 	}
-	let { trigger, element = $bindable() }: Props = $props();
+	let { providerId, trigger, element = $bindable() }: Props = $props();
 
 	let providerManifestTriggerStore = new ProviderManifestTriggerStore();
 
@@ -20,6 +21,7 @@
 		title={$info.name}
 		description={$info.description}
 		inputs={$info.input}
+		{providerId}
 		bind:element
 	/>
 {/if}

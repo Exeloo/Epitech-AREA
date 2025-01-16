@@ -26,6 +26,7 @@ class TriggerActionPage extends StatefulWidget {
 class TriggerActionPageState extends State<TriggerActionPage> {
   late GgetProviderByIdData_getProviderById _provider;
   bool _isLoading = true;
+  bool _error = false;
   final Map<String, TextEditingController> _controllers = {};
 
   @override
@@ -52,6 +53,7 @@ class TriggerActionPageState extends State<TriggerActionPage> {
       if (mounted) {
         setState(() {
           _isLoading = false;
+          _error = true;
         });
       }
     }
@@ -251,6 +253,41 @@ class TriggerActionPageState extends State<TriggerActionPage> {
         body: Center(
           child: CircularProgressIndicator(
             valueColor: AlwaysStoppedAnimation<Color>(AppColors.primaryLight),
+          ),
+        ),
+      );
+    }
+
+    if (_error) {
+      return Scaffold(
+        backgroundColor: AppColors.background,
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.error, color: Colors.red, size: 100),
+              const SizedBox(height: 16),
+              const Text(
+                'An error occurred while fetching data.',
+                style: TextStyle(
+                  color: AppColors.textPrimary,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    _isLoading = true;
+                    _error = false;
+                  });
+                  _getProvidersById(context);
+                },
+                child: const Text('Retry'),
+              ),
+            ],
           ),
         ),
       );

@@ -34,6 +34,12 @@ dev_dependencies:
   ferry_generator: ^0.10.0
   build_runner: ^2.3.0
   flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.14.2
+
+
+flutter_launcher_icons:
+  android: true
+  image_path_android: "assets/icon/android_icon.png"
 
 flutter:
   uses-material-design: true

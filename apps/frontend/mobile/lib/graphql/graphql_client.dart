@@ -1,3 +1,4 @@
+import 'package:aether/config/api_config.dart';
 import 'package:aether/modules/auth/auth_helper.dart';
 import 'package:ferry/ferry.dart';
 
@@ -22,25 +23,10 @@ class GraphQlClient {
 
   static Link _createLink() {
     final authLink = HttpAuthLink(
-      baseUrl: _resolveBaseUrl(),
+      baseUrl: AppConfig.apiUrl,
       authHelper: AuthHelper(),
     );
 
     return authLink;
   }
-}
-
-String _resolveBaseUrl() {
-  const String localhost = 'https://api.aether-area.fr/graphql';
-  const String defaultUrl = 'https://api.aether-area.fr/graphql';
-
-  if (_isAndroidEmulator()) {
-    return localhost;
-  } else {
-    return defaultUrl;
-  }
-}
-
-bool _isAndroidEmulator() {
-  return Uri.base.toString().contains("localhost") == false;
 }

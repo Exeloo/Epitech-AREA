@@ -12,7 +12,7 @@ env:
 jobs:
   tests:
     name: Tests
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout the repository
@@ -39,7 +39,7 @@ jobs:
 
   push:
     name: Build
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     needs: tests
     steps:
@@ -85,7 +85,7 @@ jobs:
 
   push_to_mirror:
     name: "Pushing To The Mirror Repository"
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     needs: push
     if: github.event.repository.name != 'B-DEV-500-PAR-5-2-area-matteo.emile.git'

@@ -80,13 +80,10 @@ export class ProviderService {
     );
   }
 
-  async oAuthCallback(
-    providerId: string,
-    req: Request,
-  ): Promise<{ baseUrl: string }> {
+  async oAuthCallback(providerId: string, req: Request): Promise<string> {
     const provider = await this.providerPRepository.getByProviderId(providerId);
     await this.providerService.runOAuth(provider, req.query);
-    return { baseUrl: this.authService.getRedirect({ device: "mobile" }) };
+    return this.authService.getRedirect({ device: "mobile" });
   }
 
   async getProviderOAuthState(

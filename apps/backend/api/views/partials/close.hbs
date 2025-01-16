@@ -1,7 +1,11 @@
 <script>
   window.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
-      window.close();
+      if ("{{{baseUrl}}}") {
+          window.location.href = "{{{baseUrl}}}";
+      } else {
+          window.close();
+      }
     }, {{{waitingTime}}});
   });
 </script>

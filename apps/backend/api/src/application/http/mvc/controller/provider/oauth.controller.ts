@@ -16,6 +16,10 @@ export class ProviderAuthController {
   @Get("callback")
   @Render("provider-oauth.hbs")
   callback(@Param("id") id: string, @Request() req: Express.Request) {
-    return this.providerService.oAuthCallback(id, req);
+    const baseUrl = this.providerService.oAuthCallback(id, req);
+    if (req.headers["user-agent"] === "Aether-Mobile") {
+      return { baseUrl: baseUrl };
+    }
+    return { baseUrl: "" };
   }
 }

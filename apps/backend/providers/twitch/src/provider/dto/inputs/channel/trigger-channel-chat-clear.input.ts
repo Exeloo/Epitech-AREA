@@ -8,6 +8,8 @@ import {
 export class ChannelChatClearInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
+    name: "broadcaster_id",
+    description: "The ID of the broadcaster where the chat was cleared",
   })
   broadcaster_user_id: string;
 }

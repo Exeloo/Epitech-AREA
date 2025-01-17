@@ -56,7 +56,7 @@ load_getProviderOAuthState
 	}
 </script>
 
-<div class="mt-20 flex w-1/5 flex-col items-center gap-20">
+<div class="mt-20 flex w-1/2 flex-col items-center gap-20 sm:w-1/3 md:w-1/5">
 	{#if detail}
 		<div class="w-full">
 			<label for="name">Name</label>

@@ -91,7 +91,7 @@
 					</div>
 					<input
 						bind:value={elementInputs[input.title]}
-						class="rounded-lg border px-2 text-black"
+						class="w-auto rounded-lg border px-2 text-black"
 					/>
 				</div>
 			{/each}

@@ -19,7 +19,7 @@
 </script>
 
 <div
-	class="flex w-full items-center justify-between gap-10 rounded-2xl text-4xl font-bold text-white {focus
+	class="flex w-full flex-col items-center justify-between gap-6 rounded-2xl text-4xl font-bold text-white xl:flex-row {focus
 		? 'bg-neutral-800'
 		: 'bg-neutral-400'} px-8 py-4"
 >
@@ -28,9 +28,9 @@
 		<button
 			onclick={() => (open = true)}
 			style="background-color: {$provider.color}"
-			class="rounded-3xl p-3 text-base text-black"
+			class="h-full rounded-full px-4 py-2 text-base text-black"
 		>
-			<img src={$provider.img} alt={$provider.name} />
+			<img src={$provider.img} alt={$provider.name} class="h-full w-8" />
 		</button>
 	{:else}
 		<button

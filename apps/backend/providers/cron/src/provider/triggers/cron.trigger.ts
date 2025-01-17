@@ -17,8 +17,8 @@ export class CronTrigger {
     id: "on-cron",
     name: "On Cron",
     description: "Triggered every N times",
-    img: "",
-    color: "#ffffff",
+    img: "https://firebasestorage.googleapis.com/v0/b/area-444018.firebasestorage.app/o/temps-passe.svg?alt=media&token=35e93f1f-6c8b-4b00-a1b8-9cd94013d799",
+    color: "#85807f",
     input: TriggerCronInput,
     output: TriggerCronResponse,
   })

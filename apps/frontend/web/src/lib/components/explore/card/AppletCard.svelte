@@ -14,7 +14,7 @@
 </script>
 
 {#if $info}
-	<a href="/explore/applets/{$info.id}">
+	<a href="/explore/applets/{$info.id}" class="w-fit">
 		<Card {color}>
 			<div>
 				<h3 class="text-4xl font-bold drop-shadow-lg">

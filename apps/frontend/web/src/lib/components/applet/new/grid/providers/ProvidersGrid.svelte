@@ -41,7 +41,7 @@
 		</button>
 	</div>
 	<div
-		class="grid grid-cols-3 grid-rows-3 overflow-hidden rounded-xl bg-neutral-100 dark:bg-gray-500"
+		class="grid grid-cols-3 grid-rows-3 overflow-hidden rounded-xl bg-neutral-100 outline outline-1 outline-gray-400 dark:bg-gray-500"
 	>
 		{#each currentProviders as provider}
 			<ProviderOption {provider} bind:element />

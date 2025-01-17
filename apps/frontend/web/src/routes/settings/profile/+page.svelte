@@ -43,14 +43,14 @@
 	<div class="flex flex-col gap-5">
 		<Input title="Username" bind:value={$info.username} />
 		<Input title="Email" bind:value={$info.email} />
-		<div class="flex gap-8">
+		<div class="flex w-full flex-col gap-8 md:flex-row">
 			<Input title="Firstname" bind:value={$info.firstName} />
 			<Input title="Lastname" bind:value={$info.lastName} />
 		</div>
 		{#if $info.description}
 			<Input title="Description" dataType="textarea" bind:value={$info.description} />
 		{/if}
-		<button onclick={save} class="rounded-xl bg-purple-800 py-2 text-xl font-bold shadow"
+		<button onclick={save} class="rounded-xl bg-purple-800 py-2 text-xl font-bold text-white shadow"
 			>Save</button
 		>
 	</div>

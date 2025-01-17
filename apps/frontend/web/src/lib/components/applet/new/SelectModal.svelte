@@ -34,7 +34,9 @@
 		: 'hidden'} fixed inset-0 z-50 flex max-h-full w-full items-center justify-center overflow-y-auto overflow-x-hidden"
 >
 	<div class="absolute inset-0 bg-black opacity-50"></div>
-	<div class="relative flex h-2/3 w-1/4 flex-col rounded-lg bg-white shadow dark:bg-gray-800">
+	<div
+		class="relative flex h-2/3 w-full flex-col rounded-lg bg-white shadow sm:w-1/2 md:w-2/3 lg:w-1/2 dark:bg-gray-800"
+	>
 		<div class="flex items-center justify-between rounded-t p-4">
 			<h3 class="text-base font-semibold">{type === BlockType.Actions ? 'Action' : 'Trigger'}</h3>
 			<div class="flex justify-end">

@@ -50,6 +50,14 @@
 		Back
 	</a>
 	{#if applet && trigger}
+		<div class="mt-12">
+			<div class="text-5xl font-bold">
+				{applet.name}
+			</div>
+			<div class="mt-4 text-2xl">
+				{applet.description}
+			</div>
+		</div>
 		<div class="mt-20 flex w-full flex-col items-center gap-20">
 			<ActionBlock title="Trigger" action={trigger} />
 			{#each actions as action}

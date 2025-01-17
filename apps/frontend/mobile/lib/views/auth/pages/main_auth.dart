@@ -1,6 +1,7 @@
 import 'package:aether/views/auth/pages/google_auth.dart';
 import 'package:aether/views/auth/pages/login.dart';
 import 'package:aether/views/auth/pages/signup.dart';
+import 'package:aether/views/settings/pages/change_api.dart';
 import 'package:flutter/material.dart';
 
 import '../../../config/colors.dart';
@@ -63,6 +64,7 @@ class MainAuthPageState extends State<MainAuthPage> {
                   ),
                 ),
               ),
+              const SizedBox(height: 16),
               SizedBox(
                 width: 150,
                 child: ElevatedButton(
@@ -78,6 +80,25 @@ class MainAuthPageState extends State<MainAuthPage> {
                     );
                   },
                   child: const Text('Google',
+                      style: TextStyle(color: AppColors.textPrimary)),
+                ),
+              ),
+              const SizedBox(height: 16),
+              SizedBox(
+                width: 150,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.secondary),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            const ChangeApiPage(),
+                      ),
+                    );
+                  },
+                  child: const Text('Choose Api',
                       style: TextStyle(color: AppColors.textPrimary)),
                 ),
               )

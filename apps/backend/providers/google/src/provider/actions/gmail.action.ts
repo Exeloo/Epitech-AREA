@@ -4,16 +4,16 @@ import { Injectable } from "@nestjs/common";
 import { ManifestAction } from "@lib/manifest";
 
 import { BaseHttpRepository } from "~/provider/common/base-http.repository";
-import { ActionGmailUsersGetProfileInput } from "~/provider/dto/inputs/gmail/action-gmail-users-get-profile.input";
-import { ActionGmailUsersGetProfileResponse } from "~/provider/dto/responses/gmail/action-gmail-users-get-profile.response";
-import { SendMessageInput } from "~/provider/dto/inputs/gmail/action-gmail-users-send-mail.input";
-import { SendMessageResponse } from "~/provider/dto/responses/gmail/action-gmail-users-send-mail.response";
 import { CreateDraftInput } from "~/provider/dto/inputs/gmail/action-gmail-users-create-draft.input";
-import { CreateDraftResponse } from "~/provider/dto/responses/gmail/action-gmail-users-create-draft.response";
-import { CreateLabelInput } from "~/provider/dto/inputs/gmail/action-gmail-users-create-label.input";
-import { CreateLabelResponse } from "~/provider/dto/responses/gmail/action-gmail-users-create-label.response";
 import { CreateForwardingAddressInput } from "~/provider/dto/inputs/gmail/action-gmail-users-create-forward.input";
+import { CreateLabelInput } from "~/provider/dto/inputs/gmail/action-gmail-users-create-label.input";
+import { ActionGmailUsersGetProfileInput } from "~/provider/dto/inputs/gmail/action-gmail-users-get-profile.input";
+import { SendMessageInput } from "~/provider/dto/inputs/gmail/action-gmail-users-send-mail.input";
+import { CreateDraftResponse } from "~/provider/dto/responses/gmail/action-gmail-users-create-draft.response";
 import { CreateForwardingAddressResponse } from "~/provider/dto/responses/gmail/action-gmail-users-create-forward.response";
+import { CreateLabelResponse } from "~/provider/dto/responses/gmail/action-gmail-users-create-label.response";
+import { ActionGmailUsersGetProfileResponse } from "~/provider/dto/responses/gmail/action-gmail-users-get-profile.response";
+import { SendMessageResponse } from "~/provider/dto/responses/gmail/action-gmail-users-send-mail.response";
 import { IActionResponse } from "~/provider/services/action.service";
 import { AuthService } from "~/provider/shared/auth/auth.service";
 
@@ -119,10 +119,14 @@ export class GmailAction extends BaseHttpRepository {
     userId: number,
     input: CreateForwardingAddressInput,
   ): IActionResponse<CreateForwardingAddressResponse> {
-    return this.post(`/users/${input.userId}/settings/forwardingAddresses`, input, {
-      headers: {
-        Authorization: await this.authService.getToken(userId, input.userId),
+    return this.post(
+      `/users/${input.userId}/settings/forwardingAddresses`,
+      input,
+      {
+        headers: {
+          Authorization: await this.authService.getToken(userId, input.userId),
+        },
       },
-    });
+    );
   }
 }

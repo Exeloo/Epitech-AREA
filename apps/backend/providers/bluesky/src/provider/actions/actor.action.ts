@@ -1,13 +1,13 @@
-import {HttpService} from "@nestjs/axios";
-import {Injectable} from "@nestjs/common";
-import {ConfigService} from "@nestjs/config";
+import { HttpService } from "@nestjs/axios";
+import { Injectable } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
 
-import {ManifestAction} from "@lib/manifest";
+import { ManifestAction } from "@lib/manifest";
 
-import {BaseHttpRepository} from "~/provider/common/base-http.repository";
-import {ActionActorSearchActorsInput} from "~/provider/dto/inputs/actor/action-actor-search-actors.input";
-import {ActionActorSearchActorsResponse} from "~/provider/dto/responses/actor/action-actor-search-actors.response";
-import {IActionResponse} from "~/provider/services/action.service";
+import { BaseHttpRepository } from "~/provider/common/base-http.repository";
+import { ActionActorSearchActorsInput } from "~/provider/dto/inputs/actor/action-actor-search-actors.input";
+import { ActionActorSearchActorsResponse } from "~/provider/dto/responses/actor/action-actor-search-actors.response";
+import { IActionResponse } from "~/provider/services/action.service";
 
 @Injectable()
 export class ActorAction extends BaseHttpRepository {

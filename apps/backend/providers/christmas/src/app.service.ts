@@ -1,6 +1,10 @@
-import {Injectable} from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 
-import {generateManifest, IBaseManifest, ManifestOAuthEnum,} from "@lib/manifest";
+import {
+  IBaseManifest,
+  ManifestOAuthEnum,
+  generateManifest,
+} from "@lib/manifest";
 
 const APP_BASE_MANIFEST: IBaseManifest = {
   id: "christmas",

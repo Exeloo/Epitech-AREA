@@ -1,14 +1,14 @@
-import {HttpService} from "@nestjs/axios";
-import {Injectable} from "@nestjs/common";
-import {ConfigService} from "@nestjs/config";
+import { HttpService } from "@nestjs/axios";
+import { Injectable } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
 
-import {ManifestAction} from "@lib/manifest";
+import { ManifestAction } from "@lib/manifest";
 
-import {BaseHttpRepository} from "~/provider/common/base-http.repository";
-import {ActionIsChristmasResponse} from "~/provider/dto/responses/action-is-christmas.response";
-import {IActionResponse} from "~/provider/services/action.service";
+import { BaseHttpRepository } from "~/provider/common/base-http.repository";
+import { ActionIsChristmasResponse } from "~/provider/dto/responses/action-is-christmas.response";
+import { IActionResponse } from "~/provider/services/action.service";
 
-import {EmptyInput} from "../dto/inputs/empty.input";
+import { EmptyInput } from "../dto/inputs/empty.input";
 
 @Injectable()
 export class ChristmasAction extends BaseHttpRepository {

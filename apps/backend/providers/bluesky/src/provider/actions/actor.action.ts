@@ -20,8 +20,8 @@ export class ActorAction extends BaseHttpRepository {
     id: "actor-search-actors",
     name: "Search Actors",
     description: "Action to search actors",
-    img: "",
-    color: "#ffffff",
+    img: "https://firebasestorage.googleapis.com/v0/b/area-444018.firebasestorage.app/o/icon-search.png?alt=media&token=939d048c-8c7c-4be0-852a-8052863e4adb",
+    color: "#1185fe",
     input: ActionActorSearchActorsInput,
     output: ActionActorSearchActorsResponse,
   })

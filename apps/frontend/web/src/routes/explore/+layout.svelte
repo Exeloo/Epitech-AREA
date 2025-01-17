@@ -4,7 +4,7 @@
 
 <div class="w-full p-10 md:px-20">
 	<ExploreNav />
-	<div class="flex w-auto flex-wrap justify-center gap-8 bg-gray-600">
+	<div class="flex w-auto flex-wrap justify-center gap-8">
 		<slot />
 	</div>
 </div>

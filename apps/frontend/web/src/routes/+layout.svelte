@@ -21,7 +21,7 @@
 			<img src={logo} alt="logo" class="h-10" />
 			<h1 class="text-2xl font-black">AETHER</h1>
 		</a>
-		<form class="mx-auto w-1/4">
+		<form class="mx-auto hidden w-1/4 md:block">
 			<label for="default-search" class="sr-only mb-2 text-sm font-medium text-neutral-900"
 				>Search</label
 			>
@@ -60,7 +60,7 @@
 					href="/settings/"
 					class="flex h-10 w-10 items-center justify-center rounded-full bg-purple-700"
 				>
-					<i class="fi fi-rr-user flex justify-center text-xl"></i>
+					<i class="fi fi-rr-user flex justify-center text-xl text-white"></i>
 				</a>
 			{:else}
 				<a href="/auth/login" class="text-neutral-800 dark:text-white">Log in</a>

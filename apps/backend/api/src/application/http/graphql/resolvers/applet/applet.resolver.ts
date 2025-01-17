@@ -13,11 +13,12 @@ import { ID } from "@d-type/id.type";
 import { AppletService } from "@domain/applet/applet.service";
 import { AppletNodeService } from "@domain/applet/node/applet-node.service";
 import { IExposedAppletNode } from "@domain/applet/node/types/applet-node.type";
-import { IAppletCreateInput } from "@domain/applet/types/applet.input.type";
+import { IAppletInput } from "@domain/applet/types/applet.input.type";
 import { IExposedApplet } from "@domain/applet/types/applet.type";
 import { IUser } from "@domain/user/types/user.type";
 
 import { GqlAuthGuard } from "~/application/http/graphql/common/guards/gql-auth.guard";
+import { AppletUpdateInput } from "~/application/http/graphql/dto/input/applet/applet-update.input";
 import { AppletNode } from "~/application/http/graphql/dto/nodes/applet/applet-node.node";
 
 import { GqlCurrentUser } from "../../common/decorators/graphql-current-user.decorator";
@@ -57,13 +58,37 @@ export class AppletResolver {
   }
 
   @Mutation(() => Applet, {
-    description: "Mutation used to create to an applet",
+    description: "Mutation used to create an applet",
   })
   createApplet(
     @GqlCurrentUser() user: IUser,
     @Args("data", { type: () => AppletCreateInput })
-    data: IAppletCreateInput,
+    data: IAppletInput,
   ): Promise<IExposedApplet> {
     return this.appletService.create(user, data);
+  }
+
+  @Mutation(() => Applet, {
+    description: "Mutation used to update an applet",
+  })
+  updateApplet(
+    @GqlCurrentUser() user: IUser,
+    @Args("id", { type: () => Int })
+    id: ID,
+    @Args("data", { type: () => AppletUpdateInput })
+    data: IAppletInput,
+  ): Promise<IExposedApplet> {
+    return this.appletService.update(user, id, data);
+  }
+
+  @Mutation(() => Applet, {
+    description: "Mutation used to delete an applet",
+  })
+  deleteApplet(
+    @GqlCurrentUser() user: IUser,
+    @Args("id", { type: () => Int })
+    id: ID,
+  ): Promise<IExposedApplet> {
+    return this.appletService.delete(user, id);
   }
 }

@@ -23,7 +23,7 @@ export class AppletNodeEntity {
   @ManyToOne(() => ProviderEntity)
   provider?: ProviderEntity;
 
-  @ManyToOne(() => AppletEntity)
+  @ManyToOne(() => AppletEntity, { onDelete: "CASCADE" })
   applet?: AppletEntity;
 
   @Column({ type: "varchar" })
@@ -35,10 +35,14 @@ export class AppletNodeEntity {
   @Column({ type: "json" })
   input: object;
 
-  @OneToMany(() => AppletNodeRelationEntity, (relation) => relation.second)
+  @OneToMany(() => AppletNodeRelationEntity, (relation) => relation.second, {
+    onDelete: "CASCADE",
+  })
   previous?: AppletNodeRelationEntity[];
 
-  @OneToMany(() => AppletNodeRelationEntity, (relation) => relation.first)
+  @OneToMany(() => AppletNodeRelationEntity, (relation) => relation.first, {
+    onDelete: "CASCADE",
+  })
   next?: AppletNodeRelationEntity[];
 
   @CreateDateColumn()

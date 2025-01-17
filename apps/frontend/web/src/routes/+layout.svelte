@@ -65,7 +65,7 @@
 		</div>
 	</header>
 	<main class="flex min-h-[calc(100vh-80px)] w-screen justify-center">
-		<div class="flex w-full flex-col items-center gap-5 px-40">
+		<div class="flex w-full flex-col items-center gap-5">
 			{@render children()}
 		</div>
 	</main>

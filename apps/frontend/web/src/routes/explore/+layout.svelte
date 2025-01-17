@@ -2,9 +2,9 @@
 	import ExploreNav from '$lib/components/explore/ExploreNav.svelte';
 </script>
 
-<div class="w-full p-10">
+<div class="w-full p-10 md:px-20">
 	<ExploreNav />
-	<div class="flex w-full flex-wrap justify-center gap-8">
+	<div class="flex w-auto flex-wrap justify-center gap-8 bg-gray-600">
 		<slot />
 	</div>
 </div>

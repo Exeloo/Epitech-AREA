@@ -2,6 +2,7 @@
 	import '../app.css';
 	import { getSession } from '$houdini';
 	import { onMount } from 'svelte';
+	import logo from '$lib/images/logo.png';
 
 	// eslint-disable-next-line no-undef
 	let session: App.Session | null = $state(null);
@@ -16,7 +17,10 @@
 	<header
 		class="sticky top-0 z-50 flex w-full items-center justify-between bg-white p-5 shadow-md shadow-neutral-200 dark:bg-gray-800 dark:shadow-gray-800"
 	>
-		<a href="/"><h1 class="text-3xl font-bold">AREA</h1></a>
+		<a href="/" class="flex items-center justify-between">
+			<img src={logo} alt="logo" class="h-10" />
+			<h1 class="text-2xl font-black">AETHER</h1>
+		</a>
 		<form class="mx-auto w-1/4">
 			<label for="default-search" class="sr-only mb-2 text-sm font-medium text-neutral-900"
 				>Search</label

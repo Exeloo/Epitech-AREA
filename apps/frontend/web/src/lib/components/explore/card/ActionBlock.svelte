@@ -13,6 +13,8 @@
 		};
 	}
 	let { title, action }: Props = $props();
+
+	const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 </script>
 
 <div
@@ -29,11 +31,11 @@
 	</div>
 	<div class="flex w-[70rem] flex-col gap-16 p-10">
 		<div class="font-bold">
-			{action.actionId}
+			{action.actionId.split('-').map(capitalize).join(' ')}
 		</div>
 		<div class="flex flex-col items-center justify-center gap-5">
 			{#each Object.entries(JSON.parse(action.input)) as [key, value]}
-				<div class="flex w-full items-center justify-between gap-5">
+				<div class="flex w-full items-center justify-between gap-5 text-2xl">
 					<div class="w-2/5">
 						{key}
 					</div>

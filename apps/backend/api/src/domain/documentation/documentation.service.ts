@@ -1,10 +1,16 @@
 import { Injectable, Logger } from "@nestjs/common";
 
+import { capitalize } from "@utils/string.utils";
+
 import { IProvider } from "@domain/provider/types/provider.type";
 
 import { ManifestService } from "../provider/manifest/manifest.service";
 import { ProviderService } from "../provider/provider.service";
-import { IDocumentation, IProviderDocumentation } from "./documentation.type";
+import {
+  IDocumentation,
+  IProviderDocumentation,
+  IServerDocumentation,
+} from "./documentation.type";
 
 @Injectable()
 export class DocumentationService {
@@ -15,21 +21,31 @@ export class DocumentationService {
     private readonly manifestService: ManifestService,
   ) {}
 
-  async getServices(providers: IProvider[]): Promise<IProviderDocumentation[]> {
+  async getServices(
+    providers: IProvider[],
+  ): Promise<Omit<IServerDocumentation, "current_time">> {
     const services: IProviderDocumentation[] = [];
+    let actions_nb = 0;
+    let reactions_nb = 0;
     for (const provider of providers) {
       try {
         const manifest = await this.manifestService.getByProviderId(
           provider.id,
         );
+        actions_nb += manifest.triggers.length;
+        reactions_nb += manifest.actions.length;
         services.push({
-          name: manifest.id,
+          name: capitalize(manifest.id),
+          actions_nb: manifest.triggers.length,
+          reactions_nb: manifest.actions.length,
           actions: manifest.triggers.map((trigger) => ({
-            name: trigger.id,
+            id: trigger.id,
+            name: trigger.name,
             description: trigger.description,
           })),
           reactions: manifest.actions.map((action) => ({
-            name: action.id,
+            id: action.id,
+            name: action.name,
             description: action.description,
           })),
         });
@@ -40,11 +56,18 @@ export class DocumentationService {
         );
       }
     }
-    return services;
+    return {
+      actions_nb,
+      reactions_nb,
+      areas_nb: actions_nb + reactions_nb,
+      services,
+    };
   }
 
   async getDocumentation(clientIp: string): Promise<IDocumentation> {
     const providers = await this.providerService.getAll();
+    const { actions_nb, reactions_nb, areas_nb, services } =
+      await this.getServices(providers);
 
     return {
       client: {
@@ -52,7 +75,10 @@ export class DocumentationService {
       },
       server: {
         current_time: Math.floor(Date.now() / 1000),
-        services: await this.getServices(providers),
+        actions_nb,
+        reactions_nb,
+        areas_nb,
+        services,
       },
     };
   }

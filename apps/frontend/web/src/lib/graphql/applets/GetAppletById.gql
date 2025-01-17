@@ -1,0 +1,10 @@
+query getAppletById($id: Int!) {
+    getAppletById(id: $id) {
+        id
+        name
+        description
+        triggerNodes {
+            id
+        }
+    }
+}

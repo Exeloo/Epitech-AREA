@@ -5,12 +5,19 @@ import 'package:aether/graphql/__generated__/provider.req.gql.dart';
 import 'package:ferry/ferry.dart';
 
 class ProviderRepository {
-  final Client client;
+  late Client client;
 
   ProviderRepository({required this.client});
 
-  Future<GgetAllProvidersData?> getAllProviders() async {
-    final getAllProvidersReq = GgetAllProvidersReq((b) => b);
+  void updateClient(Client newClient) {
+    client = newClient;
+  }
+
+  Future<GgetAllProvidersData?> getAllProviders({
+    FetchPolicy fetchPolicy = FetchPolicy.CacheAndNetwork,
+  }) async {
+    final getAllProvidersReq =
+        GgetAllProvidersReq((b) => b..fetchPolicy = fetchPolicy);
 
     try {
       final response = await client.request(getAllProvidersReq).first;

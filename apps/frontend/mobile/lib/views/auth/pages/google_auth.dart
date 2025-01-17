@@ -1,3 +1,4 @@
+import 'package:aether/config/api_config.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -31,7 +32,7 @@ class GoogleAuthState extends State<GoogleAuth> {
         ),
       );
     _webViewController.loadRequest(
-        Uri.parse('https://api.aether-area.fr/auth/google?device=mobile'));
+        Uri.parse(('${AppConfig.oauthUrl}/auth/google?device=mobile')));
   }
 
   @override

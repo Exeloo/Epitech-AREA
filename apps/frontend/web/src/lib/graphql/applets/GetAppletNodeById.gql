@@ -1,0 +1,16 @@
+query getAppletNodeById($id: Int!) {
+    getAppletNodeById(id: $id) {
+        id
+        actionId
+        actionType
+        input
+        provider {
+            name
+            color
+            img
+        }
+        next {
+            id
+        }
+    }
+}

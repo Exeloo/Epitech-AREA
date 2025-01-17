@@ -1,7 +1,7 @@
 import 'package:aether/views/applet/pages/applet_creation.dart';
 import 'package:aether/views/applet/pages/my_applets_page.dart';
 import 'package:aether/views/home/pages/home.dart';
-import 'package:aether/views/profile/profile.dart';
+import 'package:aether/views/settings/pages/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -29,7 +29,7 @@ class MainNavigationPageState extends State<MainNavigationPage> {
       const HomePage(),
       const Page2(),
       const MyAppletsPage(),
-      const Profile(),
+      const SettingsPage(),
     ];
 
     return Scaffold(

@@ -3,6 +3,7 @@ import 'package:aether/modules/graphql/repository/applet_repository.dart';
 import 'package:aether/modules/graphql/repository/auth_repository.dart';
 import 'package:aether/modules/graphql/repository/provider_repository.dart';
 import 'package:aether/modules/graphql/repository/user_repository.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
@@ -24,5 +25,16 @@ class AppProvider {
         create: (_) => AppletRepository(client: client),
       )
     ];
+  }
+
+  static void updateRepositories(
+      BuildContext context, GraphQlClient newClient) {
+    final client = newClient.client;
+
+    Provider.of<AuthRepository>(context, listen: false).updateClient(client);
+    Provider.of<UserRepository>(context, listen: false).updateClient(client);
+    Provider.of<ProviderRepository>(context, listen: false)
+        .updateClient(client);
+    Provider.of<AppletRepository>(context, listen: false).updateClient(client);
   }
 }

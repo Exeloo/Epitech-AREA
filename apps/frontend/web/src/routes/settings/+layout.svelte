@@ -5,7 +5,7 @@
 </script>
 
 <div class="flex h-screen w-full justify-center gap-5 py-10">
-	<div class="w-56">
+	<div class="w-32 md:w-56">
 		<SettingsNav />
 	</div>
 	<div class="w-1/3">

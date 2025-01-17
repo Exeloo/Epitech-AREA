@@ -4,7 +4,7 @@
 	import lightImg from '$lib/images/light.png';
 </script>
 
-<div class="flex gap-5">
+<div class="flex w-full flex-col gap-5 lg:flex-row">
 	<Theme name="Dark" img={darkImg} />
 	<Theme name="Light" img={lightImg} />
 </div>

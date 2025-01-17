@@ -5,7 +5,11 @@ import 'package:aether/graphql/__generated__/user.req.gql.dart';
 import 'package:ferry/ferry.dart';
 
 class UserRepository {
-  final Client client;
+  late Client client;
+
+  void updateClient(Client newClient) {
+    client = newClient;
+  }
 
   UserRepository({required this.client});
 

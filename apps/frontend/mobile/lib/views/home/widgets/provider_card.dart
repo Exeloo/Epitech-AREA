@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 
 import '../../../config/colors.dart';
 import '../../../modules/graphql/repository/provider_repository.dart';
+import '../../applet/pages/applet_oauth_webview.dart';
 
 class ProviderCard extends StatelessWidget {
   final String? logoUrl;
@@ -88,6 +89,8 @@ class ProviderDescription extends StatefulWidget {
 class ProviderDescriptionState extends State<ProviderDescription> {
   GgetProviderByIdData_getProviderById? _provider;
   bool _isLoading = true;
+  bool _oAuth = false;
+  GgetProviderOAuthStateData_getProviderOAuthState? _oAuthState;
 
   @override
   void initState() {
@@ -117,10 +120,32 @@ class ProviderDescriptionState extends State<ProviderDescription> {
         _provider = response?.getProviderById;
         _isLoading = false;
       });
+      if (_provider != null) {
+        await _getOauthState(context);
+      }
     } catch (e) {
       log('An error occurred: $e');
       setState(() {
         _isLoading = false;
+      });
+    }
+  }
+
+  Future<void> _getOauthState(BuildContext context) async {
+    final providerRepo =
+        Provider.of<ProviderRepository>(context, listen: false);
+    final res = await providerRepo.getProviderOAuthState(
+        id: _provider!.id, fetchPolicy: FetchPolicy.NetworkOnly);
+
+    if (res != null) {
+      setState(() {
+        _oAuthState = res.getProviderOAuthState;
+      });
+    }
+
+    if (_oAuthState!.redirectUri.isNotEmpty) {
+      setState(() {
+        _oAuth = true;
       });
     }
   }
@@ -157,34 +182,41 @@ class ProviderDescriptionState extends State<ProviderDescription> {
             Color(int.parse(_provider!.color.replaceFirst('#', '0xff'))),
         automaticallyImplyLeading: false,
         flexibleSpace: Padding(
-          padding: const EdgeInsets.only(bottom: 10.0),
+          padding: const EdgeInsets.only(top: 15.0),
           child: Align(
             alignment: Alignment.bottomCenter,
-            child: Row(
+            child: Stack(
+              alignment: Alignment.bottomCenter,
               children: [
-                IconButton(
-                  icon: const Icon(Icons.arrow_back,
-                      color: AppColors.textPrimary, size: 40),
-                  onPressed: () => Navigator.of(context).pop(),
-                ),
-                const SizedBox(width: 80),
-                Text(
-                  _provider!.name,
-                  style: const TextStyle(
-                    color: AppColors.textPrimary,
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold,
-                    shadows: [
-                      Shadow(
-                        offset: Offset(1.5, 1.5),
-                        blurRadius: 3.0,
-                        color: Colors.black,
-                      ),
-                    ],
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: IconButton(
+                    icon: const Icon(
+                      Icons.arrow_back,
+                      color: AppColors.textPrimary,
+                      size: 40,
+                    ),
+                    onPressed: () => Navigator.of(context).pop(),
                   ),
-                  textAlign: TextAlign.center,
                 ),
-                const Spacer(),
+                Center(
+                  child: Text(
+                    _provider!.name,
+                    style: const TextStyle(
+                      color: AppColors.textPrimary,
+                      fontSize: 35,
+                      fontWeight: FontWeight.bold,
+                      shadows: [
+                        Shadow(
+                          offset: Offset(1.5, 1.5),
+                          blurRadius: 3.0,
+                          color: Colors.black,
+                        ),
+                      ],
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
               ],
             ),
           ),
@@ -242,6 +274,29 @@ class ProviderDescriptionState extends State<ProviderDescription> {
                     ),
                   ),
                   const SizedBox(height: 16),
+                  _oAuth
+                      ? SizedBox(
+                          width: 150,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: AppColors.secondary),
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        AppletOauthWebView(
+                                            baseUrl: _oAuthState!.redirectUri),
+                                  ));
+                            },
+                            child: const Text('Connect',
+                                style: TextStyle(
+                                    color: AppColors.textPrimary,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold)),
+                          ),
+                        )
+                      : const SizedBox.shrink(),
                 ],
               ),
             ),

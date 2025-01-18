@@ -1,6 +1,6 @@
 import 'package:aether/views/applet/pages/applet_creation.dart';
-import 'package:aether/views/applet/pages/my_applets_page.dart';
 import 'package:aether/views/home/pages/home.dart';
+import 'package:aether/views/market/pages/market_page.dart';
 import 'package:aether/views/settings/pages/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -28,7 +28,7 @@ class MainNavigationPageState extends State<MainNavigationPage> {
     final List<Widget> pages = [
       const HomePage(),
       const Page2(),
-      const MyAppletsPage(),
+      const MarketPage(),
       const SettingsPage(),
     ];
 
@@ -59,7 +59,7 @@ class MainNavigationPageState extends State<MainNavigationPage> {
                 ),
                 IconButton(
                   onPressed: () => _onTabTapped(1),
-                  icon: SvgPicture.asset('assets/icon/loupe.svg',
+                  icon: SvgPicture.asset('assets/icon/faq.svg',
                       width: 24,
                       height: 24,
                       color: _currentIndex == 1
@@ -69,7 +69,7 @@ class MainNavigationPageState extends State<MainNavigationPage> {
                 const SizedBox(width: 50),
                 IconButton(
                   onPressed: () => _onTabTapped(2),
-                  icon: SvgPicture.asset('assets/icon/liste.svg',
+                  icon: SvgPicture.asset('assets/icon/panier.svg',
                       width: 24,
                       height: 24,
                       color: _currentIndex == 2

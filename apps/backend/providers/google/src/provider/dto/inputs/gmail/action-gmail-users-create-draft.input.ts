@@ -16,12 +16,16 @@ export class CreateDraftInputMessage {
 export class CreateDraftInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
+    name: "User ID",
+    description: "The ID of the user creating the draft",
   })
   userId: string;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.OBJECT,
     properties: CreateDraftInputMessage,
+    name: "Message",
+    description: "Message content in the draft",
   })
   message: CreateDraftInputMessage;
 }

@@ -115,7 +115,7 @@
 		<button
 			onclick={() => (open = isFilledInput(element?.inputs) ? false : open)}
 			disabled={!isFilledInput(element?.inputs)}
-			class="hover:bg-light_primary disabled:bg-very_light_primary m-5 w-fit self-end rounded-full bg-primary px-8 py-2 text-lg font-bold text-white shadow"
+			class="m-5 w-fit self-end rounded-full bg-primary px-8 py-2 text-lg font-bold text-white shadow hover:bg-light_primary disabled:bg-very_light_primary"
 		>
 			Apply
 		</button>

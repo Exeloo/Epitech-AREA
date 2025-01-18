@@ -33,11 +33,7 @@
 			<img src={$provider.img} alt={$provider.name} class="h-full w-8" />
 		</div>
 	{:else}
-		<div
-			class="flex items-center rounded-full bg-white px-4 py-2 text-lg text-black"
-		>
-			add
-		</div>
+		<div class="flex items-center rounded-full bg-white px-4 py-2 text-lg text-black">add</div>
 	{/if}
 </button>
 <SelectModal bind:open {type} bind:element />

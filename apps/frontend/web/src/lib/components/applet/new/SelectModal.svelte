@@ -1,5 +1,9 @@
 <script lang="ts">
-	import { type BaseProvider$data, BaseProviderStore } from '$houdini';
+	import {
+		type BaseProvider$data,
+		BaseProviderStore,
+		type ProviderManifestAction$data
+	} from '$houdini';
 	import ProvidersGrid from '$lib/components/applet/new/grid/providers/ProvidersGrid.svelte';
 	import ElementsGrid from '$lib/components/applet/new/grid/elements/ElementsGrid.svelte';
 	import { BlockType, type ElementValues } from '$lib/components/applet/new/types';
@@ -24,6 +28,28 @@
 			currentProviderInfo = null;
 		}
 	});
+
+	const verifyInput = (inputs: Record<string, string>, action: ProviderManifestAction$data) => {
+		const input = JSON.parse(action.input);
+		for (const [key, value] of Object.entries(inputs)) {
+			if (!input[key]) return false;
+			if (!input[key].optional && !value) return false;
+		}
+		return true;
+	};
+
+	const isFilledInput = (inputs: Record<string, string> | undefined): boolean => {
+		if (!inputs || !element?.actionId || !element.providerId || !element.provider) return false;
+		const actions = (type === BlockType.Triggers
+			? element.provider.manifest.triggers
+			: element.provider.manifest.actions) as unknown as ProviderManifestAction$data[];
+		for (const action of actions) {
+			if (action.id === element.actionId) {
+				return verifyInput(inputs, action);
+			}
+		}
+		return false;
+	};
 </script>
 
 <div
@@ -85,5 +111,13 @@
 				<ProvidersGrid bind:element />
 			{/if}
 		</div>
+
+		<button
+			onclick={() => (open = isFilledInput(element?.inputs) ? false : open)}
+			disabled={!isFilledInput(element?.inputs)}
+			class="hover:bg-light_primary disabled:bg-very_light_primary m-5 w-fit self-end rounded-full bg-primary px-8 py-2 text-lg font-bold text-white shadow"
+		>
+			Apply
+		</button>
 	</div>
 </div>

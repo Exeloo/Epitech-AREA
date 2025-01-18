@@ -18,27 +18,26 @@
 	let provider = $derived(element ? baseProviderStore.get(element.provider) : null);
 </script>
 
-<div
+<button
+	onclick={() => (open = true)}
 	class="flex w-full flex-col items-center justify-between gap-6 rounded-2xl text-4xl font-bold text-white xl:flex-row {focus
 		? 'bg-neutral-800'
 		: 'bg-neutral-400'} px-8 py-4"
 >
 	{title}
 	{#if $provider}
-		<button
-			onclick={() => (open = true)}
+		<div
 			style="background-color: {$provider.color}"
 			class="h-full rounded-full px-4 py-2 text-base text-black"
 		>
 			<img src={$provider.img} alt={$provider.name} class="h-full w-8" />
-		</button>
+		</div>
 	{:else}
-		<button
-			onclick={() => (open = true)}
+		<div
 			class="flex items-center rounded-full bg-white px-4 py-2 text-lg text-black"
 		>
 			add
-		</button>
+		</div>
 	{/if}
-</div>
+</button>
 <SelectModal bind:open {type} bind:element />

@@ -1,7 +1,7 @@
 import 'package:aether/graphql/__generated__/applet.data.gql.dart';
-import 'package:aether/graphql/graphql_client.dart';
 import 'package:aether/modules/graphql/repository/applet_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../config/colors.dart';
 
@@ -15,7 +15,6 @@ class AppletDetailPage extends StatefulWidget {
 }
 
 class AppletDetailPageState extends State<AppletDetailPage> {
-  late AppletRepository appletRepository;
   GgetAppletByIdData_getAppletById? appletData;
   bool isLoading = true;
   String? errorMessage;
@@ -25,13 +24,13 @@ class AppletDetailPageState extends State<AppletDetailPage> {
   @override
   void initState() {
     super.initState();
-    final client = GraphQlClient().client;
-    appletRepository = AppletRepository(client: client);
-
     fetchAppletData();
   }
 
   Future<void> fetchAppletData() async {
+    final appletRepository =
+        Provider.of<AppletRepository>(context, listen: false);
+
     try {
       final data = await appletRepository.getAppletById(widget.applet.id);
       setState(() {
@@ -136,6 +135,35 @@ class AppletDetailPageState extends State<AppletDetailPage> {
                               ),
                             ),
                           ),
+                          const SizedBox(height: 16),
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {},
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.red,
+                                    shape: const CircleBorder(),
+                                    padding: const EdgeInsets.all(20),
+                                  ),
+                                  child: const Icon(Icons.delete,
+                                      color: Colors.white),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {},
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.blue,
+                                    shape: const CircleBorder(),
+                                    padding: const EdgeInsets.all(20),
+                                  ),
+                                  child: const Icon(Icons.edit,
+                                      color: Colors.white),
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -193,7 +221,7 @@ class AppletDetailPageState extends State<AppletDetailPage> {
         Color(int.parse('0xFF${provider.color.substring(1)}'));
 
     return Card(
-      color: providerColor.withAlpha(180), // Correction ici
+      color: providerColor.withAlpha(180),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: ListTile(
         title: Text(

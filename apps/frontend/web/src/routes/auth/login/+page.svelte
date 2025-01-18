@@ -30,7 +30,7 @@
 
 			queryResult.subscribe(setTokenInCookies);
 		} catch (e) {
-			errorsStore.set(['Invalid Credentials']);
+			errorsStore.set(['One or more fields have errors. Please correct them and try again.']);
 			console.error(e);
 		}
 	}

@@ -2,6 +2,7 @@ import { HttpService } from "@nestjs/axios";
 import { Injectable, Logger, OnModuleInit } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { SchedulerRegistry } from "@nestjs/schedule";
+import { CronJob } from "cron";
 import { firstValueFrom } from "rxjs";
 
 import { TriggerEntity } from "~/provider/services/trigger.entity";
@@ -40,10 +41,27 @@ export class TriggerService implements OnModuleInit {
   }
 
   registerTrigger(trigger: TriggerEntity) {
+    if (trigger.actionId === "on-cron") return this.registerCron(trigger);
+    if (trigger.actionId === "on-interval")
+      return this.registerInterval(trigger);
+  }
+
+  registerCron(trigger: TriggerEntity) {
+    if (this.schedulerRegistry.doesExist("cron", trigger.baseId.toString()))
+      return;
+
+    const job = new CronJob(trigger.input.cron, () => {
+      this.eventService.emit(EventsEnum.ON_CRON, [trigger]);
+    });
+    this.schedulerRegistry.addCronJob(trigger.baseId.toString(), job as any);
+    job.start();
+  }
+
+  registerInterval(trigger: TriggerEntity) {
     if (this.schedulerRegistry.doesExist("interval", trigger.baseId.toString()))
       return;
     const t = setInterval(() => {
-      this.eventService.emit(EventsEnum.ON_CRON, [trigger]);
+      this.eventService.emit(EventsEnum.ON_INTERVAL, [trigger]);
     }, UNITS[trigger.input.unit] * trigger.input.time);
     this.schedulerRegistry.addInterval(trigger.baseId.toString(), t);
   }

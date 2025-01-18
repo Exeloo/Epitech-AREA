@@ -15,6 +15,8 @@
 	});
 </script>
 
-{#each providers as provider}
-	<ProviderCard {provider} />
-{/each}
+<div class="flex w-auto flex-wrap justify-center gap-8">
+	{#each providers as provider}
+		<ProviderCard {provider} />
+	{/each}
+</div>

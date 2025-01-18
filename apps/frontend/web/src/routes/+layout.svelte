@@ -27,7 +27,7 @@
 	});
 </script>
 
-<div class="w-full bg-neutral-100 dark:bg-gray-700 dark:text-white">
+<div class="h-full w-full bg-neutral-100 dark:bg-gray-700 dark:text-white">
 	<header
 		class="sticky top-0 z-50 flex w-full items-center justify-between bg-white p-5 shadow-md shadow-neutral-200 dark:bg-gray-800 dark:shadow-gray-800"
 	>
@@ -86,7 +86,7 @@
 			{/if}
 		</div>
 	</header>
-	<main class="flex min-h-[calc(100vh-80px)] w-screen justify-center">
+	<main class="flex min-h-[calc(100vh-90px)] w-screen justify-center">
 		<div class="flex w-full flex-col items-center gap-5">
 			{@render children()}
 		</div>

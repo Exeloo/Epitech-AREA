@@ -57,7 +57,6 @@
 		});
 		const r = await query.getProviderOAuthState.fetch();
 		const data = r.data;
-		console.log(r);
 		if (!data || !data.getProviderOAuthState) return false;
 		if (data.getProviderOAuthState.authenticated || !data.getProviderOAuthState.redirectUri)
 			return true;

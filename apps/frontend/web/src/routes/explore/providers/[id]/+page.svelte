@@ -1,12 +1,24 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { type getProviderById$result, load_getProviderById } from '$houdini';
+	import {
+		type getProviderById$result,
+		type getProviderOAuthState$result,
+		load_getProviderById,
+		load_getProviderOAuthState
+	} from '$houdini';
 	import { page } from '$app/stores';
 	import ActionCardList from '$lib/components/explore/list/ActionCardList.svelte';
 
 	let id = $page.params.id;
 
 	let provider: getProviderById$result['getProviderById'] | undefined = $state(undefined);
+	let authState: getProviderOAuthState$result['getProviderOAuthState'] | undefined =
+		$state(undefined);
+
+	const connectToApplet = () => {
+		if (!authState || !authState.redirectUri) return;
+		window.open(authState.redirectUri, 'Aether OAuth', 'width=1000,height=1000');
+	};
 
 	onMount(async () => {
 		const query = await load_getProviderById({ variables: { id: +id } });
@@ -15,6 +27,14 @@
 		if (!data || !data.getProviderById) return;
 
 		provider = data.getProviderById;
+
+		const queryState = await load_getProviderOAuthState({
+			variables: { id: provider.id }
+		});
+		const { data: dataState } = await queryState.getProviderOAuthState.fetch();
+		if (!dataState || !dataState.getProviderOAuthState) return;
+
+		authState = dataState.getProviderOAuthState;
 	});
 </script>
 
@@ -38,6 +58,15 @@
 			<div class="text-2xl italic">{provider.description}</div>
 		</div>
 		<div class="pt-[27rem]">
+			{#if authState && authState.redirectUri}
+				<div class="flex w-full items-center justify-center">
+					<button
+						onclick={connectToApplet}
+						class="mt-14 rounded-full bg-primary px-8 py-4 text-2xl font-bold text-white duration-200 hover:bg-light_primary"
+						>Connect a new account to the provider</button
+					>
+				</div>
+			{/if}
 			<ActionCardList actions={provider.manifest.triggers} name="Triggers" />
 			<ActionCardList actions={provider.manifest.actions} name="Actions" />
 		</div>

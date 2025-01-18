@@ -24,8 +24,8 @@ export class AccountAction extends BaseHttpRepository {
     id: "account-get-profile",
     name: "Account Get Profile",
     description: "Action to Get Profile",
-    img: "",
-    color: "#ffffff",
+    img: "https://firebasestorage.googleapis.com/v0/b/area-444018.firebasestorage.app/o/liste-des-membres.svg?alt=media&token=f694249e-3892-4bb9-825a-bbea563c2cb4",
+    color: "#f55150",
     input: ActionAccountGetProfileInput,
     output: ActionAccountGetProfileResponse,
   })

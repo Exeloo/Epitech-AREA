@@ -60,6 +60,10 @@ class SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
+      appBar: AppBar(
+        backgroundColor: AppColors.background,
+        iconTheme: const IconThemeData(color: Colors.white),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -183,7 +187,7 @@ class SignUpPageState extends State<SignUpPage> {
                         builder: (BuildContext context) => const LoginPage()),
                     (Route<dynamic> route) => false);
               },
-              child: const Text('Already have an account? Log in',
+              child: const Text('Already have an account ? Log in',
                   style: TextStyle(color: AppColors.textPrimary)),
             ),
           ],

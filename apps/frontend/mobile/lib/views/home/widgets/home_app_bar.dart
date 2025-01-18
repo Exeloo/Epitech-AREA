@@ -15,7 +15,7 @@ class MyHomeAppBar extends StatelessWidget implements PreferredSizeWidget {
         indicatorColor: Color(0xff8E44AD),
         labelStyle: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         dividerColor: Colors.transparent,
-        tabs: [Tab(text: 'All'), Tab(text: 'Providers')],
+        tabs: [Tab(text: 'My Applets'), Tab(text: 'Providers')],
       ),
     );
   }

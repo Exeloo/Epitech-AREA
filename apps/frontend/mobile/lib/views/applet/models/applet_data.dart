@@ -70,6 +70,8 @@ class TriggerNodeManager {
 
   static void reset() {
     rootTriggerNode = null;
+    triggerName = null;
+    actionNames.clear();
   }
 }
 

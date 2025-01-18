@@ -1,4 +1,5 @@
 import 'package:aether/views/applet/pages/provider_selection.dart';
+import 'package:aether/views/mainPage/pages/main_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -56,6 +57,12 @@ class _AppletCreationState extends State<AppletCreation> {
           content:
               Text('Applet "${_nameController.text}" created successfully!'),
         ));
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const MainNavigationPage(),
+          ),
+        );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Failed to create applet: No response received'),
@@ -154,7 +161,7 @@ class _AppletCreationState extends State<AppletCreation> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => const ProviderSelection(),
+            builder: (context) => ProviderSelection(inputType: inputType),
           ),
         );
       },

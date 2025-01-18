@@ -68,8 +68,11 @@ class AppletRepository {
     }
   }
 
-  Future<List<GgetAllAppletsData_getAllApplets>?> getAllApplets() async {
-    final getAllAppletsReq = GgetAllAppletsReq();
+  Future<List<GgetAllAppletsData_getAllApplets>?> getAllApplets({
+    FetchPolicy fetchPolicy = FetchPolicy.CacheAndNetwork,
+  }) async {
+    final getAllAppletsReq =
+        GgetAllAppletsReq((b) => b..fetchPolicy = fetchPolicy);
     try {
       final response = await client.request(getAllAppletsReq).first;
 

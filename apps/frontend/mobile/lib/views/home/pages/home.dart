@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:aether/graphql/__generated__/provider.data.gql.dart';
 import 'package:aether/modules/graphql/repository/provider_repository.dart';
+import 'package:aether/views/applet/pages/my_applets_page.dart';
 import 'package:aether/views/home/widgets/home_app_bar.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class HomePage extends StatelessWidget {
         appBar: MyHomeAppBar(),
         body: TabBarView(
           children: [
-            AllContent(),
+            MyAppletsPage(),
             ProvidersContent(),
           ],
         ),

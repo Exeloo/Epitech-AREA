@@ -5,10 +5,10 @@
 	import { errorsStore, successStore } from '$lib/components/auth/stores';
 	import { load_login, TokenFieldsStore } from '$houdini';
 	import { onMount } from 'svelte';
+	import { setTokenInCookies } from '$lib/components/auth/cookies';
 
 	let email = $state('');
 	let password = $state('');
-	let rememberMe = $state(false);
 
 	async function handleSubmit(event: any): Promise<any> {
 		event.preventDefault();
@@ -34,19 +34,6 @@
 			console.error(e);
 		}
 	}
-
-	const setTokenInCookies = (data: any) => {
-		if (!data) {
-			console.log('Login error');
-			return;
-		}
-
-		const maxAge = rememberMe ? 60 * 60 * 24 * 7 : undefined;
-		document.cookie = `token=${data.token}; path=/; ${rememberMe ? `Max-Age=${maxAge}` : ''}; Secure; SameSite=Strict`;
-		document.cookie = `refreshToken=${data.refreshToken}; path=/; ${rememberMe ? `Max-Age=${maxAge}` : ''}; Secure; SameSite=Strict`;
-
-		window.location.href = '/';
-	};
 
 	onMount(() => {
 		const url = new URL(window.location.href);

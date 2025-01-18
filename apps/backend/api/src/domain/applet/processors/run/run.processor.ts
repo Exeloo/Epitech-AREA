@@ -72,7 +72,10 @@ export class AppletRunProcessor {
               "Invalid name not in output field",
             );
         }
-        return this.transformField(res.toString(), manifest);
+        return this.transformField(
+          typeof res === "object" ? JSON.stringify(res) : res.toString(),
+          manifest,
+        );
       },
     );
   }

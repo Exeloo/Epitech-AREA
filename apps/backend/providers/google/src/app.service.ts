@@ -13,7 +13,7 @@ const APP_BASE_MANIFEST: IBaseManifest = {
   name: "Google",
   description: "Provider to use the Google API",
   img: "https://firebasestorage.googleapis.com/v0/b/area-444018.firebasestorage.app/o/google.png?alt=media&token=29b0ea3c-fd77-48d2-9f2f-b6a1dcb864fe",
-  color: "#34A853",
+  color: "#57d979",
   oauth: {
     type: ManifestOAuthEnum.TOKEN,
   },

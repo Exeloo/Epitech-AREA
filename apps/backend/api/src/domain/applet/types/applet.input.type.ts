@@ -1,14 +1,14 @@
 import { ID } from "@d-type/id.type";
 
-export interface IAppletNodeCreateInput {
+export interface IAppletNodeInput {
   actionId: string;
   providerId: ID;
   input: object;
-  next: IAppletNodeCreateInput[];
+  next: IAppletNodeInput[];
 }
 
-export interface IAppletCreateInput {
+export interface IAppletInput {
   name: string;
   description: string | null;
-  triggerNodes: IAppletNodeCreateInput[];
+  triggerNodes: IAppletNodeInput[];
 }

@@ -5,8 +5,8 @@ import { AsyncArrayUtils } from "@utils/async-array.utils";
 import { BadInputException } from "@exception";
 
 import {
-  IAppletCreateInput,
-  IAppletNodeCreateInput,
+  IAppletInput,
+  IAppletNodeInput,
 } from "@domain/applet/types/applet.input.type";
 import { IApplet } from "@domain/applet/types/applet.type";
 import {
@@ -26,19 +26,14 @@ import {
 import { IAppletPreProcessor } from "../applet.processor.type";
 
 @Injectable()
-export class AppletInputProcessor
-  implements IAppletPreProcessor<IAppletCreateInput>
-{
+export class AppletInputProcessor implements IAppletPreProcessor<IAppletInput> {
   constructor(
     private readonly providerService: ProviderService,
     @Inject(PROVIDER_SERVICE)
     private readonly foreignProviderService: IProviderService,
   ) {}
 
-  async process(
-    _applet: IApplet,
-    data: IAppletCreateInput,
-  ): Promise<IAppletCreateInput> {
+  async process(_applet: IApplet, data: IAppletInput): Promise<IAppletInput> {
     data = {
       ...data,
       triggerNodes: await this.processNodes(data.triggerNodes),
@@ -47,9 +42,9 @@ export class AppletInputProcessor
   }
 
   private async processNodes(
-    data: IAppletNodeCreateInput[],
+    data: IAppletNodeInput[],
     isFirst: boolean = true,
-  ): Promise<IAppletNodeCreateInput[]> {
+  ): Promise<IAppletNodeInput[]> {
     data = await AsyncArrayUtils.map(data, async (node) => {
       node = await this.processNode(node, isFirst);
       return {
@@ -61,9 +56,9 @@ export class AppletInputProcessor
   }
 
   private async processNode(
-    node: IAppletNodeCreateInput,
+    node: IAppletNodeInput,
     isFirst: boolean,
-  ): Promise<IAppletNodeCreateInput> {
+  ): Promise<IAppletNodeInput> {
     const provider = await this.providerService.getById(node.providerId);
     const manifest = await this.foreignProviderService.getManifest(provider);
     const action = getManifestElement(node.actionId, manifest, !isFirst);
@@ -84,7 +79,7 @@ export class AppletInputProcessor
   }
 
   private verifyInput(
-    node: IAppletNodeCreateInput,
+    node: IAppletNodeInput,
     action: IManifestTrigger | IManifestAction,
   ): void {
     checkManifestType(node.actionId, node.input, action.input);

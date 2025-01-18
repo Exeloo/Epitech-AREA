@@ -9,8 +9,8 @@ import {
   IAppletNodeInput,
 } from "@domain/applet/types/applet.input.type";
 
-@InputType({ description: "Node input type to create to an applet" })
-export class AppletNodeCreateInput implements IAppletNodeInput {
+@InputType({ description: "Node input type to update to an applet" })
+export class AppletNodeUpdateInput implements IAppletNodeInput {
   @IsNotEmpty()
   @IsString()
   @Field(() => String, {
@@ -32,14 +32,14 @@ export class AppletNodeCreateInput implements IAppletNodeInput {
   })
   input: object;
 
-  @Field(() => [AppletNodeCreateInput], {
+  @Field(() => [AppletNodeUpdateInput], {
     description: "Next nodes of the applet",
   })
   next: IAppletNodeInput[];
 }
 
-@InputType({ description: "Input type to create to an applet" })
-export class AppletCreateInput implements IAppletInput {
+@InputType({ description: "Input type to update to an applet" })
+export class AppletUpdateInput implements IAppletInput {
   @IsNotEmpty()
   @IsString()
   @Field(() => String, {
@@ -57,7 +57,7 @@ export class AppletCreateInput implements IAppletInput {
 
   @IsNotEmpty()
   @IsString()
-  @Field(() => [AppletNodeCreateInput], {
+  @Field(() => [AppletNodeUpdateInput], {
     description: "Name that the user give to the applet",
   })
   triggerNodes: IAppletNodeInput[];

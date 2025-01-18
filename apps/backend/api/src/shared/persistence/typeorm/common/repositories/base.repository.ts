@@ -189,9 +189,9 @@ export abstract class BaseRepository<E extends ObjectLiteral & IIdentifiable, I>
       } else {
         await this.softDelete(id);
       }
-    } catch {
+    } catch (e) {
       throw new InternalException(27, {
-        cause: new Error(`Error while trying to delete entity (${id})`),
+        cause: e,
       });
     }
 

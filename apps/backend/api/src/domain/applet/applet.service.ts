@@ -17,7 +17,7 @@ import {
 } from "./applet.repository.type";
 import { AppletCreateProcessor } from "./processors/create/create.processor";
 import { AppletRunProcessor } from "./processors/run/run.processor";
-import { IAppletCreateInput } from "./types/applet.input.type";
+import { IAppletInput } from "./types/applet.input.type";
 import { IApplet } from "./types/applet.type";
 import { ITriggerInput } from "./types/trigger-input.type";
 
@@ -40,7 +40,7 @@ export class AppletService {
     return this.appletPRepository.getByIdWithOwner(id, user.id);
   }
 
-  async create(user: IUser, data: IAppletCreateInput): Promise<IApplet> {
+  async create(user: IUser, data: IAppletInput): Promise<IApplet> {
     const applet = await this.appletPRepository.createEntity({
       name: data.name,
       description: data.description,
@@ -49,6 +49,16 @@ export class AppletService {
       },
     });
     return this.appletCreateProcessor.process({ ...applet, owner: user }, data);
+  }
+
+  async update(user: IUser, id: ID, data: IAppletInput): Promise<IApplet> {
+    await this.delete(user, id);
+    return this.create(user, data);
+  }
+
+  async delete(user: IUser, id: ID): Promise<IApplet> {
+    const applet = await this.appletPRepository.getByIdWithOwner(id, user.id);
+    return this.appletPRepository.deleteEntity(applet.id, true);
   }
 
   async handleTrigger(providerIds: Set<string>, data: ITriggerInput) {

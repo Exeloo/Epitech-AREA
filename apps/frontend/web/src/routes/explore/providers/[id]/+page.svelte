@@ -22,7 +22,7 @@
 	<div class="w-full pt-10">
 		<div
 			style="background-color: {provider.color};"
-			class="pt-15 absolute left-0 top-0 flex h-[35rem] w-full flex-col items-center justify-center gap-6"
+			class="pt-15 absolute left-0 top-0 flex h-[35rem] w-full flex-col items-center justify-center gap-6 text-white"
 		>
 			<a
 				href="/explore/providers"

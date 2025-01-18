@@ -1,15 +1,29 @@
 <script lang="ts">
 	import '../app.css';
-	import { getSession } from '$houdini';
+	import { getSession, load_getMe, type User$data, type User$input, UserStore } from '$houdini';
 	import { onMount } from 'svelte';
 	import logo from '$lib/images/logo.png';
+	import type { Readable } from 'svelte/store';
 
 	// eslint-disable-next-line no-undef
 	let session: App.Session | null = $state(null);
 	let { children } = $props();
 
+	let userStore: UserStore = new UserStore();
+
+	let info: (Readable<User$data | null> & { variables: User$input; kind: any } & {}) | undefined =
+		$state();
+
 	onMount(async () => {
 		session = await getSession();
+
+		const query = await load_getMe({});
+		const { data } = await query.getMe.fetch({});
+
+		if (!data || !data.getMe) return;
+
+		info = userStore.get(data.getMe);
+		console.log(info);
 	});
 </script>
 
@@ -60,7 +74,11 @@
 					href="/settings/"
 					class="flex h-10 w-10 items-center justify-center rounded-full bg-purple-700"
 				>
-					<i class="fi fi-rr-user flex justify-center text-xl text-white"></i>
+					{#if $info && $info.picture}
+						<img src={$info.picture} alt="User profile" class="rounded-full" />
+					{:else}
+						<i class="fi fi-rr-user flex justify-center text-xl text-white"></i>
+					{/if}
 				</a>
 			{:else}
 				<a href="/auth/login" class="text-neutral-800 dark:text-white">Log in</a>

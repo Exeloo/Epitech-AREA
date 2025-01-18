@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { errorsStore, successStore } from '$lib/components/auth/stores';
-	import { onDestroy } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import Alert from '$lib/components/auth/Alert.svelte';
 
 	let errors: string[] = [];
@@ -19,6 +19,8 @@
 		unsubscribeErrors();
 		unsubscribeSuccess();
 	});
+
+	onMount(() => {});
 </script>
 
 <div class="flex h-full w-96 flex-col items-center justify-center gap-5">
@@ -27,7 +29,7 @@
 	</h2>
 	<p class="font-medium text-neutral-600 dark:text-neutral-300">
 		{$page.url.pathname !== '/auth/signup'
-			? 'Welcome back! Please enter your details.'
+			? 'Welcome back ! Please enter your details.'
 			: 'The adventure begins here'}
 	</p>
 	<div

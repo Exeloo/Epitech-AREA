@@ -20,8 +20,9 @@ export class User implements IExposedUser {
 
   @Field(() => String, {
     description: "Username of the user",
+    nullable: true,
   })
-  username: string;
+  username: string | null;
 
   @Field(() => String, {
     description: "First name of the user",

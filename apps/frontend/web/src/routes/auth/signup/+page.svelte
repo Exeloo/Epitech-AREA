@@ -64,7 +64,7 @@
 	<Validation description="Must contain one special character" />
 	<Submit onsubmit={handleSubmit} text="Get started" />
 	<p>
-		Already have an account?<a href="/auth/login/" class="pl-2 font-semibold">Log in</a>
+		Already have an account ?<a href="/auth/login/" class="pl-2 font-semibold">Log in</a>
 	</p>
 	<hr class="my-5" />
 	<OAuthLogin />

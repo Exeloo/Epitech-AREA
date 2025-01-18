@@ -6,7 +6,7 @@ import { ITimestampable } from "@domain/common/interfaces/models/timestampable.t
 export interface IUser extends IIdentifiable, ITimestampable, ISoftDeletable {
   email: string;
   password: string;
-  username: string;
+  username: string | null;
   firstName: string;
   lastName: string;
   pronoun: string | null;
@@ -28,6 +28,6 @@ export type IExposedUser = Pick<
 >;
 
 export type IAuthenticateUser = Pick<IUser, "email"> &
-  Partial<Pick<IUser, "firstName" | "lastName" | "username">> & {
+  Partial<Pick<IUser, "firstName" | "lastName" | "username" | "picture">> & {
     state: IOAuthOptions;
   };

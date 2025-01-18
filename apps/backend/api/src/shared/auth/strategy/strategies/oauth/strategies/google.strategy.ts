@@ -54,6 +54,7 @@ export class GoogleOAuthStrategy extends BaseOAuthStrategy(
       email: data.email,
       firstName: data.given_name,
       lastName: data.family_name,
+      picture: data.picture,
       state,
     };
   }

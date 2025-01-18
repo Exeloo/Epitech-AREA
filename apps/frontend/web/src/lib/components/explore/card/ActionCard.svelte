@@ -17,11 +17,11 @@
 
 {#if action}
 	<Card color={action.color}>
-		<div class="flex h-full flex-col items-center justify-center gap-6">
+		<div class="flex h-full flex-col items-center justify-center gap-6 text-white">
 			{#if action.img}
 				<img src={action.img} alt={`Image describe ${action.name} Action`} class="h-20 w-20" />
 			{/if}
-			<h3 class="text-3xl font-bold text-black">{action.name}</h3>
+			<h3 class="text-3xl font-bold">{action.name}</h3>
 			<p class="">{action.description}</p>
 		</div>
 	</Card>

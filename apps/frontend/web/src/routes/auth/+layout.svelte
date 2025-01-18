@@ -23,7 +23,7 @@
 	onMount(() => {});
 </script>
 
-<div class="flex h-full w-96 flex-col items-center justify-center gap-5">
+<div class="flex h-full w-96 flex-col items-center justify-center gap-5 py-8">
 	<h2 class="text-3xl font-semibold">
 		{$page.url.pathname !== '/auth/signup' ? 'Login in to your account' : 'Create an account'}
 	</h2>

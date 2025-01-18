@@ -15,6 +15,15 @@
 
 	const registerStore = new RegisterStore();
 
+	function checkPasswordLength() {
+		return password.length >= 8;
+	}
+
+	function checkPasswordStrength() {
+		const specialChars = /[ `!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/;
+		return specialChars.test(password);
+	}
+
 	async function handleSubmit(event: any): Promise<any> {
 		event.preventDefault();
 
@@ -74,9 +83,13 @@
 		placeholder="Create your password"
 		dataType="password"
 	/>
-	<Validation description="Must be at least 8 characters" />
-	<Validation description="Must contain one special character" />
-	<Submit onsubmit={handleSubmit} text="Get started" />
+	<Validation description="Must be at least 8 characters" valid={checkPasswordLength()} />
+	<Validation description="Must contain one special character" valid={checkPasswordStrength()} />
+	<Submit
+		onsubmit={handleSubmit}
+		text="Get started"
+		on={checkPasswordLength() && checkPasswordStrength()}
+	/>
 	<p>
 		Already have an account ?<a href="/auth/login/" class="pl-2 font-semibold">Log in</a>
 	</p>

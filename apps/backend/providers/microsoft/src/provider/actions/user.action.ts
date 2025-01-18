@@ -30,8 +30,8 @@ export class UserAction extends BaseHttpRepository {
     id: "user-get-profile",
     name: "User Get Profile",
     description: "Action to Get Profile of user",
-    img: "",
-    color: "#ffffff",
+    img: "https://firebasestorage.googleapis.com/v0/b/area-444018.firebasestorage.app/o/globe.svg?alt=media&token=64b2b57a-53f2-484a-9b1f-5adb8d740e8f",
+    color: "#004fe1",
     input: ActionUserGetProfileInput,
     output: ActionUserGetProfileResponse,
   })
@@ -50,8 +50,8 @@ export class UserAction extends BaseHttpRepository {
     id: "create-event",
     name: "Create Event",
     description: "Action to Create Event",
-    img: "",
-    color: "#ffffff",
+    img: "https://firebasestorage.googleapis.com/v0/b/area-444018.firebasestorage.app/o/globe.svg?alt=media&token=64b2b57a-53f2-484a-9b1f-5adb8d740e8f",
+    color: "#004fe1",
     input: ActionCreateEventInput,
     output: ActionCreateEventResponse,
   })
@@ -70,8 +70,8 @@ export class UserAction extends BaseHttpRepository {
     id: "send-mail",
     name: "Send Mail",
     description: "Action to Send Mail",
-    img: "",
-    color: "#ffffff",
+    img: "https://firebasestorage.googleapis.com/v0/b/area-444018.firebasestorage.app/o/globe.svg?alt=media&token=64b2b57a-53f2-484a-9b1f-5adb8d740e8f",
+    color: "#004fe1",
     input: ActionSendMailInput,
     output: ActionSendMailResponse,
   })
@@ -90,8 +90,8 @@ export class UserAction extends BaseHttpRepository {
     id: "create-notebook",
     name: "Create Notebook",
     description: "Action to Create Notebook",
-    img: "",
-    color: "#ffffff",
+    img: "https://firebasestorage.googleapis.com/v0/b/area-444018.firebasestorage.app/o/globe.svg?alt=media&token=64b2b57a-53f2-484a-9b1f-5adb8d740e8f",
+    color: "#004fe1",
     input: ActionCreateNotebookInput,
     output: ActionCreateNotebookResponse,
   })

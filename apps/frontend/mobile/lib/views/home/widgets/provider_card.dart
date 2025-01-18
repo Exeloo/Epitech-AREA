@@ -174,6 +174,13 @@ class ProviderDescriptionState extends State<ProviderDescription> {
                     color: AppColors.textPrimary,
                     fontSize: 40,
                     fontWeight: FontWeight.bold,
+                    shadows: [
+                      Shadow(
+                        offset: Offset(1.5, 1.5),
+                        blurRadius: 3.0,
+                        color: Colors.black,
+                      ),
+                    ],
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -208,9 +215,13 @@ class ProviderDescriptionState extends State<ProviderDescription> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
                     child: _provider!.img.isNotEmpty
-                        ? Image.network(
-                            _provider!.img,
-                            fit: BoxFit.fitWidth,
+                        ? SizedBox(
+                            width: 220,
+                            height: 220,
+                            child: Image.network(
+                              _provider!.img,
+                              fit: BoxFit.fill,
+                            ),
                           )
                         : const SizedBox.shrink(),
                   ),
@@ -221,6 +232,13 @@ class ProviderDescriptionState extends State<ProviderDescription> {
                       fontSize: 24,
                       color: AppColors.textPrimary,
                       fontWeight: FontWeight.bold,
+                      shadows: [
+                        Shadow(
+                          offset: Offset(1.5, 1.5),
+                          blurRadius: 3.0,
+                          color: Colors.black,
+                        ),
+                      ],
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -238,7 +256,7 @@ class ProviderDescriptionState extends State<ProviderDescription> {
                   Column(
                     children: _provider!.manifest.triggers.map((trigger) {
                       return TriggerActionCard(
-                        logoUrl: _provider!.img,
+                        logoUrl: trigger.img,
                         name: trigger.name,
                         description: trigger.description,
                         color: trigger.color,
@@ -259,7 +277,7 @@ class ProviderDescriptionState extends State<ProviderDescription> {
                   Column(
                     children: _provider!.manifest.actions.map((actions) {
                       return TriggerActionCard(
-                        logoUrl: _provider!.img,
+                        logoUrl: actions.img,
                         name: actions.name,
                         description: actions.description,
                         color: actions.color,

@@ -1,5 +1,6 @@
 import 'package:aether/views/applet/pages/trigger_action_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../config/colors.dart';
 
@@ -53,9 +54,10 @@ class TriggerActionCard extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: logoUrl != null && logoUrl!.isNotEmpty
-                      ? Image.network(
+                      ? SvgPicture.network(
                           logoUrl!,
                           fit: BoxFit.cover,
+                          color: Colors.black,
                         )
                       : const SizedBox.shrink(),
                 ),

@@ -5,11 +5,11 @@
 	interface Props {
 		applet: BaseApplet;
 	}
-	let { applet }: Props = $props();
+	let { applet = $bindable() }: Props = $props();
 
 	let colors = ['#77DDFF', '#FF77B2', '#FF9C77', '#F5DF4D'];
 
-	let info = $state(new BaseAppletStore().get(applet));
+	let info = $derived(new BaseAppletStore().get(applet));
 	let color = colors[Math.floor(Math.random() * colors.length)];
 </script>
 

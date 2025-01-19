@@ -11,6 +11,7 @@
 
 	page.subscribe((page) => {
 		query = page.url?.searchParams?.get('query');
+		filterApplet();
 	});
 
 	function filterApplet() {
@@ -26,7 +27,7 @@
 				if (data && query) {
 					if (
 						data.name.toLowerCase().includes(query.toLowerCase()) ||
-						(data.description && data.description.toLowerCase().includes(query.toLowerCase()))
+						data.description?.toLowerCase().includes(query.toLowerCase())
 					) {
 						filtered.push(applet);
 					}
@@ -42,7 +43,7 @@
 		const { data } = await queryData.getAllApplets.fetch({});
 		if (data && data.getAllApplets) {
 			applets = data.getAllApplets;
-			filteredApplets = applets;
+			filterApplet();
 		}
 	});
 
@@ -53,8 +54,9 @@
 
 {#if filteredApplets.length > 0}
 	<div class="flex w-auto flex-wrap justify-center gap-8">
-		{#each filteredApplets as applet}
-			<AppletCard {applet} />
+		{#each filteredApplets as applet, i}
+			<span class="hidden">{applet}</span>
+			<AppletCard bind:applet={filteredApplets[i]} />
 		{/each}
 	</div>
 {:else}

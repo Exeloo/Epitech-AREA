@@ -82,13 +82,15 @@ class _MyAppletsPageState extends State<MyAppletsPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (BuildContext context) => const AppletCreation(),
+                            builder: (BuildContext context) =>
+                                const AppletCreation(),
                           ),
                         );
                       },
                       child: const Text(
                         'Get Started',
-                        style: TextStyle(color: AppColors.textPrimary, fontSize: 20),
+                        style: TextStyle(
+                            color: AppColors.textPrimary, fontSize: 20),
                       ),
                     ),
                   ),

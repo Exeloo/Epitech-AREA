@@ -37,7 +37,8 @@ class ProfileState extends State<Profile> {
   Future<void> _fetchUserData() async {
     try {
       log('Fetching user data');
-      final userData = await userRepository.getMe(fetchPolicy: FetchPolicy.NetworkOnly);
+      final userData =
+          await userRepository.getMe(fetchPolicy: FetchPolicy.NetworkOnly);
       setState(() {
         user = userData?.getMe;
         if (user != null) {

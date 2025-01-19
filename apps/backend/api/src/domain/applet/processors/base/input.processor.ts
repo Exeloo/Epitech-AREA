@@ -77,9 +77,11 @@ export class AppletInputProcessor implements IAppletPreProcessor<IAppletInput> {
       });
     }
 
-    if (isFirst) node.input = this.transformInput(node.input, action.input);
+    if (isFirst) {
+      node.input = this.transformInput(node.input, action.input);
+      this.verifyInput(node, action);
+    }
 
-    this.verifyInput(node, action);
     return node;
   }
 

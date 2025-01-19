@@ -58,12 +58,6 @@ export class MessagePart {
     properties: MessagePartBody,
   })
   body: MessagePartBody;
-
-  @ManifestProperty({
-    type: ManifestPropertyEnum.ARRAY,
-    items: { type: ManifestPropertyEnum.OBJECT, properties: MessagePart },
-  })
-  parts: Array<MessagePart>;
 }
 
 @ManifestType()

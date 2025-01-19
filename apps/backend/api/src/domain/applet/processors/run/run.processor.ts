@@ -46,10 +46,10 @@ export class AppletRunProcessor {
     manifest: IManifestProperty,
   ): string {
     return value.replaceAll(
-      /\$\[([0-9]+)]\{([a-zA-Z0-9_-]+(?:\.[a-zA-Z0-9_-]+)*)}/gm,
+      /\$\[([0-9]+)]\{([a-zA-Z0-9_-]*(?:\.[a-zA-Z0-9_-]+)*)}/gm,
       (_, rawIndex, rawValue) => {
         const index = +rawIndex;
-        const values = rawValue.split(".");
+        const values = rawValue.trimStart(".").split(".");
         if (index >= outputs.length) {
           throw new BadInputException(
             "BAD_INPUT_FIELD",

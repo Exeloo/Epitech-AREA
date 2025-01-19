@@ -5,6 +5,7 @@ import 'package:aether/views/applet/models/applet_data.dart';
 import 'package:aether/views/applet/pages/applet_creation.dart';
 import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../config/colors.dart';
@@ -367,18 +368,13 @@ class TriggerActionPageState extends State<TriggerActionPage> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
                     child: _provider.img.isNotEmpty
-                        ? Image.network(
+                        ? SvgPicture.network(
                             trigger.isNotEmpty
                                 ? trigger.first.img
                                 : action.first.img,
-                            fit: BoxFit.fitWidth,
-                            errorBuilder: (context, error, stackTrace) {
-                              return const Icon(
-                                Icons.image_not_supported,
-                                color: Colors.grey,
-                                size: 100,
-                              );
-                            },
+                            fit: BoxFit.contain,
+                            height: 100,
+                            width: double.infinity,
                           )
                         : const Icon(
                             Icons.image_not_supported,

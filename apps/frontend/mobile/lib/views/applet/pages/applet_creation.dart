@@ -9,14 +9,15 @@ import '../models/applet_data.dart';
 
 class AppletCreation extends StatefulWidget {
   final int? providerId;
-
-  const AppletCreation({super.key, this.providerId});
+  final int? appletId;
+  const AppletCreation({super.key, this.providerId, this.appletId});
 
   @override
   State<AppletCreation> createState() => _AppletCreationState();
 }
 
 class _AppletCreationState extends State<AppletCreation> {
+  static int? _globalAppletId;
   final List<String> _triggers = [], _actions = [];
   late String? _selectedTrigger =
       TriggerNodeManager.triggerName?.isNotEmpty ?? false
@@ -26,10 +27,12 @@ class _AppletCreationState extends State<AppletCreation> {
 
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
-
   @override
   void initState() {
     super.initState();
+    if (widget.appletId != null) {
+      _globalAppletId = widget.appletId;
+    }
   }
 
   void _createApplet() async {
@@ -71,6 +74,48 @@ class _AppletCreationState extends State<AppletCreation> {
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Failed to create applet'),
+      ));
+    }
+  }
+
+  void _updateApplet() async {
+    if (_nameController.text.isEmpty || _descriptionController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text(
+            'Please provide all fields: name, description, trigger, and action'),
+      ));
+      return;
+    }
+
+    final appletRepo = Provider.of<AppletRepository>(context, listen: false);
+    final response = await appletRepo.updateApplet(
+        name: _nameController.text,
+        description: _descriptionController.text,
+        triggerNodesData: TriggerNodeManager.rootTriggerNode != null
+            ? [TriggerNodeManager.rootTriggerNode!.toJson()]
+            : [],
+        id: _globalAppletId);
+    try {
+      TriggerNodeManager.reset();
+      if (response != null) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content:
+              Text('Applet "${_nameController.text}" created successfully!'),
+        ));
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const MainNavigationPage(),
+          ),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Failed to update applet: No response received'),
+        ));
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Failed to update applet'),
       ));
     }
   }
@@ -223,16 +268,17 @@ class _AppletCreationState extends State<AppletCreation> {
             ),
             const SizedBox(height: 40),
             ElevatedButton(
-              onPressed: _createApplet,
+              onPressed:
+                  _globalAppletId != null ? _updateApplet : _createApplet,
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
                 minimumSize: const Size(double.infinity, 60),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)),
               ),
-              child: const Text(
-                'Create Applet',
-                style: TextStyle(
+              child: Text(
+                _globalAppletId != null ? 'Update Applet' : 'Create Applet',
+                style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: Colors.black),

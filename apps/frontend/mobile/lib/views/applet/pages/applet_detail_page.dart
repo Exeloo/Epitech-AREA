@@ -1,5 +1,7 @@
 import 'package:aether/graphql/__generated__/applet.data.gql.dart';
 import 'package:aether/modules/graphql/repository/applet_repository.dart';
+import 'package:aether/views/applet/pages/applet_creation.dart';
+import 'package:aether/views/mainPage/pages/main_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -44,6 +46,30 @@ class AppletDetailPageState extends State<AppletDetailPage> {
               )
             : Colors.deepPurple;
       });
+    } catch (error) {
+      setState(() {
+        errorMessage = error.toString();
+        isLoading = false;
+      });
+    }
+  }
+
+  Future<void> _deleteAppletData() async {
+    final appletRepository =
+        Provider.of<AppletRepository>(context, listen: false);
+
+    try {
+      await appletRepository.deleteApplet(id: widget.applet.id);
+      setState(() {
+        isLoading = false;
+      });
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const MainNavigationPage(),
+        ),
+        (Route<dynamic> route) => false,
+      );
     } catch (error) {
       setState(() {
         errorMessage = error.toString();
@@ -142,7 +168,7 @@ class AppletDetailPageState extends State<AppletDetailPage> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: _deleteAppletData,
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.red,
                                     shape: const CircleBorder(),
@@ -152,7 +178,15 @@ class AppletDetailPageState extends State<AppletDetailPage> {
                                       color: Colors.white),
                                 ),
                                 ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => AppletCreation(
+                                            appletId: widget.applet.id,
+                                          ),
+                                        ));
+                                  },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.blue,
                                     shape: const CircleBorder(),

@@ -60,7 +60,7 @@ class MainAuthPageState extends State<MainAuthPage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 40),
               SizedBox(
                 width: 150,
                 child: ElevatedButton(
@@ -77,7 +77,7 @@ class MainAuthPageState extends State<MainAuthPage> {
                       style: TextStyle(color: AppColors.textPrimary)),
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 40),
               SizedBox(
                 width: 150,
                 child: ElevatedButton(

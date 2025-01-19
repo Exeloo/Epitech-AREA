@@ -1,4 +1,5 @@
 import 'package:aether/views/applet/pages/applet_creation.dart';
+import 'package:aether/views/faq/pages/faq_page.dart';
 import 'package:aether/views/home/pages/home.dart';
 import 'package:aether/views/market/pages/market_page.dart';
 import 'package:aether/views/settings/pages/settings_page.dart';
@@ -27,7 +28,7 @@ class MainNavigationPageState extends State<MainNavigationPage> {
   Widget build(BuildContext context) {
     final List<Widget> pages = [
       const HomePage(),
-      const Page2(),
+      const FAQPage(),
       const MarketPage(),
       const SettingsPage(),
     ];
@@ -112,39 +113,6 @@ class MainNavigationPageState extends State<MainNavigationPage> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-    );
-  }
-}
-
-class Page1 extends StatelessWidget {
-  const Page1({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text("Bienvenue sur la page Accueil")),
-    );
-  }
-}
-
-class Page2 extends StatelessWidget {
-  const Page2({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text("Bienvenue sur la page Recherche")),
-    );
-  }
-}
-
-class Page3 extends StatelessWidget {
-  const Page3({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text("Bienvenue sur la page Mes Applets")),
     );
   }
 }

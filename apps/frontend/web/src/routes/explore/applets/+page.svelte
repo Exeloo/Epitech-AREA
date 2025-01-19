@@ -63,7 +63,12 @@
 	<div class="flex h-full flex-col items-center justify-center gap-4">
 		<i class="fi fi-sr-empty-set text-7xl"></i>
 		<div class="flex flex-col items-center justify-center gap-2">
-			<span class="font-medium">No applets found</span>
+			{#if applets.length > 0}
+				<span class="font-3xl">No applets found</span>
+			{:else}
+				<span class="font-3xl">You haven't created an applet yet !</span>
+				<a href="/applet/new/" class="text-4xl font-extrabold text-purple-500">Get started</a>
+			{/if}
 		</div>
 	</div>
 {/if}

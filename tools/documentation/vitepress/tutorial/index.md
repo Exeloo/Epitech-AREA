@@ -25,11 +25,11 @@ next:
 - **Log in**: If you have already signed up.
 - **Google account**: Use your Google account to connect.
 
-| ![PC Icon](images/pc.svg)                                                        | ![Mobile Icon](images/mobile.svg)                                                  |
-|----------------------------------------------------------------------------------|------------------------------------------------------------------------------------|
-| <div align="center"><img src="./image/signup_web.png" alt="Sign Up"/></div>      | <div align="center"><img src="./image/signup_mobile.png" alt="Sign Up"/></div>     |
-| <div align="center"><img src="./image/login_web.png" alt="Log In"/></div>        | <div align="center"><img src="./image/login_mobile.png" alt="Log In"/></div>       |
-| <div align="center"><img src="./image/google_sign_web.png" alt="Google"/></div>  | <div align="center"><img src="./image/google_sign_mobile.png" alt="Google"/></div> |
+| ![PC Icon](images/pc.svg)                                                        | ![Mobile Icon](images/mobile.svg)                                                   |
+|----------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| <div align="center"><img src="./images/signup_web.png" alt="Sign Up"/></div>     | <div align="center"><img src="./images/signup_mobile.jpg" alt="Sign Up"/></div>     |
+| <div align="center"><img src="./images/login_web.png" alt="Log In"/></div>       | <div align="center"><img src="./images/login_mobile.jpg" alt="Log In"/></div>       |
+| <div align="center"><img src="./images/google_sign_web.png" alt="Google"/></div> | <div align="center"><img src="./images/google_sign_mobile.jpg" alt="Google"/></div> |
 
 
 ## Applets
@@ -41,14 +41,18 @@ You can interact with the applets by clicking on them to view their details, inc
 
 On **mobile**, if you don't have any applets, you will see a button that allows you to directly create an applet.
 
-![Button to Create Applet](image/button_create_applet_mobile.png)
+![Button to Create Applet](images/button_create_applet_mobile.jpg)
+
+For the web, it's the same, but instead of a button, there's a sentence that redirects to applet creation.
+
+![Sentence to Create Applet](images/sentence_create_applet_web.png)
 
 ---
 
-| ![PC Icon](images/pc.svg)                                                                               | ![Mobile Icon](images/mobile.svg)                                                                         |
-|---------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
-| <div align="center"><img src="./image/applets_web.png" alt="Applet"/><br/>Applets page</div>            | <div align="center"><img src="./image/applets_mobile.png" alt="Applet"/><br/>Applets page</div>           |
-| <div align="center"><img src="./image/details_applet_web.png" alt="Details"/><br/>Details applet</div>  | <div align="center"><img src="./image/details_applet_mobile.png" alt="Details"/><br/>Details applet</div> |
+| ![PC Icon](images/pc.svg)                                                                               | ![Mobile Icon](images/mobile.svg)                                                                          |
+|---------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
+| <div align="center"><img src="./images/applets_web.png" alt="Applet"/><br/>Applets page</div>           | <div align="center"><img src="./images/applets_mobile.jpg" alt="Applet"/><br/>Applets page</div>           |
+| <div align="center"><img src="./images/details_applet_web.png" alt="Details"/><br/>Details applet</div> | <div align="center"><img src="./images/details_applet_mobile.jpg" alt="Details"/><br/>Details applet</div> |
 
 ## Providers
 
@@ -76,10 +80,10 @@ Clicking on a service allows you to explore all the triggers and actions that ca
 
 ---
 
-| ![PC Icon](images/pc.svg)                                                                                  | ![Mobile Icon](images/mobile.svg)                                                                            |
-|------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| <div align="center"><img src="./image/providers_web.png" alt="Provider"/><br/>Services page</div>          | <div align="center"><img src="./image/providers_mobile.png" alt="Provider"/><br/>Services page</div>         |
-| <div align="center"><img src="./image/details_provider_web.png" alt="Details"/><br/>Details service</div>  | <div align="center"><img src="./image/details_provider_mobile.png" alt="Details"/><br/>Details service</div> |
+| ![PC Icon](images/pc.svg)                                                                                  | ![Mobile Icon](images/mobile.svg)                                                                             |
+|------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| <div align="center"><img src="./images/providers_web.png" alt="Provider"/><br/>Services page</div>         | <div align="center"><img src="./images/providers_mobile.jpg" alt="Provider"/><br/>Services page</div>         |
+| <div align="center"><img src="./images/details_provider_web.png" alt="Details"/><br/>Details service</div> | <div align="center"><img src="./images/details_provider_mobile.jpg" alt="Details"/><br/>Details service</div> |
 
 
 ## Applet Creation
@@ -111,10 +115,10 @@ Finally, give your applet a **name** and a **description**. Congratulations, you
 
 ---
 
-| ![PC Icon](images/pc.svg)                                                                                                       | ![Mobile Icon](images/mobile.svg)                                                                                                  |
-|---------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|
-| <div align="center"><img src="./image/creation_page_applet_web.png" alt="Applet Creation Page"/><br/>Applet creation page</div> | <div align="center"><img src="./image/creation_page_applet_mobile.png" alt="Applet Creation Page"/><br/>Applet creation page</div> |
-| <div align="center"><img src="./image/provider_selection_web.png" alt="Provider Selection"/><br/>Provider selection</div>       | <div align="center"><img src="./image/provider_selection_mobile.png" alt="Provider Selection"/><br/>Provider selection</div>       |
-| <div align="center"><img src="./image/trigger_selection_web.png" alt="Trigger Selection"/><br/>Trigger selection</div>          | <div align="center"><img src="./image/trigger_selection_mobile.png" alt="Trigger Selection"/><br/>Trigger selection</div>          |
-| <div align="center"><img src="./image/action_selection_web.png" alt="Action Selection"/><br/>Action selection</div>             | <div align="center"><img src="./image/action_selection_mobile.png" alt="Action Selection"/><br/>Action selection</div>             |
-| <div align="center"><img src="./image/result_applet_web.png" alt="Result Applet"/><br/>Result applet</div>                      | <div align="center"><img src="./image/result_applet_mobile.png" alt="Result Applet"/><br/>Result applet</div>                      |
+| ![PC Icon](images/pc.svg)                                                                                                        | ![Mobile Icon](images/mobile.svg)                                                                                                   |
+|----------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| <div align="center"><img src="./images/creation_page_applet_web.png" alt="Applet Creation Page"/><br/>Applet creation page</div> | <div align="center"><img src="./images/creation_page_applet_mobile.jpg" alt="Applet Creation Page"/><br/>Applet creation page</div> |
+| <div align="center"><img src="./images/provider_selection_web.png" alt="Provider Selection"/><br/>Provider selection</div>       | <div align="center"><img src="./images/provider_selection_mobile.jpg" alt="Provider Selection"/><br/>Provider selection</div>       |
+| <div align="center"><img src="./images/trigger_selection_web.png" alt="Trigger Selection"/><br/>Trigger selection</div>          | <div align="center"><img src="./images/trigger_selection_mobile.jpg" alt="Trigger Selection"/><br/>Trigger selection</div>          |
+| <div align="center"><img src="./images/action_selection_web.png" alt="Action Selection"/><br/>Action selection</div>             | <div align="center"><img src="./images/action_selection_mobile.jpg" alt="Action Selection"/><br/>Action selection</div>             |
+| <div align="center"><img src="./images/result_applet_web.png" alt="Result Applet"/><br/>Result applet</div>                      | <div align="center"><img src="./images/result_applet_mobile.jpg" alt="Result Applet"/><br/>Result applet</div>                      |

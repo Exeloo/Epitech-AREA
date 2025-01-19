@@ -13,8 +13,11 @@ import {
   checkManifestType,
   getManifestElement,
 } from "@domain/common/utils/manifest.utils";
+import { ManifestPropertyEnum } from "@domain/provider/manifest/enums/manifest-property.enum";
 import {
   IManifestAction,
+  IManifestField,
+  IManifestProperty,
   IManifestTrigger,
 } from "@domain/provider/manifest/types/manifest.type";
 import { ProviderService } from "@domain/provider/provider.service";
@@ -74,8 +77,53 @@ export class AppletInputProcessor implements IAppletPreProcessor<IAppletInput> {
       });
     }
 
+    if (isFirst) node.input = this.transformInput(node.input, action.input);
+
     this.verifyInput(node, action);
     return node;
+  }
+
+  private transformInput(input: object, manifest: IManifestField): object {
+    const res = {};
+    for (const [key, value] of Object.entries(input)) {
+      const mField = manifest[key];
+      if (!mField) {
+        throw new BadInputException("BAD_INPUT", "Unkown Field", {
+          cause: new Error(`Unkown field ${key}`),
+          trace: 37,
+        });
+      }
+      res[key] = this.transformField(value, mField);
+    }
+    return res;
+  }
+
+  private transformField(value: string, manifest: IManifestProperty): any {
+    try {
+      switch (manifest.type) {
+        case ManifestPropertyEnum.STRING:
+          return value;
+        case ManifestPropertyEnum.NUMBER:
+          return +value;
+        case ManifestPropertyEnum.BOOLEAN:
+          return value === "true";
+        case ManifestPropertyEnum.DATE:
+          return new Date(value);
+        case ManifestPropertyEnum.ENUM:
+          return value;
+        case ManifestPropertyEnum.ARRAY:
+          return JSON.parse(value);
+        case ManifestPropertyEnum.OBJECT:
+          return JSON.parse(value);
+        default:
+          return value;
+      }
+    } catch (e) {
+      throw new BadInputException("BAD_INPUT", "Bad input type", {
+        cause: e,
+        trace: 38,
+      });
+    }
   }
 
   private verifyInput(

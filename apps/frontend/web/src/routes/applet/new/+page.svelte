@@ -119,15 +119,34 @@ load_getProviderOAuthState
 
 <div class="my-20 flex w-[90%] max-w-[40rem] flex-col items-center gap-20">
 	{#if detail}
-		<div class="w-full">
-			<label for="name">Name</label>
-			<input id="name" bind:value={name} class="h-10 w-full rounded dark:bg-gray-500" />
+		<button
+			onclick={() => (detail = false)}
+			class="absolute left-10 top-32 flex items-center justify-center gap-1 text-2xl duration-100 md:text-4xl"
+		>
+			<i class="fi fi-rr-arrow-small-left flex items-center justify-center"></i>
+			Back
+		</button>
+		<div
+			class="flex w-[90%] max-w-[40rem] flex-col gap-10 rounded-[2rem] bg-white p-16 dark:bg-gray-800"
+		>
+			<div class="w-full">
+				<label for="name" class="mb-2 text-2xl font-bold">Name</label>
+				<input
+					id="name"
+					bind:value={name}
+					class="h-10 w-full rounded border-2 bg-neutral-100 outline-neutral-500 dark:bg-gray-700 dark:outline-gray-600"
+				/>
+			</div>
+			<div class="w-full">
+				<label for="desc" class="mb-2 text-2xl font-bold">Description</label>
+				<textarea
+					id="desc"
+					bind:value={desc}
+					class="h-24 w-full rounded border-2 bg-neutral-100 dark:bg-gray-700"
+				></textarea>
+			</div>
 		</div>
-		<div class="w-full">
-			<label for="desc">Description</label>
-			<textarea id="desc" bind:value={desc} class="h-24 w-full rounded dark:bg-gray-500"></textarea>
-		</div>
-		<CreateButton name="create" onclick={createApplet} actif={!!(name && desc)} />
+		<CreateButton name="Create" onclick={createApplet} actif={!!(name && desc)} />
 	{:else}
 		<div class="flex w-full flex-col items-center gap-16">
 			<div class="ml-[10%] w-full">

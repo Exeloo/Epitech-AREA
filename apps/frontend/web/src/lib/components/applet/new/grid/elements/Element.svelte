@@ -107,7 +107,7 @@
 			<div class="mt-4 flex justify-center">
 				<button
 					onclick={addInputs}
-					class="w-fit rounded-full bg-primary px-2 py-1 text-lg font-bold text-white shadow"
+					class="w-fit rounded-full bg-primary px-6 py-2 text-lg font-bold text-white shadow"
 				>
 					{isSelected ? 'Edit' : 'Add'}
 				</button>

@@ -1,12 +1,12 @@
-import { Body, Controller, Get, Post, UseGuards } from "@nestjs/common";
+import {Body, Controller, Get, Post, UseGuards} from "@nestjs/common";
 
-import { AuthGuard } from "@lib/auth";
-import { IManifest } from "@lib/manifest";
+import {AuthGuard} from "@lib/auth";
+import {IManifest} from "@lib/manifest";
 
-import { ActionService } from "~/provider/services/action.service";
-import { TriggerService } from "~/provider/services/trigger.service";
+import {ActionService} from "~/provider/services/action.service";
+import {TriggerService} from "~/provider/services/trigger.service";
 
-import { AppService } from "./app.service";
+import {AppService} from "./app.service";
 
 @UseGuards(AuthGuard)
 @Controller("area")

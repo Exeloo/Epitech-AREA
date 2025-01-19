@@ -1,11 +1,11 @@
-import { Injectable } from "@nestjs/common";
-import { ConfigService } from "@nestjs/config";
-import { SchedulerRegistry } from "@nestjs/schedule";
+import {Injectable} from "@nestjs/common";
+import {ConfigService} from "@nestjs/config";
+import {SchedulerRegistry} from "@nestjs/schedule";
 
-import { WebSocketClient } from "@lib/websocket";
+import {WebSocketClient} from "@lib/websocket";
 
-import { EventsEnum } from "~/provider/shared/event/event.enum";
-import { EventService } from "~/provider/shared/event/event.service";
+import {EventsEnum} from "~/provider/shared/event/event.enum";
+import {EventService} from "~/provider/shared/event/event.service";
 
 enum OPCode {
   Dispatch = 0,

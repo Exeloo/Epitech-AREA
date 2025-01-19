@@ -1,8 +1,8 @@
-import { HttpService } from "@nestjs/axios";
-import { HttpException, Logger } from "@nestjs/common";
-import { ConfigService } from "@nestjs/config";
-import { AxiosRequestConfig } from "axios";
-import { firstValueFrom } from "rxjs";
+import {HttpService} from "@nestjs/axios";
+import {HttpException, Logger} from "@nestjs/common";
+import {ConfigService} from "@nestjs/config";
+import {AxiosRequestConfig} from "axios";
+import {firstValueFrom} from "rxjs";
 
 export abstract class BaseHttpRepository {
   private readonly defaultConfig: AxiosRequestConfig;
@@ -29,7 +29,7 @@ export abstract class BaseHttpRepository {
         ...options,
       }),
     );
-    if (result.status !== 200)
+    if (!result.status.toString().startsWith("2"))
       throw new HttpException("Unauthorized", result.status, {
         cause: new Error(`Unauthorized : ${result.data}`),
       });
@@ -50,7 +50,7 @@ export abstract class BaseHttpRepository {
         ...options,
       }),
     );
-    if (result.status !== 200)
+    if (!result.status.toString().startsWith("2"))
       throw new HttpException("Unauthorized", result.status, {
         cause: new Error(`Unauthorized : ${result.data}`),
       });
@@ -71,7 +71,7 @@ export abstract class BaseHttpRepository {
         ...options,
       }),
     );
-    if (result.status !== 200)
+    if (!result.status.toString().startsWith("2"))
       throw new HttpException("Unauthorized", result.status, {
         cause: new Error(`Unauthorized : ${result.data}`),
       });
@@ -92,7 +92,7 @@ export abstract class BaseHttpRepository {
         ...options,
       }),
     );
-    if (result.status !== 200)
+    if (!result.status.toString().startsWith("2"))
       throw new HttpException("Unauthorized", result.status, {
         cause: new Error(`Unauthorized : ${result.data}`),
       });
@@ -109,7 +109,7 @@ export abstract class BaseHttpRepository {
         ...options,
       }),
     );
-    if (result.status !== 200)
+    if (!result.status.toString().startsWith("2"))
       throw new HttpException("Unauthorized", result.status, {
         cause: new Error(`Unauthorized : ${result.data}`),
       });

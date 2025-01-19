@@ -64,7 +64,7 @@ Aether supports **14 services**, listed below:
 - **Microsoft**
 - **LinkedIn**
 - **VisualCrossing**
-- **Tracker.gg**
+- **Tracker.gg** (Currently unavailable)
 - **Riot**
 - **Christmas**
 - **Bluesky**

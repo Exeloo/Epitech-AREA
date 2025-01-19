@@ -67,8 +67,12 @@
 					>
 				</div>
 			{/if}
-			<ActionCardList actions={provider.manifest.triggers} name="Triggers" />
-			<ActionCardList actions={provider.manifest.actions} name="Actions" />
+			<ActionCardList
+				actions={provider.manifest.triggers}
+				name="Triggers"
+				providerId={provider.id}
+			/>
+			<ActionCardList actions={provider.manifest.actions} name="Actions" providerId={provider.id} />
 		</div>
 	</div>
 {/if}

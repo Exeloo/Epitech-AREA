@@ -25,13 +25,12 @@
 		description?: string;
 	}
 
-	let open = $state(false);
+	let isSelected = $derived(element && element.actionId === id);
+	let open = $state((element && element.actionId === id) || false);
 
 	const parsedInputs = JSON.parse(inputs) as Record<string, EntryParams>;
 
 	let elementInputs: Record<string, string> = $state({});
-
-	let isSelected = $derived(element && element.actionId === id);
 
 	const inputsArray = parsedInputs
 		? Object.entries(parsedInputs).map(([key, value]) => {

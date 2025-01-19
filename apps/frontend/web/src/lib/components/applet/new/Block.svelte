@@ -6,22 +6,20 @@
 	interface Props {
 		title: string;
 		type: BlockType;
-		focus?: boolean;
+		open?: boolean;
 		element: ElementValues | null;
 		canDelete?: boolean;
 	}
-	let { title, type, focus = false, element = $bindable() }: Props = $props();
+	let { title, type, open = $bindable(false), element = $bindable() }: Props = $props();
 
 	let baseProviderStore = new BaseProviderStore();
-
-	let open = $state(false);
 
 	let provider = $derived(element ? baseProviderStore.get(element.provider) : null);
 </script>
 
 <button
 	onclick={() => (open = true)}
-	class="flex w-[80%] flex-col items-center justify-between gap-6 rounded-2xl text-4xl font-bold text-white xl:flex-row {focus
+	class="flex w-[80%] flex-col items-center justify-between gap-6 rounded-2xl text-4xl font-bold text-white xl:flex-row {type
 		? 'bg-neutral-800'
 		: 'bg-neutral-400'} px-8 py-4"
 >

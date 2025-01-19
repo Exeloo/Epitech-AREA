@@ -4,10 +4,18 @@
 	/*	import {
 load_getProviderOAuthState
 } from '$houdini';*/
-	import { type AppletNodeCreateInput, createAppletStore } from '$houdini';
+	import {
+		type AppletNodeCreateInput,
+		createAppletStore,
+		load_getProviderById,
+		ProviderWithManifestStore
+	} from '$houdini';
 	import CreateButton from '$lib/components/applet/new/CreateButton.svelte';
+	import { onMount } from 'svelte';
+	import { page } from '$app/state';
 
 	const appletStore = new createAppletStore();
+	let providerWithManifestStore = new ProviderWithManifestStore();
 
 	let detail = $state(false);
 
@@ -16,6 +24,9 @@ load_getProviderOAuthState
 
 	let trigger: ElementValues | null = $state(null);
 	let actions: (ElementValues | null)[] = $state([null]);
+
+	let openTrigger = $state(false);
+	let openAction = $state(false);
 
 	function goToDetail() {
 		if (trigger && actions) {
@@ -75,6 +86,35 @@ load_getProviderOAuthState
 			console.error('Failed to create applet:', error);
 		}
 	}
+
+	onMount(async () => {
+		const type = page.url.searchParams.get('type');
+		const providerId = Number(page.url.searchParams.get('provider'));
+		const actionId = page.url.searchParams.get('actionId');
+
+		if (!type || !providerId || !actionId) {
+			return;
+		}
+
+		const query = await load_getProviderById({
+			variables: { id: providerId },
+			policy: 'NetworkOnly'
+		});
+		const { data } = await query.getProviderById.fetch();
+
+		if (!data || !data.getProviderById) return;
+
+		providerWithManifestStore.get(data.getProviderById).subscribe((provider) => {
+			if (!provider) return;
+			if (type === 'action') {
+				openAction = true;
+				actions[0] = { providerId: providerId, provider: provider, inputs: {}, actionId: actionId };
+			} else if (type === 'trigger') {
+				openTrigger = true;
+				trigger = { providerId: providerId, provider: provider, inputs: {}, actionId: actionId };
+			}
+		});
+	});
 </script>
 
 <div class="my-20 flex w-[90%] max-w-[40rem] flex-col items-center gap-20">
@@ -91,13 +131,23 @@ load_getProviderOAuthState
 	{:else}
 		<div class="flex w-full flex-col items-center gap-16">
 			<div class="ml-[10%] w-full">
-				<Block title="If this" type={BlockType.Triggers} focus={true} bind:element={trigger} />
+				<Block
+					title="If this"
+					type={BlockType.Triggers}
+					open={openTrigger}
+					bind:element={trigger}
+				/>
 			</div>
 			<div class="flex w-full flex-col items-center gap-8">
 				<!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
 				{#each actions as action, index}
 					<div class="ml-[10%] flex w-full items-center gap-5">
-						<Block title="Then" type={BlockType.Actions} bind:element={actions[index]} />
+						<Block
+							title="Then"
+							type={BlockType.Actions}
+							open={openAction && !index}
+							bind:element={actions[index]}
+						/>
 						{#if index !== 0}
 							<button
 								aria-label="Delete Action"

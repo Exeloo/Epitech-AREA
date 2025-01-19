@@ -11,10 +11,11 @@
 			input: any;
 			output: any;
 		}[];
-		name: string;
+		name: 'Triggers' | 'Actions';
+		providerId: number;
 	}
 
-	const { actions, name }: Props = $props();
+	const { actions, name, providerId }: Props = $props();
 </script>
 
 {#if actions.length > 0}
@@ -22,7 +23,7 @@
 		<h2 class="my-10 text-5xl font-bold">{name}</h2>
 		<div class="grid w-full gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 			{#each actions as action}
-				<ActionCard {action} />
+				<ActionCard {action} type={name === 'Triggers' ? 'trigger' : 'action'} {providerId} />
 			{/each}
 		</div>
 	</div>

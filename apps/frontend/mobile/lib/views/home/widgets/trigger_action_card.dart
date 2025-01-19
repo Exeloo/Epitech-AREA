@@ -11,6 +11,7 @@ class TriggerActionCard extends StatelessWidget {
   final String description;
   final bool canClick;
   final int providerId;
+  final bool? onHome;
 
   const TriggerActionCard({
     required this.logoUrl,
@@ -20,13 +21,14 @@ class TriggerActionCard extends StatelessWidget {
     required this.canClick,
     super.key,
     required this.providerId,
+    this.onHome,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (canClick) {
+        if (canClick || onHome!) {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(

@@ -18,7 +18,7 @@ class AppletCreation extends StatefulWidget {
 
 class _AppletCreationState extends State<AppletCreation> {
   final List<String> _triggers = [], _actions = [];
-  final String? _selectedTrigger =
+  late String? _selectedTrigger =
       TriggerNodeManager.triggerName?.isNotEmpty ?? false
           ? TriggerNodeManager.triggerName
           : '';
@@ -75,8 +75,89 @@ class _AppletCreationState extends State<AppletCreation> {
     }
   }
 
+  Widget _buildButton(
+      String text, dynamic selected, List<String> options, String inputType,
+      {bool isDisabled = false}) {
+    final isSelectedList = selected is List<String>;
+
+    return GestureDetector(
+      onTap: isDisabled
+          ? null
+          : () async {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProviderSelection(inputType: inputType),
+                ),
+              );
+            },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+        constraints: const BoxConstraints(
+          minHeight: 80,
+        ),
+        decoration: BoxDecoration(
+          color: isDisabled
+              ? Colors.grey.shade500
+              : (isSelectedList
+                  ? (selected.isEmpty ? AppColors.primaryLight : Colors.black)
+                  : (selected == '' ? AppColors.primaryLight : Colors.black)),
+          borderRadius: BorderRadius.circular(15),
+          border: Border.all(
+            color: Colors.black,
+            width: 2,
+          ),
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(width: 10),
+            Expanded(
+              child: Text(
+                isSelectedList
+                    ? (selected.isEmpty
+                        ? text
+                        : selected.map((e) => "Then $e").join('\n'))
+                    : (selected == '' ? text : "If $selected"),
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: (isSelectedList
+                      ? (selected.isEmpty
+                          ? Colors.black
+                          : AppColors.textPrimary)
+                      : (selected == ''
+                          ? Colors.black
+                          : AppColors.textPrimary)),
+                ),
+              ),
+            ),
+            const SizedBox(width: 10),
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+              decoration: BoxDecoration(
+                color: isDisabled ? Colors.grey.shade700 : Colors.black,
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: const Text(
+                "Add",
+                style: TextStyle(
+                  color: AppColors.textPrimary,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final isTriggerSelected = _selectedTrigger?.isNotEmpty ?? false;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -96,12 +177,24 @@ class _AppletCreationState extends State<AppletCreation> {
         child: Column(
           children: [
             const SizedBox(height: 20),
-            _buildButton('If This', _selectedTrigger, _triggers, 'trigger'),
+            _buildButton(
+              'If This',
+              _selectedTrigger,
+              _triggers,
+              'trigger',
+              isDisabled: isTriggerSelected,
+            ),
             CustomPaint(
               size: const Size(double.infinity, 50),
               painter: LinePainter(),
             ),
-            _buildButton('Then That', _selectedActions, _actions, 'action'),
+            _buildButton(
+              'Then That',
+              _selectedActions,
+              _actions,
+              'action',
+              isDisabled: !isTriggerSelected,
+            ),
             const SizedBox(height: 40),
             TextField(
               controller: _nameController,
@@ -146,70 +239,28 @@ class _AppletCreationState extends State<AppletCreation> {
               ),
             ),
             const SizedBox(height: 20),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildButton(
-      String text, dynamic selected, List<String> options, String inputType) {
-    final isSelectedList = selected is List<String>;
-
-    return GestureDetector(
-      onTap: () async {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ProviderSelection(inputType: inputType),
-          ),
-        );
-      },
-      child: Container(
-        height: 80,
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        decoration: BoxDecoration(
-          color: isSelectedList
-              ? (selected.isEmpty ? AppColors.primaryLight : Colors.black)
-              : (selected == '' ? AppColors.primaryLight : Colors.black),
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(
-            color: Colors.black,
-            width: 2,
-          ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const SizedBox(width: 1),
-            Text(
-              isSelectedList
-                  ? (selected.isEmpty
-                      ? text
-                      : selected.map((e) => "Then $e").join(', '))
-                  : (selected == '' ? text : "If $selected"),
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: isSelectedList
-                    ? (selected.isEmpty ? Colors.black : AppColors.textPrimary)
-                    : (selected == '' ? Colors.black : AppColors.textPrimary),
-              ),
-            ),
-            const SizedBox(width: 10),
-            Container(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(30),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  TriggerNodeManager.reset();
+                  _selectedTrigger = '';
+                  _selectedActions.clear();
+                  _nameController.clear();
+                  _descriptionController.clear();
+                });
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red,
+                minimumSize: const Size(double.infinity, 60),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30)),
               ),
               child: const Text(
-                "Add",
+                'Reset',
                 style: TextStyle(
-                  color: AppColors.textPrimary,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
               ),
             ),
           ],

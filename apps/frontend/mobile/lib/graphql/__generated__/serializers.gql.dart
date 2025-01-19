@@ -17,6 +17,8 @@ import 'package:aether/graphql/__generated__/applet.data.gql.dart'
         GExtendedAppletNodeData_provider,
         GcreateAppletData,
         GcreateAppletData_createApplet,
+        GdeleteAppletData,
+        GdeleteAppletData_deleteApplet,
         GgetAllAppletsData,
         GgetAllAppletsData_getAllApplets,
         GgetAppletByIdData,
@@ -29,7 +31,9 @@ import 'package:aether/graphql/__generated__/applet.data.gql.dart'
         GgetAppletNodeByIdData_getAppletNodeById,
         GgetAppletNodeByIdData_getAppletNodeById_next,
         GgetAppletNodeByIdData_getAppletNodeById_previous,
-        GgetAppletNodeByIdData_getAppletNodeById_provider;
+        GgetAppletNodeByIdData_getAppletNodeById_provider,
+        GupdateAppletData,
+        GupdateAppletData_updateApplet;
 import 'package:aether/graphql/__generated__/applet.req.gql.dart'
     show
         GAppletWithNodesReq,
@@ -38,9 +42,11 @@ import 'package:aether/graphql/__generated__/applet.req.gql.dart'
         GBaseAppletReq,
         GExtendedAppletNodeReq,
         GcreateAppletReq,
+        GdeleteAppletReq,
         GgetAllAppletsReq,
         GgetAppletByIdReq,
-        GgetAppletNodeByIdReq;
+        GgetAppletNodeByIdReq,
+        GupdateAppletReq;
 import 'package:aether/graphql/__generated__/applet.var.gql.dart'
     show
         GAppletWithNodesVars,
@@ -49,9 +55,11 @@ import 'package:aether/graphql/__generated__/applet.var.gql.dart'
         GBaseAppletVars,
         GExtendedAppletNodeVars,
         GcreateAppletVars,
+        GdeleteAppletVars,
         GgetAllAppletsVars,
         GgetAppletByIdVars,
-        GgetAppletNodeByIdVars;
+        GgetAppletNodeByIdVars,
+        GupdateAppletVars;
 import 'package:aether/graphql/__generated__/auth.data.gql.dart'
     show
         GTokenFieldsData,
@@ -104,6 +112,8 @@ import 'package:aether/graphql/__generated__/schema.schema.gql.dart'
         GAppletCreateInput,
         GAppletNodeCreateInput,
         GAppletNodeType,
+        GAppletNodeUpdateInput,
+        GAppletUpdateInput,
         GAuthPasswordInput,
         GAuthRefreshTokenInput,
         GDateTime,
@@ -142,6 +152,8 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GAppletCreateInput,
   GAppletNodeCreateInput,
   GAppletNodeType,
+  GAppletNodeUpdateInput,
+  GAppletUpdateInput,
   GAppletWithNodesData,
   GAppletWithNodesData_triggerNodes,
   GAppletWithNodesData_triggerNodes_next,
@@ -198,6 +210,10 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GcreateAppletData_createApplet,
   GcreateAppletReq,
   GcreateAppletVars,
+  GdeleteAppletData,
+  GdeleteAppletData_deleteApplet,
+  GdeleteAppletReq,
+  GdeleteAppletVars,
   GgetAllAppletsData,
   GgetAllAppletsData_getAllApplets,
   GgetAllAppletsReq,
@@ -248,6 +264,10 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GregisterData_register,
   GregisterReq,
   GregisterVars,
+  GupdateAppletData,
+  GupdateAppletData_updateApplet,
+  GupdateAppletReq,
+  GupdateAppletVars,
   GupdateMeData,
   GupdateMeData_updateMe,
   GupdateMeReq,

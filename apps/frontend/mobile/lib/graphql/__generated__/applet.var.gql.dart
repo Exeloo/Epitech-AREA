@@ -104,6 +104,55 @@ abstract class GcreateAppletVars
       );
 }
 
+abstract class GupdateAppletVars
+    implements Built<GupdateAppletVars, GupdateAppletVarsBuilder> {
+  GupdateAppletVars._();
+
+  factory GupdateAppletVars(
+          [void Function(GupdateAppletVarsBuilder b) updates]) =
+      _$GupdateAppletVars;
+
+  int get id;
+  _i2.GAppletUpdateInput get data;
+  static Serializer<GupdateAppletVars> get serializer =>
+      _$gupdateAppletVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GupdateAppletVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GupdateAppletVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GupdateAppletVars.serializer,
+        json,
+      );
+}
+
+abstract class GdeleteAppletVars
+    implements Built<GdeleteAppletVars, GdeleteAppletVarsBuilder> {
+  GdeleteAppletVars._();
+
+  factory GdeleteAppletVars(
+          [void Function(GdeleteAppletVarsBuilder b) updates]) =
+      _$GdeleteAppletVars;
+
+  int get id;
+  static Serializer<GdeleteAppletVars> get serializer =>
+      _$gdeleteAppletVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GdeleteAppletVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GdeleteAppletVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GdeleteAppletVars.serializer,
+        json,
+      );
+}
+
 abstract class GBaseAppletProviderVars
     implements Built<GBaseAppletProviderVars, GBaseAppletProviderVarsBuilder> {
   GBaseAppletProviderVars._();

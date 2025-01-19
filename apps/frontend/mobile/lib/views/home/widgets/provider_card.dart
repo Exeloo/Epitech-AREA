@@ -17,6 +17,7 @@ class ProviderCard extends StatelessWidget {
   final String color;
   final bool canClick;
   final String? inputType;
+  final bool? onHome;
 
   const ProviderCard({
     required this.logoUrl,
@@ -26,6 +27,7 @@ class ProviderCard extends StatelessWidget {
     required this.canClick,
     super.key,
     this.inputType,
+    this.onHome,
   });
 
   @override
@@ -36,10 +38,10 @@ class ProviderCard extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => ProviderDescription(
-              id: id,
-              canClick: canClick,
-              inputType: inputType,
-            ),
+                id: id,
+                canClick: canClick,
+                inputType: inputType,
+                onHome: onHome),
           ),
         );
       },
@@ -74,12 +76,13 @@ class ProviderDescription extends StatefulWidget {
   final int id;
   final bool canClick;
   final String? inputType;
-
+  final bool? onHome;
   const ProviderDescription({
     required this.id,
     super.key,
     required this.canClick,
     this.inputType,
+    this.onHome,
   });
 
   @override
@@ -143,7 +146,7 @@ class ProviderDescriptionState extends State<ProviderDescription> {
       });
     }
 
-    if (_oAuthState!.redirectUri.isNotEmpty) {
+    if (_oAuthState!.redirectUri!.isNotEmpty) {
       setState(() {
         _oAuth = true;
       });
@@ -223,128 +226,133 @@ class ProviderDescriptionState extends State<ProviderDescription> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(16.0),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Color(
-                    int.parse(_provider!.color.replaceFirst('#', '0xff'))),
-                boxShadow: [
-                  BoxShadow(
-                    color: Color(
-                        int.parse(_provider!.color.replaceFirst('#', '0xff'))),
-                    blurRadius: 5.0,
-                    spreadRadius: 1.0,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(16.0),
-                    child: _provider!.img.isNotEmpty
-                        ? SizedBox(
-                            width: 220,
-                            height: 220,
-                            child: Image.network(
-                              _provider!.img,
-                              fit: BoxFit.fill,
-                            ),
-                          )
-                        : const SizedBox.shrink(),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    _provider!.description,
-                    style: const TextStyle(
-                      fontSize: 24,
-                      color: AppColors.textPrimary,
-                      fontWeight: FontWeight.bold,
-                      shadows: [
-                        Shadow(
-                          offset: Offset(1.5, 1.5),
-                          blurRadius: 3.0,
-                          color: Colors.black,
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  _oAuth
+        child: Column(children: [
+          Container(
+            padding: const EdgeInsets.all(16.0),
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color:
+                  Color(int.parse(_provider!.color.replaceFirst('#', '0xff'))),
+              boxShadow: [
+                BoxShadow(
+                  color: Color(
+                      int.parse(_provider!.color.replaceFirst('#', '0xff'))),
+                  blurRadius: 5.0,
+                  spreadRadius: 1.0,
+                  offset: const Offset(0, 4),
+                ),
+              ],
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(16.0),
+                  child: _provider!.img.isNotEmpty
                       ? SizedBox(
-                          width: 150,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColors.secondary),
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        AppletOauthWebView(
-                                            baseUrl: _oAuthState!.redirectUri),
-                                  ));
-                            },
-                            child: const Text('Connect',
-                                style: TextStyle(
-                                    color: AppColors.textPrimary,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold)),
+                          width: 220,
+                          height: 220,
+                          child: Image.network(
+                            _provider!.img,
+                            fit: BoxFit.fill,
                           ),
                         )
                       : const SizedBox.shrink(),
-                ],
-              ),
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  _provider!.description,
+                  style: const TextStyle(
+                    fontSize: 24,
+                    color: AppColors.textPrimary,
+                    fontWeight: FontWeight.bold,
+                    shadows: [
+                      Shadow(
+                        offset: Offset(1.5, 1.5),
+                        blurRadius: 3.0,
+                        color: Colors.black,
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 16),
+                _oAuth
+                    ? SizedBox(
+                        width: 150,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.secondary),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      AppletOauthWebView(
+                                          baseUrl: _oAuthState!.redirectUri),
+                                ));
+                          },
+                          child: const Text('Connect',
+                              style: TextStyle(
+                                  color: AppColors.textPrimary,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold)),
+                        ),
+                      )
+                    : const SizedBox.shrink(),
+              ],
             ),
-            const SizedBox(height: 50),
-            if (widget.inputType == null ||
-                widget.inputType!.isEmpty ||
-                widget.inputType == 'trigger')
-              Column(
-                children: [
-                  _buildSectionTitle('Triggers'),
-                  const SizedBox(height: 20),
-                  Column(
-                    children: _provider!.manifest.triggers.map((trigger) {
-                      return TriggerActionCard(
-                        logoUrl: trigger.img,
-                        name: trigger.name,
-                        description: trigger.description,
-                        color: trigger.color,
-                        canClick: widget.canClick,
-                        providerId: _provider!.id,
-                      );
-                    }).toList(),
-                  ),
-                ],
-              ),
-            if (widget.inputType == null ||
-                widget.inputType!.isEmpty ||
-                widget.inputType == 'action')
-              Column(
-                children: [
-                  _buildSectionTitle('Actions'),
-                  const SizedBox(height: 20),
-                  Column(
-                    children: _provider!.manifest.actions.map((actions) {
-                      return TriggerActionCard(
-                        logoUrl: actions.img,
-                        name: actions.name,
-                        description: actions.description,
-                        color: actions.color,
-                        canClick: widget.canClick,
-                        providerId: _provider!.id,
-                      );
-                    }).toList(),
-                  ),
-                ],
-              ),
+          ),
+          const SizedBox(height: 50),
+          if (widget.inputType == null ||
+              widget.inputType!.isEmpty ||
+              widget.inputType == 'trigger') ...[
+            Column(
+              children: [
+                _provider!.manifest.triggers.isNotEmpty
+                    ? _buildSectionTitle('Triggers')
+                    : const SizedBox.shrink(),
+                const SizedBox(height: 20),
+                Column(
+                  children: _provider!.manifest.triggers.map((trigger) {
+                    return TriggerActionCard(
+                      logoUrl: trigger.img,
+                      name: trigger.name,
+                      description: trigger.description,
+                      color: trigger.color,
+                      canClick: widget.canClick,
+                      providerId: _provider!.id,
+                      onHome: widget.onHome,
+                    );
+                  }).toList(),
+                ),
+              ],
+            ),
           ],
-        ),
+          if (widget.inputType == null ||
+              widget.inputType!.isEmpty ||
+              widget.inputType == 'action') ...[
+            Column(
+              children: [
+                _provider!.manifest.actions.isNotEmpty
+                    ? _buildSectionTitle('Actions')
+                    : const SizedBox.shrink(),
+                const SizedBox(height: 20),
+                Column(
+                  children: _provider!.manifest.actions.map((actions) {
+                    return TriggerActionCard(
+                      logoUrl: actions.img,
+                      name: actions.name,
+                      description: actions.description,
+                      color: actions.color,
+                      canClick: widget.canClick,
+                      providerId: _provider!.id,
+                    );
+                  }).toList(),
+                ),
+              ],
+            ),
+          ],
+        ]),
       ),
     );
   }

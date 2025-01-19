@@ -84,12 +84,12 @@ class _ProvidersContentState extends State<ProvidersContent> {
               itemBuilder: (context, index) {
                 final provider = _providers![index];
                 return ProviderCard(
-                  logoUrl: provider.img,
-                  providerName: provider.name,
-                  id: provider.id,
-                  color: provider.color,
-                  canClick: false,
-                );
+                    logoUrl: provider.img,
+                    providerName: provider.name,
+                    id: provider.id,
+                    color: provider.color,
+                    canClick: false,
+                    onHome: true);
               },
             ),
     );

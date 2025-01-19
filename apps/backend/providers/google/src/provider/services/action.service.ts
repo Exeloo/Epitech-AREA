@@ -18,19 +18,19 @@ interface IActions {
     params: ActionGmailUsersGetProfileInput;
     response: ActionGmailUsersGetProfileResponse;
   };
-  ["gmail.users.messages.send"]: {
+  ["gmail.users.send-mail"]: {
     params: SendMessageInput;
     response: SendMessageResponse;
   };
-  ["gmail.users.drafts.create"]: {
+  ["gmail.users.create-draft"]: {
     params: CreateDraftInput;
     response: CreateDraftResponse;
   };
-  ["gmail.users.labels.create"]: {
+  ["gmail.users.create-label"]: {
     params: CreateLabelInput;
     response: CreateLabelResponse;
   };
-  ["gmail.users.settings.forwardingAddresses.create"]: {
+  ["gmail.users.create-forward"]: {
     params: CreateForwardingAddressInput;
     response: CreateForwardingAddressResponse;
   };
@@ -53,13 +53,13 @@ export class ActionService {
     this.actions = {
       "gmail.users.get-profile": (userId, input) =>
         gmailAction.usersGetProfile(userId, input),
-      "gmail.users.messages.send": (userId, input) =>
+      "gmail.users.send-mail": (userId, input) =>
         gmailAction.usersSendMail(userId, input),
-      "gmail.users.drafts.create": (userId, input) =>
+      "gmail.users.create-draft": (userId, input) =>
         gmailAction.usersCreateDraft(userId, input),
-      "gmail.users.labels.create": (userId, input) =>
+      "gmail.users.create-label": (userId, input) =>
         gmailAction.usersCreateLabel(userId, input),
-      "gmail.users.settings.forwardingAddresses.create": (userId, input) =>
+      "gmail.users.create-forward": (userId, input) =>
         gmailAction.usersCreateForward(userId, input),
     };
   }

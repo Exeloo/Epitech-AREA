@@ -45,38 +45,39 @@ export class AppletRunProcessor {
     outputs: object[],
     manifest: IManifestProperty,
   ): string {
-    return value.replaceAll(
-      /\$\[([0-9]+)]\{([a-zA-Z0-9_-]*(?:\.[a-zA-Z0-9_-]+)*)}/gm,
-      (_, rawIndex, rawValue) => {
-        const index = +rawIndex;
-        const values = rawValue.trimStart(".").split(".");
-        if (index >= outputs.length) {
-          throw new BadInputException(
-            "BAD_INPUT_FIELD",
-            "invalid index in input field",
-          );
-        }
-        let res: any = outputs[index];
-        for (const value of values) {
-          try {
-            res = res[value];
-          } catch {
+    return this.transformField(
+      value.replaceAll(
+        /\$\[([0-9]+)]\{([a-zA-Z0-9_-]*(?:\.[a-zA-Z0-9_-]+)*)}/gm,
+        (_, rawIndex, rawValue) => {
+          const index = +rawIndex;
+          const values = rawValue.split(".");
+          if (index >= outputs.length) {
             throw new BadInputException(
               "BAD_INPUT_FIELD",
-              "Invalid name not in output field",
+              "invalid index in input field",
             );
           }
-          if (!res)
-            throw new BadInputException(
-              "BAD_INPUT_FIELD",
-              "Invalid name not in output field",
-            );
-        }
-        return this.transformField(
-          typeof res === "object" ? JSON.stringify(res) : res.toString(),
-          manifest,
-        );
-      },
+          let res: any = outputs[index];
+          if (!values[0]) values.shift();
+          for (const value of values) {
+            try {
+              res = res[value];
+            } catch {
+              throw new BadInputException(
+                "BAD_INPUT_FIELD",
+                "Invalid name not in output field",
+              );
+            }
+            if (!res)
+              throw new BadInputException(
+                "BAD_INPUT_FIELD",
+                "Invalid name not in output field",
+              );
+          }
+          return typeof res === "object" ? JSON.stringify(res) : res.toString();
+        },
+      ),
+      manifest,
     );
   }
 

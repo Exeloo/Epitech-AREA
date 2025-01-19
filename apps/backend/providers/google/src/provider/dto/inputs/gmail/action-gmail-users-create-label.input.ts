@@ -21,23 +21,31 @@ export class LabelColor {
 export class CreateLabelInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
+    name: "User ID",
+    description: "The ID of the user creating the label",
   })
   userId: string;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
+    name: "Name",
+    description: "The label name",
   })
   name: string;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
     optional: true,
+    name: "Message List Visibility",
+    description: "The list of visible messages",
   })
   messageListVisibility?: string;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
     optional: true,
+    name: "Label List Visibility",
+    description: "The list of visible labels",
   })
   labelListVisibility?: string;
 
@@ -45,6 +53,8 @@ export class CreateLabelInput {
     type: ManifestPropertyEnum.OBJECT,
     properties: LabelColor,
     optional: true,
+    name: "Color",
+    description: "Label color",
   })
   color?: LabelColor;
 }

@@ -30,8 +30,8 @@ export class ImpactAction extends BaseHttpRepository {
     id: "chauffage",
     name: "Chauffage",
     description: "Call to know chauffage",
-    img: "",
-    color: "#ffffff",
+    img: "https://firebasestorage.googleapis.com/v0/b/area-444018.firebasestorage.app/o/temperature-elevee.svg?alt=media&token=8d280253-708d-4d05-8643-f5975461eff6",
+    color: "#279791",
     input: ActionChauffageInput,
     output: ActionChauffageResponse,
   })
@@ -53,8 +53,8 @@ export class ImpactAction extends BaseHttpRepository {
     id: "fruitsetlegumes",
     name: "Fruits et Legumes",
     description: "Call to know Fruits et Legumes",
-    img: "",
-    color: "#ffffff",
+    img: "https://firebasestorage.googleapis.com/v0/b/area-444018.firebasestorage.app/o/panier-depicerie.svg?alt=media&token=ad04f107-a575-4cf2-accc-023d6ed43c4e",
+    color: "#05e1d5",
     input: ActionFruitsetlegumesInput,
     output: ActionFruitsetlegumesResponse,
   })

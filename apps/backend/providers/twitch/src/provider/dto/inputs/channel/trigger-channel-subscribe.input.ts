@@ -8,6 +8,9 @@ import {
 export class TriggerChannelSubscribeInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
+    name: "broadcaster id",
+    description:
+      "The ID of the broadcaster where the subscription was triggered.",
   })
   broadcaster_user_id: string;
 }

@@ -16,7 +16,7 @@
 </script>
 
 <button
-	class="flex h-full flex-col gap-2 rounded font-semibold dark:bg-gray-700"
+	class="flex h-full flex-col gap-2 rounded font-medium dark:bg-gray-700"
 	onclick={handleSelection}
 >
 	<img src={img} alt={name} class="rounded-xl outline outline-gray-300 dark:outline-gray-900" />

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import {page} from '$app/stores';
 	import AppletCard from '$lib/components/explore/card/AppletCard.svelte';
-	import { onMount } from 'svelte';
-	import { BaseAppletStore, load_getAllApplets } from '$houdini';
+	import {onMount} from 'svelte';
+	import {BaseAppletStore, load_getAllApplets} from '$houdini';
 
 	let baseApplet = new BaseAppletStore();
 	let applets: { readonly ' $fragments': { BaseApplet: {} } }[] = $state([]);
@@ -60,9 +60,9 @@
 		{/each}
 	</div>
 {:else}
-	<div class="flex h-full flex-col items-center justify-center gap-4">
+	<div class="flex h-[720px] flex-col items-center justify-center gap-4">
 		<i class="fi fi-sr-empty-set text-7xl"></i>
-		<div class="flex flex-col items-center justify-center gap-2">
+		<div class="flex flex-col items-center justify-center gap-2 pb-16">
 			{#if applets.length > 0}
 				<span class="font-3xl">No applets found</span>
 			{:else}

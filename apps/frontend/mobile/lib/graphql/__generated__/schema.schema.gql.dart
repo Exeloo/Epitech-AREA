@@ -79,6 +79,59 @@ class GAppletNodeType extends EnumClass {
   static GAppletNodeType valueOf(String name) => _$gAppletNodeTypeValueOf(name);
 }
 
+abstract class GAppletNodeUpdateInput
+    implements Built<GAppletNodeUpdateInput, GAppletNodeUpdateInputBuilder> {
+  GAppletNodeUpdateInput._();
+
+  factory GAppletNodeUpdateInput(
+          [void Function(GAppletNodeUpdateInputBuilder b) updates]) =
+      _$GAppletNodeUpdateInput;
+
+  String get actionId;
+  GJSON get input;
+  BuiltList<GAppletNodeUpdateInput> get next;
+  int get providerId;
+  static Serializer<GAppletNodeUpdateInput> get serializer =>
+      _$gAppletNodeUpdateInputSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GAppletNodeUpdateInput.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GAppletNodeUpdateInput? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GAppletNodeUpdateInput.serializer,
+        json,
+      );
+}
+
+abstract class GAppletUpdateInput
+    implements Built<GAppletUpdateInput, GAppletUpdateInputBuilder> {
+  GAppletUpdateInput._();
+
+  factory GAppletUpdateInput(
+          [void Function(GAppletUpdateInputBuilder b) updates]) =
+      _$GAppletUpdateInput;
+
+  String? get description;
+  String get name;
+  BuiltList<GAppletNodeUpdateInput> get triggerNodes;
+  static Serializer<GAppletUpdateInput> get serializer =>
+      _$gAppletUpdateInputSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GAppletUpdateInput.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GAppletUpdateInput? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GAppletUpdateInput.serializer,
+        json,
+      );
+}
+
 abstract class GAuthPasswordInput
     implements Built<GAuthPasswordInput, GAuthPasswordInputBuilder> {
   GAuthPasswordInput._();

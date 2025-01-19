@@ -331,6 +331,162 @@ abstract class GcreateAppletReq
       );
 }
 
+abstract class GupdateAppletReq
+    implements
+        Built<GupdateAppletReq, GupdateAppletReqBuilder>,
+        _i1.OperationRequest<_i2.GupdateAppletData, _i3.GupdateAppletVars> {
+  GupdateAppletReq._();
+
+  factory GupdateAppletReq([void Function(GupdateAppletReqBuilder b) updates]) =
+      _$GupdateAppletReq;
+
+  static void _initializeBuilder(GupdateAppletReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'updateApplet',
+    )
+    ..executeOnListen = true;
+
+  @override
+  _i3.GupdateAppletVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+        context: context ?? const _i4.Context(),
+      );
+
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.GupdateAppletData? Function(
+    _i2.GupdateAppletData?,
+    _i2.GupdateAppletData?,
+  )? get updateResult;
+  @override
+  _i2.GupdateAppletData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  @BuiltValueField(serialize: false)
+  _i4.Context? get context;
+  @override
+  _i2.GupdateAppletData? parseData(Map<String, dynamic> json) =>
+      _i2.GupdateAppletData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(_i2.GupdateAppletData data) => data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.GupdateAppletData, _i3.GupdateAppletVars>
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
+
+  static Serializer<GupdateAppletReq> get serializer =>
+      _$gupdateAppletReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GupdateAppletReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GupdateAppletReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GupdateAppletReq.serializer,
+        json,
+      );
+}
+
+abstract class GdeleteAppletReq
+    implements
+        Built<GdeleteAppletReq, GdeleteAppletReqBuilder>,
+        _i1.OperationRequest<_i2.GdeleteAppletData, _i3.GdeleteAppletVars> {
+  GdeleteAppletReq._();
+
+  factory GdeleteAppletReq([void Function(GdeleteAppletReqBuilder b) updates]) =
+      _$GdeleteAppletReq;
+
+  static void _initializeBuilder(GdeleteAppletReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'deleteApplet',
+    )
+    ..executeOnListen = true;
+
+  @override
+  _i3.GdeleteAppletVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+        context: context ?? const _i4.Context(),
+      );
+
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.GdeleteAppletData? Function(
+    _i2.GdeleteAppletData?,
+    _i2.GdeleteAppletData?,
+  )? get updateResult;
+  @override
+  _i2.GdeleteAppletData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  @BuiltValueField(serialize: false)
+  _i4.Context? get context;
+  @override
+  _i2.GdeleteAppletData? parseData(Map<String, dynamic> json) =>
+      _i2.GdeleteAppletData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(_i2.GdeleteAppletData data) => data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.GdeleteAppletData, _i3.GdeleteAppletVars>
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
+
+  static Serializer<GdeleteAppletReq> get serializer =>
+      _$gdeleteAppletReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GdeleteAppletReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GdeleteAppletReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GdeleteAppletReq.serializer,
+        json,
+      );
+}
+
 abstract class GBaseAppletProviderReq
     implements
         Built<GBaseAppletProviderReq, GBaseAppletProviderReqBuilder>,

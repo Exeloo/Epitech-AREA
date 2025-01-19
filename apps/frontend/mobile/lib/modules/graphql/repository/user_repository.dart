@@ -45,8 +45,12 @@ class UserRepository {
     }
   }
 
-  Future<GgetMeData?> getMe() async {
-    final getMeReq = GgetMeReq();
+  Future<GgetMeData?> getMe({
+    FetchPolicy fetchPolicy = FetchPolicy.CacheAndNetwork,
+  }) async {
+    final getMeReq = GgetMeReq(
+      (b) => b..fetchPolicy = fetchPolicy,
+    );
 
     try {
       final response = await client.request(getMeReq).first;

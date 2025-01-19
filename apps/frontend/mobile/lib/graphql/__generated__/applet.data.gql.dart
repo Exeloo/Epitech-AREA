@@ -622,6 +622,142 @@ abstract class GcreateAppletData_createApplet
       );
 }
 
+abstract class GupdateAppletData
+    implements Built<GupdateAppletData, GupdateAppletDataBuilder> {
+  GupdateAppletData._();
+
+  factory GupdateAppletData(
+          [void Function(GupdateAppletDataBuilder b) updates]) =
+      _$GupdateAppletData;
+
+  static void _initializeBuilder(GupdateAppletDataBuilder b) =>
+      b..G__typename = 'Mutation';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  GupdateAppletData_updateApplet get updateApplet;
+  static Serializer<GupdateAppletData> get serializer =>
+      _$gupdateAppletDataSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GupdateAppletData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GupdateAppletData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GupdateAppletData.serializer,
+        json,
+      );
+}
+
+abstract class GupdateAppletData_updateApplet
+    implements
+        Built<GupdateAppletData_updateApplet,
+            GupdateAppletData_updateAppletBuilder>,
+        GBaseApplet {
+  GupdateAppletData_updateApplet._();
+
+  factory GupdateAppletData_updateApplet(
+          [void Function(GupdateAppletData_updateAppletBuilder b) updates]) =
+      _$GupdateAppletData_updateApplet;
+
+  static void _initializeBuilder(GupdateAppletData_updateAppletBuilder b) =>
+      b..G__typename = 'Applet';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  int get id;
+  @override
+  String get name;
+  @override
+  String? get description;
+  static Serializer<GupdateAppletData_updateApplet> get serializer =>
+      _$gupdateAppletDataUpdateAppletSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GupdateAppletData_updateApplet.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GupdateAppletData_updateApplet? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GupdateAppletData_updateApplet.serializer,
+        json,
+      );
+}
+
+abstract class GdeleteAppletData
+    implements Built<GdeleteAppletData, GdeleteAppletDataBuilder> {
+  GdeleteAppletData._();
+
+  factory GdeleteAppletData(
+          [void Function(GdeleteAppletDataBuilder b) updates]) =
+      _$GdeleteAppletData;
+
+  static void _initializeBuilder(GdeleteAppletDataBuilder b) =>
+      b..G__typename = 'Mutation';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  GdeleteAppletData_deleteApplet get deleteApplet;
+  static Serializer<GdeleteAppletData> get serializer =>
+      _$gdeleteAppletDataSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GdeleteAppletData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GdeleteAppletData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GdeleteAppletData.serializer,
+        json,
+      );
+}
+
+abstract class GdeleteAppletData_deleteApplet
+    implements
+        Built<GdeleteAppletData_deleteApplet,
+            GdeleteAppletData_deleteAppletBuilder>,
+        GBaseApplet {
+  GdeleteAppletData_deleteApplet._();
+
+  factory GdeleteAppletData_deleteApplet(
+          [void Function(GdeleteAppletData_deleteAppletBuilder b) updates]) =
+      _$GdeleteAppletData_deleteApplet;
+
+  static void _initializeBuilder(GdeleteAppletData_deleteAppletBuilder b) =>
+      b..G__typename = 'Applet';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  int get id;
+  @override
+  String get name;
+  @override
+  String? get description;
+  static Serializer<GdeleteAppletData_deleteApplet> get serializer =>
+      _$gdeleteAppletDataDeleteAppletSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GdeleteAppletData_deleteApplet.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GdeleteAppletData_deleteApplet? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GdeleteAppletData_deleteApplet.serializer,
+        json,
+      );
+}
+
 abstract class GBaseAppletProvider {
   String get G__typename;
   int get id;

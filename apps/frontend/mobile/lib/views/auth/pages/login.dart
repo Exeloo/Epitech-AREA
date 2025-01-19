@@ -15,8 +15,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginPageState extends State<LoginPage> {
-  bool _rememberMe = false;
-
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -44,6 +42,10 @@ class LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
+      appBar: AppBar(
+        backgroundColor: AppColors.background,
+        iconTheme: const IconThemeData(color: Colors.white),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -60,7 +62,7 @@ class LoginPageState extends State<LoginPage> {
             ),
             const SizedBox(height: 8),
             const Text(
-              'Welcome back! Please enter your details.',
+              'Welcome back ! Please enter your details.',
               style: TextStyle(fontSize: 16, color: Colors.grey),
               textAlign: TextAlign.center,
             ),
@@ -98,30 +100,6 @@ class LoginPageState extends State<LoginPage> {
               style: const TextStyle(color: AppColors.textPrimary),
             ),
             const SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Checkbox(
-                      value: _rememberMe,
-                      onChanged: (value) {
-                        setState(() {
-                          _rememberMe = value!;
-                        });
-                      },
-                    ),
-                    const Text('Remember me',
-                        style: TextStyle(color: AppColors.textPrimary)),
-                  ],
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: const Text('Forgot password?',
-                      style: TextStyle(color: AppColors.textPrimary)),
-                ),
-              ],
-            ),
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: _login,
@@ -144,7 +122,7 @@ class LoginPageState extends State<LoginPage> {
                         builder: (BuildContext context) => const SignUpPage()),
                     (Route<dynamic> route) => false);
               },
-              child: const Text('Don\'t have an account? Sign up',
+              child: const Text('Don\'t have an account ? Sign up',
                   style: TextStyle(color: AppColors.textPrimary)),
             ),
           ],

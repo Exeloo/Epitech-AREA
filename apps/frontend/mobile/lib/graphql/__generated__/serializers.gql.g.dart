@@ -11,6 +11,8 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GAppletCreateInput.serializer)
       ..add(GAppletNodeCreateInput.serializer)
       ..add(GAppletNodeType.serializer)
+      ..add(GAppletNodeUpdateInput.serializer)
+      ..add(GAppletUpdateInput.serializer)
       ..add(GAppletWithNodesData.serializer)
       ..add(GAppletWithNodesData_triggerNodes.serializer)
       ..add(GAppletWithNodesData_triggerNodes_next.serializer)
@@ -67,6 +69,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GcreateAppletData_createApplet.serializer)
       ..add(GcreateAppletReq.serializer)
       ..add(GcreateAppletVars.serializer)
+      ..add(GdeleteAppletData.serializer)
+      ..add(GdeleteAppletData_deleteApplet.serializer)
+      ..add(GdeleteAppletReq.serializer)
+      ..add(GdeleteAppletVars.serializer)
       ..add(GgetAllAppletsData.serializer)
       ..add(GgetAllAppletsData_getAllApplets.serializer)
       ..add(GgetAllAppletsReq.serializer)
@@ -117,6 +123,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GregisterData_register.serializer)
       ..add(GregisterReq.serializer)
       ..add(GregisterVars.serializer)
+      ..add(GupdateAppletData.serializer)
+      ..add(GupdateAppletData_updateApplet.serializer)
+      ..add(GupdateAppletReq.serializer)
+      ..add(GupdateAppletVars.serializer)
       ..add(GupdateMeData.serializer)
       ..add(GupdateMeData_updateMe.serializer)
       ..add(GupdateMeReq.serializer)
@@ -129,6 +139,14 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(
               BuiltList, const [const FullType(GAppletNodeCreateInput)]),
           () => new ListBuilder<GAppletNodeCreateInput>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(GAppletNodeUpdateInput)]),
+          () => new ListBuilder<GAppletNodeUpdateInput>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(GAppletNodeUpdateInput)]),
+          () => new ListBuilder<GAppletNodeUpdateInput>())
       ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(GAppletWithNodesData_triggerNodes)]),

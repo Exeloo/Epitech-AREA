@@ -133,7 +133,7 @@ abstract class GgetProviderOAuthStateData_getProviderOAuthState
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   bool get authenticated;
-  String get redirectUri;
+  String? get redirectUri;
   static Serializer<GgetProviderOAuthStateData_getProviderOAuthState>
       get serializer =>
           _$ggetProviderOAuthStateDataGetProviderOAuthStateSerializer;

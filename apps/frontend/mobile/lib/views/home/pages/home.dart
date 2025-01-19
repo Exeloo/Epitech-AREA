@@ -2,14 +2,12 @@ import 'dart:developer';
 
 import 'package:aether/graphql/__generated__/provider.data.gql.dart';
 import 'package:aether/modules/graphql/repository/provider_repository.dart';
+import 'package:aether/views/applet/pages/my_applets_page.dart';
 import 'package:aether/views/home/widgets/home_app_bar.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
-import '../../../config/colors.dart';
-import '../widgets/applet_card.dart';
 import '../widgets/provider_card.dart';
 
 class HomePage extends StatelessWidget {
@@ -23,83 +21,10 @@ class HomePage extends StatelessWidget {
         appBar: MyHomeAppBar(),
         body: TabBarView(
           children: [
-            AllContent(),
+            MyAppletsPage(),
             ProvidersContent(),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class AllContent extends StatelessWidget {
-  const AllContent({super.key});
-
-  void _onAppletTap(BuildContext context, String appletName) {
-    // Navigate to the detail page or perform any action on tap
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => AppletDetailPage(appletName: appletName),
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const SizedBox(height: 20),
-          const Text(
-            "Get Started !",
-            style: TextStyle(
-              color: AppColors.textPrimary,
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 20),
-          SizedBox(
-            height: 50,
-            child: SearchBar(
-              leading: Row(
-                children: [
-                  const SizedBox(width: 8),
-                  SvgPicture.asset(
-                    'assets/icon/loupe.svg',
-                    height: 24,
-                    width: 24,
-                    color: const Color(0x83f6ecec),
-                  ),
-                  const SizedBox(width: 12),
-                ],
-              ),
-              backgroundColor: WidgetStateProperty.all(const Color(0xff3D3D3D)),
-              hintText: 'Explorer',
-              hintStyle: WidgetStateProperty.all(
-                const TextStyle(fontSize: 20, color: Color(0x83f6ecec)),
-              ),
-            ),
-          ),
-          const SizedBox(height: 50),
-          Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              itemCount: 10,
-              itemBuilder: (context, index) => Padding(
-                padding: const EdgeInsets.only(bottom: 16.0),
-                child: MyCard(
-                  backgroundColor: Colors.lightBlueAccent,
-                  text: 'Amazon to X',
-                  onTap: () => _onAppletTap(context, 'Amazon to X'),
-                ),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }
@@ -159,12 +84,12 @@ class _ProvidersContentState extends State<ProvidersContent> {
               itemBuilder: (context, index) {
                 final provider = _providers![index];
                 return ProviderCard(
-                  logoUrl: provider.img,
-                  providerName: provider.name,
-                  id: provider.id,
-                  color: provider.color,
-                  canClick: false,
-                );
+                    logoUrl: provider.img,
+                    providerName: provider.name,
+                    id: provider.id,
+                    color: provider.color,
+                    canClick: false,
+                    onHome: true);
               },
             ),
     );

@@ -61,6 +61,10 @@ Serializer<GAppletNodeCreateInput> _$gAppletNodeCreateInputSerializer =
     new _$GAppletNodeCreateInputSerializer();
 Serializer<GAppletNodeType> _$gAppletNodeTypeSerializer =
     new _$GAppletNodeTypeSerializer();
+Serializer<GAppletNodeUpdateInput> _$gAppletNodeUpdateInputSerializer =
+    new _$GAppletNodeUpdateInputSerializer();
+Serializer<GAppletUpdateInput> _$gAppletUpdateInputSerializer =
+    new _$GAppletUpdateInputSerializer();
 Serializer<GAuthPasswordInput> _$gAuthPasswordInputSerializer =
     new _$GAuthPasswordInputSerializer();
 Serializer<GAuthRefreshTokenInput> _$gAuthRefreshTokenInputSerializer =
@@ -224,6 +228,138 @@ class _$GAppletNodeTypeSerializer
   GAppletNodeType deserialize(Serializers serializers, Object serialized,
           {FullType specifiedType = FullType.unspecified}) =>
       GAppletNodeType.valueOf(serialized as String);
+}
+
+class _$GAppletNodeUpdateInputSerializer
+    implements StructuredSerializer<GAppletNodeUpdateInput> {
+  @override
+  final Iterable<Type> types = const [
+    GAppletNodeUpdateInput,
+    _$GAppletNodeUpdateInput
+  ];
+  @override
+  final String wireName = 'GAppletNodeUpdateInput';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GAppletNodeUpdateInput object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'actionId',
+      serializers.serialize(object.actionId,
+          specifiedType: const FullType(String)),
+      'input',
+      serializers.serialize(object.input, specifiedType: const FullType(GJSON)),
+      'next',
+      serializers.serialize(object.next,
+          specifiedType: const FullType(
+              BuiltList, const [const FullType(GAppletNodeUpdateInput)])),
+      'providerId',
+      serializers.serialize(object.providerId,
+          specifiedType: const FullType(int)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GAppletNodeUpdateInput deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GAppletNodeUpdateInputBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'actionId':
+          result.actionId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'input':
+          result.input.replace(serializers.deserialize(value,
+              specifiedType: const FullType(GJSON))! as GJSON);
+          break;
+        case 'next':
+          result.next.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(GAppletNodeUpdateInput)
+              ]))! as BuiltList<Object?>);
+          break;
+        case 'providerId':
+          result.providerId = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GAppletUpdateInputSerializer
+    implements StructuredSerializer<GAppletUpdateInput> {
+  @override
+  final Iterable<Type> types = const [GAppletUpdateInput, _$GAppletUpdateInput];
+  @override
+  final String wireName = 'GAppletUpdateInput';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GAppletUpdateInput object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'name',
+      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'triggerNodes',
+      serializers.serialize(object.triggerNodes,
+          specifiedType: const FullType(
+              BuiltList, const [const FullType(GAppletNodeUpdateInput)])),
+    ];
+    Object? value;
+    value = object.description;
+    if (value != null) {
+      result
+        ..add('description')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GAppletUpdateInput deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GAppletUpdateInputBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'description':
+          result.description = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'triggerNodes':
+          result.triggerNodes.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(GAppletNodeUpdateInput)
+              ]))! as BuiltList<Object?>);
+          break;
+      }
+    }
+
+    return result.build();
+  }
 }
 
 class _$GAuthPasswordInputSerializer
@@ -779,11 +915,10 @@ class GAppletCreateInputBuilder
     try {
       _$result = _$v ??
           new _$GAppletCreateInput._(
-            description: description,
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GAppletCreateInput', 'name'),
-            triggerNodes: triggerNodes.build(),
-          );
+              description: description,
+              name: BuiltValueNullFieldError.checkNotNull(
+                  name, r'GAppletCreateInput', 'name'),
+              triggerNodes: triggerNodes.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -925,13 +1060,12 @@ class GAppletNodeCreateInputBuilder
     try {
       _$result = _$v ??
           new _$GAppletNodeCreateInput._(
-            actionId: BuiltValueNullFieldError.checkNotNull(
-                actionId, r'GAppletNodeCreateInput', 'actionId'),
-            input: input.build(),
-            next: next.build(),
-            providerId: BuiltValueNullFieldError.checkNotNull(
-                providerId, r'GAppletNodeCreateInput', 'providerId'),
-          );
+              actionId: BuiltValueNullFieldError.checkNotNull(
+                  actionId, r'GAppletNodeCreateInput', 'actionId'),
+              input: input.build(),
+              next: next.build(),
+              providerId: BuiltValueNullFieldError.checkNotNull(
+                  providerId, r'GAppletNodeCreateInput', 'providerId'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -942,6 +1076,283 @@ class GAppletNodeCreateInputBuilder
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'GAppletNodeCreateInput', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GAppletNodeUpdateInput extends GAppletNodeUpdateInput {
+  @override
+  final String actionId;
+  @override
+  final GJSON input;
+  @override
+  final BuiltList<GAppletNodeUpdateInput> next;
+  @override
+  final int providerId;
+
+  factory _$GAppletNodeUpdateInput(
+          [void Function(GAppletNodeUpdateInputBuilder)? updates]) =>
+      (new GAppletNodeUpdateInputBuilder()..update(updates))._build();
+
+  _$GAppletNodeUpdateInput._(
+      {required this.actionId,
+      required this.input,
+      required this.next,
+      required this.providerId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        actionId, r'GAppletNodeUpdateInput', 'actionId');
+    BuiltValueNullFieldError.checkNotNull(
+        input, r'GAppletNodeUpdateInput', 'input');
+    BuiltValueNullFieldError.checkNotNull(
+        next, r'GAppletNodeUpdateInput', 'next');
+    BuiltValueNullFieldError.checkNotNull(
+        providerId, r'GAppletNodeUpdateInput', 'providerId');
+  }
+
+  @override
+  GAppletNodeUpdateInput rebuild(
+          void Function(GAppletNodeUpdateInputBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GAppletNodeUpdateInputBuilder toBuilder() =>
+      new GAppletNodeUpdateInputBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GAppletNodeUpdateInput &&
+        actionId == other.actionId &&
+        input == other.input &&
+        next == other.next &&
+        providerId == other.providerId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, actionId.hashCode);
+    _$hash = $jc(_$hash, input.hashCode);
+    _$hash = $jc(_$hash, next.hashCode);
+    _$hash = $jc(_$hash, providerId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GAppletNodeUpdateInput')
+          ..add('actionId', actionId)
+          ..add('input', input)
+          ..add('next', next)
+          ..add('providerId', providerId))
+        .toString();
+  }
+}
+
+class GAppletNodeUpdateInputBuilder
+    implements Builder<GAppletNodeUpdateInput, GAppletNodeUpdateInputBuilder> {
+  _$GAppletNodeUpdateInput? _$v;
+
+  String? _actionId;
+  String? get actionId => _$this._actionId;
+  set actionId(String? actionId) => _$this._actionId = actionId;
+
+  GJSONBuilder? _input;
+  GJSONBuilder get input => _$this._input ??= new GJSONBuilder();
+  set input(GJSONBuilder? input) => _$this._input = input;
+
+  ListBuilder<GAppletNodeUpdateInput>? _next;
+  ListBuilder<GAppletNodeUpdateInput> get next =>
+      _$this._next ??= new ListBuilder<GAppletNodeUpdateInput>();
+  set next(ListBuilder<GAppletNodeUpdateInput>? next) => _$this._next = next;
+
+  int? _providerId;
+  int? get providerId => _$this._providerId;
+  set providerId(int? providerId) => _$this._providerId = providerId;
+
+  GAppletNodeUpdateInputBuilder();
+
+  GAppletNodeUpdateInputBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _actionId = $v.actionId;
+      _input = $v.input.toBuilder();
+      _next = $v.next.toBuilder();
+      _providerId = $v.providerId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GAppletNodeUpdateInput other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GAppletNodeUpdateInput;
+  }
+
+  @override
+  void update(void Function(GAppletNodeUpdateInputBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GAppletNodeUpdateInput build() => _build();
+
+  _$GAppletNodeUpdateInput _build() {
+    _$GAppletNodeUpdateInput _$result;
+    try {
+      _$result = _$v ??
+          new _$GAppletNodeUpdateInput._(
+              actionId: BuiltValueNullFieldError.checkNotNull(
+                  actionId, r'GAppletNodeUpdateInput', 'actionId'),
+              input: input.build(),
+              next: next.build(),
+              providerId: BuiltValueNullFieldError.checkNotNull(
+                  providerId, r'GAppletNodeUpdateInput', 'providerId'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'input';
+        input.build();
+        _$failedField = 'next';
+        next.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GAppletNodeUpdateInput', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GAppletUpdateInput extends GAppletUpdateInput {
+  @override
+  final String? description;
+  @override
+  final String name;
+  @override
+  final BuiltList<GAppletNodeUpdateInput> triggerNodes;
+
+  factory _$GAppletUpdateInput(
+          [void Function(GAppletUpdateInputBuilder)? updates]) =>
+      (new GAppletUpdateInputBuilder()..update(updates))._build();
+
+  _$GAppletUpdateInput._(
+      {this.description, required this.name, required this.triggerNodes})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(name, r'GAppletUpdateInput', 'name');
+    BuiltValueNullFieldError.checkNotNull(
+        triggerNodes, r'GAppletUpdateInput', 'triggerNodes');
+  }
+
+  @override
+  GAppletUpdateInput rebuild(
+          void Function(GAppletUpdateInputBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GAppletUpdateInputBuilder toBuilder() =>
+      new GAppletUpdateInputBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GAppletUpdateInput &&
+        description == other.description &&
+        name == other.name &&
+        triggerNodes == other.triggerNodes;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, description.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, triggerNodes.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GAppletUpdateInput')
+          ..add('description', description)
+          ..add('name', name)
+          ..add('triggerNodes', triggerNodes))
+        .toString();
+  }
+}
+
+class GAppletUpdateInputBuilder
+    implements Builder<GAppletUpdateInput, GAppletUpdateInputBuilder> {
+  _$GAppletUpdateInput? _$v;
+
+  String? _description;
+  String? get description => _$this._description;
+  set description(String? description) => _$this._description = description;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  ListBuilder<GAppletNodeUpdateInput>? _triggerNodes;
+  ListBuilder<GAppletNodeUpdateInput> get triggerNodes =>
+      _$this._triggerNodes ??= new ListBuilder<GAppletNodeUpdateInput>();
+  set triggerNodes(ListBuilder<GAppletNodeUpdateInput>? triggerNodes) =>
+      _$this._triggerNodes = triggerNodes;
+
+  GAppletUpdateInputBuilder();
+
+  GAppletUpdateInputBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _description = $v.description;
+      _name = $v.name;
+      _triggerNodes = $v.triggerNodes.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GAppletUpdateInput other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GAppletUpdateInput;
+  }
+
+  @override
+  void update(void Function(GAppletUpdateInputBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GAppletUpdateInput build() => _build();
+
+  _$GAppletUpdateInput _build() {
+    _$GAppletUpdateInput _$result;
+    try {
+      _$result = _$v ??
+          new _$GAppletUpdateInput._(
+              description: description,
+              name: BuiltValueNullFieldError.checkNotNull(
+                  name, r'GAppletUpdateInput', 'name'),
+              triggerNodes: triggerNodes.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'triggerNodes';
+        triggerNodes.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GAppletUpdateInput', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -1044,11 +1455,10 @@ class GAuthPasswordInputBuilder
   _$GAuthPasswordInput _build() {
     final _$result = _$v ??
         new _$GAuthPasswordInput._(
-          email: BuiltValueNullFieldError.checkNotNull(
-              email, r'GAuthPasswordInput', 'email'),
-          password: BuiltValueNullFieldError.checkNotNull(
-              password, r'GAuthPasswordInput', 'password'),
-        );
+            email: BuiltValueNullFieldError.checkNotNull(
+                email, r'GAuthPasswordInput', 'email'),
+            password: BuiltValueNullFieldError.checkNotNull(
+                password, r'GAuthPasswordInput', 'password'));
     replace(_$result);
     return _$result;
   }
@@ -1135,9 +1545,8 @@ class GAuthRefreshTokenInputBuilder
   _$GAuthRefreshTokenInput _build() {
     final _$result = _$v ??
         new _$GAuthRefreshTokenInput._(
-          refreshToken: BuiltValueNullFieldError.checkNotNull(
-              refreshToken, r'GAuthRefreshTokenInput', 'refreshToken'),
-        );
+            refreshToken: BuiltValueNullFieldError.checkNotNull(
+                refreshToken, r'GAuthRefreshTokenInput', 'refreshToken'));
     replace(_$result);
     return _$result;
   }
@@ -1217,9 +1626,8 @@ class GDateTimeBuilder implements Builder<GDateTime, GDateTimeBuilder> {
   _$GDateTime _build() {
     final _$result = _$v ??
         new _$GDateTime._(
-          value: BuiltValueNullFieldError.checkNotNull(
-              value, r'GDateTime', 'value'),
-        );
+            value: BuiltValueNullFieldError.checkNotNull(
+                value, r'GDateTime', 'value'));
     replace(_$result);
     return _$result;
   }
@@ -1299,9 +1707,8 @@ class GJSONBuilder implements Builder<GJSON, GJSONBuilder> {
   _$GJSON _build() {
     final _$result = _$v ??
         new _$GJSON._(
-          value:
-              BuiltValueNullFieldError.checkNotNull(value, r'GJSON', 'value'),
-        );
+            value: BuiltValueNullFieldError.checkNotNull(
+                value, r'GJSON', 'value'));
     replace(_$result);
     return _$result;
   }
@@ -1415,13 +1822,12 @@ class GProviderCreateInputBuilder
   _$GProviderCreateInput _build() {
     final _$result = _$v ??
         new _$GProviderCreateInput._(
-          host: BuiltValueNullFieldError.checkNotNull(
-              host, r'GProviderCreateInput', 'host'),
-          providerId: BuiltValueNullFieldError.checkNotNull(
-              providerId, r'GProviderCreateInput', 'providerId'),
-          visibility: BuiltValueNullFieldError.checkNotNull(
-              visibility, r'GProviderCreateInput', 'visibility'),
-        );
+            host: BuiltValueNullFieldError.checkNotNull(
+                host, r'GProviderCreateInput', 'host'),
+            providerId: BuiltValueNullFieldError.checkNotNull(
+                providerId, r'GProviderCreateInput', 'providerId'),
+            visibility: BuiltValueNullFieldError.checkNotNull(
+                visibility, r'GProviderCreateInput', 'visibility'));
     replace(_$result);
     return _$result;
   }
@@ -1580,18 +1986,17 @@ class GUserCreateInputBuilder
   _$GUserCreateInput _build() {
     final _$result = _$v ??
         new _$GUserCreateInput._(
-          description: description,
-          email: BuiltValueNullFieldError.checkNotNull(
-              email, r'GUserCreateInput', 'email'),
-          firstName: BuiltValueNullFieldError.checkNotNull(
-              firstName, r'GUserCreateInput', 'firstName'),
-          lastName: BuiltValueNullFieldError.checkNotNull(
-              lastName, r'GUserCreateInput', 'lastName'),
-          password: password,
-          pronoun: pronoun,
-          username: BuiltValueNullFieldError.checkNotNull(
-              username, r'GUserCreateInput', 'username'),
-        );
+            description: description,
+            email: BuiltValueNullFieldError.checkNotNull(
+                email, r'GUserCreateInput', 'email'),
+            firstName: BuiltValueNullFieldError.checkNotNull(
+                firstName, r'GUserCreateInput', 'firstName'),
+            lastName: BuiltValueNullFieldError.checkNotNull(
+                lastName, r'GUserCreateInput', 'lastName'),
+            password: password,
+            pronoun: pronoun,
+            username: BuiltValueNullFieldError.checkNotNull(
+                username, r'GUserCreateInput', 'username'));
     replace(_$result);
     return _$result;
   }
@@ -1730,16 +2135,15 @@ class GUserRegisterInputBuilder
   _$GUserRegisterInput _build() {
     final _$result = _$v ??
         new _$GUserRegisterInput._(
-          email: BuiltValueNullFieldError.checkNotNull(
-              email, r'GUserRegisterInput', 'email'),
-          firstName: BuiltValueNullFieldError.checkNotNull(
-              firstName, r'GUserRegisterInput', 'firstName'),
-          lastName: BuiltValueNullFieldError.checkNotNull(
-              lastName, r'GUserRegisterInput', 'lastName'),
-          password: password,
-          username: BuiltValueNullFieldError.checkNotNull(
-              username, r'GUserRegisterInput', 'username'),
-        );
+            email: BuiltValueNullFieldError.checkNotNull(
+                email, r'GUserRegisterInput', 'email'),
+            firstName: BuiltValueNullFieldError.checkNotNull(
+                firstName, r'GUserRegisterInput', 'firstName'),
+            lastName: BuiltValueNullFieldError.checkNotNull(
+                lastName, r'GUserRegisterInput', 'lastName'),
+            password: password,
+            username: BuiltValueNullFieldError.checkNotNull(
+                username, r'GUserRegisterInput', 'username'));
     replace(_$result);
     return _$result;
   }
@@ -1879,13 +2283,12 @@ class GUserUpdateInputBuilder
   _$GUserUpdateInput _build() {
     final _$result = _$v ??
         new _$GUserUpdateInput._(
-          description: description,
-          email: email,
-          firstName: firstName,
-          lastName: lastName,
-          pronoun: pronoun,
-          username: username,
-        );
+            description: description,
+            email: email,
+            firstName: firstName,
+            lastName: lastName,
+            pronoun: pronoun,
+            username: username);
     replace(_$result);
     return _$result;
   }

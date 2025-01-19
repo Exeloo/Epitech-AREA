@@ -31,13 +31,11 @@ class MainAuthPageState extends State<MainAuthPage> {
                   style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.secondary),
                   onPressed: () {
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (BuildContext context) => const SignUpPage(),
-                      ),
-                      (Route<dynamic> route) => false,
-                    );
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => const SignUpPage(),
+                        ));
                   },
                   child: const Text('Sign Up',
                       style: TextStyle(color: AppColors.textPrimary)),
@@ -50,13 +48,11 @@ class MainAuthPageState extends State<MainAuthPage> {
                   style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xff8E44AD)),
                   onPressed: () {
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (BuildContext context) => const LoginPage(),
-                      ),
-                      (Route<dynamic> route) => false,
-                    );
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => const LoginPage(),
+                        ));
                   },
                   child: const Text(
                     'Log In',
@@ -64,26 +60,24 @@ class MainAuthPageState extends State<MainAuthPage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 40),
               SizedBox(
                 width: 150,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.secondary),
                   onPressed: () {
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (BuildContext context) => const GoogleAuth(),
-                      ),
-                      (Route<dynamic> route) => false,
-                    );
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => const GoogleAuth(),
+                        ));
                   },
                   child: const Text('Google',
                       style: TextStyle(color: AppColors.textPrimary)),
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 40),
               SizedBox(
                 width: 150,
                 child: ElevatedButton(

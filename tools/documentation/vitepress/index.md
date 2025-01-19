@@ -7,10 +7,13 @@ hero:
   tagline:  by Ilyes, Mattéo, Robin, Thomas and Timothé
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: Usage Tutorial
+      link: /tutorial
     - theme: alt
       text: API Documentation
       link: /api
+    - theme: alt
+      text: DevOps Documentation
+      link: /devops
 ---
 

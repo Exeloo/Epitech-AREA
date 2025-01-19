@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:aether/graphql/__generated__/user.data.gql.dart';
 import 'package:aether/modules/graphql/repository/user_repository.dart';
+import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -36,7 +37,7 @@ class ProfileState extends State<Profile> {
   Future<void> _fetchUserData() async {
     try {
       log('Fetching user data');
-      final userData = await userRepository.getMe();
+      final userData = await userRepository.getMe(fetchPolicy: FetchPolicy.NetworkOnly);
       setState(() {
         user = userData?.getMe;
         if (user != null) {

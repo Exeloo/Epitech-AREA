@@ -56,22 +56,43 @@ class _MyAppletsPageState extends State<MyAppletsPage> {
             );
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return Center(
-              child: SizedBox(
-                width: 150,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.secondary),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              const AppletCreation(),
-                        ));
-                  },
-                  child: const Text('Get Started',
-                      style: TextStyle(color: AppColors.textPrimary)),
-                ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 16.0),
+                    child: Text(
+                      "You haven't created an applet yet !",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.textPrimary,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 180,
+                    height: 60,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.secondary,
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) => const AppletCreation(),
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        'Get Started',
+                        style: TextStyle(color: AppColors.textPrimary, fontSize: 20),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             );
           }

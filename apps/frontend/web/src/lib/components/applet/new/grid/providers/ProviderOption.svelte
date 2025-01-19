@@ -11,12 +11,12 @@
 		provider: BaseProvider;
 		element: ElementValues | null;
 	}
-	let { provider, element = $bindable() }: Props = $props();
+	let { provider = $bindable(), element = $bindable() }: Props = $props();
 
 	let baseProviderStore = new BaseProviderStore();
 	let providerWithManifestStore = new ProviderWithManifestStore();
 
-	let info = $state(baseProviderStore.get(provider));
+	let info = $derived(baseProviderStore.get(provider));
 
 	async function selectProvider() {
 		if (!$info) return;

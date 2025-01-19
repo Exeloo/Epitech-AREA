@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:aether/graphql/__generated__/applet.data.gql.dart';
 import 'package:aether/graphql/graphql_client.dart';
 import 'package:aether/modules/graphql/repository/applet_repository.dart';
@@ -38,6 +40,16 @@ class _MyAppletsPageState extends State<MyAppletsPage> {
     );
   }
 
+  Color _generateRandomColor() {
+    final random = Random();
+    return Color.fromARGB(
+      255,
+      random.nextInt(256),
+      random.nextInt(256),
+      random.nextInt(256),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +74,7 @@ class _MyAppletsPageState extends State<MyAppletsPage> {
                   const Padding(
                     padding: EdgeInsets.only(bottom: 16.0),
                     child: Text(
-                      "You haven't created an applet yet !",
+                      "You haven't created an applet yet!",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -105,10 +117,12 @@ class _MyAppletsPageState extends State<MyAppletsPage> {
             itemCount: applets.length,
             itemBuilder: (context, index) {
               final applet = applets[index];
+              final randomColor = _generateRandomColor();
+
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: MyCard(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: randomColor,
                   text: applet.name,
                   onTap: () => _onAppletTap(applet),
                 ),

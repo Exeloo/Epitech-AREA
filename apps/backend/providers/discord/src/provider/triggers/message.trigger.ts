@@ -1,20 +1,20 @@
-import {Injectable} from "@nestjs/common";
-import {ConfigService} from "@nestjs/config";
-import {OnEvent} from "@nestjs/event-emitter";
+import { Injectable } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
+import { OnEvent } from "@nestjs/event-emitter";
 
-import {ManifestTrigger} from "@lib/manifest";
+import { ManifestTrigger } from "@lib/manifest";
 
-import {AppGateway} from "~/app.gateway";
-import {TriggerAddReactionMessageInput} from "~/provider/dto/inputs/message/trigger-add-reaction-message.input";
-import {TriggerMessageCreateInput} from "~/provider/dto/inputs/message/trigger-message-create.input";
-import {TriggerMessageDeleteInput} from "~/provider/dto/inputs/message/trigger-message-delete.input";
-import {TriggerMessageUpdateInput} from "~/provider/dto/inputs/message/trigger-message-update.input";
-import {MessageNode} from "~/provider/dto/nodes/message.node";
-import {AddReactionMessageResponse} from "~/provider/dto/response/add-reaction-message.response";
-import {DeleteMessageResponse} from "~/provider/dto/response/delete-message.response";
-import {DeleteReactionMessageResponse} from "~/provider/dto/response/delete-reaction-message.response";
-import {TriggerService} from "~/provider/services/trigger.service";
-import {EventsEnum} from "~/provider/shared/event/event.enum";
+import { AppGateway } from "~/app.gateway";
+import { TriggerAddReactionMessageInput } from "~/provider/dto/inputs/message/trigger-add-reaction-message.input";
+import { TriggerMessageCreateInput } from "~/provider/dto/inputs/message/trigger-message-create.input";
+import { TriggerMessageDeleteInput } from "~/provider/dto/inputs/message/trigger-message-delete.input";
+import { TriggerMessageUpdateInput } from "~/provider/dto/inputs/message/trigger-message-update.input";
+import { MessageNode } from "~/provider/dto/nodes/message.node";
+import { AddReactionMessageResponse } from "~/provider/dto/response/add-reaction-message.response";
+import { DeleteMessageResponse } from "~/provider/dto/response/delete-message.response";
+import { DeleteReactionMessageResponse } from "~/provider/dto/response/delete-reaction-message.response";
+import { TriggerService } from "~/provider/services/trigger.service";
+import { EventsEnum } from "~/provider/shared/event/event.enum";
 
 @Injectable()
 export class MessageTrigger {

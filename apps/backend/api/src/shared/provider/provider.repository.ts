@@ -1,16 +1,16 @@
-import {HttpService} from "@nestjs/axios";
-import {Injectable} from "@nestjs/common";
-import {AxiosRequestConfig} from "axios";
+import { HttpService } from "@nestjs/axios";
+import { Injectable } from "@nestjs/common";
+import { AxiosRequestConfig } from "axios";
 
-import {ObjectLiteral} from "@type/object.type";
+import { ObjectLiteral } from "@type/object.type";
 
-import {ID} from "@d-type/id.type";
+import { ID } from "@d-type/id.type";
 
-import {InternalException} from "@exception";
+import { InternalException } from "@exception";
 
-import {HttpRepository} from "@domain/common/repositories/http.repository";
-import {IManifest} from "@domain/provider/manifest/types/manifest.type";
-import {IProviderOAuthState} from "@domain/provider/types/provider-oauth-state.type";
+import { HttpRepository } from "@domain/common/repositories/http.repository";
+import { IManifest } from "@domain/provider/manifest/types/manifest.type";
+import { IProviderOAuthState } from "@domain/provider/types/provider-oauth-state.type";
 
 @Injectable()
 export class ProviderRepository extends HttpRepository("PROVIDER") {
@@ -53,7 +53,6 @@ export class ProviderRepository extends HttpRepository("PROVIDER") {
           "api-key": key,
         },
       });
-      console.log(res)
     } catch (e) {
       throw new InternalException(31, {
         cause: e,

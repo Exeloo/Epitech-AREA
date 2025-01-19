@@ -1,14 +1,14 @@
-import {HttpService} from "@nestjs/axios";
-import {Injectable} from "@nestjs/common";
-import {ConfigService} from "@nestjs/config";
+import { HttpService } from "@nestjs/axios";
+import { Injectable } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
 
-import {ManifestAction} from "@lib/manifest";
+import { ManifestAction } from "@lib/manifest";
 
-import {BaseHttpRepository} from "~/provider/common/base-http.repository";
-import {ActionMessageCreateInput} from "~/provider/dto/inputs/message/action-message-create.input";
-import {ActionMessageResponse} from "~/provider/dto/responses/action-message.response";
-import {IActionResponse} from "~/provider/services/action.service";
-import {AuthService} from "~/provider/shared/auth/auth.service";
+import { BaseHttpRepository } from "~/provider/common/base-http.repository";
+import { ActionMessageCreateInput } from "~/provider/dto/inputs/message/action-message-create.input";
+import { ActionMessageResponse } from "~/provider/dto/responses/action-message.response";
+import { IActionResponse } from "~/provider/services/action.service";
+import { AuthService } from "~/provider/shared/auth/auth.service";
 
 @Injectable()
 export class MessageAction extends BaseHttpRepository {

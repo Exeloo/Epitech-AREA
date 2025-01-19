@@ -1,7 +1,7 @@
-import {MessageNode} from "~/provider/dto/nodes/message.node";
-import {AddReactionMessageResponse} from "~/provider/dto/response/add-reaction-message.response";
-import {DeleteMessageResponse} from "~/provider/dto/response/delete-message.response";
-import {DeleteReactionMessageResponse} from "~/provider/dto/response/delete-reaction-message.response";
+import { MessageNode } from "~/provider/dto/nodes/message.node";
+import { AddReactionMessageResponse } from "~/provider/dto/response/add-reaction-message.response";
+import { DeleteMessageResponse } from "~/provider/dto/response/delete-message.response";
+import { DeleteReactionMessageResponse } from "~/provider/dto/response/delete-reaction-message.response";
 
 export enum EventsEnum {
   MESSAGE_CREATE = "MESSAGE_CREATE",

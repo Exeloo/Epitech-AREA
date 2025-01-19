@@ -1,11 +1,11 @@
-import {HttpService} from "@nestjs/axios";
-import {Injectable} from "@nestjs/common";
-import {ConfigService} from "@nestjs/config";
-import {InjectRepository} from "@nestjs/typeorm";
-import {firstValueFrom} from "rxjs";
-import {Repository} from "typeorm";
+import { HttpService } from "@nestjs/axios";
+import { Injectable } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
+import { InjectRepository } from "@nestjs/typeorm";
+import { firstValueFrom } from "rxjs";
+import { Repository } from "typeorm";
 
-import {AccountEntity} from "~/provider/shared/auth/account.entity";
+import { AccountEntity } from "~/provider/shared/auth/account.entity";
 
 @Injectable()
 export class AuthService {

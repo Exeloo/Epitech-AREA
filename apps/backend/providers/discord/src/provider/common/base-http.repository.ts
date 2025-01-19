@@ -1,8 +1,8 @@
-import {HttpService} from "@nestjs/axios";
-import {HttpException, Logger} from "@nestjs/common";
-import {ConfigService} from "@nestjs/config";
-import {AxiosRequestConfig} from "axios";
-import {firstValueFrom} from "rxjs";
+import { HttpService } from "@nestjs/axios";
+import { HttpException, Logger } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
+import { AxiosRequestConfig } from "axios";
+import { firstValueFrom } from "rxjs";
 
 export abstract class BaseHttpRepository {
   private readonly defaultConfig: AxiosRequestConfig;

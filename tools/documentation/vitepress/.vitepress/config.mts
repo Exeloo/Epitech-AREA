@@ -6,11 +6,15 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
+      { text: 'Tutorial', link: '/tutorial' },
       { text: 'API', link: '/api' },
       { text: 'DevOps', link: '/devops' }
     ],
 
     sidebar: [
+      {
+        text: 'Tutorial', link: '/tutorial'
+      },
       {
         text: 'API',
         items: [

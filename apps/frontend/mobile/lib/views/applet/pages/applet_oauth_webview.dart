@@ -22,9 +22,12 @@ class AppletOauthWebViewState extends State<AppletOauthWebView> {
       ..setNavigationDelegate(
         NavigationDelegate(
           onPageStarted: (String url) {
-            if (url.startsWith('aether://oauth-callback')) {
-              _handleRedirect(url);
-            }
+            Future.delayed(const Duration(seconds: 3), () {
+              if (url.startsWith('https://api.aether-area.fr/area/oauth/') &&
+                  url.contains("/callback")) {
+                _handleRedirect(url);
+              }
+            });
           },
         ),
       );

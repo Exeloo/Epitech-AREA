@@ -23,6 +23,8 @@
 
 		applet = data.getAppletById;
 
+		if (applet.triggerNodes.length <= 0) return;
+
 		let queryTrigger = await load_getAppletNodeById({
 			variables: { id: applet.triggerNodes[0].id }
 		});
@@ -41,15 +43,15 @@
 	});
 </script>
 
-<div>
+<div class="flex w-full justify-between px-10">
 	<a
 		href="/explore/applets"
-		class="absolute left-10 top-32 flex items-center justify-center gap-1 text-2xl duration-100 md:text-4xl"
+		class="flex items-center justify-center gap-1 text-2xl duration-100 md:text-4xl"
 	>
 		<i class="fi fi-rr-arrow-small-left flex items-center justify-center"></i>
 		Back
 	</a>
-	{#if applet && trigger}
+	{#if applet}
 		<div class="mt-12">
 			<div class="text-5xl font-bold">
 				{applet.name}
@@ -58,11 +60,20 @@
 				{applet.description}
 			</div>
 		</div>
-		<div class="mt-20 flex w-full flex-col items-center gap-20">
-			<ActionBlock title="Trigger" action={trigger} />
-			{#each actions as action}
-				<ActionBlock title="Action" {action} />
-			{/each}
-		</div>
+		{#if trigger}
+			<div class="mt-20 flex w-full flex-col items-center gap-20">
+				<ActionBlock title="Trigger" action={trigger} />
+				{#each actions as action}
+					<ActionBlock title="Action" {action} />
+				{/each}
+			</div>
+		{/if}
 	{/if}
+	<button
+		aria-label="delete applet"
+		class="mt-14 flex h-fit items-center justify-center gap-2 rounded-full bg-red-500 px-4 py-2 text-xl font-semibold"
+	>
+		<i class="fi fi-sr-trash flex items-center justify-center"></i>
+		Remove
+	</button>
 </div>

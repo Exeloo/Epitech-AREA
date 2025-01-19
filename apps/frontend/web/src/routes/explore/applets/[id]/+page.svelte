@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import {
+		DeleteAppletStore,
 		type getAppletById$result,
 		type getAppletNodeById$result,
 		load_getAppletById,
@@ -9,13 +10,23 @@
 	import { page } from '$app/stores';
 	import ActionBlock from '$lib/components/explore/card/ActionBlock.svelte';
 
-	//let deleteApplet = new DeleteAppletStore();
+	let deleteAppletStore = new DeleteAppletStore();
 
 	let id = $page.params.id;
 
 	let applet: getAppletById$result['getAppletById'] | undefined = $state(undefined);
 	let trigger: getAppletNodeById$result['getAppletNodeById'] | undefined = $state(undefined);
 	let actions: getAppletNodeById$result['getAppletNodeById'][] = $state([]);
+
+	async function deleteApplet() {
+		const query = await deleteAppletStore.mutate({ deleteAppletId: +id });
+		if (!query.data) {
+			new Error('Internal Server Error');
+			return query.errors;
+		}
+
+		window.location.href = '/';
+	}
 
 	onMount(async () => {
 		const query = await load_getAppletById({ variables: { id: +id } });
@@ -72,6 +83,7 @@
 		{/if}
 	{/if}
 	<button
+		onclick={deleteApplet}
 		aria-label="delete applet"
 		class="mt-14 flex h-fit items-center justify-center gap-2 rounded-full bg-red-500 px-4 py-2 text-xl font-semibold"
 	>

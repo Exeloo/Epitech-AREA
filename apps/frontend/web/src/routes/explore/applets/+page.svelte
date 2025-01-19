@@ -54,8 +54,8 @@
 
 {#if filteredApplets.length > 0}
 	<div class="flex w-auto flex-wrap justify-center gap-8">
+		<!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
 		{#each filteredApplets as applet, i}
-			<span class="hidden">{applet}</span>
 			<AppletCard bind:applet={filteredApplets[i]} />
 		{/each}
 	</div>

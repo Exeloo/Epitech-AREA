@@ -12,7 +12,7 @@
     "test:unit": "jest --config ./jest.config.json",
     "test:e2e:migration": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:run -d src/config/tests/migration.test.config.ts",
     "test:e2e:run": "jest --config ./jest-e2e.config.json --runInBand --detectOpenHandles --forceExit",
-    "test:e2e": "echo 'Not implemented yet : ignored' || docker exec area-server-1 sh -c 'yarn test:e2e:migration && yarn test:e2e:run'",
+    "test:e2e": "docker exec area-server-1 sh -c 'yarn test:e2e:migration && yarn test:e2e:run'",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@apollo/server": "^4.11.2",
+    "@faker-js/faker": "^9.4.0",
     "@nestjs/apollo": "^12.2.1",
     "@nestjs/axios": "^3.1.1",
     "@nestjs/common": "^10.4.7",

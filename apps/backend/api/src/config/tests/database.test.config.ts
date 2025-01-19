@@ -9,7 +9,7 @@ export const testDatabaseConfig: DataSourceOptions = {
   username: process.env.TEST_DATABASE_USERNAME,
   password: process.env.TEST_DATABASE_PASSWORD,
   database: process.env.TEST_DATABASE_DB,
-  entities: [__dirname + "/../**/*.entity{.ts,.js}"],
+  entities: [__dirname + "/../../**/*.entity{.ts,.js}"],
   synchronize: false,
   namingStrategy: new SnakeNamingStrategy(),
 };

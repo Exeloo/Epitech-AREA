@@ -1,8 +1,8 @@
 <script lang="ts">
-	import {page} from '$app/stores';
+	import { page } from '$app/stores';
 	import AppletCard from '$lib/components/explore/card/AppletCard.svelte';
-	import {onMount} from 'svelte';
-	import {BaseAppletStore, load_getAllApplets} from '$houdini';
+	import { onMount } from 'svelte';
+	import { BaseAppletStore, load_getAllApplets } from '$houdini';
 
 	let baseApplet = new BaseAppletStore();
 	let applets: { readonly ' $fragments': { BaseApplet: {} } }[] = $state([]);

@@ -1,14 +1,14 @@
-import { Inject, Injectable, Logger } from "@nestjs/common";
+import {Inject, Injectable, Logger} from "@nestjs/common";
 
-import { AuthorizationException, BadInputException } from "@exception";
+import {AuthorizationException, BadInputException} from "@exception";
 
 import {
   APPLET_NODE_PERSISTENCE_REPOSITORY,
   IAppletNodePersistenceRepository,
 } from "@domain/applet/node/applet-node.repository.type";
-import { IAppletNode } from "@domain/applet/node/types/applet-node.type";
-import { ITriggerInput } from "@domain/applet/types/trigger-input.type";
-import { ManifestPropertyEnum } from "@domain/provider/manifest/enums/manifest-property.enum";
+import {IAppletNode} from "@domain/applet/node/types/applet-node.type";
+import {ITriggerInput} from "@domain/applet/types/trigger-input.type";
+import {ManifestPropertyEnum} from "@domain/provider/manifest/enums/manifest-property.enum";
 import {
   IManifest,
   IManifestAction,
@@ -19,11 +19,8 @@ import {
   IProviderPersistenceRepository,
   PROVIDER_PERSISTENCE_REPOSITORY,
 } from "@domain/provider/provider.repository.type";
-import {
-  IProviderService,
-  PROVIDER_SERVICE,
-} from "@domain/provider/provider.service.type";
-import { IProvider } from "@domain/provider/types/provider.type";
+import {IProviderService, PROVIDER_SERVICE,} from "@domain/provider/provider.service.type";
+import {IProvider} from "@domain/provider/types/provider.type";
 
 @Injectable()
 export class AppletRunProcessor {

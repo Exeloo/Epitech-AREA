@@ -8,6 +8,7 @@
 		type: BlockType;
 		focus?: boolean;
 		element: ElementValues | null;
+		canDelete?: boolean;
 	}
 	let { title, type, focus = false, element = $bindable() }: Props = $props();
 
@@ -20,7 +21,7 @@
 
 <button
 	onclick={() => (open = true)}
-	class="flex w-full flex-col items-center justify-between gap-6 rounded-2xl text-4xl font-bold text-white xl:flex-row {focus
+	class="flex w-[80%] flex-col items-center justify-between gap-6 rounded-2xl text-4xl font-bold text-white xl:flex-row {focus
 		? 'bg-neutral-800'
 		: 'bg-neutral-400'} px-8 py-4"
 >
@@ -28,12 +29,12 @@
 	{#if $provider}
 		<div
 			style="background-color: {$provider.color}"
-			class="h-full rounded-full px-4 py-2 text-base text-black"
+			class="h-full rounded-full px-16 py-4 text-base text-black"
 		>
 			<img src={$provider.img} alt={$provider.name} class="h-full w-8" />
 		</div>
 	{:else}
-		<div class="flex items-center rounded-full bg-white px-4 py-2 text-lg text-black">add</div>
+		<div class="flex items-center rounded-full bg-white px-16 py-4 text-xl text-black">Add</div>
 	{/if}
 </button>
 <SelectModal bind:open {type} bind:element />

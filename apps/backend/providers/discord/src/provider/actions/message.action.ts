@@ -23,8 +23,8 @@ export class MessageAction extends BaseHttpRepository {
     id: "message-create",
     name: "Send Message",
     description: "Action to send a message on a channel",
-    img: "",
-    color: "#ffffff",
+    img: "https://firebasestorage.googleapis.com/v0/b/area-444018.firebasestorage.app/o/chat-icone.svg?alt=media&token=95fda850-8161-4b99-a7b9-a04cac234f53",
+    color: "#2C2F33",
     input: ActionMessageCreateInput,
     output: MessageNode,
   })
@@ -40,25 +40,28 @@ export class MessageAction extends BaseHttpRepository {
     id: "message-update",
     name: "Update Message",
     description: "Action to update a message on a channel",
-    img: "",
-    color: "#ffffff",
+    img: "https://firebasestorage.googleapis.com/v0/b/area-444018.firebasestorage.app/o/chat-icone.svg?alt=media&token=95fda850-8161-4b99-a7b9-a04cac234f53",
+    color: "#2C2F33",
     input: ActionMessageUpdateInput,
     output: MessageNode,
   })
   async messageUpdateAction(
     input: ActionMessageUpdateInput,
   ): Promise<MessageNode> {
-    return this.post(`/channels/${input.channel_id}/messages/${input.id}`, {
-      content: input.content,
-    });
+    return await this.patch(
+      `/channels/${input.channel_id}/messages/${input.id}`,
+      {
+        content: input.content,
+      },
+    );
   }
 
   @ManifestAction({
     id: "message-delete",
     name: "Delete Message",
     description: "Action to delete a message on a channel",
-    img: "",
-    color: "#ffffff",
+    img: "https://firebasestorage.googleapis.com/v0/b/area-444018.firebasestorage.app/o/chat-icone.svg?alt=media&token=95fda850-8161-4b99-a7b9-a04cac234f53",
+    color: "#23272A",
     input: ActionMessageDeleteInput,
     output: EmptyResponse,
   })
@@ -72,8 +75,8 @@ export class MessageAction extends BaseHttpRepository {
     id: "message-reaction-add",
     name: "Reaction Add Message",
     description: "Action to add a reaction on a message",
-    img: "",
-    color: "#ffffff",
+    img: "https://firebasestorage.googleapis.com/v0/b/area-444018.firebasestorage.app/o/emoji.svg?alt=media&token=09bec447-2450-4150-8646-a92da8c0985f",
+    color: "#23272A",
     input: ActionMessageOwnReactionInput,
     output: EmptyResponse,
   })
@@ -90,8 +93,8 @@ export class MessageAction extends BaseHttpRepository {
     id: "message-reaction-delete",
     name: "Reaction Delete Message",
     description: "Action to delete a reaction on a message",
-    img: "",
-    color: "#ffffff",
+    img: "https://firebasestorage.googleapis.com/v0/b/area-444018.firebasestorage.app/o/emoji.svg?alt=media&token=09bec447-2450-4150-8646-a92da8c0985f",
+    color: "#2C2F33",
     input: ActionMessageOwnReactionInput,
     output: EmptyResponse,
   })

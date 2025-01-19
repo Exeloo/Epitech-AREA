@@ -1,6 +1,6 @@
 import { Inject, Injectable } from "@nestjs/common";
 
-import { IAppletCreateInput } from "@domain/applet/types/applet.input.type";
+import { IAppletInput } from "@domain/applet/types/applet.input.type";
 import { IApplet } from "@domain/applet/types/applet.type";
 import {
   IProviderPersistenceRepository,
@@ -14,9 +14,7 @@ import {
 import { IAppletProcessor } from "../applet.processor.type";
 
 @Injectable()
-export class AppletRegisterProcessor
-  implements IAppletProcessor<IAppletCreateInput>
-{
+export class AppletRegisterProcessor implements IAppletProcessor<IAppletInput> {
   constructor(
     @Inject(PROVIDER_SERVICE)
     private readonly providerService: IProviderService,

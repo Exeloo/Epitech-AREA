@@ -5,12 +5,12 @@ import GraphQLJSON from "graphql-type-json";
 import { ID } from "@d-type/id.type";
 
 import {
-  IAppletCreateInput,
-  IAppletNodeCreateInput,
+  IAppletInput,
+  IAppletNodeInput,
 } from "@domain/applet/types/applet.input.type";
 
 @InputType({ description: "Node input type to create to an applet" })
-export class AppletNodeCreateInput implements IAppletNodeCreateInput {
+export class AppletNodeCreateInput implements IAppletNodeInput {
   @IsNotEmpty()
   @IsString()
   @Field(() => String, {
@@ -35,11 +35,11 @@ export class AppletNodeCreateInput implements IAppletNodeCreateInput {
   @Field(() => [AppletNodeCreateInput], {
     description: "Next nodes of the applet",
   })
-  next: IAppletNodeCreateInput[];
+  next: IAppletNodeInput[];
 }
 
 @InputType({ description: "Input type to create to an applet" })
-export class AppletCreateInput implements IAppletCreateInput {
+export class AppletCreateInput implements IAppletInput {
   @IsNotEmpty()
   @IsString()
   @Field(() => String, {
@@ -60,5 +60,5 @@ export class AppletCreateInput implements IAppletCreateInput {
   @Field(() => [AppletNodeCreateInput], {
     description: "Name that the user give to the applet",
   })
-  triggerNodes: IAppletNodeCreateInput[];
+  triggerNodes: IAppletNodeInput[];
 }

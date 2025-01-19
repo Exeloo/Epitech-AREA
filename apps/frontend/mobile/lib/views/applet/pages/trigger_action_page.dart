@@ -3,7 +3,9 @@ import 'dart:developer';
 
 import 'package:aether/views/applet/models/applet_data.dart';
 import 'package:aether/views/applet/pages/applet_creation.dart';
+import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../config/colors.dart';
@@ -186,16 +188,16 @@ class TriggerActionPageState extends State<TriggerActionPage> {
           final providerRepo =
               Provider.of<ProviderRepository>(context, listen: false);
 
-          final res = await providerRepo.getProviderOAuthState(id: providerId);
+          final res = await providerRepo.getProviderOAuthState(
+              id: providerId, fetchPolicy: FetchPolicy.NetworkOnly);
 
           if (res != null && !res.getProviderOAuthState.authenticated) {
-            Navigator.pushAndRemoveUntil(
+            Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (BuildContext context) => AppletOauthWebView(
                     baseUrl: res.getProviderOAuthState.redirectUri),
               ),
-              (Route<dynamic> route) => false,
             );
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
@@ -366,18 +368,13 @@ class TriggerActionPageState extends State<TriggerActionPage> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
                     child: _provider.img.isNotEmpty
-                        ? Image.network(
+                        ? SvgPicture.network(
                             trigger.isNotEmpty
                                 ? trigger.first.img
                                 : action.first.img,
-                            fit: BoxFit.fitWidth,
-                            errorBuilder: (context, error, stackTrace) {
-                              return const Icon(
-                                Icons.image_not_supported,
-                                color: Colors.grey,
-                                size: 100,
-                              );
-                            },
+                            fit: BoxFit.contain,
+                            height: 100,
+                            width: double.infinity,
                           )
                         : const Icon(
                             Icons.image_not_supported,

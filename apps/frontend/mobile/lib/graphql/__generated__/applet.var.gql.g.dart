@@ -14,6 +14,10 @@ Serializer<GgetAppletNodeByIdVars> _$ggetAppletNodeByIdVarsSerializer =
     new _$GgetAppletNodeByIdVarsSerializer();
 Serializer<GcreateAppletVars> _$gcreateAppletVarsSerializer =
     new _$GcreateAppletVarsSerializer();
+Serializer<GupdateAppletVars> _$gupdateAppletVarsSerializer =
+    new _$GupdateAppletVarsSerializer();
+Serializer<GdeleteAppletVars> _$gdeleteAppletVarsSerializer =
+    new _$GdeleteAppletVarsSerializer();
 Serializer<GBaseAppletProviderVars> _$gBaseAppletProviderVarsSerializer =
     new _$GBaseAppletProviderVarsSerializer();
 Serializer<GBaseAppletNodeVars> _$gBaseAppletNodeVarsSerializer =
@@ -169,6 +173,96 @@ class _$GcreateAppletVarsSerializer
           result.data.replace(serializers.deserialize(value,
                   specifiedType: const FullType(_i2.GAppletCreateInput))!
               as _i2.GAppletCreateInput);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GupdateAppletVarsSerializer
+    implements StructuredSerializer<GupdateAppletVars> {
+  @override
+  final Iterable<Type> types = const [GupdateAppletVars, _$GupdateAppletVars];
+  @override
+  final String wireName = 'GupdateAppletVars';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GupdateAppletVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(int)),
+      'data',
+      serializers.serialize(object.data,
+          specifiedType: const FullType(_i2.GAppletUpdateInput)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GupdateAppletVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GupdateAppletVarsBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'data':
+          result.data.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i2.GAppletUpdateInput))!
+              as _i2.GAppletUpdateInput);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GdeleteAppletVarsSerializer
+    implements StructuredSerializer<GdeleteAppletVars> {
+  @override
+  final Iterable<Type> types = const [GdeleteAppletVars, _$GdeleteAppletVars];
+  @override
+  final String wireName = 'GdeleteAppletVars';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GdeleteAppletVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(int)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GdeleteAppletVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GdeleteAppletVarsBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
           break;
       }
     }
@@ -436,9 +530,8 @@ class GgetAppletByIdVarsBuilder
   _$GgetAppletByIdVars _build() {
     final _$result = _$v ??
         new _$GgetAppletByIdVars._(
-          id: BuiltValueNullFieldError.checkNotNull(
-              id, r'GgetAppletByIdVars', 'id'),
-        );
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GgetAppletByIdVars', 'id'));
     replace(_$result);
     return _$result;
   }
@@ -523,9 +616,8 @@ class GgetAppletNodeByIdVarsBuilder
   _$GgetAppletNodeByIdVars _build() {
     final _$result = _$v ??
         new _$GgetAppletNodeByIdVars._(
-          id: BuiltValueNullFieldError.checkNotNull(
-              id, r'GgetAppletNodeByIdVars', 'id'),
-        );
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GgetAppletNodeByIdVars', 'id'));
     replace(_$result);
     return _$result;
   }
@@ -610,10 +702,7 @@ class GcreateAppletVarsBuilder
   _$GcreateAppletVars _build() {
     _$GcreateAppletVars _$result;
     try {
-      _$result = _$v ??
-          new _$GcreateAppletVars._(
-            data: data.build(),
-          );
+      _$result = _$v ?? new _$GcreateAppletVars._(data: data.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -625,6 +714,200 @@ class GcreateAppletVarsBuilder
       }
       rethrow;
     }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GupdateAppletVars extends GupdateAppletVars {
+  @override
+  final int id;
+  @override
+  final _i2.GAppletUpdateInput data;
+
+  factory _$GupdateAppletVars(
+          [void Function(GupdateAppletVarsBuilder)? updates]) =>
+      (new GupdateAppletVarsBuilder()..update(updates))._build();
+
+  _$GupdateAppletVars._({required this.id, required this.data}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(id, r'GupdateAppletVars', 'id');
+    BuiltValueNullFieldError.checkNotNull(data, r'GupdateAppletVars', 'data');
+  }
+
+  @override
+  GupdateAppletVars rebuild(void Function(GupdateAppletVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GupdateAppletVarsBuilder toBuilder() =>
+      new GupdateAppletVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GupdateAppletVars && id == other.id && data == other.data;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, data.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GupdateAppletVars')
+          ..add('id', id)
+          ..add('data', data))
+        .toString();
+  }
+}
+
+class GupdateAppletVarsBuilder
+    implements Builder<GupdateAppletVars, GupdateAppletVarsBuilder> {
+  _$GupdateAppletVars? _$v;
+
+  int? _id;
+  int? get id => _$this._id;
+  set id(int? id) => _$this._id = id;
+
+  _i2.GAppletUpdateInputBuilder? _data;
+  _i2.GAppletUpdateInputBuilder get data =>
+      _$this._data ??= new _i2.GAppletUpdateInputBuilder();
+  set data(_i2.GAppletUpdateInputBuilder? data) => _$this._data = data;
+
+  GupdateAppletVarsBuilder();
+
+  GupdateAppletVarsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _data = $v.data.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GupdateAppletVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GupdateAppletVars;
+  }
+
+  @override
+  void update(void Function(GupdateAppletVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GupdateAppletVars build() => _build();
+
+  _$GupdateAppletVars _build() {
+    _$GupdateAppletVars _$result;
+    try {
+      _$result = _$v ??
+          new _$GupdateAppletVars._(
+              id: BuiltValueNullFieldError.checkNotNull(
+                  id, r'GupdateAppletVars', 'id'),
+              data: data.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'data';
+        data.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GupdateAppletVars', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GdeleteAppletVars extends GdeleteAppletVars {
+  @override
+  final int id;
+
+  factory _$GdeleteAppletVars(
+          [void Function(GdeleteAppletVarsBuilder)? updates]) =>
+      (new GdeleteAppletVarsBuilder()..update(updates))._build();
+
+  _$GdeleteAppletVars._({required this.id}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(id, r'GdeleteAppletVars', 'id');
+  }
+
+  @override
+  GdeleteAppletVars rebuild(void Function(GdeleteAppletVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GdeleteAppletVarsBuilder toBuilder() =>
+      new GdeleteAppletVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GdeleteAppletVars && id == other.id;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GdeleteAppletVars')..add('id', id))
+        .toString();
+  }
+}
+
+class GdeleteAppletVarsBuilder
+    implements Builder<GdeleteAppletVars, GdeleteAppletVarsBuilder> {
+  _$GdeleteAppletVars? _$v;
+
+  int? _id;
+  int? get id => _$this._id;
+  set id(int? id) => _$this._id = id;
+
+  GdeleteAppletVarsBuilder();
+
+  GdeleteAppletVarsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GdeleteAppletVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GdeleteAppletVars;
+  }
+
+  @override
+  void update(void Function(GdeleteAppletVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GdeleteAppletVars build() => _build();
+
+  _$GdeleteAppletVars _build() {
+    final _$result = _$v ??
+        new _$GdeleteAppletVars._(
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GdeleteAppletVars', 'id'));
     replace(_$result);
     return _$result;
   }

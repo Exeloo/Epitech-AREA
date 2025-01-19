@@ -12,8 +12,8 @@ const APP_BASE_MANIFEST: IBaseManifest = {
   id: "patreon",
   name: "Patreon",
   description: "Provider to use the Patreon API",
-  img: "",
-  color: "#ffffff",
+  img: "https://firebasestorage.googleapis.com/v0/b/area-444018.firebasestorage.app/o/logo-patreon.png?alt=media&token=4d2ae2f8-f2eb-4a9d-b164-af77631f4e1a",
+  color: "#fe5900",
   oauth: {
     type: ManifestOAuthEnum.TOKEN,
   },

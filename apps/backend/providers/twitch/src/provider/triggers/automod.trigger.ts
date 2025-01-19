@@ -22,8 +22,8 @@ export class AutomodTrigger {
     id: "automod-terms-update",
     name: "On Automod Terms Update",
     description: "Triggered when Automod terms are updated",
-    img: "",
-    color: "#ffffff",
+    img: "https://firebasestorage.googleapis.com/v0/b/area-444018.firebasestorage.app/o/bot-icone.svg?alt=media&token=596666ea-5c80-49ef-a9c4-0a5526ca4267",
+    color: "#b9a3e3",
     input: TriggerTermsUpdateInput,
     output: TriggerTermsChangeEventResponse,
   })
@@ -46,8 +46,8 @@ export class AutomodTrigger {
     id: "automod-message-hold",
     name: "On Automod Message Hold",
     description: "Triggered when Automod holds a message",
-    img: "",
-    color: "#ffffff",
+    img: "https://firebasestorage.googleapis.com/v0/b/area-444018.firebasestorage.app/o/bot-icone.svg?alt=media&token=596666ea-5c80-49ef-a9c4-0a5526ca4267",
+    color: "#b9a3e3",
     input: TriggerMessageHoldInput,
     output: TriggerAutomodFlagEventResponse,
   })

@@ -375,9 +375,8 @@ class GgetProviderOAuthStateVarsBuilder
   _$GgetProviderOAuthStateVars _build() {
     final _$result = _$v ??
         new _$GgetProviderOAuthStateVars._(
-          id: BuiltValueNullFieldError.checkNotNull(
-              id, r'GgetProviderOAuthStateVars', 'id'),
-        );
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GgetProviderOAuthStateVars', 'id'));
     replace(_$result);
     return _$result;
   }
@@ -461,9 +460,8 @@ class GgetProviderByIdVarsBuilder
   _$GgetProviderByIdVars _build() {
     final _$result = _$v ??
         new _$GgetProviderByIdVars._(
-          id: BuiltValueNullFieldError.checkNotNull(
-              id, r'GgetProviderByIdVars', 'id'),
-        );
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GgetProviderByIdVars', 'id'));
     replace(_$result);
     return _$result;
   }

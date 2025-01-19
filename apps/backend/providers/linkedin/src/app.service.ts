@@ -12,8 +12,8 @@ const APP_BASE_MANIFEST: IBaseManifest = {
   id: "linkedin",
   name: "LinkedIn",
   description: "Provider to use the LinkedIn API",
-  img: "",
-  color: "#ffffff",
+  img: "https://firebasestorage.googleapis.com/v0/b/area-444018.firebasestorage.app/o/logo-linkedin.png?alt=media&token=33c99d51-90ef-47d9-800d-3e01af0336dd",
+  color: "#0b64c3",
   oauth: {
     type: ManifestOAuthEnum.TOKEN,
   },

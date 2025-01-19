@@ -22,8 +22,8 @@ export class MessageTrigger {
     id: "message-create",
     name: "On Message Create",
     description: "Triggered when a message is send on a channel",
-    img: "",
-    color: "#ffffff",
+    img: "https://firebasestorage.googleapis.com/v0/b/area-444018.firebasestorage.app/o/chat-icone.svg?alt=media&token=95fda850-8161-4b99-a7b9-a04cac234f53",
+    color: "#262626",
     input: TriggerMessageCreateInput,
     output: TriggerMessageResponse,
   })
@@ -43,8 +43,8 @@ export class MessageTrigger {
     id: "message-delete",
     name: "On Message Delete",
     description: "Triggered when a message is deleted in a channel",
-    img: "",
-    color: "#ffffff",
+    img: "https://firebasestorage.googleapis.com/v0/b/area-444018.firebasestorage.app/o/chat-icone.svg?alt=media&token=95fda850-8161-4b99-a7b9-a04cac234f53",
+    color: "#b9a3e3",
     input: TriggerMessageDeleteInput,
     output: TriggerMessageDeleteResponse,
   })

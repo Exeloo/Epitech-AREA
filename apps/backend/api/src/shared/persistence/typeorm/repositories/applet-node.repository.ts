@@ -10,7 +10,7 @@ import { AsyncArrayUtils } from "@utils/async-array.utils";
 import { IAppletNodePersistenceRepository } from "@domain/applet/node/applet-node.repository.type";
 import { AppletNodeType } from "@domain/applet/node/enums/applet-node.type";
 import { IAppletNode } from "@domain/applet/node/types/applet-node.type";
-import { IAppletNodeCreateInput } from "@domain/applet/types/applet.input.type";
+import { IAppletNodeInput } from "@domain/applet/types/applet.input.type";
 
 import { AppletNodeRelationRepository } from "~/shared/persistence/typeorm/repositories/applet-node-relations.repository";
 
@@ -53,7 +53,7 @@ export class AppletNodeRepository
   }
 
   saveNodes(
-    nodes: DeepPartial<IAppletNodeCreateInput[]>,
+    nodes: DeepPartial<IAppletNodeInput[]>,
     appletId: ID,
     isTrigger = true,
   ): Promise<IAppletNode[]> {

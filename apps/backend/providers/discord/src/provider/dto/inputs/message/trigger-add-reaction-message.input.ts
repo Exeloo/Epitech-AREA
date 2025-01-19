@@ -10,6 +10,8 @@ import { Snowflake } from "../../../types/snowflake.type";
 export class TriggerAddReactionMessageInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
+    name: "Emoji id",
+    description: "The emoji id",
   })
   emoji_id: Snowflake;
 }

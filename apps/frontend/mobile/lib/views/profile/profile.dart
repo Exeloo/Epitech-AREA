@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:aether/graphql/__generated__/user.data.gql.dart';
 import 'package:aether/modules/graphql/repository/user_repository.dart';
+import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +16,6 @@ class Profile extends StatefulWidget {
 }
 
 class ProfileState extends State<Profile> {
-  late UserRepository userRepository;
   GgetMeData_getMe? user;
 
   final TextEditingController _emailController = TextEditingController();
@@ -29,14 +29,16 @@ class ProfileState extends State<Profile> {
   @override
   void initState() {
     super.initState();
-    userRepository = Provider.of<UserRepository>(context, listen: false);
+
     _fetchUserData();
   }
 
   Future<void> _fetchUserData() async {
+    final userRepository = Provider.of<UserRepository>(context, listen: false);
     try {
       log('Fetching user data');
-      final userData = await userRepository.getMe();
+      final userData =
+          await userRepository.getMe(fetchPolicy: FetchPolicy.NetworkOnly);
       setState(() {
         user = userData?.getMe;
         if (user != null) {
@@ -58,6 +60,7 @@ class ProfileState extends State<Profile> {
   }
 
   Future<void> _updateUserData() async {
+    final userRepository = Provider.of<UserRepository>(context, listen: false);
     if (user != null) {
       try {
         await userRepository.updateUser(
@@ -124,125 +127,134 @@ class UserProfileForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          CircleAvatar(
-            radius: 50,
-            backgroundImage: NetworkImage(pictureController.text),
-          ),
-          const SizedBox(height: 16),
-          TextFormField(
-            controller: emailController,
-            decoration: const InputDecoration(
-              labelText: 'Email',
-              labelStyle: TextStyle(color: AppColors.textPrimary),
-              border: OutlineInputBorder(),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: AppColors.textPrimary),
+    return Scaffold(
+      backgroundColor: AppColors.background,
+      appBar: AppBar(
+        backgroundColor: AppColors.background,
+        iconTheme: const IconThemeData(color: AppColors.textPrimary),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CircleAvatar(
+              radius: 70,
+              backgroundImage: NetworkImage(pictureController.text),
+              backgroundColor: Colors.transparent,
+            ),
+            const SizedBox(height: 16),
+            TextFormField(
+              controller: emailController,
+              decoration: const InputDecoration(
+                labelText: 'Email',
+                labelStyle: TextStyle(color: AppColors.textPrimary),
+                border: OutlineInputBorder(),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.textPrimary),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.textPrimary),
+                ),
               ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: AppColors.textPrimary),
+              style: const TextStyle(color: AppColors.textPrimary),
+            ),
+            const SizedBox(height: 16),
+            TextFormField(
+              controller: usernameController,
+              decoration: const InputDecoration(
+                labelText: 'Username',
+                labelStyle: TextStyle(color: AppColors.textPrimary),
+                border: OutlineInputBorder(),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.textPrimary),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.textPrimary),
+                ),
+              ),
+              style: const TextStyle(color: AppColors.textPrimary),
+            ),
+            const SizedBox(height: 16),
+            TextFormField(
+              controller: firstNameController,
+              decoration: const InputDecoration(
+                labelText: 'First Name',
+                labelStyle: TextStyle(color: AppColors.textPrimary),
+                border: OutlineInputBorder(),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.textPrimary),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.textPrimary),
+                ),
+              ),
+              style: const TextStyle(color: AppColors.textPrimary),
+            ),
+            const SizedBox(height: 16),
+            TextFormField(
+              controller: lastNameController,
+              decoration: const InputDecoration(
+                labelText: 'Last Name',
+                labelStyle: TextStyle(color: AppColors.textPrimary),
+                border: OutlineInputBorder(),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.textPrimary),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.textPrimary),
+                ),
+              ),
+              style: const TextStyle(color: AppColors.textPrimary),
+            ),
+            const SizedBox(height: 16),
+            TextFormField(
+              controller: descriptionController,
+              decoration: const InputDecoration(
+                labelText: 'Description',
+                labelStyle: TextStyle(color: AppColors.textPrimary),
+                border: OutlineInputBorder(),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.textPrimary),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.textPrimary),
+                ),
+              ),
+              style: const TextStyle(color: AppColors.textPrimary),
+            ),
+            const SizedBox(height: 16),
+            TextFormField(
+              controller: pronounController,
+              decoration: const InputDecoration(
+                labelText: 'Pronoun',
+                labelStyle: TextStyle(color: AppColors.textPrimary),
+                border: OutlineInputBorder(),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.textPrimary),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.textPrimary),
+                ),
+              ),
+              style: const TextStyle(color: AppColors.textPrimary),
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: onUpdateUserData,
+              style: ElevatedButton.styleFrom(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+                textStyle: const TextStyle(fontSize: 16),
+                backgroundColor: AppColors.secondary,
+              ),
+              child: const Text(
+                'Update Profile',
+                style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
-            style: const TextStyle(color: AppColors.textPrimary),
-          ),
-          const SizedBox(height: 16),
-          TextFormField(
-            controller: usernameController,
-            decoration: const InputDecoration(
-              labelText: 'Username',
-              labelStyle: TextStyle(color: AppColors.textPrimary),
-              border: OutlineInputBorder(),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: AppColors.textPrimary),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: AppColors.textPrimary),
-              ),
-            ),
-            style: const TextStyle(color: AppColors.textPrimary),
-          ),
-          const SizedBox(height: 16),
-          TextFormField(
-            controller: firstNameController,
-            decoration: const InputDecoration(
-              labelText: 'First Name',
-              labelStyle: TextStyle(color: AppColors.textPrimary),
-              border: OutlineInputBorder(),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: AppColors.textPrimary),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: AppColors.textPrimary),
-              ),
-            ),
-            style: const TextStyle(color: AppColors.textPrimary),
-          ),
-          const SizedBox(height: 16),
-          TextFormField(
-            controller: lastNameController,
-            decoration: const InputDecoration(
-              labelText: 'Last Name',
-              labelStyle: TextStyle(color: AppColors.textPrimary),
-              border: OutlineInputBorder(),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: AppColors.textPrimary),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: AppColors.textPrimary),
-              ),
-            ),
-            style: const TextStyle(color: AppColors.textPrimary),
-          ),
-          const SizedBox(height: 16),
-          TextFormField(
-            controller: descriptionController,
-            decoration: const InputDecoration(
-              labelText: 'Description',
-              labelStyle: TextStyle(color: AppColors.textPrimary),
-              border: OutlineInputBorder(),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: AppColors.textPrimary),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: AppColors.textPrimary),
-              ),
-            ),
-            style: const TextStyle(color: AppColors.textPrimary),
-          ),
-          const SizedBox(height: 16),
-          TextFormField(
-            controller: pronounController,
-            decoration: const InputDecoration(
-              labelText: 'Pronoun',
-              labelStyle: TextStyle(color: AppColors.textPrimary),
-              border: OutlineInputBorder(),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: AppColors.textPrimary),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: AppColors.textPrimary),
-              ),
-            ),
-            style: const TextStyle(color: AppColors.textPrimary),
-          ),
-          const SizedBox(height: 16),
-          ElevatedButton(
-            onPressed: onUpdateUserData,
-            style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              textStyle: const TextStyle(fontSize: 16),
-              backgroundColor: AppColors.secondary,
-            ),
-            child: const Text(
-              'Update Profile',
-              style: TextStyle(color: AppColors.textPrimary),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

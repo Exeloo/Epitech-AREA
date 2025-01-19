@@ -12,8 +12,8 @@ const APP_BASE_MANIFEST: IBaseManifest = {
   id: "microsoft",
   name: "Microsoft",
   description: "Provider to use the Microsoft API",
-  img: "https://firebasestorage.googleapis.com/v0/b/area-444018.firebasestorage.app/o/Microsoft_icon.svg?alt=media&token=a1dce34c-0862-4e0a-a80f-f38efbaa25f5",
-  color: "#FFFDD0",
+  img: "https://firebasestorage.googleapis.com/v0/b/area-444018.firebasestorage.app/o/microsoft-logo.png?alt=media&token=c6ceb0d2-5554-4b84-9152-ceafbc74fc92",
+  color: "#c23d00",
   oauth: {
     type: ManifestOAuthEnum.TOKEN,
   },

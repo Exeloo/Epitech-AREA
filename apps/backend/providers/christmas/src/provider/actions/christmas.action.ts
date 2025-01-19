@@ -21,8 +21,8 @@ export class ChristmasAction extends BaseHttpRepository {
     id: "is-christmas",
     name: "Is Christmas",
     description: "Call to know if it is Christmas",
-    img: "",
-    color: "#ffffff",
+    img: "https://firebasestorage.googleapis.com/v0/b/area-444018.firebasestorage.app/o/icon-stars.svg?alt=media&token=aa6e4b6d-c46f-4295-bbea-268bc84eff69",
+    color: "#d40028",
     input: EmptyInput,
     output: ActionIsChristmasResponse,
   })

@@ -5,6 +5,7 @@ query getAppletNodeById($id: Int!) {
         actionType
         input
         provider {
+            id
             name
             color
             img

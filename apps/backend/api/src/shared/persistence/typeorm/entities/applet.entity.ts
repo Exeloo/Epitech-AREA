@@ -27,7 +27,9 @@ export class AppletEntity {
   @ManyToOne(() => UserEntity)
   owner?: UserEntity;
 
-  @OneToMany(() => AppletNodeEntity, (node) => node.applet)
+  @OneToMany(() => AppletNodeEntity, (node) => node.applet, {
+    onDelete: "CASCADE",
+  })
   nodes?: AppletNodeEntity[];
 
   @CreateDateColumn()

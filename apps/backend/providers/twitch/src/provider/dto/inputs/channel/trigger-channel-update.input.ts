@@ -8,6 +8,8 @@ import {
 export class ChannelUpdateConditionInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
+    name: "broadcaster id",
+    description: "The ID of the broadcaster where the update was triggered",
   })
   broadcaster_user_id: string;
 }

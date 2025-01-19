@@ -22,7 +22,7 @@
 		{:else}
 			<input
 				bind:value
-				class="rounded-xl bg-neutral-50 px-4 py-3 placeholder-neutral-400 shadow-inner outline outline-1 outline-gray-300 dark:bg-gray-600 dark:font-semibold dark:text-white dark:outline-gray-800"
+				class="w-full rounded-xl bg-neutral-50 px-4 py-3 placeholder-neutral-400 shadow-inner outline outline-1 outline-gray-300 dark:bg-gray-600 dark:font-semibold dark:text-white dark:outline-gray-800"
 				name={title}
 				type={dataType}
 				{placeholder}

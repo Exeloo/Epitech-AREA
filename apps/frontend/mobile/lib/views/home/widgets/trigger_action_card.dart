@@ -1,5 +1,6 @@
 import 'package:aether/views/applet/pages/trigger_action_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../config/colors.dart';
 
@@ -10,6 +11,7 @@ class TriggerActionCard extends StatelessWidget {
   final String description;
   final bool canClick;
   final int providerId;
+  final bool? onHome;
 
   const TriggerActionCard({
     required this.logoUrl,
@@ -19,13 +21,14 @@ class TriggerActionCard extends StatelessWidget {
     required this.canClick,
     super.key,
     required this.providerId,
+    this.onHome,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (canClick) {
+        if (canClick || onHome!) {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -53,9 +56,10 @@ class TriggerActionCard extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: logoUrl != null && logoUrl!.isNotEmpty
-                      ? Image.network(
+                      ? SvgPicture.network(
                           logoUrl!,
                           fit: BoxFit.cover,
+                          color: Colors.black,
                         )
                       : const SizedBox.shrink(),
                 ),
@@ -70,7 +74,7 @@ class TriggerActionCard extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
-                        color: AppColors.textSecondary,
+                        color: AppColors.textPrimary,
                       ),
                     ),
                     const SizedBox(height: 4),
@@ -78,7 +82,7 @@ class TriggerActionCard extends StatelessWidget {
                       description,
                       style: const TextStyle(
                         fontSize: 12,
-                        color: AppColors.textSecondary,
+                        color: AppColors.textPrimary,
                         fontWeight: FontWeight.bold,
                       ),
                       maxLines: 2,

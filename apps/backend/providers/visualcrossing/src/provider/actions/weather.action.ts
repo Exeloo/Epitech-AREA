@@ -24,8 +24,8 @@ export class WeatherAction extends BaseHttpRepository {
     id: "weather-get-at-city",
     name: "Weather Get At City",
     description: "Get weather at a city",
-    img: "",
-    color: "#ffffff",
+    img: "https://firebasestorage.googleapis.com/v0/b/area-444018.firebasestorage.app/o/nuage-soleil.svg?alt=media&token=3777ee9d-0d8b-4921-9f81-dc223432181b",
+    color: "#75c4ef",
     input: ActionWeatherGetAtCityInput,
     output: ActionWeatherGetAtCityResponse,
   })

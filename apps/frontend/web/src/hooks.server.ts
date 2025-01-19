@@ -6,6 +6,10 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	if (token) {
 		setSession(event, { user: { token } });
+		if (event.url.pathname.startsWith('/auth')) {
+			const rootUrl = new URL('/', event.url.origin);
+			return Response.redirect(rootUrl.toString(), 303);
+		}
 	} else {
 		if (!event.url.pathname.startsWith('/auth')) {
 			const loginUrl = new URL('/auth/login', event.url.origin);

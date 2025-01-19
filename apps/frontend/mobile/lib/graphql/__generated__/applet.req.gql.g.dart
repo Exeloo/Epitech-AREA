@@ -14,6 +14,10 @@ Serializer<GgetAppletNodeByIdReq> _$ggetAppletNodeByIdReqSerializer =
     new _$GgetAppletNodeByIdReqSerializer();
 Serializer<GcreateAppletReq> _$gcreateAppletReqSerializer =
     new _$GcreateAppletReqSerializer();
+Serializer<GupdateAppletReq> _$gupdateAppletReqSerializer =
+    new _$GupdateAppletReqSerializer();
+Serializer<GdeleteAppletReq> _$gdeleteAppletReqSerializer =
+    new _$GdeleteAppletReqSerializer();
 Serializer<GBaseAppletProviderReq> _$gBaseAppletProviderReqSerializer =
     new _$GBaseAppletProviderReqSerializer();
 Serializer<GBaseAppletNodeReq> _$gBaseAppletNodeReqSerializer =
@@ -473,6 +477,242 @@ class _$GcreateAppletReqSerializer
           result.optimisticResponse.replace(serializers.deserialize(value,
                   specifiedType: const FullType(_i2.GcreateAppletData))!
               as _i2.GcreateAppletData);
+          break;
+        case 'updateCacheHandlerKey':
+          result.updateCacheHandlerKey = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'updateCacheHandlerContext':
+          result.updateCacheHandlerContext = serializers.deserialize(value,
+              specifiedType: const FullType(Map, const [
+                const FullType(String),
+                const FullType(dynamic)
+              ])) as Map<String, dynamic>?;
+          break;
+        case 'fetchPolicy':
+          result.fetchPolicy = serializers.deserialize(value,
+                  specifiedType: const FullType(_i1.FetchPolicy))
+              as _i1.FetchPolicy?;
+          break;
+        case 'executeOnListen':
+          result.executeOnListen = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GupdateAppletReqSerializer
+    implements StructuredSerializer<GupdateAppletReq> {
+  @override
+  final Iterable<Type> types = const [GupdateAppletReq, _$GupdateAppletReq];
+  @override
+  final String wireName = 'GupdateAppletReq';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GupdateAppletReq object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'vars',
+      serializers.serialize(object.vars,
+          specifiedType: const FullType(_i3.GupdateAppletVars)),
+      'operation',
+      serializers.serialize(object.operation,
+          specifiedType: const FullType(_i4.Operation)),
+      'executeOnListen',
+      serializers.serialize(object.executeOnListen,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.requestId;
+    if (value != null) {
+      result
+        ..add('requestId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.optimisticResponse;
+    if (value != null) {
+      result
+        ..add('optimisticResponse')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(_i2.GupdateAppletData)));
+    }
+    value = object.updateCacheHandlerKey;
+    if (value != null) {
+      result
+        ..add('updateCacheHandlerKey')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.updateCacheHandlerContext;
+    if (value != null) {
+      result
+        ..add('updateCacheHandlerContext')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                Map, const [const FullType(String), const FullType(dynamic)])));
+    }
+    value = object.fetchPolicy;
+    if (value != null) {
+      result
+        ..add('fetchPolicy')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(_i1.FetchPolicy)));
+    }
+    return result;
+  }
+
+  @override
+  GupdateAppletReq deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GupdateAppletReqBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'vars':
+          result.vars.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i3.GupdateAppletVars))!
+              as _i3.GupdateAppletVars);
+          break;
+        case 'operation':
+          result.operation = serializers.deserialize(value,
+              specifiedType: const FullType(_i4.Operation))! as _i4.Operation;
+          break;
+        case 'requestId':
+          result.requestId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'optimisticResponse':
+          result.optimisticResponse.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i2.GupdateAppletData))!
+              as _i2.GupdateAppletData);
+          break;
+        case 'updateCacheHandlerKey':
+          result.updateCacheHandlerKey = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'updateCacheHandlerContext':
+          result.updateCacheHandlerContext = serializers.deserialize(value,
+              specifiedType: const FullType(Map, const [
+                const FullType(String),
+                const FullType(dynamic)
+              ])) as Map<String, dynamic>?;
+          break;
+        case 'fetchPolicy':
+          result.fetchPolicy = serializers.deserialize(value,
+                  specifiedType: const FullType(_i1.FetchPolicy))
+              as _i1.FetchPolicy?;
+          break;
+        case 'executeOnListen':
+          result.executeOnListen = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GdeleteAppletReqSerializer
+    implements StructuredSerializer<GdeleteAppletReq> {
+  @override
+  final Iterable<Type> types = const [GdeleteAppletReq, _$GdeleteAppletReq];
+  @override
+  final String wireName = 'GdeleteAppletReq';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GdeleteAppletReq object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'vars',
+      serializers.serialize(object.vars,
+          specifiedType: const FullType(_i3.GdeleteAppletVars)),
+      'operation',
+      serializers.serialize(object.operation,
+          specifiedType: const FullType(_i4.Operation)),
+      'executeOnListen',
+      serializers.serialize(object.executeOnListen,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.requestId;
+    if (value != null) {
+      result
+        ..add('requestId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.optimisticResponse;
+    if (value != null) {
+      result
+        ..add('optimisticResponse')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(_i2.GdeleteAppletData)));
+    }
+    value = object.updateCacheHandlerKey;
+    if (value != null) {
+      result
+        ..add('updateCacheHandlerKey')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.updateCacheHandlerContext;
+    if (value != null) {
+      result
+        ..add('updateCacheHandlerContext')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                Map, const [const FullType(String), const FullType(dynamic)])));
+    }
+    value = object.fetchPolicy;
+    if (value != null) {
+      result
+        ..add('fetchPolicy')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(_i1.FetchPolicy)));
+    }
+    return result;
+  }
+
+  @override
+  GdeleteAppletReq deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GdeleteAppletReqBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'vars':
+          result.vars.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i3.GdeleteAppletVars))!
+              as _i3.GdeleteAppletVars);
+          break;
+        case 'operation':
+          result.operation = serializers.deserialize(value,
+              specifiedType: const FullType(_i4.Operation))! as _i4.Operation;
+          break;
+        case 'requestId':
+          result.requestId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'optimisticResponse':
+          result.optimisticResponse.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i2.GdeleteAppletData))!
+              as _i2.GdeleteAppletData);
           break;
         case 'updateCacheHandlerKey':
           result.updateCacheHandlerKey = serializers.deserialize(value,
@@ -1085,19 +1325,18 @@ class GgetAllAppletsReqBuilder
     try {
       _$result = _$v ??
           new _$GgetAllAppletsReq._(
-            vars: vars.build(),
-            operation: BuiltValueNullFieldError.checkNotNull(
-                operation, r'GgetAllAppletsReq', 'operation'),
-            requestId: requestId,
-            updateResult: updateResult,
-            optimisticResponse: _optimisticResponse?.build(),
-            updateCacheHandlerKey: updateCacheHandlerKey,
-            updateCacheHandlerContext: updateCacheHandlerContext,
-            fetchPolicy: fetchPolicy,
-            executeOnListen: BuiltValueNullFieldError.checkNotNull(
-                executeOnListen, r'GgetAllAppletsReq', 'executeOnListen'),
-            context: context,
-          );
+              vars: vars.build(),
+              operation: BuiltValueNullFieldError.checkNotNull(
+                  operation, r'GgetAllAppletsReq', 'operation'),
+              requestId: requestId,
+              updateResult: updateResult,
+              optimisticResponse: _optimisticResponse?.build(),
+              updateCacheHandlerKey: updateCacheHandlerKey,
+              updateCacheHandlerContext: updateCacheHandlerContext,
+              fetchPolicy: fetchPolicy,
+              executeOnListen: BuiltValueNullFieldError.checkNotNull(
+                  executeOnListen, r'GgetAllAppletsReq', 'executeOnListen'),
+              context: context);
     } catch (_) {
       late String _$failedField;
       try {
@@ -1323,19 +1562,18 @@ class GgetAppletByIdReqBuilder
     try {
       _$result = _$v ??
           new _$GgetAppletByIdReq._(
-            vars: vars.build(),
-            operation: BuiltValueNullFieldError.checkNotNull(
-                operation, r'GgetAppletByIdReq', 'operation'),
-            requestId: requestId,
-            updateResult: updateResult,
-            optimisticResponse: _optimisticResponse?.build(),
-            updateCacheHandlerKey: updateCacheHandlerKey,
-            updateCacheHandlerContext: updateCacheHandlerContext,
-            fetchPolicy: fetchPolicy,
-            executeOnListen: BuiltValueNullFieldError.checkNotNull(
-                executeOnListen, r'GgetAppletByIdReq', 'executeOnListen'),
-            context: context,
-          );
+              vars: vars.build(),
+              operation: BuiltValueNullFieldError.checkNotNull(
+                  operation, r'GgetAppletByIdReq', 'operation'),
+              requestId: requestId,
+              updateResult: updateResult,
+              optimisticResponse: _optimisticResponse?.build(),
+              updateCacheHandlerKey: updateCacheHandlerKey,
+              updateCacheHandlerContext: updateCacheHandlerContext,
+              fetchPolicy: fetchPolicy,
+              executeOnListen: BuiltValueNullFieldError.checkNotNull(
+                  executeOnListen, r'GgetAppletByIdReq', 'executeOnListen'),
+              context: context);
     } catch (_) {
       late String _$failedField;
       try {
@@ -1564,19 +1802,18 @@ class GgetAppletNodeByIdReqBuilder
     try {
       _$result = _$v ??
           new _$GgetAppletNodeByIdReq._(
-            vars: vars.build(),
-            operation: BuiltValueNullFieldError.checkNotNull(
-                operation, r'GgetAppletNodeByIdReq', 'operation'),
-            requestId: requestId,
-            updateResult: updateResult,
-            optimisticResponse: _optimisticResponse?.build(),
-            updateCacheHandlerKey: updateCacheHandlerKey,
-            updateCacheHandlerContext: updateCacheHandlerContext,
-            fetchPolicy: fetchPolicy,
-            executeOnListen: BuiltValueNullFieldError.checkNotNull(
-                executeOnListen, r'GgetAppletNodeByIdReq', 'executeOnListen'),
-            context: context,
-          );
+              vars: vars.build(),
+              operation: BuiltValueNullFieldError.checkNotNull(
+                  operation, r'GgetAppletNodeByIdReq', 'operation'),
+              requestId: requestId,
+              updateResult: updateResult,
+              optimisticResponse: _optimisticResponse?.build(),
+              updateCacheHandlerKey: updateCacheHandlerKey,
+              updateCacheHandlerContext: updateCacheHandlerContext,
+              fetchPolicy: fetchPolicy,
+              executeOnListen: BuiltValueNullFieldError.checkNotNull(
+                  executeOnListen, r'GgetAppletNodeByIdReq', 'executeOnListen'),
+              context: context);
     } catch (_) {
       late String _$failedField;
       try {
@@ -1802,19 +2039,18 @@ class GcreateAppletReqBuilder
     try {
       _$result = _$v ??
           new _$GcreateAppletReq._(
-            vars: vars.build(),
-            operation: BuiltValueNullFieldError.checkNotNull(
-                operation, r'GcreateAppletReq', 'operation'),
-            requestId: requestId,
-            updateResult: updateResult,
-            optimisticResponse: _optimisticResponse?.build(),
-            updateCacheHandlerKey: updateCacheHandlerKey,
-            updateCacheHandlerContext: updateCacheHandlerContext,
-            fetchPolicy: fetchPolicy,
-            executeOnListen: BuiltValueNullFieldError.checkNotNull(
-                executeOnListen, r'GcreateAppletReq', 'executeOnListen'),
-            context: context,
-          );
+              vars: vars.build(),
+              operation: BuiltValueNullFieldError.checkNotNull(
+                  operation, r'GcreateAppletReq', 'operation'),
+              requestId: requestId,
+              updateResult: updateResult,
+              optimisticResponse: _optimisticResponse?.build(),
+              updateCacheHandlerKey: updateCacheHandlerKey,
+              updateCacheHandlerContext: updateCacheHandlerContext,
+              fetchPolicy: fetchPolicy,
+              executeOnListen: BuiltValueNullFieldError.checkNotNull(
+                  executeOnListen, r'GcreateAppletReq', 'executeOnListen'),
+              context: context);
     } catch (_) {
       late String _$failedField;
       try {
@@ -1826,6 +2062,480 @@ class GcreateAppletReqBuilder
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'GcreateAppletReq', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GupdateAppletReq extends GupdateAppletReq {
+  @override
+  final _i3.GupdateAppletVars vars;
+  @override
+  final _i4.Operation operation;
+  @override
+  final String? requestId;
+  @override
+  final _i2.GupdateAppletData? Function(
+      _i2.GupdateAppletData?, _i2.GupdateAppletData?)? updateResult;
+  @override
+  final _i2.GupdateAppletData? optimisticResponse;
+  @override
+  final String? updateCacheHandlerKey;
+  @override
+  final Map<String, dynamic>? updateCacheHandlerContext;
+  @override
+  final _i1.FetchPolicy? fetchPolicy;
+  @override
+  final bool executeOnListen;
+  @override
+  final _i4.Context? context;
+
+  factory _$GupdateAppletReq(
+          [void Function(GupdateAppletReqBuilder)? updates]) =>
+      (new GupdateAppletReqBuilder()..update(updates))._build();
+
+  _$GupdateAppletReq._(
+      {required this.vars,
+      required this.operation,
+      this.requestId,
+      this.updateResult,
+      this.optimisticResponse,
+      this.updateCacheHandlerKey,
+      this.updateCacheHandlerContext,
+      this.fetchPolicy,
+      required this.executeOnListen,
+      this.context})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(vars, r'GupdateAppletReq', 'vars');
+    BuiltValueNullFieldError.checkNotNull(
+        operation, r'GupdateAppletReq', 'operation');
+    BuiltValueNullFieldError.checkNotNull(
+        executeOnListen, r'GupdateAppletReq', 'executeOnListen');
+  }
+
+  @override
+  GupdateAppletReq rebuild(void Function(GupdateAppletReqBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GupdateAppletReqBuilder toBuilder() =>
+      new GupdateAppletReqBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    final dynamic _$dynamicOther = other;
+    return other is GupdateAppletReq &&
+        vars == other.vars &&
+        operation == other.operation &&
+        requestId == other.requestId &&
+        updateResult == _$dynamicOther.updateResult &&
+        optimisticResponse == other.optimisticResponse &&
+        updateCacheHandlerKey == other.updateCacheHandlerKey &&
+        updateCacheHandlerContext == other.updateCacheHandlerContext &&
+        fetchPolicy == other.fetchPolicy &&
+        executeOnListen == other.executeOnListen &&
+        context == other.context;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, vars.hashCode);
+    _$hash = $jc(_$hash, operation.hashCode);
+    _$hash = $jc(_$hash, requestId.hashCode);
+    _$hash = $jc(_$hash, updateResult.hashCode);
+    _$hash = $jc(_$hash, optimisticResponse.hashCode);
+    _$hash = $jc(_$hash, updateCacheHandlerKey.hashCode);
+    _$hash = $jc(_$hash, updateCacheHandlerContext.hashCode);
+    _$hash = $jc(_$hash, fetchPolicy.hashCode);
+    _$hash = $jc(_$hash, executeOnListen.hashCode);
+    _$hash = $jc(_$hash, context.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GupdateAppletReq')
+          ..add('vars', vars)
+          ..add('operation', operation)
+          ..add('requestId', requestId)
+          ..add('updateResult', updateResult)
+          ..add('optimisticResponse', optimisticResponse)
+          ..add('updateCacheHandlerKey', updateCacheHandlerKey)
+          ..add('updateCacheHandlerContext', updateCacheHandlerContext)
+          ..add('fetchPolicy', fetchPolicy)
+          ..add('executeOnListen', executeOnListen)
+          ..add('context', context))
+        .toString();
+  }
+}
+
+class GupdateAppletReqBuilder
+    implements Builder<GupdateAppletReq, GupdateAppletReqBuilder> {
+  _$GupdateAppletReq? _$v;
+
+  _i3.GupdateAppletVarsBuilder? _vars;
+  _i3.GupdateAppletVarsBuilder get vars =>
+      _$this._vars ??= new _i3.GupdateAppletVarsBuilder();
+  set vars(_i3.GupdateAppletVarsBuilder? vars) => _$this._vars = vars;
+
+  _i4.Operation? _operation;
+  _i4.Operation? get operation => _$this._operation;
+  set operation(_i4.Operation? operation) => _$this._operation = operation;
+
+  String? _requestId;
+  String? get requestId => _$this._requestId;
+  set requestId(String? requestId) => _$this._requestId = requestId;
+
+  _i2.GupdateAppletData? Function(
+      _i2.GupdateAppletData?, _i2.GupdateAppletData?)? _updateResult;
+  _i2.GupdateAppletData? Function(
+          _i2.GupdateAppletData?, _i2.GupdateAppletData?)?
+      get updateResult => _$this._updateResult;
+  set updateResult(
+          _i2.GupdateAppletData? Function(
+                  _i2.GupdateAppletData?, _i2.GupdateAppletData?)?
+              updateResult) =>
+      _$this._updateResult = updateResult;
+
+  _i2.GupdateAppletDataBuilder? _optimisticResponse;
+  _i2.GupdateAppletDataBuilder get optimisticResponse =>
+      _$this._optimisticResponse ??= new _i2.GupdateAppletDataBuilder();
+  set optimisticResponse(_i2.GupdateAppletDataBuilder? optimisticResponse) =>
+      _$this._optimisticResponse = optimisticResponse;
+
+  String? _updateCacheHandlerKey;
+  String? get updateCacheHandlerKey => _$this._updateCacheHandlerKey;
+  set updateCacheHandlerKey(String? updateCacheHandlerKey) =>
+      _$this._updateCacheHandlerKey = updateCacheHandlerKey;
+
+  Map<String, dynamic>? _updateCacheHandlerContext;
+  Map<String, dynamic>? get updateCacheHandlerContext =>
+      _$this._updateCacheHandlerContext;
+  set updateCacheHandlerContext(
+          Map<String, dynamic>? updateCacheHandlerContext) =>
+      _$this._updateCacheHandlerContext = updateCacheHandlerContext;
+
+  _i1.FetchPolicy? _fetchPolicy;
+  _i1.FetchPolicy? get fetchPolicy => _$this._fetchPolicy;
+  set fetchPolicy(_i1.FetchPolicy? fetchPolicy) =>
+      _$this._fetchPolicy = fetchPolicy;
+
+  bool? _executeOnListen;
+  bool? get executeOnListen => _$this._executeOnListen;
+  set executeOnListen(bool? executeOnListen) =>
+      _$this._executeOnListen = executeOnListen;
+
+  _i4.Context? _context;
+  _i4.Context? get context => _$this._context;
+  set context(_i4.Context? context) => _$this._context = context;
+
+  GupdateAppletReqBuilder() {
+    GupdateAppletReq._initializeBuilder(this);
+  }
+
+  GupdateAppletReqBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _vars = $v.vars.toBuilder();
+      _operation = $v.operation;
+      _requestId = $v.requestId;
+      _updateResult = $v.updateResult;
+      _optimisticResponse = $v.optimisticResponse?.toBuilder();
+      _updateCacheHandlerKey = $v.updateCacheHandlerKey;
+      _updateCacheHandlerContext = $v.updateCacheHandlerContext;
+      _fetchPolicy = $v.fetchPolicy;
+      _executeOnListen = $v.executeOnListen;
+      _context = $v.context;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GupdateAppletReq other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GupdateAppletReq;
+  }
+
+  @override
+  void update(void Function(GupdateAppletReqBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GupdateAppletReq build() => _build();
+
+  _$GupdateAppletReq _build() {
+    _$GupdateAppletReq _$result;
+    try {
+      _$result = _$v ??
+          new _$GupdateAppletReq._(
+              vars: vars.build(),
+              operation: BuiltValueNullFieldError.checkNotNull(
+                  operation, r'GupdateAppletReq', 'operation'),
+              requestId: requestId,
+              updateResult: updateResult,
+              optimisticResponse: _optimisticResponse?.build(),
+              updateCacheHandlerKey: updateCacheHandlerKey,
+              updateCacheHandlerContext: updateCacheHandlerContext,
+              fetchPolicy: fetchPolicy,
+              executeOnListen: BuiltValueNullFieldError.checkNotNull(
+                  executeOnListen, r'GupdateAppletReq', 'executeOnListen'),
+              context: context);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'vars';
+        vars.build();
+
+        _$failedField = 'optimisticResponse';
+        _optimisticResponse?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GupdateAppletReq', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GdeleteAppletReq extends GdeleteAppletReq {
+  @override
+  final _i3.GdeleteAppletVars vars;
+  @override
+  final _i4.Operation operation;
+  @override
+  final String? requestId;
+  @override
+  final _i2.GdeleteAppletData? Function(
+      _i2.GdeleteAppletData?, _i2.GdeleteAppletData?)? updateResult;
+  @override
+  final _i2.GdeleteAppletData? optimisticResponse;
+  @override
+  final String? updateCacheHandlerKey;
+  @override
+  final Map<String, dynamic>? updateCacheHandlerContext;
+  @override
+  final _i1.FetchPolicy? fetchPolicy;
+  @override
+  final bool executeOnListen;
+  @override
+  final _i4.Context? context;
+
+  factory _$GdeleteAppletReq(
+          [void Function(GdeleteAppletReqBuilder)? updates]) =>
+      (new GdeleteAppletReqBuilder()..update(updates))._build();
+
+  _$GdeleteAppletReq._(
+      {required this.vars,
+      required this.operation,
+      this.requestId,
+      this.updateResult,
+      this.optimisticResponse,
+      this.updateCacheHandlerKey,
+      this.updateCacheHandlerContext,
+      this.fetchPolicy,
+      required this.executeOnListen,
+      this.context})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(vars, r'GdeleteAppletReq', 'vars');
+    BuiltValueNullFieldError.checkNotNull(
+        operation, r'GdeleteAppletReq', 'operation');
+    BuiltValueNullFieldError.checkNotNull(
+        executeOnListen, r'GdeleteAppletReq', 'executeOnListen');
+  }
+
+  @override
+  GdeleteAppletReq rebuild(void Function(GdeleteAppletReqBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GdeleteAppletReqBuilder toBuilder() =>
+      new GdeleteAppletReqBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    final dynamic _$dynamicOther = other;
+    return other is GdeleteAppletReq &&
+        vars == other.vars &&
+        operation == other.operation &&
+        requestId == other.requestId &&
+        updateResult == _$dynamicOther.updateResult &&
+        optimisticResponse == other.optimisticResponse &&
+        updateCacheHandlerKey == other.updateCacheHandlerKey &&
+        updateCacheHandlerContext == other.updateCacheHandlerContext &&
+        fetchPolicy == other.fetchPolicy &&
+        executeOnListen == other.executeOnListen &&
+        context == other.context;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, vars.hashCode);
+    _$hash = $jc(_$hash, operation.hashCode);
+    _$hash = $jc(_$hash, requestId.hashCode);
+    _$hash = $jc(_$hash, updateResult.hashCode);
+    _$hash = $jc(_$hash, optimisticResponse.hashCode);
+    _$hash = $jc(_$hash, updateCacheHandlerKey.hashCode);
+    _$hash = $jc(_$hash, updateCacheHandlerContext.hashCode);
+    _$hash = $jc(_$hash, fetchPolicy.hashCode);
+    _$hash = $jc(_$hash, executeOnListen.hashCode);
+    _$hash = $jc(_$hash, context.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GdeleteAppletReq')
+          ..add('vars', vars)
+          ..add('operation', operation)
+          ..add('requestId', requestId)
+          ..add('updateResult', updateResult)
+          ..add('optimisticResponse', optimisticResponse)
+          ..add('updateCacheHandlerKey', updateCacheHandlerKey)
+          ..add('updateCacheHandlerContext', updateCacheHandlerContext)
+          ..add('fetchPolicy', fetchPolicy)
+          ..add('executeOnListen', executeOnListen)
+          ..add('context', context))
+        .toString();
+  }
+}
+
+class GdeleteAppletReqBuilder
+    implements Builder<GdeleteAppletReq, GdeleteAppletReqBuilder> {
+  _$GdeleteAppletReq? _$v;
+
+  _i3.GdeleteAppletVarsBuilder? _vars;
+  _i3.GdeleteAppletVarsBuilder get vars =>
+      _$this._vars ??= new _i3.GdeleteAppletVarsBuilder();
+  set vars(_i3.GdeleteAppletVarsBuilder? vars) => _$this._vars = vars;
+
+  _i4.Operation? _operation;
+  _i4.Operation? get operation => _$this._operation;
+  set operation(_i4.Operation? operation) => _$this._operation = operation;
+
+  String? _requestId;
+  String? get requestId => _$this._requestId;
+  set requestId(String? requestId) => _$this._requestId = requestId;
+
+  _i2.GdeleteAppletData? Function(
+      _i2.GdeleteAppletData?, _i2.GdeleteAppletData?)? _updateResult;
+  _i2.GdeleteAppletData? Function(
+          _i2.GdeleteAppletData?, _i2.GdeleteAppletData?)?
+      get updateResult => _$this._updateResult;
+  set updateResult(
+          _i2.GdeleteAppletData? Function(
+                  _i2.GdeleteAppletData?, _i2.GdeleteAppletData?)?
+              updateResult) =>
+      _$this._updateResult = updateResult;
+
+  _i2.GdeleteAppletDataBuilder? _optimisticResponse;
+  _i2.GdeleteAppletDataBuilder get optimisticResponse =>
+      _$this._optimisticResponse ??= new _i2.GdeleteAppletDataBuilder();
+  set optimisticResponse(_i2.GdeleteAppletDataBuilder? optimisticResponse) =>
+      _$this._optimisticResponse = optimisticResponse;
+
+  String? _updateCacheHandlerKey;
+  String? get updateCacheHandlerKey => _$this._updateCacheHandlerKey;
+  set updateCacheHandlerKey(String? updateCacheHandlerKey) =>
+      _$this._updateCacheHandlerKey = updateCacheHandlerKey;
+
+  Map<String, dynamic>? _updateCacheHandlerContext;
+  Map<String, dynamic>? get updateCacheHandlerContext =>
+      _$this._updateCacheHandlerContext;
+  set updateCacheHandlerContext(
+          Map<String, dynamic>? updateCacheHandlerContext) =>
+      _$this._updateCacheHandlerContext = updateCacheHandlerContext;
+
+  _i1.FetchPolicy? _fetchPolicy;
+  _i1.FetchPolicy? get fetchPolicy => _$this._fetchPolicy;
+  set fetchPolicy(_i1.FetchPolicy? fetchPolicy) =>
+      _$this._fetchPolicy = fetchPolicy;
+
+  bool? _executeOnListen;
+  bool? get executeOnListen => _$this._executeOnListen;
+  set executeOnListen(bool? executeOnListen) =>
+      _$this._executeOnListen = executeOnListen;
+
+  _i4.Context? _context;
+  _i4.Context? get context => _$this._context;
+  set context(_i4.Context? context) => _$this._context = context;
+
+  GdeleteAppletReqBuilder() {
+    GdeleteAppletReq._initializeBuilder(this);
+  }
+
+  GdeleteAppletReqBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _vars = $v.vars.toBuilder();
+      _operation = $v.operation;
+      _requestId = $v.requestId;
+      _updateResult = $v.updateResult;
+      _optimisticResponse = $v.optimisticResponse?.toBuilder();
+      _updateCacheHandlerKey = $v.updateCacheHandlerKey;
+      _updateCacheHandlerContext = $v.updateCacheHandlerContext;
+      _fetchPolicy = $v.fetchPolicy;
+      _executeOnListen = $v.executeOnListen;
+      _context = $v.context;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GdeleteAppletReq other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GdeleteAppletReq;
+  }
+
+  @override
+  void update(void Function(GdeleteAppletReqBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GdeleteAppletReq build() => _build();
+
+  _$GdeleteAppletReq _build() {
+    _$GdeleteAppletReq _$result;
+    try {
+      _$result = _$v ??
+          new _$GdeleteAppletReq._(
+              vars: vars.build(),
+              operation: BuiltValueNullFieldError.checkNotNull(
+                  operation, r'GdeleteAppletReq', 'operation'),
+              requestId: requestId,
+              updateResult: updateResult,
+              optimisticResponse: _optimisticResponse?.build(),
+              updateCacheHandlerKey: updateCacheHandlerKey,
+              updateCacheHandlerContext: updateCacheHandlerContext,
+              fetchPolicy: fetchPolicy,
+              executeOnListen: BuiltValueNullFieldError.checkNotNull(
+                  executeOnListen, r'GdeleteAppletReq', 'executeOnListen'),
+              context: context);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'vars';
+        vars.build();
+
+        _$failedField = 'optimisticResponse';
+        _optimisticResponse?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GdeleteAppletReq', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -1959,13 +2669,12 @@ class GBaseAppletProviderReqBuilder
     try {
       _$result = _$v ??
           new _$GBaseAppletProviderReq._(
-            vars: vars.build(),
-            document: BuiltValueNullFieldError.checkNotNull(
-                document, r'GBaseAppletProviderReq', 'document'),
-            fragmentName: fragmentName,
-            idFields: BuiltValueNullFieldError.checkNotNull(
-                idFields, r'GBaseAppletProviderReq', 'idFields'),
-          );
+              vars: vars.build(),
+              document: BuiltValueNullFieldError.checkNotNull(
+                  document, r'GBaseAppletProviderReq', 'document'),
+              fragmentName: fragmentName,
+              idFields: BuiltValueNullFieldError.checkNotNull(
+                  idFields, r'GBaseAppletProviderReq', 'idFields'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -2106,13 +2815,12 @@ class GBaseAppletNodeReqBuilder
     try {
       _$result = _$v ??
           new _$GBaseAppletNodeReq._(
-            vars: vars.build(),
-            document: BuiltValueNullFieldError.checkNotNull(
-                document, r'GBaseAppletNodeReq', 'document'),
-            fragmentName: fragmentName,
-            idFields: BuiltValueNullFieldError.checkNotNull(
-                idFields, r'GBaseAppletNodeReq', 'idFields'),
-          );
+              vars: vars.build(),
+              document: BuiltValueNullFieldError.checkNotNull(
+                  document, r'GBaseAppletNodeReq', 'document'),
+              fragmentName: fragmentName,
+              idFields: BuiltValueNullFieldError.checkNotNull(
+                  idFields, r'GBaseAppletNodeReq', 'idFields'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -2254,13 +2962,12 @@ class GExtendedAppletNodeReqBuilder
     try {
       _$result = _$v ??
           new _$GExtendedAppletNodeReq._(
-            vars: vars.build(),
-            document: BuiltValueNullFieldError.checkNotNull(
-                document, r'GExtendedAppletNodeReq', 'document'),
-            fragmentName: fragmentName,
-            idFields: BuiltValueNullFieldError.checkNotNull(
-                idFields, r'GExtendedAppletNodeReq', 'idFields'),
-          );
+              vars: vars.build(),
+              document: BuiltValueNullFieldError.checkNotNull(
+                  document, r'GExtendedAppletNodeReq', 'document'),
+              fragmentName: fragmentName,
+              idFields: BuiltValueNullFieldError.checkNotNull(
+                  idFields, r'GExtendedAppletNodeReq', 'idFields'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -2399,13 +3106,12 @@ class GBaseAppletReqBuilder
     try {
       _$result = _$v ??
           new _$GBaseAppletReq._(
-            vars: vars.build(),
-            document: BuiltValueNullFieldError.checkNotNull(
-                document, r'GBaseAppletReq', 'document'),
-            fragmentName: fragmentName,
-            idFields: BuiltValueNullFieldError.checkNotNull(
-                idFields, r'GBaseAppletReq', 'idFields'),
-          );
+              vars: vars.build(),
+              document: BuiltValueNullFieldError.checkNotNull(
+                  document, r'GBaseAppletReq', 'document'),
+              fragmentName: fragmentName,
+              idFields: BuiltValueNullFieldError.checkNotNull(
+                  idFields, r'GBaseAppletReq', 'idFields'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -2546,13 +3252,12 @@ class GAppletWithNodesReqBuilder
     try {
       _$result = _$v ??
           new _$GAppletWithNodesReq._(
-            vars: vars.build(),
-            document: BuiltValueNullFieldError.checkNotNull(
-                document, r'GAppletWithNodesReq', 'document'),
-            fragmentName: fragmentName,
-            idFields: BuiltValueNullFieldError.checkNotNull(
-                idFields, r'GAppletWithNodesReq', 'idFields'),
-          );
+              vars: vars.build(),
+              document: BuiltValueNullFieldError.checkNotNull(
+                  document, r'GAppletWithNodesReq', 'document'),
+              fragmentName: fragmentName,
+              idFields: BuiltValueNullFieldError.checkNotNull(
+                  idFields, r'GAppletWithNodesReq', 'idFields'));
     } catch (_) {
       late String _$failedField;
       try {

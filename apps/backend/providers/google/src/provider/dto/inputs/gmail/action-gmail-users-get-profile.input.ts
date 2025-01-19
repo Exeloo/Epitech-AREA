@@ -8,6 +8,8 @@ import {
 export class ActionGmailUsersGetProfileInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
+    name: "User ID",
+    description: "Gmail profile of user ID",
   })
   user_id: string;
 }

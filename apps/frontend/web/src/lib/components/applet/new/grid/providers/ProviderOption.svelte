@@ -11,12 +11,12 @@
 		provider: BaseProvider;
 		element: ElementValues | null;
 	}
-	let { provider, element = $bindable() }: Props = $props();
+	let { provider = $bindable(), element = $bindable() }: Props = $props();
 
 	let baseProviderStore = new BaseProviderStore();
 	let providerWithManifestStore = new ProviderWithManifestStore();
 
-	let info = $state(baseProviderStore.get(provider));
+	let info = $derived(baseProviderStore.get(provider));
 
 	async function selectProvider() {
 		if (!$info) return;
@@ -44,9 +44,13 @@
 {#if $info}
 	<button
 		onclick={selectProvider}
-		class="flex h-full flex-col items-center justify-center dark:text-black"
+		class="flex h-24 flex-col items-center justify-center dark:text-black"
 		style="background-color: {$info.color};"
 	>
-		<img src={$info.img} alt={$info.name} class="h-20 w-20" />
+		<img
+			src={$info.img}
+			alt={$info.name}
+			class="flex w-8 items-center justify-center object-cover text-center"
+		/>
 	</button>
 {/if}

@@ -2,7 +2,7 @@ import { Injectable, Logger } from "@nestjs/common";
 
 import { AppletRegisterProcessor } from "@domain/applet/processors/base/register.processor";
 
-import { IAppletCreateInput } from "../../types/applet.input.type";
+import { IAppletInput } from "../../types/applet.input.type";
 import { IApplet } from "../../types/applet.type";
 import {
   IAppletPreProcessor,
@@ -12,11 +12,9 @@ import { AppletInputProcessor } from "../base/input.processor";
 import { AppletSaveProcessor } from "../base/save.processor";
 
 @Injectable()
-export class AppletCreateProcessor
-  implements IAppletProcessor<IAppletCreateInput>
-{
-  private readonly preProcessors: IAppletPreProcessor<IAppletCreateInput>[];
-  private readonly processors: IAppletProcessor<IAppletCreateInput>[];
+export class AppletCreateProcessor implements IAppletProcessor<IAppletInput> {
+  private readonly preProcessors: IAppletPreProcessor<IAppletInput>[];
+  private readonly processors: IAppletProcessor<IAppletInput>[];
   private logger: Logger;
 
   constructor(
@@ -29,7 +27,7 @@ export class AppletCreateProcessor
     this.logger = new Logger(`DOMAIN (Applet ${this.constructor.name})`);
   }
 
-  async process(applet: IApplet, data: IAppletCreateInput): Promise<IApplet> {
+  async process(applet: IApplet, data: IAppletInput): Promise<IApplet> {
     this.logger.log(`Processing applet ${applet.id}`);
 
     data = await this.runPreProcess(applet, data);
@@ -40,8 +38,8 @@ export class AppletCreateProcessor
 
   private async runPreProcess(
     applet: IApplet,
-    data: IAppletCreateInput,
-  ): Promise<IAppletCreateInput> {
+    data: IAppletInput,
+  ): Promise<IAppletInput> {
     for (const processor of this.preProcessors) {
       this.logger.debug(
         `Pre-Processing applet ${applet.id} with ${processor.constructor.name}`,
@@ -54,7 +52,7 @@ export class AppletCreateProcessor
 
   private async runProcess(
     applet: IApplet,
-    data: IAppletCreateInput,
+    data: IAppletInput,
   ): Promise<IApplet> {
     for (const processor of this.processors) {
       this.logger.debug(

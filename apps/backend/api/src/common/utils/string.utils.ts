@@ -1,15 +1,7 @@
 import { InternalException } from "@exception";
 
 export const capitalize = (str: string) => {
-  return str.slice(0, 1).toUpperCase() + str.slice(1).toLowerCase();
-};
-
-export const formatCodeToText = (str: string) => {
-  return str
-    .split("_")
-    .filter((value) => !!value)
-    .map((value) => capitalize(value))
-    .join(" ");
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 };
 
 export const generateRandomString = (length: number): string => {

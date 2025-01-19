@@ -1,6 +1,7 @@
 import 'package:aether/views/applet/pages/applet_creation.dart';
-import 'package:aether/views/applet/pages/my_applets_page.dart';
+import 'package:aether/views/faq/pages/faq_page.dart';
 import 'package:aether/views/home/pages/home.dart';
+import 'package:aether/views/market/pages/market_page.dart';
 import 'package:aether/views/settings/pages/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -27,8 +28,8 @@ class MainNavigationPageState extends State<MainNavigationPage> {
   Widget build(BuildContext context) {
     final List<Widget> pages = [
       const HomePage(),
-      const Page2(),
-      const MyAppletsPage(),
+      const FAQPage(),
+      const MarketPage(),
       const SettingsPage(),
     ];
 
@@ -59,7 +60,7 @@ class MainNavigationPageState extends State<MainNavigationPage> {
                 ),
                 IconButton(
                   onPressed: () => _onTabTapped(1),
-                  icon: SvgPicture.asset('assets/icon/loupe.svg',
+                  icon: SvgPicture.asset('assets/icon/faq.svg',
                       width: 24,
                       height: 24,
                       color: _currentIndex == 1
@@ -69,7 +70,7 @@ class MainNavigationPageState extends State<MainNavigationPage> {
                 const SizedBox(width: 50),
                 IconButton(
                   onPressed: () => _onTabTapped(2),
-                  icon: SvgPicture.asset('assets/icon/liste.svg',
+                  icon: SvgPicture.asset('assets/icon/panier.svg',
                       width: 24,
                       height: 24,
                       color: _currentIndex == 2
@@ -112,39 +113,6 @@ class MainNavigationPageState extends State<MainNavigationPage> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-    );
-  }
-}
-
-class Page1 extends StatelessWidget {
-  const Page1({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text("Bienvenue sur la page Accueil")),
-    );
-  }
-}
-
-class Page2 extends StatelessWidget {
-  const Page2({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text("Bienvenue sur la page Recherche")),
-    );
-  }
-}
-
-class Page3 extends StatelessWidget {
-  const Page3({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text("Bienvenue sur la page Mes Applets")),
     );
   }
 }

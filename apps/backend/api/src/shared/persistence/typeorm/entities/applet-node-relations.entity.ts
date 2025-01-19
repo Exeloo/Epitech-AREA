@@ -12,12 +12,12 @@ export class AppletNodeRelationEntity {
   @Column({ type: "int" })
   firstId: ID;
 
-  @ManyToOne(() => AppletNodeEntity)
+  @ManyToOne(() => AppletNodeEntity, { onDelete: "CASCADE" })
   first?: AppletNodeEntity;
 
   @Column({ type: "int" })
   secondId: ID;
 
-  @ManyToOne(() => AppletNodeEntity)
+  @ManyToOne(() => AppletNodeEntity, { onDelete: "CASCADE" })
   second?: AppletNodeEntity;
 }

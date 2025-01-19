@@ -24,8 +24,8 @@ export class UserAction extends BaseHttpRepository {
     id: "user-get-profile",
     name: "User Get Profile",
     description: "Action to Get Profile of user",
-    img: "",
-    color: "#ffffff",
+    img: "https://firebasestorage.googleapis.com/v0/b/area-444018.firebasestorage.app/o/liste-des-membres.svg?alt=media&token=f694249e-3892-4bb9-825a-bbea563c2cb4",
+    color: "#ff7b33",
     input: ActionUserGetProfileInput,
     output: ActionUserGetProfileResponse,
   })

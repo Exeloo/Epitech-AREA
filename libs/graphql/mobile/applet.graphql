@@ -73,3 +73,15 @@ mutation createApplet($data: AppletCreateInput!) {
         ...BaseApplet
     }
 }
+
+mutation updateApplet($id: Int!, $data: AppletUpdateInput!) {
+    updateApplet(id: $id, data: $data) {
+        ...BaseApplet
+    }
+}
+
+mutation deleteApplet($id: Int!) {
+    updateApplet(id: $id) {
+        ...BaseApplet
+    }
+}

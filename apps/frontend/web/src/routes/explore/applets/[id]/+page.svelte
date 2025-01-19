@@ -1,5 +1,5 @@
 <script lang="ts">
-	import {onMount} from 'svelte';
+	import { onMount } from 'svelte';
 	import {
 		DeleteAppletStore,
 		type getAppletById$result,
@@ -7,8 +7,9 @@
 		load_getAppletById,
 		load_getAppletNodeById
 	} from '$houdini';
-	import {page} from '$app/stores';
+	import { page } from '$app/stores';
 	import ActionBlock from '$lib/components/explore/card/ActionBlock.svelte';
+	import ConfirmDeletionModal from '$lib/components/ux/ConfirmDeletionModal.svelte';
 
 	let deleteAppletStore = new DeleteAppletStore();
 
@@ -17,6 +18,8 @@
 	let applet: getAppletById$result['getAppletById'] | undefined = $state(undefined);
 	let trigger: getAppletNodeById$result['getAppletNodeById'] | undefined = $state(undefined);
 	let actions: getAppletNodeById$result['getAppletNodeById'][] = $state([]);
+
+	let deletionModal = $state(false);
 
 	async function deleteApplet() {
 		const query = await deleteAppletStore.mutate({ deleteAppletId: +id });
@@ -56,10 +59,10 @@
 	});
 </script>
 
-<div class="flex flex-col w-full justify-between items-start px-10 py-10">
+<div class="flex w-full flex-col items-start justify-between px-10 py-10">
 	<a
 		href="/explore/applets"
-		class="flex self-start items-center justify-center gap-1 text-2xl duration-100 md:text-4xl"
+		class="flex items-center justify-center gap-1 self-start text-2xl duration-100 md:text-4xl"
 	>
 		<i class="fi fi-rr-arrow-small-left flex items-center justify-center"></i>
 		Back
@@ -83,11 +86,12 @@
 		{/if}
 	{/if}
 	<button
-		onclick={deleteApplet}
+		onclick={() => (deletionModal = true)}
 		aria-label="delete applet"
-		class="mt-14 flex h-fit self-center items-center justify-center gap-2 rounded-full bg-red-500 px-16 py-3 text-xl font-semibold"
+		class="mt-14 flex h-fit items-center justify-center gap-2 self-center rounded-full bg-red-500 px-16 py-3 text-xl font-semibold"
 	>
 		<i class="fi fi-sr-trash flex items-center justify-center"></i>
 		Remove
 	</button>
 </div>
+<ConfirmDeletionModal bind:open={deletionModal} onDeleteConfirm={deleteApplet} />

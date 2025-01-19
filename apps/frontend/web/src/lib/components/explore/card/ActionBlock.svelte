@@ -26,7 +26,7 @@
 			style="background-color: {action.provider.color}"
 			class="rounded-3xl p-3 text-base text-black"
 		>
-			<img class="w-24 h-24" src={action.provider.img} alt={action.provider.name} />
+			<img class="h-24 w-24" src={action.provider.img} alt={action.provider.name} />
 		</div>
 	</div>
 	<div class="flex w-[70rem] flex-col gap-16 p-10">

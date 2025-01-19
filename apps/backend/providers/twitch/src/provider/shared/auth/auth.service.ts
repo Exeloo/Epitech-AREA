@@ -36,7 +36,7 @@ export class AuthService {
 
   async getOAuthUrl(body: { state: string }): Promise<{ baseUrl: string }> {
     return {
-      baseUrl: `https://id.twitch.tv/oauth2/authorize?client_id=${this.clientId}&redirect_uri=${this.redirectUri}&state=${body.state}&response_type=code&scope=user:write:chat+user:read:chat`,
+      baseUrl: `https://id.twitch.tv/oauth2/authorize?client_id=${this.clientId}&redirect_uri=${this.redirectUri}&state=${body.state}&response_type=code&scope=user:write:chat+user:read:chat+channel:moderate+channel:read:subscriptions+channel:read:redemptions+moderation:read+moderator:read:followers+moderator:manage:automod`,
     };
   }
 

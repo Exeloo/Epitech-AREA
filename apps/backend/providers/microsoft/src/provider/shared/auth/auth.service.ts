@@ -36,7 +36,7 @@ export class AuthService {
 
   async getOAuthUrl(body: { state: string }): Promise<{ baseUrl: string }> {
     return {
-      baseUrl: `https://login.microsoftonline.com/consumers/oauth2/v2.0/authorize?client_id=${this.clientId}&redirect_uri=${this.redirectUri}&state=${body.state}&response_type=code&scope=User.Read`,
+      baseUrl: `https://login.microsoftonline.com/consumers/oauth2/v2.0/authorize?client_id=${this.clientId}&redirect_uri=${this.redirectUri}&state=${body.state}&response_type=code&scope=User.Read Mail.Send Calendars.ReadWrite Notes.Create`,
     };
   }
 

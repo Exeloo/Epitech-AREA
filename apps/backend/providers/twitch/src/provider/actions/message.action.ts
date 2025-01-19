@@ -24,7 +24,7 @@ export class MessageAction extends BaseHttpRepository {
     id: "message-create",
     name: "Send Message",
     description: "Action to send a message on a broadcaster chat",
-    img: "https://firebasestorage.googleapis.com/v0/b/area-444018.firebasestorage.app/o/chat-bot.png?alt=media&token=ea64b54d-1d40-4049-9412-31239eeafae5",
+    img: "https://firebasestorage.googleapis.com/v0/b/area-444018.firebasestorage.app/o/avion-en-papier.svg?alt=media&token=dfb8b5e4-211b-4b94-ab3f-7b4171d7c736",
     color: "#b9a3e3",
     input: ActionMessageCreateInput,
     output: ActionMessageResponse,

@@ -8,7 +8,7 @@ export enum EventsEnum {
   MESSAGE_UPDATE = "MESSAGE_UPDATE",
   MESSAGE_DELETE = "MESSAGE_DELETE",
   MESSAGE_REACTION_ADD = "MESSAGE_REACTION_ADD",
-  MESSAGE_REACTION_DELETE = "MESSAGE_REACTION_DELETE",
+  MESSAGE_REACTION_REMOVE = "MESSAGE_REACTION_REMOVE",
 }
 
 export interface IEvents {
@@ -16,7 +16,7 @@ export interface IEvents {
   [EventsEnum.MESSAGE_UPDATE]: [message: MessageNode];
   [EventsEnum.MESSAGE_DELETE]: [response: DeleteMessageResponse];
   [EventsEnum.MESSAGE_REACTION_ADD]: [reaction: AddReactionMessageResponse];
-  [EventsEnum.MESSAGE_REACTION_DELETE]: [
+  [EventsEnum.MESSAGE_REACTION_REMOVE]: [
     reaction: DeleteReactionMessageResponse,
   ];
 }

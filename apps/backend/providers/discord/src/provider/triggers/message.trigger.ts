@@ -109,7 +109,7 @@ export class MessageTrigger {
     const triggers = await this.triggerService.getTriggers(
       "message-reaction-add",
       {
-        reaction_id: reaction.emoji.id,
+        emoji_id: reaction.emoji.id,
       },
     );
     this.appGateway.emit(
@@ -128,12 +128,12 @@ export class MessageTrigger {
     input: TriggerAddReactionMessageInput,
     output: DeleteReactionMessageResponse,
   })
-  @OnEvent(EventsEnum.MESSAGE_REACTION_DELETE)
+  @OnEvent(EventsEnum.MESSAGE_REACTION_REMOVE)
   async messageReactionDeleteTrigger(reaction: DeleteReactionMessageResponse) {
     const triggers = await this.triggerService.getTriggers(
       "message-reaction-delete",
       {
-        reaction_id: reaction.emoji.id,
+        emoji_id: reaction.emoji.id,
       },
     );
     this.appGateway.emit(

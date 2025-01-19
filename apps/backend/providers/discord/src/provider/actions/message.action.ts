@@ -48,9 +48,12 @@ export class MessageAction extends BaseHttpRepository {
   async messageUpdateAction(
     input: ActionMessageUpdateInput,
   ): Promise<MessageNode> {
-    return this.post(`/channels/${input.channel_id}/messages/${input.id}`, {
-      content: input.content,
-    });
+    return await this.patch(
+      `/channels/${input.channel_id}/messages/${input.id}`,
+      {
+        content: input.content,
+      },
+    );
   }
 
   @ManifestAction({

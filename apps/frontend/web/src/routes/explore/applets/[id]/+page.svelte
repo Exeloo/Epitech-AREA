@@ -9,6 +9,8 @@
 	import { page } from '$app/stores';
 	import ActionBlock from '$lib/components/explore/card/ActionBlock.svelte';
 
+	//let deleteApplet = new DeleteAppletStore();
+
 	let id = $page.params.id;
 
 	let applet: getAppletById$result['getAppletById'] | undefined = $state(undefined);

@@ -35,7 +35,12 @@
 
 	const inputsArray = parsedInputs
 		? Object.entries(parsedInputs).map(([key, value]) => {
-				return { title: value.name ?? key, type: value.type, description: value.description ?? '' };
+				return {
+					title: value.name ?? key,
+					id: key,
+					type: value.type,
+					description: value.description ?? ''
+				};
 			})
 		: [];
 
@@ -90,12 +95,12 @@
 							<span class="">{input.description}</span>
 						</div>
 
-						{#if isSelected && elementInputs[input.title] !== element.inputs[input.title]}
+						{#if isSelected && elementInputs[input.id] !== element.inputs[input.id]}
 							<i class="fi fi-rr-medical-star flex justify-center text-xs text-red-600"></i>
 						{/if}
 					</div>
 					<input
-						bind:value={elementInputs[input.title]}
+						bind:value={elementInputs[input.id]}
 						class="w-[50%] rounded-lg border-2 px-2 text-black"
 					/>
 				</div>

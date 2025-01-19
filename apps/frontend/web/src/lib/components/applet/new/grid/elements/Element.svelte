@@ -21,6 +21,8 @@
 
 	interface EntryParams {
 		type: string;
+		name?: string;
+		description?: string;
 	}
 
 	let open = $state(false);
@@ -33,7 +35,7 @@
 
 	const inputsArray = parsedInputs
 		? Object.entries(parsedInputs).map(([key, value]) => {
-				return { title: key, type: value.type };
+				return { title: value.name ?? key, type: value.type, description: value.description ?? '' };
 			})
 		: [];
 
@@ -79,18 +81,22 @@
 	</button>
 	{#if open && element}
 		<hr class="my-3" />
-		<div class="flex flex-col gap-2">
+		<div class="flex flex-col gap-3">
 			{#each inputsArray as input}
 				<div class="flex justify-between gap-2">
 					<div class="flex items-center gap-1">
-						<span class="font-bold">{input.title}</span>
+						<div class="flex flex-col items-start gap-1">
+							<span class="font-bold">{input.title}</span>
+							<span class="">{input.description}</span>
+						</div>
+
 						{#if isSelected && elementInputs[input.title] !== element.inputs[input.title]}
 							<i class="fi fi-rr-medical-star flex justify-center text-xs text-red-600"></i>
 						{/if}
 					</div>
 					<input
 						bind:value={elementInputs[input.title]}
-						class="w-auto rounded-lg border px-2 text-black"
+						class="w-[50%] rounded-lg border-2 px-2 text-black"
 					/>
 				</div>
 			{/each}

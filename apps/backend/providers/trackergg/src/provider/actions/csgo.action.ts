@@ -25,7 +25,7 @@ export class CsgoAction extends BaseHttpRepository {
     name: "CSGO Get Profile",
     description: "Action to Get Profile of csgo",
     img: "https://firebasestorage.googleapis.com/v0/b/area-444018.firebasestorage.app/o/pistolet.svg?alt=media&token=12829172-1f0b-4ecd-8c3c-967fda55f848",
-    color: "##242426",
+    color: "#242426",
     input: ActionCsgoGetProfileInput,
     output: ActionCsgoGetProfileResponse,
   })

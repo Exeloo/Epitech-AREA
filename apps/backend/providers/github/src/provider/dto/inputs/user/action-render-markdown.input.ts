@@ -9,7 +9,7 @@ export class ActionRenderMarkdownInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
     optional: true,
-    name: "user_id",
+    name: "user id",
     description: "The ID of the user to render the markdown for",
   })
   user_id?: string;

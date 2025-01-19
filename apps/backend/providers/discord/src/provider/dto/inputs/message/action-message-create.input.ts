@@ -10,14 +10,14 @@ import { Snowflake } from "../../../types/snowflake.type";
 export class ActionMessageCreateInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
-    name: "channel_id",
+    name: "Channel id",
     description: "The channel id",
   })
   channel_id: Snowflake;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
-    name: "content",
+    name: "Message content",
     description: "The content of the message",
   })
   content: string;

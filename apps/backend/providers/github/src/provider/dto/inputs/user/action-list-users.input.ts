@@ -9,7 +9,7 @@ export class ActionListUsersInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
     optional: true,
-    name: "user_id",
+    name: "user id",
     description:
       "The ID of the user to list the users for (defaults to the authenticated user)",
   })
@@ -18,7 +18,7 @@ export class ActionListUsersInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.NUMBER,
     optional: true,
-    name: "since",
+    name: "Last seen user",
     description: "The ID of the last user that you've seen",
   })
   since?: number;
@@ -26,7 +26,7 @@ export class ActionListUsersInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.NUMBER,
     optional: true,
-    name: "per_page",
+    name: "item per page",
     description: "The number of items to return per page",
   })
   per_page?: number;

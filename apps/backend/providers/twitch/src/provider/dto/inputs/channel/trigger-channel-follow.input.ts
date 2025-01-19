@@ -8,14 +8,14 @@ import {
 export class TriggerChannelFollowInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
-    name: "broadcaster_id",
+    name: "broadcaster id",
     description: "The ID of the broadcaster where the follow was triggered",
   })
   broadcaster_user_id: string;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
-    name: "moderator_id",
+    name: "moderator id",
     description: "The ID of the moderator who triggered the follow.",
   })
   moderator_user_id: string;

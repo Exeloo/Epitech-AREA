@@ -9,7 +9,7 @@ export class ActionUserGetProfileInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
     optional: true,
-    name: "user_id",
+    name: "user id",
     description: "The ID of the user to get the profile for",
   })
   user_id?: string;

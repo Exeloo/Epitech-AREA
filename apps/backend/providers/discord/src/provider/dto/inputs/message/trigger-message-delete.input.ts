@@ -10,8 +10,8 @@ import { Snowflake } from "../../../types/snowflake.type";
 export class TriggerMessageDeleteInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
-    name: "id",
-    description: "The message id",
+    name: "Channel id",
+    description: "The channel id",
   })
   channel_id: Snowflake;
 }

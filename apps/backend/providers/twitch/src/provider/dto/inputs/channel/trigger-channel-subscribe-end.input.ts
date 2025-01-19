@@ -8,7 +8,7 @@ import {
 export class TriggerChannelSubscribeEndInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
-    name: "broadcaster_id",
+    name: "broadcaster id",
     description: "The ID of the broadcaster where the subscription ended.",
   })
   broadcaster_user_id: string;

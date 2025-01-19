@@ -10,14 +10,14 @@ import { Snowflake } from "../../../types/snowflake.type";
 export class ActionMessageOwnReactionInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
-    name: "message_id",
+    name: "Message id",
     description: "The message id",
   })
   message_id: Snowflake;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
-    name: "channel_id",
+    name: "Channel id",
     description: "The channel id",
   })
   channel_id: Snowflake;

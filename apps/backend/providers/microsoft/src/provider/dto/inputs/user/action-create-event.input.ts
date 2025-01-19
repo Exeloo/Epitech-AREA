@@ -8,14 +8,14 @@ import {
 export class EventBody {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
-    name: "contentType",
+    name: "Content Type",
     description: "The content type of the event body",
   })
   contentType: string;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
-    name: "content",
+    name: "Content",
     description: "The content of the event body",
   })
   content: string;
@@ -25,14 +25,14 @@ export class EventBody {
 export class EventDateTime {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
-    name: "dateTime",
+    name: "Date Time",
     description: "The date and time of the event",
   })
   dateTime: string;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
-    name: "timeZone",
+    name: "Time Zone",
     description: "The time zone of the event",
   })
   timeZone: string;
@@ -42,7 +42,7 @@ export class EventDateTime {
 export class EventLocation {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
-    name: "displayName",
+    name: "Display Name",
     description: "The display name of the event location",
   })
   displayName: string;
@@ -52,14 +52,14 @@ export class EventLocation {
 export class EmailAddress {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
-    name: "address",
+    name: "Address",
     description: "The email address",
   })
   address: string;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
-    name: "name",
+    name: "Email Address Name",
     description: "The name of the email address",
   })
   name: string;
@@ -70,14 +70,14 @@ export class Attendee {
   @ManifestProperty({
     type: ManifestPropertyEnum.OBJECT,
     properties: EmailAddress,
-    name: "emailAddress",
+    name: "Email Address",
     description: "The email address of the attendee",
   })
   emailAddress: EmailAddress;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
-    name: "type",
+    name: "Type",
     description: "The type of the attendee",
   })
   type: string;
@@ -88,14 +88,14 @@ export class ActionCreateEventInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
     optional: true,
-    name: "user_id",
+    name: "User Id",
     description: "The user id",
   })
   user_id?: string;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
-    name: "subject",
+    name: "Subject",
     description: "The subject of the event",
   })
   subject: string;
@@ -103,7 +103,7 @@ export class ActionCreateEventInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.OBJECT,
     properties: EventBody,
-    name: "body",
+    name: "Body",
     description: "The body of the event",
   })
   body: EventBody;
@@ -111,7 +111,7 @@ export class ActionCreateEventInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.OBJECT,
     properties: EventDateTime,
-    name: "start",
+    name: "Start",
     description: "The start date and time of the event",
   })
   start: EventDateTime;
@@ -119,7 +119,7 @@ export class ActionCreateEventInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.OBJECT,
     properties: EventDateTime,
-    name: "end",
+    name: "End",
     description: "The end date and time of the event",
   })
   end: EventDateTime;
@@ -127,7 +127,7 @@ export class ActionCreateEventInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.OBJECT,
     properties: EventLocation,
-    name: "location",
+    name: "Location",
     description: "The location of the event",
   })
   location: EventLocation;
@@ -138,14 +138,14 @@ export class ActionCreateEventInput {
       type: ManifestPropertyEnum.OBJECT,
       properties: Attendee,
     },
-    name: "attendees",
+    name: "Attendees",
     description: "The attendees of the event",
   })
   attendees: Array<Attendee>;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.BOOLEAN,
-    name: "allowNewTimeProposals",
+    name: "Allow New Time Proposals",
     description: "Whether to allow new time proposals",
   })
   allowNewTimeProposals: boolean;
@@ -153,7 +153,7 @@ export class ActionCreateEventInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
     optional: true,
-    name: "transactionId",
+    name: "Transaction Id",
     description: "The transaction id",
   })
   transactionId?: string;

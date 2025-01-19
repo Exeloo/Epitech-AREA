@@ -8,14 +8,14 @@ import {
 export class ActionMessageCreateInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
-    name: "broadcaster_id",
+    name: "broadcaster id",
     description: "The ID of the broadcaster where the message was sent",
   })
   broadcaster_id: string;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
-    name: "sender_id",
+    name: "sender id",
     description: "The ID of the sender of the message",
   })
   sender_id: string;

@@ -9,21 +9,21 @@ export class ActionListTeamReposInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
     optional: true,
-    name: "user_id",
+    name: "user id",
     description: "The ID of the user to list the team repos for",
   })
   user_id?: string;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
-    name: "org",
+    name: "organization",
     description: "The organization the team belongs to",
   })
   org: string;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
-    name: "team_slug",
+    name: "team slug",
     description: "The slug of the team to list the repos for",
   })
   team_slug: string;
@@ -31,7 +31,7 @@ export class ActionListTeamReposInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.NUMBER,
     optional: true,
-    name: "per_page",
+    name: "item per page",
     description: "The number of items to return per page",
   })
   per_page?: number;
@@ -39,7 +39,7 @@ export class ActionListTeamReposInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.NUMBER,
     optional: true,
-    name: "page",
+    name: "page number",
     description: "The page number to return",
   })
   page?: number;

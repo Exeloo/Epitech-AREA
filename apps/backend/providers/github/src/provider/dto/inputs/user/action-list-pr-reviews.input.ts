@@ -9,7 +9,7 @@ export class ActionListPRReviewsInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
     optional: true,
-    name: "user_id",
+    name: "user id",
     description: "The ID of the user to get the project for",
   })
   user_id?: string;
@@ -23,14 +23,14 @@ export class ActionListPRReviewsInput {
 
   @ManifestProperty({
     type: ManifestPropertyEnum.STRING,
-    name: "repo",
+    name: "repository name",
     description: "The name of the repository",
   })
   repo: string;
 
   @ManifestProperty({
     type: ManifestPropertyEnum.NUMBER,
-    name: "pull_number",
+    name: "pull number",
     description: "The number of the pull request",
   })
   pull_number: number;
@@ -38,7 +38,7 @@ export class ActionListPRReviewsInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.NUMBER,
     optional: true,
-    name: "per_page",
+    name: "items er page",
     description: "The number of items to return per page",
   })
   per_page?: number;
@@ -46,7 +46,7 @@ export class ActionListPRReviewsInput {
   @ManifestProperty({
     type: ManifestPropertyEnum.NUMBER,
     optional: true,
-    name: "page",
+    name: "page number",
     description: "The page number to return",
   })
   page?: number;

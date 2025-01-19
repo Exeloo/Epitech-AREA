@@ -6,39 +6,33 @@
 	interface Props {
 		title: string;
 		type: BlockType;
-		focus?: boolean;
+		open?: boolean;
 		element: ElementValues | null;
+		canDelete?: boolean;
 	}
-	let { title, type, focus = false, element = $bindable() }: Props = $props();
+	let { title, type, open = $bindable(false), element = $bindable() }: Props = $props();
 
 	let baseProviderStore = new BaseProviderStore();
-
-	let open = $state(false);
 
 	let provider = $derived(element ? baseProviderStore.get(element.provider) : null);
 </script>
 
-<div
-	class="flex w-full flex-col items-center justify-between gap-6 rounded-2xl text-4xl font-bold text-white xl:flex-row {focus
+<button
+	onclick={() => (open = true)}
+	class="flex w-[80%] flex-col items-center justify-between gap-6 rounded-2xl text-4xl font-bold text-white xl:flex-row {type
 		? 'bg-neutral-800'
 		: 'bg-neutral-400'} px-8 py-4"
 >
 	{title}
 	{#if $provider}
-		<button
-			onclick={() => (open = true)}
+		<div
 			style="background-color: {$provider.color}"
-			class="h-full rounded-full px-4 py-2 text-base text-black"
+			class="h-full rounded-full px-16 py-4 text-base text-black"
 		>
 			<img src={$provider.img} alt={$provider.name} class="h-full w-8" />
-		</button>
+		</div>
 	{:else}
-		<button
-			onclick={() => (open = true)}
-			class="flex items-center rounded-full bg-white px-4 py-2 text-lg text-black"
-		>
-			add
-		</button>
+		<div class="flex items-center rounded-full bg-white px-16 py-4 text-xl text-black">Add</div>
 	{/if}
-</div>
+</button>
 <SelectModal bind:open {type} bind:element />

@@ -1,0 +1,5 @@
+mutation DeleteApplet($deleteAppletId: Int!) {
+    deleteApplet(id: $deleteAppletId) {
+        id
+    }
+}

@@ -43,8 +43,9 @@
 	<div
 		class="grid grid-cols-3 grid-rows-3 overflow-hidden rounded-xl bg-neutral-100 outline outline-1 outline-gray-400 dark:bg-gray-500"
 	>
-		{#each currentProviders as provider}
-			<ProviderOption {provider} bind:element />
+		<!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
+		{#each currentProviders as provider, i}
+			<ProviderOption bind:provider={currentProviders[i]} bind:element />
 		{/each}
 	</div>
 </div>

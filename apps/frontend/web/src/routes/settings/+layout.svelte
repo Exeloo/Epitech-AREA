@@ -8,7 +8,7 @@
 	<div class="w-32 md:w-56">
 		<SettingsNav />
 	</div>
-	<div class="w-1/3">
+	<div class="w-1/2 sm:w-1/3">
 		{@render children()}
 	</div>
 </div>

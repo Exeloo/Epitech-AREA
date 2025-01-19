@@ -1,14 +1,8 @@
-<script></script>
+<script>
+	import NewAppletButton from '$lib/components/applet/NewAppletButton.svelte';
+</script>
 
-<div>
-	<div class="w-full">
-		<slot />
-	</div>
+<div class="w-full">
+	<slot />
 </div>
-<a aria-label="new" href="/applet/new/">
-	<div
-		class="fixed bottom-10 right-10 flex h-16 w-16 items-center justify-center rounded-full bg-primary text-2xl text-white"
-	>
-		<i class="fi fi-br-plus flex items-center justify-center"></i>
-	</div>
-</a>
+<NewAppletButton />

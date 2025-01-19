@@ -21,19 +21,25 @@
 
 	interface EntryParams {
 		type: string;
+		name?: string;
+		description?: string;
 	}
 
-	let open = $state(false);
+	let isSelected = $derived(element && element.actionId === id);
+	let open = $state((element && element.actionId === id) || false);
 
 	const parsedInputs = JSON.parse(inputs) as Record<string, EntryParams>;
 
 	let elementInputs: Record<string, string> = $state({});
 
-	let isSelected = $derived(element && element.actionId === id);
-
 	const inputsArray = parsedInputs
 		? Object.entries(parsedInputs).map(([key, value]) => {
-				return { title: key, type: value.type };
+				return {
+					title: value.name ?? key,
+					id: key,
+					type: value.type,
+					description: value.description ?? ''
+				};
 			})
 		: [];
 
@@ -57,7 +63,6 @@
 		});
 		const r = await query.getProviderOAuthState.fetch();
 		const data = r.data;
-		console.log(r);
 		if (!data || !data.getProviderOAuthState) return false;
 		if (data.getProviderOAuthState.authenticated || !data.getProviderOAuthState.redirectUri)
 			return true;
@@ -80,25 +85,29 @@
 	</button>
 	{#if open && element}
 		<hr class="my-3" />
-		<div class="flex flex-col gap-2">
+		<div class="flex flex-col gap-3">
 			{#each inputsArray as input}
 				<div class="flex justify-between gap-2">
 					<div class="flex items-center gap-1">
-						<span class="font-bold">{input.title}</span>
-						{#if isSelected && elementInputs[input.title] !== element.inputs[input.title]}
+						<div class="flex flex-col items-start gap-1">
+							<span class="font-bold">{input.title}</span>
+							<span class="">{input.description}</span>
+						</div>
+
+						{#if isSelected && elementInputs[input.id] !== element.inputs[input.id]}
 							<i class="fi fi-rr-medical-star flex justify-center text-xs text-red-600"></i>
 						{/if}
 					</div>
 					<input
-						bind:value={elementInputs[input.title]}
-						class="w-auto rounded-lg border px-2 text-black"
+						bind:value={elementInputs[input.id]}
+						class="w-[50%] rounded-lg border-2 px-2 text-black"
 					/>
 				</div>
 			{/each}
 			<div class="mt-4 flex justify-center">
 				<button
 					onclick={addInputs}
-					class="w-fit rounded-full bg-primary px-2 py-1 text-lg font-bold text-white shadow"
+					class="w-fit rounded-full bg-primary px-6 py-2 text-lg font-bold text-white shadow"
 				>
 					{isSelected ? 'Edit' : 'Add'}
 				</button>

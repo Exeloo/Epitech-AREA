@@ -341,7 +341,7 @@ type User {
   pronoun: String
 
   """Username of the user"""
-  username: String!
+  username: String
 }
 
 """Input type to create user"""

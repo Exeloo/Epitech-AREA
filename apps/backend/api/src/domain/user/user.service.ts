@@ -51,9 +51,9 @@ export class UserService {
     const password = input.password ?? generateRandomString(50);
 
     return this.create({
+      picture: null,
       ...input,
       password: await this.authService.hashPassword(password),
-      picture: null,
     });
   }
 

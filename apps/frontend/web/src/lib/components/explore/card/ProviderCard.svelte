@@ -11,12 +11,12 @@
 </script>
 
 {#if $info}
-	<Card color={$info.color}>
-		<a href={`/explore/providers/${$info.id}`}>
+	<a href={`/explore/providers/${$info.id}`}>
+		<Card color={$info.color}>
 			<div class="flex h-full flex-col items-center justify-center gap-6">
-				<img src={$info.img} alt="instagram" class="h-20 w-20" />
-				<h3 class="text-3xl font-bold text-black">{$info.name}</h3>
+				<img src={$info.img} alt="{$info.name} Logo" class="h-20 w-20" />
+				<h3 class="text-3xl font-bold text-white">{$info.name}</h3>
 			</div>
-		</a>
-	</Card>
+		</Card>
+	</a>
 {/if}

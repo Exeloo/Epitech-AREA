@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type {MouseEventHandler} from 'svelte/elements';
+	import type { MouseEventHandler } from 'svelte/elements';
 
 	interface Props {
 		name: string;

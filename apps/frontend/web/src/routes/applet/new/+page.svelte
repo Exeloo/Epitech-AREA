@@ -1,10 +1,10 @@
 <script lang="ts">
 	import Block from '$lib/components/applet/new/Block.svelte';
-	import {BlockType, type ElementValues} from '$lib/components/applet/new/types';
+	import { BlockType, type ElementValues } from '$lib/components/applet/new/types';
 	/*	import {
 load_getProviderOAuthState
 } from '$houdini';*/
-	import {type AppletNodeCreateInput, createAppletStore} from '$houdini';
+	import { type AppletNodeCreateInput, createAppletStore } from '$houdini';
 	import CreateButton from '$lib/components/applet/new/CreateButton.svelte';
 
 	const appletStore = new createAppletStore();
@@ -34,8 +34,7 @@ load_getProviderOAuthState
 
 	function isValidActions() {
 		for (const action of actions) {
-			if (!action || !action.actionId)
-				return false;
+			if (!action || !action.actionId) return false;
 		}
 		return actions.length > 0 && trigger && trigger.actionId;
 	}
@@ -51,15 +50,15 @@ load_getProviderOAuthState
 					providerId: actionRaw.providerId,
 					actionId: actionRaw.actionId || '',
 					input: JSON.stringify(actionRaw.inputs),
-					next: action ? [ action ] : []
-				}
+					next: action ? [action] : []
+				};
 		}
 
 		const triggerNode = {
 			providerId: trigger.providerId,
 			actionId: trigger.actionId || '',
 			input: JSON.stringify(trigger.inputs),
-			next: action ? [ action ] : []
+			next: action ? [action] : []
 		};
 
 		try {
@@ -90,29 +89,35 @@ load_getProviderOAuthState
 		</div>
 		<CreateButton name="create" onclick={createApplet} actif={!!(name && desc)} />
 	{:else}
-		<div class="w-full flex flex-col items-center gap-16">
-			<div class="w-full ml-[10%]">
+		<div class="flex w-full flex-col items-center gap-16">
+			<div class="ml-[10%] w-full">
 				<Block title="If this" type={BlockType.Triggers} focus={true} bind:element={trigger} />
 			</div>
-			<div class="w-full flex flex-col items-center gap-8">
-				{#each actions as _action, index}
-					<div class="w-full flex items-center gap-5 ml-[10%]">
+			<div class="flex w-full flex-col items-center gap-8">
+				<!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
+				{#each actions as action, index}
+					<div class="ml-[10%] flex w-full items-center gap-5">
 						<Block title="Then" type={BlockType.Actions} bind:element={actions[index]} />
 						{#if index !== 0}
-							<button aria-label="Delete Action" name="Delete Action" onclick={() => removeElement(index)}>
-								<i class="fi fi-br-cross flex items-center justify-center text-4xl text-red-600"></i>
+							<button
+								aria-label="Delete Action"
+								name="Delete Action"
+								onclick={() => removeElement(index)}
+							>
+								<i class="fi fi-br-cross flex items-center justify-center text-4xl text-red-600"
+								></i>
 							</button>
 						{/if}
 					</div>
 				{/each}
 			</div>
 			<button
-					onclick={addElement}
-					class="flex w-fit justify-center gap-2 rounded-full bg-primary px-12 py-3 text-2xl font-bold text-white"
+				onclick={addElement}
+				class="flex w-fit justify-center gap-2 rounded-full bg-primary px-12 py-3 text-2xl font-bold text-white"
 			>
 				Add action
 			</button>
 		</div>
-		<CreateButton name="Continue" onclick={goToDetail} actif={!!(isValidActions())} />
+		<CreateButton name="Continue" onclick={goToDetail} actif={!!isValidActions()} />
 	{/if}
 </div>
